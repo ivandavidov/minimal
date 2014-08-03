@@ -1,4 +1,4 @@
-minimal
+Minimal Linux Live
 =======
 
-Minimal Linux Live
+http://minimal.linux-bg.org

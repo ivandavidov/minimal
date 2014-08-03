@@ -1,0 +1,4 @@
+minimal
+=======
+
+Minimal Linux Live

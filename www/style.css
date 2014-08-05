@@ -9,7 +9,8 @@ margin: 0;
 }
 
 #container { 
-width: 780px;
+width: 100%;
+max-width: 780px;
 margin: 0 auto;
 }
 

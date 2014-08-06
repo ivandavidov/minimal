@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 DOWNLOAD_URL=$(grep -i KERNEL_SOURCE_URL .config | cut -f2 -d'=')
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}

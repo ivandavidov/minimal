@@ -13,12 +13,10 @@ cd source
 wget -c $DOWNLOAD_URL
 
 # Delete folder with previously extracted kernel
-cd ..
-cd work
-rm -rf kernel
-mkdir kernel
+rm -rf ../work/kernel
+mkdir ../work/kernel
 
 # Extract kernel to folder 'kernel'
 # Full path will be something like, kernel\linux-3.16
-tar -xvf $ARCHIVE_FILE -C kernel
+tar -xvf $ARCHIVE_FILE -C ../work/kernel
 cd ..

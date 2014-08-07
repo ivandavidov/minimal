@@ -18,4 +18,5 @@ sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal-linux-li
 # Good explanation of the different kernels
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 make bzImage
+
 cd ../../..

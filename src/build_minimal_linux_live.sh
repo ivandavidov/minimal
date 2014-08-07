@@ -8,4 +8,3 @@
 ./5_generate_rootfs.sh
 ./6_pack_rootfs.sh
 ./7_generate_iso.sh
-

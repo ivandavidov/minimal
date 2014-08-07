@@ -5,7 +5,7 @@ cd work/busybox
 # Change to the first directory ls finds, e.g/ busybox-1.22.1
 cd $(ls -d *)
 
-# Clean's the source?
+# Remove previously generated artefacts
 make clean
 
 # Create a default configuration file

@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 rm -f minimal_linux_live.iso
 

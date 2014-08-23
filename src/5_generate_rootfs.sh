@@ -25,10 +25,12 @@ cd etc
 
 cat > bootscript.sh << EOF
 #!/bin/sh
+
 dmesg -n 1
 mount -t devtmpfs none /dev
 mount -t proc none /proc
 mount -t sysfs none /sys
+
 EOF
 
 chmod +x bootscript.sh
@@ -55,12 +57,18 @@ tty3::once:cat /etc/welcome.txt
 tty3::respawn:/bin/sh
 tty4::once:cat /etc/welcome.txt
 tty4::respawn:/bin/sh
+
 EOF
 
 cd ..
 
-echo '#!/bin/sh'       >> init
-echo 'exec /sbin/init' >> init
+cat > init << EOF
+#!/bin/sh
+
+exec /sbin/init
+
+EOF
+
 chmod +x init
 
 cp ../../*.sh src

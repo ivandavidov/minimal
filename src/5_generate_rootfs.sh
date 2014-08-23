@@ -23,44 +23,44 @@ chmod 1777 tmp
 
 cd etc
 
-touch bootscript.sh
-echo '#!/bin/sh' >> bootscript.sh
-echo 'dmesg -n 1' >> bootscript.sh
-echo 'mount -t devtmpfs none /dev' >> bootscript.sh
-echo 'mount -t proc none /proc' >> bootscript.sh
-echo 'mount -t sysfs none /sys' >> bootscript.sh
-echo >> bootscript.sh
+cat > bootscript.sh << EOF
+#!/bin/sh
+dmesg -n 1
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t sysfs none /sys
+EOF
+
 chmod +x bootscript.sh
 
-touch welcome.txt
-echo >> welcome.txt
-echo '  #####################################' >> welcome.txt
-echo '  #                                   #' >> welcome.txt
-echo '  #  Welcome to "Minimal Linux Live"  #' >> welcome.txt
-echo '  #                                   #' >> welcome.txt
-echo '  #####################################' >> welcome.txt
-echo >> welcome.txt
+cat > welcome.txt << EOF
 
-touch inittab
-echo '::sysinit:/etc/bootscript.sh' >> inittab
-echo '::restart:/sbin/init' >> inittab
-echo '::ctrlaltdel:/sbin/reboot' >> inittab
-echo '::once:cat /etc/welcome.txt' >> inittab
-echo '::respawn:/bin/cttyhack /bin/sh' >> inittab
-echo 'tty2::once:cat /etc/welcome.txt' >> inittab
-echo 'tty2::respawn:/bin/sh' >> inittab
-echo 'tty3::once:cat /etc/welcome.txt' >> inittab
-echo 'tty3::respawn:/bin/sh' >> inittab
-echo 'tty4::once:cat /etc/welcome.txt' >> inittab
-echo 'tty4::respawn:/bin/sh' >> inittab
-echo >> inittab
+#####################################
+#                                   #
+#  Welcome to "Minimal Linux Live"  #
+#                                   #
+#####################################
+
+EOF
+
+cat > inittab << EOF
+::sysinit:/etc/bootscript.sh
+::restart:/sbin/init
+::ctrlaltdel:/sbin/reboot
+::once:cat /etc/welcome.txt
+::respawn:/bin/cttyhack /bin/sh
+tty2::once:cat /etc/welcome.txt
+tty2::respawn:/bin/sh
+tty3::once:cat /etc/welcome.txt
+tty3::respawn:/bin/sh
+tty4::once:cat /etc/welcome.txt
+tty4::respawn:/bin/sh
+EOF
 
 cd ..
 
-touch init
-echo '#!/bin/sh' >> init
+echo '#!/bin/sh'       >> init
 echo 'exec /sbin/init' >> init
-echo >> init
 chmod +x init
 
 cp ../../*.sh src

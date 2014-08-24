@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Grab everything after the '=' sign
+# Grab everything after the '=' character
 DOWNLOAD_URL=$(grep -i KERNEL_SOURCE_URL .config | cut -f2 -d'=')
 
-# Grab everything after the last '/'
+# Grab everything after the last '/' character
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
 cd source
@@ -17,7 +17,7 @@ rm -rf ../work/kernel
 mkdir ../work/kernel
 
 # Extract kernel to folder 'kernel'
-# Full path will be something like, kernel\linux-3.16
+# Full path will be something like 'kernel\linux-3.16.1'
 tar -xvf $ARCHIVE_FILE -C ../work/kernel
 
 cd ..

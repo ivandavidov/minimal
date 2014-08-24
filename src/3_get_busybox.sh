@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# Grab everything after the '=' sign
+# Grab everything after the '=' character
 DOWNLOAD_URL=$(grep -i BUSYBOX_SOURCE_URL .config | cut -f2 -d'=')
 
-# Grab everything after the last '/'
+# Grab everything after the last '/' character
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
 cd source
@@ -17,7 +17,7 @@ rm -rf ../work/busybox
 mkdir ../work/busybox
 
 # Extract busybox to folder 'busybox'
-# Full path will be something like, busybox\busybox-1.22.1
+# Full path will be something like 'busybox\busybox-1.22.1'
 tar -xvf $ARCHIVE_FILE -C ../work/busybox
 
 cd ..

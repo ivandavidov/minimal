@@ -2,7 +2,7 @@
 
 cd work/kernel
 
-# Change to the first directory ls finds, e.g. linux-3.16
+# Change to the first directory ls finds, e.g. 'linux-3.16.1'
 cd $(ls -d *)
 
 # Cleans up the kernel sources, including configuration files

@@ -2,7 +2,7 @@
 
 cd work/busybox
 
-# Change to the first directory ls finds, e.g/ busybox-1.22.1
+# Change to the first directory ls finds, e.g. 'busybox-1.22.1'
 cd $(ls -d *)
 
 # Remove previously generated artefacts
@@ -19,7 +19,7 @@ sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
 make busybox
 
 # Create the symlinks for busybox
-# It uses the file busybox.links for this
+# It uses the file 'busybox.links' for this
 make install
 
 cd ../../..

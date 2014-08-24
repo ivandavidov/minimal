@@ -18,7 +18,7 @@
       }
       
 	  function logSwap(itemIndex, show) {
-	    for(var i = 1; i <= 1; i++) {
+	    for(var i = 1; i <= 2; i++) {
 		  var showObj = document.getElementById("show" + i);
 		  var hideObj = document.getElementById("hide" + i);
 		  var textObj = document.getElementById("text" + i);
@@ -76,7 +76,8 @@
 				  Extract the scripts to some folder.
 				</li>
 				<li>
-				  Make sure that all scripts are executable (chmod +x *.sh).
+				  Just for convenience, make sure that all scripts are executable (chmod +x *.sh). If you decide to skip this step you
+				  can still run the scripts like this (example): <b>sh build_minimal_linux_live.sh</b>
 				</li>
 				<li>
 				  Depending on which Linux OS you are using, there might be one or more (or none, or even more) build dependencies that you
@@ -161,17 +162,50 @@
           <div id="text">
             <h2>Change Log</h2>
             <p>
-              <div id="show1" style="display:none;">
+              <div id="show2" style="display:none;">
+                <b>25-Aug-2014</b>
+                <a href="#" onclick="javascript:logSwap(2, true); return false;">show</a>
+              </div>
+              <div id="hide2" style="display:block;">
+                <b>25-Aug-2014</b>
+                <a href="#" onclick="javascript:logSwap(2, false); return false;">hide</a>
+              </div>
+              <div id="text2" style="display:block;">
+			    <ul>
+				  <li>
+				    <b>Minimal Linux Live</b> is now based on <b>Linux kernel 3.16.1</b> and <b>BusyBox 1.22.1</b>.
+				  </li>
+				  <li>
+				    The boot process is now based on <b>/sbin/init</b> and <b>/etc/inittab</b>. There are four
+                    available consoles which can be switched with <b>Alt + F1</b> up to <b>Alt + F4</b>.
+				  </li>
+                  <li>
+                    Shell scripts have been updated. Now the downloaded source bundles are stored in separate folder.
+                    If the download process is interrupted, it will continue the next time the scripts are executed.
+                    The most notable change is in <b>5_generate_rootfs.sh</b> which now generates root file system with
+                    structure compatible with <b>/sbin/init</b> and <b>/etc/inittab</b>.
+                  </li>
+				</ul>
+              </div>
+            </p>
+            <p>
+              <div id="show1" style="display:block;">
                 <b>28-Jul-2014</b>
                 <a href="#" onclick="javascript:logSwap(1, true); return false;">show</a>
               </div>
-              <div id="hide1" style="display:block;">
+              <div id="hide1" style="display:none;">
                 <b>28-Jul-2014</b>
                 <a href="#" onclick="javascript:logSwap(1, false); return false;">hide</a>
               </div>
-              <div id="text1" style="display:block;">
-			    <br />
-			    <b>Minimal Linux Live</b> is now based on <b>Linux kernel 3.15.6</b> and <b>BusyBox 1.22.1</b>.
+              <div id="text1" style="display:none;">
+			    <ul>
+				  <li>
+				    <b>Minimal Linux Live</b> is now based on <b>Linux kernel 3.15.6</b> and <b>BusyBox 1.22.1</b>.
+				  </li>
+				  <li>
+				    The boot process is based on simple <b>/init</b> script.
+				  </li>
+				</ul>
               </div>
             </p>
           </div>
@@ -225,15 +259,15 @@
           <div id="text">
             <h2>Download Section</h2>
 			<p>
-			  The latest scripts (28-Jul-2014) can be downloaded as ZIP archive
-			  <a href="./download/minimal_linux_live-28-Jul-2014_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
+			  The latest stable scripts (25-Aug-2014) can be downloaded as ZIP archive
+			  <a href="./download/minimal_linux_live_25-Aug-2014_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
 			</p>
 			<p>
-			  Pre-built ISO image files generated with the latest scripts are available for
-			  <a href="./download/minimal_linux_live-28-Jul-2014_x86.iso" title="Minimal Linux Live - ISO image file for x86 machines">x86</a>
+			  Pre-built ISO image files generated with the latest stable scripts are available for
+			  <a href="./download/minimal_linux_live_25-Aug-2014_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
 			  and
-			  <a href="./download/minimal_linux_live-28-Jul-2014_x64.iso" title="Minimal Linux Live - ISO image file for x64 machines">x64</a>
-			  processors.
+			  <a href="./download/minimal_linux_live_25-Aug-2014_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
+			  CPUs.
 			</p>
 			<p>
 			  You can also <a target="_blank" href="./download">browse the download directory</a>.

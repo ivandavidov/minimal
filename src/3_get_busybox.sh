@@ -17,7 +17,8 @@ rm -rf ../work/busybox
 mkdir ../work/busybox
 
 # Extract busybox to folder 'busybox'
-# Full path will be something like 'busybox\busybox-1.22.1'
+# Full path will be something like 'work/busybox/busybox-1.23.1'
 tar -xvf $ARCHIVE_FILE -C ../work/busybox
 
 cd ..
+

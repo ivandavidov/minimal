@@ -9,3 +9,4 @@ cd rootfs
 find . | cpio -H newc -o | gzip > ../rootfs.cpio.gz
 
 cd ../..
+

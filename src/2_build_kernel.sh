@@ -2,7 +2,7 @@
 
 cd work/kernel
 
-# Change to the first directory ls finds, e.g. 'linux-3.16.1'
+# Change to the first directory ls finds, e.g. 'linux-3.18.6'
 cd $(ls -d *)
 
 # Cleans up the kernel sources, including configuration files
@@ -20,3 +20,4 @@ sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .con
 make bzImage
 
 cd ../../..
+

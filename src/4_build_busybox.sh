@@ -2,7 +2,7 @@
 
 cd work/busybox
 
-# Change to the first directory ls finds, e.g. 'busybox-1.22.1'
+# Change to the first directory ls finds, e.g. 'busybox-1.23.1'
 cd $(ls -d *)
 
 # Remove previously generated artefacts
@@ -23,3 +23,4 @@ make busybox
 make install
 
 cd ../../..
+

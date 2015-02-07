@@ -1,7 +1,7 @@
-/www/download/minimal_linux_live-28-Jul-2014_src.zip
-/www/download/minimal_linux_live-28-Jul-2014_x64.iso
-/www/download/minimal_linux_live-28-Jul-2014_x86.iso
+/www/download/**
 /www/favicon.ico
-/www/images/screen1.png
-/www/images/screen2.png
-/www/images/screen3.png
+/www/images/**
+/src/source/**
+/src/work/**
+/src/*.iso
+

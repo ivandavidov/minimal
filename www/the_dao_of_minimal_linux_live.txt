@@ -265,7 +265,7 @@
    static option enabled and all other default settings.
    
    Now we come to the part where we create our own initramfs folder which later on we
-   will pack into a file. The steps that we are going to follow is this:
+   will pack into a file. The steps that we are going to follow are these:
    
       1) Use the already created "_install" folder as base for initramfs.
       2) Create some new folders in the initramfs folder.

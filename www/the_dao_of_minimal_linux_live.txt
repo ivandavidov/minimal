@@ -1,5 +1,5 @@
 ﻿   
-   The Dao of Minimal Linux Live (31-Jul-2014)
+   The Dao of Minimal Linux Live (15-Feb-2015)
    
    Author:    Ivan Davidov
    Website:   http://minimal.linux-bg.org
@@ -663,11 +663,11 @@
    
    Building such system requires a lot more work. A lot more! I mean it!
    
-   For starters, "Minimal Linux Live" lives entirely in the "initramfs" space. We never
-   really get out of there. Basically this is what you need if you want more functional
-   live Linux system:
+   For starters, "Minimal Linux Live" lives entirely in the "initramfs" space. Simply
+   said - this is the RAM space. We never really get out of there. Basically this is
+   what you need if you want more functional live Linux system:
    
-      1) Compressed file system - this is where all the real stuff will be.
+      1) Compressed file system (SquashFS)- this is where all the real stuff will be.
    
       2) GNU Coreutils - these are the real shell command line utilities (ls, cd, etc.).
          You need them because later we are going to "escape" from "initramfs" and use

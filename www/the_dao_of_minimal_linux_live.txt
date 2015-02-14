@@ -677,7 +677,7 @@
    
       3) You need to "switch_root" to the actual file system (the compressed one) which
          you first need to locate, then mount and finally make it "writable" by overlaying
-         virtual RAM files/folders via UNION/AUFS (or something similar) if the bootable
+         virtual RAM files/folders via UnionFS/AuFS (or something similar) if the bootable
          media is not already writable. Remember that you are mounting compressed FS, which
          means that if you make any changes on files located in the original FS, they will
          not be persisted between reboots. Probably you want to handle this edge case.

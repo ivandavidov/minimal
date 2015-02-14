@@ -658,7 +658,7 @@
    5. Next Steps
    
    OK, now we know how to build and run a basic Linux system. But that's not enough.
-   Now we want to build more complex system, probably one which supports "packman",
+   Now we want to build more complex system, probably one which supports "pacman",
    "apt-get", or any other package manager.
    
    Building such system requires a lot more work. A lot more! I mean it!
@@ -685,7 +685,7 @@
       4) You need to prepare in advance the stuff that you want to be present in the
          compressed file system. Assuming that we are building a useful live Linux OS, the
          absolute minimum is "GNU Coreutils", network management utilities and probably
-         some kind of package manager, e.g. "packman" or "apt-get". Don't forget that most
+         some kind of package manager, e.g. "pacman" or "apt-get". Don't forget that most
          of this additional stuff most probably relies on different kernel options that
          also need to be enabled/configured in advance.
       

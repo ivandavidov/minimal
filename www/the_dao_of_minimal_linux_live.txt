@@ -667,31 +667,34 @@
    really get out of there. Basically this is what you need if you want more functional
    live Linux system:
    
-   1. Compressed file system - this is where all the real stuff will be.
+      1) Compressed file system - this is where all the real stuff will be.
    
-   2. GNU Coreutils - these are the real shell command line utilities (ls, cd, etc.).
-      You need them because later we are going to "escape" from "initramfs" and use the
-      actual file system available in the compressed file. Alternatively, you can overlay
-      the whole "BusyBox" environment on top of the compressed file system but that's not
-      really professional approach.
+      2) GNU Coreutils - these are the real shell command line utilities (ls, cd, etc.).
+         You need them because later we are going to "escape" from "initramfs" and use
+         the actual file system available in the compressed file. Alternatively, you can
+         overlay the whole "BusyBox" environment on top of the compressed file system but
+         that's not really professional approach.
    
-   3. You need to "switch_root" to the actual file system (the compressed one) which you
-      first need to locate, then mount and finally make it "writable" by overlaying virtual
-      RAM files/folders via UNION/AUFS (or something similar) if the bootable media is not
-      already writable. Remember that you are mounting compressed FS, which means that if
-      you make any changes on files located in the original FS, they will not be persisted
-      between reboots. Probably you want to handle this edge case as well.
+      3) You need to "switch_root" to the actual file system (the compressed one) which
+         you first need to locate, then mount and finally make it "writable" by overlaying
+         virtual RAM files/folders via UNION/AUFS (or something similar) if the bootable
+         media is not already writable. Remember that you are mounting compressed FS, which
+         means that if you make any changes on files located in the original FS, they will
+         not be persisted between reboots. Probably you want to handle this edge case.
       
-   4. You need to prepare in advance the stuff that you want to be present in the compressed
-      file system. Assuming that we are building a useful live Linux OS, the absolute minimum
-      is "GNU Coreutils", network management utilities and probably some kind of package
-      manager, e.g. "packman" or "apt-get".
+      4) You need to prepare in advance the stuff that you want to be present in the
+         compressed file system. Assuming that we are building a useful live Linux OS, the
+         absolute minimum is "GNU Coreutils", network management utilities and probably
+         some kind of package manager, e.g. "packman" or "apt-get". Don't forget that most
+         of this additional stuff most probably relies on different kernel options that
+         also need to be enabled/configured in advance.
       
-   5. You need to rewrite /init and make it execute all necessary steps to fulfil "point 3"
-      from the above. Different live Linux systems use different approaches here.
+      5) You need to rewrite /init and make it execute all necessary steps to fulfil point 3
+         from the above. Different live Linux systems use different approaches here.
       
    All of the above is definitely *not* minimal but it's definitely doable if you put some
-   additional efforts.
+   additional efforts. It will take time but as a result you will have fully functional live
+   Linux OS which you have created entirely by yourself.
    
    ###   ###   ###
    

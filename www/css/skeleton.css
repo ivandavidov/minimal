@@ -294,7 +294,7 @@ ul {
 ol {
   list-style: decimal inside; }
 ol, ul {
-  padding-left: 0;
+  padding-left: 10px;
   margin-top: 0; }
 ul ul,
 ul ol,

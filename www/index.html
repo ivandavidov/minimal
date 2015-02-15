@@ -53,6 +53,8 @@
       <div class="twelve columns" style="text-align: center;">
         <h2><a href="/" style="text-decoration: none; color: #000;">Minimal Linux Live</a></h2>
       </div>
+    </div>
+    <div class="row">
       <div class="twelve columns" style="text-align: center;">
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(1); return false;">Home</a>
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(2); return false;">Changes</a>
@@ -61,20 +63,28 @@
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(5); return false;">Download</a>
         <hr />
       </div>
-      <div id="item1" style="display:block;" class="row">
+    </div>
+    <div id="item1" style="display:block;">
+      <div class="row">
         <div class="twelve columns">
           <h4>Home</h4>
         </div>
+      </div>
+      <div class="row">
         <div class="twelve columns">
           <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimal Live
           Linux OS based on <a target="_blank" href="http://kernel.org">Linux kernel</a>
           and <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
           downloaded and all build operations are fully encapsulated in the scripts.
         </div>
+      </div>
+      <div class="row">
         <div class="twelve columns">
           If you want to build your own Minimal Linux Live ISO image file, all you need to do is the following:
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">      
         <div class="twelve columns">
           <ul>
             <li>
@@ -137,69 +147,81 @@
             </li>
           </ul>
         </div>
+      </div>
+      <div class="row">      
         <div class="twelve columns">
           The produced ISO image file contains Linux kernel compiled with default options, BusyBox compiled with default options and very simple
           initramfs. This means that you don't get Windows support out of the box, nor you get any fancy desktop environment. All you
           get is a simple shell console which supports all BusyBox applets and... well, that's all. This is why it's called "minimal".
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>      
+      <div class="row">
         <div class="twelve columns">
           The good news is that even though the OS is small and simple, the build scripts are also very small and very simple. You can
           quite easily learn from the scripts and later modify them to include more stuff (I encourage you to do so). After you learn
           the basics you will have all the necessary tools and skills to create your own fully functional Linux based operating system!
           Entirely from scratch! Isn't it great?! :)
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">      
         <div class="twelve columns">
           The <a href="#" onclick="javascript:menuSwap(4); return false;">tutorial</a> provides more details about the inner structure
           of the scripts and the overall build process. I encourage you to go through this document when you have the time.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">      
         <div class="twelve columns">
           Below you can find several screenshots which show what the environment looks like when you boot your newly generated
           Minimal Linux Live OS.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
-        <div class="row">
-          <div class="four columns">
-            <a href="./images/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
-              <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen1.png" />
-            </a>
-          </div>
-          <div class="four columns">
-            <a href="./images/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
-              <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen2.png" />
-            </a>
-          </div>
-          <div class="four columns">
-            <a href="./images/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
-              <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen3.png" />
-            </a>
-          </div>
-        </div>  
       </div>
-      <div id="item2" style="display:none;" class="row">
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
+        <div class="four columns">
+          <a href="./images/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
+            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen1.png" />
+          </a>
+        </div>
+        <div class="four columns">
+          <a href="./images/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
+            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen2.png" />
+          </a>
+        </div>
+        <div class="four columns">
+          <a href="./images/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
+            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen3.png" />
+          </a>
+        </div>
+      </div>  
+    </div>
+    <div id="item2" style="display:none;">
+      <div class="row">
         <div class="twelve columns">
           <h4>Change Log</h4>
         </div>
-        <div class="twelve columns">
-          <div id="show3" style="display:none;">
-            <strong>07-Feb-2015</strong>
-            <a href="#" onclick="javascript:logSwap(3, true); return false;">show</a>      
-          </div>
-          <div id="hide3" style="display:block;">
-            <strong>07-Feb-2015</strong>
-            <a href="#" onclick="javascript:logSwap(3, false); return false;">hide</a>
-          </div>
-          <div id="text3" style="display:block;">
-            <ul>
-              <div style="font-size: 10%;">&nbsp;</div>
-              <li>
-                <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.18.6</strong> and <strong>BusyBox 1.23.1</strong>.
-              </li>
-            </ul>
-          </div>
-          <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div class="row">      
+      <div class="twelve columns">
+        <div id="show3" style="display:none;">
+          <strong>07-Feb-2015</strong>
+          <a href="#" onclick="javascript:logSwap(3, true); return false;">show</a>      
+        </div>
+        <div id="hide3" style="display:block;">
+          <strong>07-Feb-2015</strong>
+          <a href="#" onclick="javascript:logSwap(3, false); return false;">hide</a>
+        </div>
+        <div id="text3" style="display:block;">
+          <ul>
+            <div style="font-size: 10%;">&nbsp;</div>
+            <li>
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.18.6</strong> and <strong>BusyBox 1.23.1</strong>.
+            </li>
+          </ul>
+        </div>
+        <div style="font-size: 10%;">&nbsp;</div>
           <div id="show2" style="display:block;">
             <strong>25-Aug-2014</strong>
             <a href="#" onclick="javascript:logSwap(2, true); return false;">show</a>
@@ -248,16 +270,22 @@
           </div>
         </div>
       </div>
-      <div id="item3" style="display:none;" class="row">
+    </div>
+    <div id="item3" style="display:none;">
+      <div class="row">
         <div class="twelve columns">
           <h4>About This Project</h4>
         </div>
+      </div>
+      <div class="row">
         <div class="twelve columns">
           My name is <a target="_blank" href="http://linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
           live and work in <a target="_blank" href="http://en.wikipedia.org/wiki/Sofia">Sofia</a>,
           <a target="_blank" href="http://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           I am professional Java software engineer (yes, Java developers tend to know some Linux stuff) and I've
           been trying to create my own Linux OS for a very long time. There are some good tutorials which you
@@ -265,7 +293,9 @@
           what has been done and why it's done in this particular way. In most cases the tutorials are incomplete and
           there is high chance that you end up with something broken.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           Don't get me wrong, you can learn a lot from these tutorials, as I did. In fact the scripts which I created
           (did you take a look at them?) are based on the same information resources which you might have already found.
@@ -273,23 +303,33 @@
           set of shell scripts which automatically build fully functional live Linux OS. And the tutorial explains it
           all for you!
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           If you'd like to contact me, my e-mail is: <strong>davidov [dot] i (at) gmail {dot} com</strong>
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">      
         <div class="twelve columns">
           My LinkedIn profile is here: <a target="_blank" href="http://linkedin.com/in/ivandavidov">http://linkedin.com/in/ivandavidov</a>
         </div>
       </div>
-      <div id="item4" style="display:none;" class="row">
+    </div>
+    <div id="item4" style="display:none;">
+      <div class="row">
         <div class="twelve columns">
           <h4>Minimal Linux Live Tutorial</h4>
         </div>
+      </div>
+      <div class="row">
         <div class="twelve columns">
             Would you like to learn how to build your own minimal live Linux OS?
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           <a target="_blank" href="./the_dao_of_minimal_linux_live.txt">The Dao of Minimal Linux Live</a> explains in details
           what steps are involved in creating simple live Linux OS entirely from scratch, the inner structure of the
@@ -297,15 +337,21 @@
           improve/upgrade the generated OS with other generic stuff (e.g. users &amp; groups, /etc/inittab).
         </div>
       </div>
-      <div id="item5" style="display:none;" class="row">
+    </div>
+    <div id="item5" style="display:none;">
+      <div class="row">
         <div class="twelve columns">
           <h4>Download Section</h4>
         </div>
+      </div>
+      <div class="row">
         <div class="twelve columns">
           The latest stable scripts (07-Feb-2015) can be downloaded as ZIP archive
           <a href="./download/minimal_linux_live_07-Feb-2015_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           Pre-built ISO image files generated with the latest stable scripts are available for
           <a href="./download/minimal_linux_live_07-Feb-2015_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
@@ -313,30 +359,34 @@
           <a href="./download/minimal_linux_live_07-Feb-2015_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
           CPUs.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           You can also <a target="_blank" href="./download">browse the download directory</a>.
         </div>
-        <div style="font-size: 10%;">&nbsp;</div>
+      </div>
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
         <div class="twelve columns">
           You can take a look at the latest development sources in
           <a target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>.
-        </div>     
-      </div>
-      <div style="font-size: 10%;">&nbsp;</div>
-      <div style="font-size: 10%;">&nbsp;</div>
-      <div class="row">
-        <div class="twelve columns" style="text-align: center;">
-          <a class="button" href="#">Go to top</a>      
-        </div>    
-      </div>
-      <div style="font-size: 10%;">&nbsp;</div>
-      <div class="row" style="text-align: center;">
-        <div class="twelve columns">
-          Copyright &copy;2015
-          <span class="separator">|</span> 
-          <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>        
         </div>
+      </div>
+    </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row">
+      <div class="twelve columns" style="text-align: center;">
+        <a class="button" href="#">Go to top</a>      
+      </div>    
+    </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row" style="text-align: center;">
+      <div class="twelve columns">
+        Copyright &copy;2015
+        <span class="separator">|</span> 
+        <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>        
       </div>
     </div>
   </div>

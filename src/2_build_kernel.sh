@@ -17,6 +17,7 @@ sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .con
 # Compile the kernel
 # Good explanation of the different kernels
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
+# TODO - Suggested by Ronny Kalusniok - test this for parallel compilation: "make bzImage -j $(grep ^processor /proc/cpuinfo)".
 make bzImage
 
 cd ../../..

@@ -16,6 +16,7 @@ make defconfig
 sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
 
 # Compile busybox
+# TODO - Suggested by Ronny Kalusniok - test this for parallel compilation: "make busybox -j $(grep ^processor /proc/cpuinfo)".
 make busybox
 
 # Create the symlinks for busybox

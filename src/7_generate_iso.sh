@@ -1,15 +1,24 @@
 #!/bin/sh
 
+if [ -z "$BASE_DIR" ]; then
+	BASE_DIR="`pwd`"
+fi
+
+. $BASE_DIR/.vars
+
 rm -f minimal_linux_live.iso
 
-cd work/kernel
-cd $(ls -d *)
+cd $LINUX_DIR
 
-# Edit Makefile to look for genisoimage instead of mkisofs
+if [ -z `which mkisofs` ]; then
+	alias mkisofs="genisoimage"
+fi
+
+# Force Makefile to look for genisoimage instead of isoimage
 sed -i 's/mkisofs/genisoimage/g' arch/x86/boot/Makefile
 
-make isoimage FDINITRD=../../rootfs.cpio.gz
-cp arch/x86/boot/image.iso ../../../minimal_linux_live.iso
+make isoimage FDINITRD=$WORK_DIR/rootfs.cpio.gz
+cp arch/x86/boot/image.iso $BASE_DIR/minimal_linux_live.iso
 
-cd ../../..
+cd $BASE_DIR
 

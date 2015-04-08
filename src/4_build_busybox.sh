@@ -1,9 +1,13 @@
 #!/bin/sh
 
-cd work/busybox
+if [ -z "$BASE_DIR" ]; then
+	BASE_DIR="`pwd`"
+fi
 
-# Change to the first directory ls finds, e.g. 'busybox-1.23.1'
-cd $(ls -d *)
+. $BASE_DIR/.vars
+
+# Enter the busybox directory regardless of the version
+cd $BUSYBOX_DIR
 
 # Remove previously generated artefacts
 make clean
@@ -23,5 +27,5 @@ make busybox
 # It uses the file 'busybox.links' for this
 make install
 
-cd ../../..
+cd $BASE_DIR
 

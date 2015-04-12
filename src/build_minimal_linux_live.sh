@@ -1,4 +1,4 @@
-#BASE_DIR/biBASE_DIR/sh
+#!/bin/sh
 
 # Save current directory
 BASE_DIR="`pwd`"

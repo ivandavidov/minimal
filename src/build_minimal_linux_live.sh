@@ -1,10 +1,13 @@
 #!/bin/sh
 
-sh 0_prepare.sh
-sh 1_get_kernel.sh
-sh 2_build_kernel.sh
-sh 3_get_busybox.sh
-sh 4_build_busybox.sh
-sh 5_generate_rootfs.sh
-sh 6_pack_rootfs.sh
-sh 7_generate_iso.sh
+# Save current directory
+BASE_DIR="`pwd`"
+
+. $BASE_DIR/0_prepare.sh
+. $BASE_DIR/1_get_kernel.sh
+. $BASE_DIR/2_build_kernel.sh
+. $BASE_DIR/3_get_busybox.sh
+. $BASE_DIR/4_build_busybox.sh
+. $BASE_DIR/5_generate_rootfs.sh
+. $BASE_DIR/6_pack_rootfs.sh
+. $BASE_DIR/7_generate_iso.sh

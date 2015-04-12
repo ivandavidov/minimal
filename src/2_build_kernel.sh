@@ -1,9 +1,13 @@
 #!/bin/sh
 
-cd work/kernel
+if [ -z "$BASE_DIR" ]; then
+	BASE_DIR="`pwd`"
+fi
 
-# Change to the first directory ls finds, e.g. 'linux-3.18.6'
-cd $(ls -d *)
+. $BASE_DIR/.vars
+
+# Enter the linux directory regardless of the version
+cd $LINUX_DIR
 
 # Cleans up the kernel sources, including configuration files
 make mrproper
@@ -20,5 +24,5 @@ sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .con
 # TODO - Suggested by Ronny Kalusniok - test this for parallel compilation: "make bzImage -j $(grep ^processor /proc/cpuinfo)".
 make bzImage
 
-cd ../../..
+cd $BASE_DIR
 

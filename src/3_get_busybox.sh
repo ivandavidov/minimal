@@ -1,24 +1,28 @@
 #!/bin/sh
 
-# Grab everything after the '=' character
-DOWNLOAD_URL=$(grep -i BUSYBOX_SOURCE_URL .config | cut -f2 -d'=')
+if [ -z "$BASE_DIR" ]; then
+	BASE_DIR="`pwd`"
+fi
+
+. $BASE_DIR/.vars
+. $BASE_DIR/.config
 
 # Grab everything after the last '/' character
-ARCHIVE_FILE=${DOWNLOAD_URL##*/}
+ARCHIVE_FILE=${BUSYBOX_SOURCE_URL##*/}
 
-cd source
+cd $SRC_DIR
 
 # Downloading busybox source
 # -c option allows the download to resume
-wget -c $DOWNLOAD_URL
+wget -c $BUSYBOX_SOURCE_URL
 
 # Delete folder with previously extracted busybox
-rm -rf ../work/busybox
-mkdir ../work/busybox
+rm -rf $BUSYBOX_BUILD_DIR
+mkdir $BUSYBOX_BUILD_DIR
 
 # Extract busybox to folder 'busybox'
 # Full path will be something like 'work/busybox/busybox-1.23.1'
-tar -xvf $ARCHIVE_FILE -C ../work/busybox
+tar -xvf $ARCHIVE_FILE -C $BUSYBOX_BUILD_DIR
 
-cd ..
+cd $BASE_DIR
 

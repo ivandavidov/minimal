@@ -2,6 +2,7 @@
 
 # Save current directory
 BASE_DIR="`pwd`"
+. $BASE_DIR/.vars
 
 . $BASE_DIR/0_prepare.sh
 . $BASE_DIR/1_get_kernel.sh

@@ -1,10 +1,10 @@
 #!/bin/sh
 
 if [ -z "$BASE_DIR" ]; then
+	# Standalone execution
 	BASE_DIR="`pwd`"
+	. $BASE_DIR/.vars
 fi
-
-. $BASE_DIR/.vars
 
 # Enter the busybox directory regardless of the version
 cd $BUSYBOX_DIR

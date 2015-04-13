@@ -1,10 +1,11 @@
 #!/bin/sh
 
 if [ -z "$BASE_DIR" ]; then
+	# Standalone execution
 	BASE_DIR="`pwd`"
+	. $BASE_DIR/.vars
 fi
 
-. $BASE_DIR/.vars
 . $BASE_DIR/.config
 
 # Grab everything after the last '/' character

@@ -1,14 +1,19 @@
 #!/bin/sh
 
-cd work
+if [ -z "$BASE_DIR" ]; then
+	# Standalone execution
+	BASE_DIR="`pwd`"
+	. $BASE_DIR/.vars
+fi
+
+cd $WORK_DIR
 
 rm -rf rootfs
 
-cd busybox
-cd $(ls -d *)
+cd $BUSYBOX_DIR
 
-cp -R _install ../../rootfs
-cd ../../rootfs
+cp -R _install $ROOTFS
+cd $ROOTFS
 
 rm -f linuxrc
 
@@ -71,10 +76,11 @@ EOF
 
 chmod +x init
 
-cp ../../*.sh src
-cp ../../.config src
+cp $BASE_DIR/*.sh src
+cp $BASE_DIR/.config src
+cp $BASE_DIR/.vars src
 chmod +r src/*.sh
 chmod +r src/.config
 
-cd ../..
+cd $BASE_DIR
 

@@ -1,24 +1,29 @@
 #!/bin/sh
 
-# Grab everything after the '=' character
-DOWNLOAD_URL=$(grep -i KERNEL_SOURCE_URL .config | cut -f2 -d'=')
+if [ -z "$BASE_DIR" ]; then
+	# Standalone execution
+	BASE_DIR="`pwd`"
+	. $BASE_DIR/.vars
+fi
+
+. $BASE_DIR/.config
 
 # Grab everything after the last '/' character
-ARCHIVE_FILE=${DOWNLOAD_URL##*/}
+ARCHIVE_FILE=${KERNEL_SOURCE_URL##*/}
 
-cd source
+cd $SRC_DIR
 
 # Downloading kernel file
 # -c option allows the download to resume
-wget -c $DOWNLOAD_URL
+wget -c $KERNEL_SOURCE_URL
 
 # Delete folder with previously extracted kernel
-rm -rf ../work/kernel
-mkdir ../work/kernel
+rm -rf $LINUX_BUILD_DIR
+mkdir $LINUX_BUILD_DIR
 
 # Extract kernel to folder 'work/kernel'
 # Full path will be something like 'work/kernel/linux-3.16.1'
-tar -xvf $ARCHIVE_FILE -C ../work/kernel
+tar -xvf $ARCHIVE_FILE -C $LINUX_BUILD_DIR
 
-cd ..
+cd $BASE_DIR
 

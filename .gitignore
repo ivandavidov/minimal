@@ -3,5 +3,5 @@
 /www/images/**
 /src/source/**
 /src/work/**
-/src/*.iso
+/src/build/**
 

@@ -1,12 +1,15 @@
 #!/bin/sh
 
-cd work
+if [ -z "$BASE_DIR" ]; then
+	# Standalone execution
+	BASE_DIR="`pwd`"
+	. $BASE_DIR/.vars
+	rm -rf $OUT_DIR/rootfs.cpio.gz
+fi
 
-rm -f rootfs.cpio.gz
+cd $ROOTFS
 
-cd rootfs
+find . | cpio -H newc -o | gzip > $OUT_DIR/rootfs.cpio.gz
 
-find . | cpio -H newc -o | gzip > ../rootfs.cpio.gz
-
-cd ../..
+cd $BASE_DIR
 

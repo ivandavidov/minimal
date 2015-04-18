@@ -31,9 +31,26 @@ mount -t devtmpfs none /dev
 mount -t proc none /proc
 mount -t sysfs none /sys
 
+ip link set lo up
+ip link set eth0 up
+udhcpc -b -i eth0 -s /etc/rc.dhcp
+
 EOF
 
 chmod +x bootscript.sh
+
+cat > rc.dhcp << EOF
+#!/bin/sh
+
+ip addr add \$ip/\$mask dev \$interface
+
+if [ -n "$router"]; then
+  ip route add default via \$router dev \$interface
+fi
+
+EOF
+
+chmod +x rc.dhcp
 
 cat > welcome.txt << EOF
 

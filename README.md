@@ -12,3 +12,5 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/robocoder-db/busybox-linux
 
 * https://github.com/mhiramat/boot2minc
+
+* https://github.com/rleon/kerneliso

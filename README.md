@@ -14,3 +14,5 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/mhiramat/boot2minc
 
 * https://github.com/rleon/kerneliso
+
+* https://github.com/prologic/minimal - this fork adds Python support.

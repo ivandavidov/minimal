@@ -16,3 +16,5 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/rleon/kerneliso
 
 * https://github.com/prologic/minimal - this fork adds Python support.
+
+* https://github.com/cspenceiv/vapor

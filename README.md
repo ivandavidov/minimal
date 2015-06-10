@@ -17,4 +17,4 @@ Other projects based on "Minimal Linux Live":
 
 * https://github.com/prologic/minimal - this fork adds Python support.
 
-* https://github.com/cspenceiv/vapor
+* https://github.com/Diaob/minimal - Simplified Chinese comments and translation.

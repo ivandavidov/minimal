@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./.config
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 # Remove previously generated artefacts
 make -C ${SCRIPTDIR}/work/busybox/busybox-${BUSYBOX_VERSION} clean

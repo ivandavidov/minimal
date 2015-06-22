@@ -5,7 +5,7 @@ sudo aptitude install -y -q=2 wget make gcc bc syslinux genisoimage 7z
 # needed for make menuconfig
 #sudo aptitude install -y -q=2 libncurses5-dev libncursesw5-dev
 
-. ./.config
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 set -ve
 

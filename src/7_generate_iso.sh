@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./.config
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 rm -f ${SCRIPTDIR}/${TARGETFILE}
 

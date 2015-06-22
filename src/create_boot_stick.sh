@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./.config
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 for DRIVE in /sys/block/sd? ; do
 	if [ "$(cat ${DRIVE}/removable)" -eq 1 ] ; then

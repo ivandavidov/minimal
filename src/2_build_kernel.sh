@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ./.config
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 # Cleans up the kernel sources, including configuration files
 make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} mrproper

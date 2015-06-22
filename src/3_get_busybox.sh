@@ -11,4 +11,4 @@ rm -rf ${SCRIPTDIR}/work/busybox/busybox-*
 
 # Extract busybox to folder 'busybox'
 # Full path will be something like 'work/busybox/busybox-1.23.1'
-tar -xvf ${SCRIPTDIR}/source/${BUSYBOX_FILE} -C ${SCRIPTDIR}/work/kernel
+tar -xvf ${SCRIPTDIR}/source/${BUSYBOX_FILE} -C ${SCRIPTDIR}/work/busybox

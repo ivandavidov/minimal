@@ -1,8 +1,6 @@
 #!/bin/sh
 
-rm -rf work
-mkdir work
+. ./.config
 
-# -p stops errors if the directory already exists
-mkdir -p source
-
+rm -rf ${SCRIPTDIR}/work
+mkdir -p ${SCRIPTDIR}/work ${SCRIPTDIR}/source

@@ -1,12 +1,5 @@
 #!/bin/sh
 
-cd work
+. ./.config
 
-rm -f rootfs.cpio.gz
-
-cd rootfs
-
-find . | cpio -H newc -o | gzip > ../rootfs.cpio.gz
-
-cd ../..
-
+( cd ${SCRIPTDIR}/work/rootfs && find . | cpio -H newc -o | gzip > ${SCRIPTDIR}/work/rootfs.cpio.gz )

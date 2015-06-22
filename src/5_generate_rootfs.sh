@@ -1,29 +1,17 @@
 #!/bin/sh
 
-cd work
+. ./.config
 
-rm -rf rootfs
+rm -rf ${SCRIPTDIR}/work/rootfs
 
-cd busybox
-cd $(ls -d *)
+cp -R ${SCRIPTDIR}/work/busybox/busybox-${BUSYBOX_VERSION}/_install ${SCRIPTDIR}/work/rootfs
 
-cp -R _install ../../rootfs
-cd ../../rootfs
+rm -f ${SCRIPTDIR}/work/rootfs/linuxrc
 
-rm -f linuxrc
+mkdir -p ${SCRIPTDIR}/work/rootfs/dev ${SCRIPTDIR}/work/rootfs/etc ${SCRIPTDIR}/work/rootfs/proc ${SCRIPTDIR}/work/rootfs/root ${SCRIPTDIR}/work/rootfs/sys ${SCRIPTDIR}/work/rootfs/tmp
+chmod 1777 ${SCRIPTDIR}/work/rootfs/tmp
 
-mkdir dev
-mkdir etc
-mkdir proc
-mkdir root
-mkdir src
-mkdir sys
-mkdir tmp
-chmod 1777 tmp
-
-cd etc
-
-cat > bootscript.sh << EOF
+-cat > ${SCRIPTDIR}/work/rootfs/etc/bootscript.sh << EOF
 #!/bin/sh
 
 dmesg -n 1
@@ -37,32 +25,35 @@ udhcpc -b -i eth0 -s /etc/rc.dhcp
 
 EOF
 
-chmod +x bootscript.sh
+# add localized keymap
+# create a keymap with dumpkeys | loadkeys -b > ${SCRIPTDIR}/addons/keymap.${KEYMAP}
+if [ -e "${SCRIPTDIR}/addons/keymap.${KEYMAP}" ] ; then
+cp "${SCRIPTDIR}/addons/keymap.${KEYMAP}" ${SCRIPTDIR}/work/rootfs/etc/
+echo "loadkmap < /etc/keymap.${KEYMAP}" >> ${SCRIPTDIR}/work/rootfs/etc/bootscript.sh
+fi
 
-cat > rc.dhcp << EOF
+cat > ${SCRIPTDIR}/work/rootfs/etc/rc.dhcp << EOF
 #!/bin/sh
 
 ip addr add \$ip/\$mask dev \$interface
 
 if [ -n "$router"]; then
-  ip route add default via \$router dev \$interface
+ip route add default via \$router dev \$interface
 fi
 
 EOF
 
-chmod +x rc.dhcp
+cat > ${SCRIPTDIR}/work/rootfs/etc/welcome.txt << EOF
 
-cat > welcome.txt << EOF
-
-  #####################################
-  #                                   #
-  #  Welcome to "Minimal Linux Live"  #
-  #                                   #
-  #####################################
+#####################################
+#                                   #
+#  Welcome to "Minimal Linux Live"  #
+#                                   #
+#####################################
 
 EOF
 
-cat > inittab << EOF
+cat > ${SCRIPTDIR}/work/rootfs/etc/inittab << EOF
 ::sysinit:/etc/bootscript.sh
 ::restart:/sbin/init
 ::ctrlaltdel:/sbin/reboot
@@ -77,21 +68,14 @@ tty4::respawn:/bin/sh
 
 EOF
 
-cd ..
-
-cat > init << EOF
+cat > ${SCRIPTDIR}/work/rootfs/init << EOF
 #!/bin/sh
 
 exec /sbin/init
 
 EOF
 
-chmod +x init
+cp ${SCRIPTDIR}/*.sh ${SCRIPTDIR}/.config src
+chmod +r src/*.sh src/.config
 
-cp ../../*.sh src
-cp ../../.config src
-chmod +r src/*.sh
-chmod +r src/.config
-
-cd ../..
-
+chmod +x ${SCRIPTDIR}/work/rootfs/init ${SCRIPTDIR}/work/rootfs/etc/bootscript.sh ${SCRIPTDIR}/work/rootfs/etc/rc.dhcp

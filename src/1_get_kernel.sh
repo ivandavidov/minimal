@@ -13,5 +13,5 @@ mkdir -p ${SCRIPTDIR}/work/kernel
 rm -rf ${SCRIPTDIR}/work/kernel/linux-*
 
 # Extract kernel to folder 'kernel'
-# Full path will be something like 'kernel\linux-3.16.1'
+# Full path will be something like 'work/kernel/linux-3.16.1'
 tar -xvf ${SCRIPTDIR}/source/${ARCHIVE_FILE} -C ${SCRIPTDIR}/work/kernel

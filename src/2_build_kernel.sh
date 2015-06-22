@@ -31,7 +31,7 @@ fi
 if [ "${NTFS_SUPPORT}" ] ; then
 sed -i "s/^# CONFIG_NTFS_FS.*$/CONFIG_NTFS_FS=y\
 \\n# CONFIG_NTFS_DEBUG is not set\
-\\nCONFIG_NTFS_RW=y/g" "${SCRIPTDIR}work/kernel/linux-${KERNEL_VERSION}/.config"
+\\nCONFIG_NTFS_RW=y/g" "${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION}/.config"
 fi
 
 # Compile the kernel with optimization for "parallel jobs" = "number of processors"

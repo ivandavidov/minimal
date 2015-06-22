@@ -28,8 +28,8 @@ EOF
 # add localized keymap
 # create a keymap with dumpkeys | loadkeys -b > ${SCRIPTDIR}/addons/keymap.${KEYMAP}
 if [ -e "${SCRIPTDIR}/addons/keymap.${KEYMAP}" ] ; then
-cp "${SCRIPTDIR}/addons/keymap.${KEYMAP}" ${SCRIPTDIR}/work/rootfs/etc/
-echo "loadkmap < /etc/keymap.${KEYMAP}" >> ${SCRIPTDIR}/work/rootfs/etc/bootscript.sh
+	cp "${SCRIPTDIR}/addons/keymap.${KEYMAP}" ${SCRIPTDIR}/work/rootfs/etc/
+	echo "loadkmap < /etc/keymap.${KEYMAP}" >> ${SCRIPTDIR}/work/rootfs/etc/bootscript.sh
 fi
 
 cat > ${SCRIPTDIR}/work/rootfs/etc/rc.dhcp << EOF

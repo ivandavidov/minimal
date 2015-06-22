@@ -37,4 +37,4 @@ fi
 # Compile the kernel with optimization for "parallel jobs" = "number of processors"
 # Good explanation of the different kernels
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
-make bzImage -j $(grep -c ^processor /proc/cpuinfo)
+make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} bzImage -j $(grep -c ^processor /proc/cpuinfo)

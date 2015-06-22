@@ -2,15 +2,11 @@
 
 . $(dirname $(readlink -f $0 2>/dev/null))/.config
 
-# Grab everything after the '=' character
-DOWNLOAD_URL=${BUSYBOX_SOURCE_URL}
-
 # Grab everything after the last '/' character
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
 # Downloading busybox source
-# -c option allows the download to resume
-wget -c -N --progress=bar:force --content-disposition --trust-server-names -P ${SCRIPTDIR}/source ${DOWNLOAD_URL}
+wget -c -N --progress=bar:force --content-disposition --trust-server-names -P ${SCRIPTDIR}/source "${BUSYBOX_SOURCE_URL}"
 
 # Delete folder with previously extracted busybox
 mkdir -p ${SCRIPTDIR}/work/busybox

@@ -2,14 +2,11 @@
 
 . $(dirname $(readlink -f $0 2>/dev/null))/.config
 
-# Grab everything after the '=' character
-DOWNLOAD_URL=${KERNEL_SOURCE_URL}
-
 # Grab everything after the last '/' character
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
 # Downloading kernel file
-wget -c -N --progress=bar:force --content-disposition --trust-server-names -P ${SCRIPTDIR}/source "$DOWNLOAD_URL"
+wget -c -N --progress=bar:force --content-disposition --trust-server-names -P ${SCRIPTDIR}/source "${KERNEL_SOURCE_URL}"
 
 # Delete folder with previously extracted kernel
 mkdir -p ${SCRIPTDIR}/work/kernel

@@ -1,4 +1,5 @@
 #!/bin/sh
 
-qemu-system-x86_64 -cdrom minimal_linux_live.iso
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
+qemu-system-x86_64 -cdrom ${SCRIPTDIR}/${TARGET_FILE}

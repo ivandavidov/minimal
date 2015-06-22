@@ -3,10 +3,10 @@
 . $(dirname $(readlink -f $0 2>/dev/null))/.config
 
 # Cleans up the kernel sources, including configuration files
-make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} mrproper
+make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} -j $(grep -c ^processor /proc/cpuinfo) mrproper
 
 # Create a default configuration file for the kernel
-make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} defconfig
+make -C ${SCRIPTDIR}/work/kernel/linux-${KERNEL_VERSION} -j $(grep -c ^processor /proc/cpuinfo) defconfig
 
 # Changes the name of the system
 sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .config

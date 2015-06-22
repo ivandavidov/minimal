@@ -24,4 +24,4 @@ make -C ${SCRIPTDIR}/work/busybox/busybox-${BUSYBOX_VERSION} -j $(grep -c ^proce
 
 # Create the symlinks for busybox
 # It uses the file 'busybox.links' for this
-make ${SCRIPTDIR}/work/busybox/busybox-${BUSYBOX_VERSION} -j $(grep -c ^processor /proc/cpuinfo) install
+make -C ${SCRIPTDIR}/work/busybox/busybox-${BUSYBOX_VERSION} -j $(grep -c ^processor /proc/cpuinfo) install

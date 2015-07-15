@@ -38,7 +38,7 @@ cat > ${SCRIPTDIR}/work/rootfs/etc/rc.dhcp << EOF
 
 ip addr add \$ip/\$mask dev \$interface
 
-if [ -n "$router"]; then
+if [ "\$router" ]; then
 ip route add default via \$router dev \$interface
 fi
 

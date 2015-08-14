@@ -16,3 +16,7 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/prologic/minimal - this fork adds Python support.
 
 * https://github.com/Diaob/minimal - Simplified Chinese comments and translation.
+
+* https://github.com/ladiko/minimal - automatically use the latest Kernel and BusyBox sources + more default Kernel options.
+
+* https://github.com/cirosantilli/runlinux

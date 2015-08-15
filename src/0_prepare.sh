@@ -1,8 +1,6 @@
 #!/bin/sh
 
-rm -rf work
-mkdir work
+. $(dirname $(readlink -f $0 2>/dev/null))/.config
 
-# -p stops errors if the directory already exists
-mkdir -p source
-
+rm -rf ${SCRIPTDIR}/work
+mkdir -p ${SCRIPTDIR}/work ${SCRIPTDIR}/source

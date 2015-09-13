@@ -8,7 +8,7 @@ mkdir rootfs
 cd toybox
 cd $(ls -d *)
 
-# Copy all toybox generated stuff to the location of our "initramfs" folder.
+# Copy all toybox generated stuff to the location of our "initramfs/bin" folder.
 cp -R rootfs ../../rootfs/bin
 cd ../../rootfs
 
@@ -26,8 +26,7 @@ chmod 1777 tmp
 
 cd etc
 
-# The file "/etc/welcome.txt" is displayed on every boot of the system in each
-# available terminal.
+# The file "/etc/welcome.txt" is displayed on every boot.
 cat > welcome.txt << EOF
 
   #####################################
@@ -40,7 +39,7 @@ EOF
 
 cd ..
 
-# Problem setting default path
+# For now we have simple console.
 cat > init << EOF
 #!/bin/sh
 dmesg -n 1

@@ -1,7 +1,12 @@
 /www/download/**
 /www/favicon.ico
 /www/images/**
+
 /src/source/**
 /src/work/**
 /src/*.iso
+
+/src/experimental/source/**
+/src/experimental/work/**
+/src/experimental/*.iso
 

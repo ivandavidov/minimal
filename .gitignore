@@ -6,7 +6,11 @@
 /src/work/**
 /src/*.iso
 
-/src/experimental/source/**
-/src/experimental/work/**
-/src/experimental/*.iso
+/src/experimental/toybox/source/**
+/src/experimental/toybox/work/**
+/src/experimental/toybox/*.iso
+
+/src/experimental/musl/source/**
+/src/experimental/musl/work/**
+/src/experimental/musl/*.iso
 

@@ -8,7 +8,7 @@ rm -f rootfs.cpio.gz
 cd rootfs
 
 # Packs the current folder structure in "cpio.gz" archive.
-find . | cpio -H newc -o | gzip > ../rootfs.cpio.gz
+find . | cpio -R root:root -H newc -o | gzip > ../rootfs.cpio.gz
 
 cd ../..
 

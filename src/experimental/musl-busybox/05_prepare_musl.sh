@@ -12,51 +12,19 @@ cd $(ls -d *)
 
 cd musl-installed/bin
 
-unlink musl-ar
+unlink musl-ar 2>/dev/null
 ln -s `which ar` musl-ar
 
-unlink musl-strip
+unlink musl-strip 2>/dev/null
 ln -s `which strip` musl-strip
 
 cd ../include
 
-#
-# Should work with headers from the newly downloaded kernel
-# but it diesn't work. Damn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#
-#unlink linux
-#ln -s $WORK_KERNEL_DIR/include/linux linux
-#
-#unlink mtd
-#ln -s $WORK_KERNEL_DIR/include/linux/mtd mtd
-#
-#unlink asm
-#ln -s $WORK_KERNEL_DIR/include/uapi/asm-generic asm
-#
-#unlink asm-generic
-#ln -s $WORK_KERNEL_DIR/include/uapi/asm-generic asm-generic
-#
-#unlink uapi
-#ln -s $WORK_KERNEL_DIR/include/uapi uapi
-#
-#unlink uapi
-#ln -s $WORK_KERNEL_DIR/include/uapi uapi
+# Copy all kernel headers to musl's 'include' folder
+cp -rf $WORK_KERNEL_DIR/usr/include/* .
 
-unlink linux
-ln -s /usr/include/linux linux
-
-unlink mtd
-ln -s /usr/include/mtd mtd
-
-if [ -d /usr/include/asm ]
-then
-  unlink asm
-  ln -s /usr/include/asm asm
-else
-  unlink asm
-  ln -s /usr/include/asm-generic asm
-fi
-
-unlink asm-generic
-ln -s /usr/include/asm-generic asm-generic
+# Make sure some C structs are not defined in kernel headers if thgey are already defined in musl
+sed -i "s/^\#if.__UAPI_DEF_IN6_ADDR$/#if !defined(_NETINET_IN_H) \&\& defined(__UAPI_DEF_IN6_ADDR)/" ./linux/in6.h
+sed -i "s/^\#if.__UAPI_DEF_SOCKADDR_IN6$/#if !defined(_NETINET_IN_H) \&\& defined(__UAPI_DEF_SOCKADDR_IN6)/" ./linux/in6.h
+sed -i "s/^\#if.__UAPI_DEF_IPV6_MREQ$/#if !defined(_NETINET_IN_H) \&\& defined(__UAPI_DEF_IPV6_MREQ)/" ./linux/in6.h
 

@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Find the kernel build directory.
 cd work/kernel
 cd $(ls -d *)
 WORK_KERNEL_DIR=$(pwd)
@@ -11,6 +12,26 @@ cd work/glibc
 cd $(ls -d *)
 
 cd glibc_installed
+
+# Create custom 'usr' area and link it with some of the kernel header directories.
+# BusyBox compilation process uses these linked directories. The following
+# directories are affected:
+#
+# usr (glibc)
+# |
+# +--include (glibc)
+# |  |
+# |  +--asm (kernel)
+# |  |
+# |  +--asm-generic (kernel)
+# |  |
+# |  +--asm-generic (kernel)
+# |  |
+# |  +--linux (kernel)
+# |  |
+# |  +--mtd (kernel)
+# |
+# +--lib (glibc)
 
 mkdir -p usr
 cd usr
@@ -37,28 +58,3 @@ ln -s $WORK_KERNEL_DIR/usr/include/mtd mtd
 
 cd ../../../..
 
-exit 0
-
-unlink musl-ar 2>/dev/null
-ln -s `which ar` musl-ar
-
-unlink musl-strip 2>/dev/null
-ln -s `which strip` musl-strip
-
-unlink linux 2>/dev/null
-ln -s /usr/include/linux linux
-
-unlink mtd 2>/dev/null
-ln -s /usr/include/mtd mtd
-
-if [ -d /usr/include/asm ]
-then
-  unlink asm 2>/dev/null
-  ln -s /usr/include/asm asm
-else
-  unlink asm 2>/dev/null
-  ln -s /usr/include/asm-generic asm
-fi
-
-unlink asm-generic 2>/dev/null
-ln -s /usr/include/asm-generic asm-generic

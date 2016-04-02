@@ -18,3 +18,7 @@
 /src/experimental/musl-toybox/work/**
 /src/experimental/musl-toybox/*.iso
 
+/src/experimental/glibc-busybox/source/**
+/src/experimental/glibc-busybox/work/**
+/src/experimental/glibc-busybox/*.iso
+

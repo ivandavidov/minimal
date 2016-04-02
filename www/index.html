@@ -23,7 +23,7 @@
     }
     
     function logSwap(itemIndex, show) {
-      for(var i = 1; i <= 4; i++) {
+      for(var i = 1; i <= 5; i++) {
         var showObj = document.getElementById("show" + i);
         var hideObj = document.getElementById("hide" + i);
         var textObj = document.getElementById("text" + i);
@@ -72,9 +72,11 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimal Live
-          Linux OS based on <a target="_blank" href="http://kernel.org">Linux kernel</a>
-          and <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
+          <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimalistic Live
+          Linux OS with basic network support via DHCP. The generated operating system is based on
+          <a target="_blank" href="http://kernel.org">Linux kernel</a>,
+          <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and
+          <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
           downloaded and all build operations are fully encapsulated in the scripts.
         </div>
       </div>
@@ -91,7 +93,8 @@
               Get the latest scripts from the <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> section.
             </li>
             <li>
-              Extract the scripts to some folder.
+              Extract the scripts to some folder. Note that even though the scripts are small in size, you need ~2GB free disk space for the
+              actual build process.
             </li>
             <li>
               Just for convenience, make sure that all scripts are executable (<code>chmod +x *.sh</code>). If you decide to skip this step you
@@ -140,59 +143,82 @@
               you have researched your problem in advance before you send me your question.
             </li>
             <li>
-              When the scripts finish their job you will find newly created <code>minimal_linux_live.iso</code> in the same folder where you
+              When the scripts finish their job you will find newly generated <code>minimal_linux_live.iso</code> in the same folder where you
               executed the scripts. You can burn the ISO image file on CD/DVD, install it on USB flash drive via
               <a target="_blank" href="http://www.pendrivelinux.com">Universal USB Installer</a>,
-              or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>.
+              or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>. Minimal Linux Live
+              requires at least 64MB RAM, otherwise the boot process most probably will hang.
             </li>
           </ul>
         </div>
       </div>
       <div class="row">      
         <div class="twelve columns">
-          The produced ISO image file contains Linux kernel compiled with default options, BusyBox compiled with default options and very simple
-          initramfs. This means that you don't get Windows support out of the box, nor you get any fancy desktop environment. All you
-          get is a simple shell console which supports all BusyBox applets and... well, that's all. This is why it's called "minimal".
+          The generated ISO image file contains Linux kernel compiled with default options, GNU C library compiled with default options,
+          BusyBox compiled with default options and quite simple initramfs. This means that you don't get Windows support out of the box,
+          nor you get any fancy desktop environment. All you get is a simple shell console which supports all BusyBox applets and... well,
+          that's all. This is why it's called "minimal".
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>      
       <div class="row">
         <div class="twelve columns">
-          The good news is that even though the OS is small and simple, the build scripts are also very small and very simple. You can
-          quite easily learn from the scripts and later modify them to include more stuff (I encourage you to do so). After you learn
-          the basics you will have all the necessary tools and skills to create your own fully functional Linux based operating system!
-          Entirely from scratch! Isn't it great?! :)
+          The good news is that the build scripts are very small in size and simple to understand. You can easily learn from the scripts
+          and later modify them to include more stuff (I encourage you to do so). After you learn the basics you will have all the necessary
+          tools and skills to create your own fully functional Linux based operating system. Entirely from scratch!
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">      
         <div class="twelve columns">
           The <a href="#" onclick="javascript:menuSwap(4); return false;">tutorial</a> provides more details about the inner structure
-          of the scripts and the overall build process. I encourage you to go through this document when you have the time.
+          of the scripts and the overall build process. I encourage you to go through this document when you have the time. The same tutorial
+          document is automatically included in the generated ISO image, so you can always refer to it.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">      
         <div class="twelve columns">
           Below you can find several screenshots which show what the environment looks like when you boot your newly generated
-          Minimal Linux Live OS.
+          Minimal Linux Live OS. 
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
-        <div class="four columns">
+        <div class="six columns">
           <a href="./images/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
             <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen1.png" />
           </a>
         </div>
-        <div class="four columns">
+        <div class="six columns">
           <a href="./images/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
-            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen2.png" />
+            <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="./images/screen2.png" />
           </a>
         </div>
-        <div class="four columns">
+      </div class="row">
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
+        <div class="six columns">
           <a href="./images/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
-            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen3.png" />
+            <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="./images/screen3.png" />
+          </a>
+        </div>
+        <div class="six columns">
+          <a href="./images/screen4.png" target="_blank" title="Minimal Linux Live - screenshot 4">
+            <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="./images/screen4.png" />
+          </a>
+        </div>
+      </div class="row">
+      <div style="font-size: 10%;">&nbsp;</div>
+      <div class="row">
+        <div class="six columns">
+          <a href="./images/screen5.png" target="_blank" title="Minimal Linux Live - screenshot 5">
+            <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="./images/screen5.png" />
+          </a>
+        </div>
+        <div class="six columns">
+          <a href="./images/screen6.png" target="_blank" title="Minimal Linux Live - screenshot 6">
+            <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="./images/screen6.png" />
           </a>
         </div>
       </div>  
@@ -205,15 +231,52 @@
       </div>
       <div class="row">      
       <div class="twelve columns">
-        <div id="show4" style="display:none;">
+        <div id="show5" style="display:none;">
+          <strong>03-Apr-2016</strong>
+          <a href="#" onclick="javascript:logSwap(5, true); return false;">show</a>      
+        </div>
+        <div id="hide5" style="display:block;">
+          <strong>03-Apr-2016</strong>
+          <a href="#" onclick="javascript:logSwap(5, false); return false;">hide</a>
+        </div>
+        <div id="text5" style="display:block;">
+          <ul>
+            <div style="font-size: 10%;">&nbsp;</div>
+            <li>
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.4.6</strong>, <strong>GNU C library 2.23</strong>
+              and <strong>BusyBox 1.24.2</strong>. The generated ISO image file is ~4MB larger due to glibc overhead and requires more RAM
+              (64MB is enough).
+            </li>
+            <li>
+              The build architecture has been revised and now the only core dependency to the host OS is the actual C compiler along with
+              the related binary utils. Kernel headers and main C library (which used to be implicit dependencies) are now automatically
+              generated and used as part of the overall build process.
+            </li>
+            <li>
+              The DNS resolving issue has been fixed and the network/internet related BusyBox applets (ping, wget, etc.) now work fine.
+            </li>
+            <li>
+              The ISO image generation process is now in a separate script file, completely detached from the kernel build infrastructure.
+              This allows the Mnimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
+            </li>
+            <li>
+              The internal script comments have been revised and now they are more descriptive than before.
+            </li>
+            <li>
+              The experimental folder has been removed.
+            </li>
+          </ul>
+        </div>
+        <div style="font-size: 10%;">&nbsp;</div>
+        <div id="show4" style="display:block;">
           <strong>14-Sep-2015</strong>
           <a href="#" onclick="javascript:logSwap(4, true); return false;">show</a>      
         </div>
-        <div id="hide4" style="display:block;">
+        <div id="hide4" style="display:none;">
           <strong>14-Sep-2015</strong>
           <a href="#" onclick="javascript:logSwap(4, false); return false;">hide</a>
         </div>
-        <div id="text4" style="display:block;">
+        <div id="text4" style="display:none;">
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
@@ -381,17 +444,17 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        The latest stable scripts (14-Sep-2015) can be downloaded as ZIP archive
-        <a href="./download/minimal_linux_live_14-Sep-2015_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
+        The latest stable scripts (03-Apr-2016) can be downloaded as ZIP archive
+        <a href="./download/minimal_linux_live_03-Apr-2016_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
         Pre-built ISO image files generated with the latest stable scripts are available for
-        <a href="./download/minimal_linux_live_14-Sep-2015_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
+        <a href="./download/minimal_linux_live_03-Apr-2016_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
         and
-        <a href="./download/minimal_linux_live_14-Sep-2015_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
+        <a href="./download/minimal_linux_live_03-Apr-2016_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
         CPUs.
       </div>
     </div>
@@ -419,7 +482,7 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row" style="text-align: center;">
       <div class="twelve columns">
-        Copyright &copy; 2014 - 2015
+        Copyright &copy; 2014 - 2016
         <span class="separator">|</span> 
         <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>        
       </div>

@@ -21,9 +21,10 @@ cd ../../rootfs
 # Remove "linuxrc" which is used when we boot in "RAM disk" mode. 
 rm -f linuxrc
 
-# Create root FS folders
+# Create root FS folders.
 mkdir dev
 mkdir etc
+mkdir lib
 mkdir proc
 mkdir root
 mkdir src
@@ -107,32 +108,13 @@ tty4::respawn:/bin/sh
 
 EOF
 
-cat > nsswitch.conf << EOF
-passwd:     db files nis
-shadow:     files
-group:      db files nis
-
-hosts:      files nisplus nis dns
-networks:   nisplus [NOTFOUND=return] files
-
-ethers:     nisplus [NOTFOUND=return] db files
-protocols:  nisplus [NOTFOUND=return] db files
-rpc:        nisplus [NOTFOUND=return] db files
-services:   nisplus [NOTFOUND=return] db files
-
-EOF
-
 cd ..
 
 # The "/init" script passes the execution to "/sbin/init" which in turn looks
 # for the configuration file "/etc/inittab".
 cat > init << EOF
 #!/bin/sh
-echo "1111111111111111"
-echo "1111111111111111"
-echo "1111111111111111"
-PATH=/lib:$PATH
-export PATH
+
 exec /sbin/init
 
 EOF
@@ -147,10 +129,16 @@ chmod +rx src/*.sh
 chmod +r src/.config
 chmod +r src/*.txt
 
-#cd bin
-#cp -r $GLIBC_INSTALLED/lib/* .
-#cd ..
-cp -r $GLIBC_INSTALLED/* .
+# Copy the necessary 'glibc' libraries for proper DNS resolving.
+cp $GLIBC_INSTALLED/lib/libm.so.6 ./lib
+cp $GLIBC_INSTALLED/lib/libc.so.6 ./lib
+cp $GLIBC_INSTALLED/lib/ld-linux* ./lib
+cp $GLIBC_INSTALLED/lib/libresolv.so.2 ./lib
+cp $GLIBC_INSTALLED/lib/libnss_dns.so.2 ./lib
+
+
+# Make sure x86_64 binaries can be loaded (for 64bit machines).
+ln -s lib lib64
 
 cd ../..
 

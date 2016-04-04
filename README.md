@@ -22,3 +22,5 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/ladiko/minimal - always use the latest available Kernel and BusyBox sources + more default Kernel options.
 
 * https://github.com/cirosantilli/runlinux
+
+* https://github.com/redox-os/installer - Installer for the Redox OS (http://redox-os.org).

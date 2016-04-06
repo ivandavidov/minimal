@@ -6,6 +6,12 @@ cd $(ls -d *)
 WORK_KERNEL_DIR=$(pwd)
 cd ../../..
 
+# Find the Syslinux build directory.
+cd work/syslinux
+cd $(ls -d *)
+WORK_SYSLINUX_DIR=$(pwd)
+cd ../../..
+
 # Remove the old ISO file if it exists.
 rm -f minimal_linux_live.iso
 
@@ -16,17 +22,9 @@ rm -rf work/isoimage
 mkdir work/isoimage
 cd work/isoimage
 
-# Search and copy the files 'isolinux.bin' and 'ldlinux.c32'
-for i in lib lib64 share end ; do
-    if [ -f /usr/$i/syslinux/isolinux.bin ]; then
-        cp /usr/$i/syslinux/isolinux.bin .
-        if [ -f /usr/$i/syslinux/ldlinux.c32 ]; then
-            cp /usr/$i/syslinux/ldlinux.c32 .
-        fi;
-        break;
-    fi;
-    if [ $i = end ]; then exit 1; fi;
-done
+# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image root folder.
+cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
+cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
 
 # Now we copy the kernel.
 cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.bz

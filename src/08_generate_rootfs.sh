@@ -46,12 +46,15 @@ cd etc
 cat > bootscript.sh << EOF
 #!/bin/sh
 
+echo "Welcome to \"Minimal Linbux Live\" (/sbin/init)"
+
 dmesg -n 1
 mount -t devtmpfs none /dev
 mount -t proc none /proc
 mount -t sysfs none /sys
 
 for DEVICE in /sys/class/net/* ; do
+  echo "Found network device \${DEVICE##*/}" 
   ip link set \${DEVICE##*/} up
   [ \${DEVICE##*/} != lo ] && udhcpc -b -i \${DEVICE##*/} -s /etc/rc.dhcp
 done
@@ -68,6 +71,13 @@ ip addr add \$ip/\$mask dev \$interface
 
 if [ "\$router" ]; then
   ip route add default via \$router dev \$interface
+fi
+
+if [ "\$ip" ]; then
+  echo "DHCP configuration for device \$interface"
+  echo "ip:     \$ip"
+  echo "mask:   \$mask"
+  echo "router: \$router"
 fi
 
 EOF
@@ -117,6 +127,8 @@ cd ..
 # for the configuration file '/etc/inittab'.
 cat > init << EOF
 #!/bin/sh
+
+echo "Welcome to \"Minimal Linbux Live\" (/init)"
 
 exec /sbin/init
 

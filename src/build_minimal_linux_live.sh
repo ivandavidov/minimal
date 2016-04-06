@@ -10,5 +10,6 @@ sh 06_get_busybox.sh
 sh 07_build_busybox.sh
 sh 08_generate_rootfs.sh
 sh 09_pack_rootfs.sh
-sh 10_generate_iso.sh
+sh 10_get_syslinux.sh
+sh 11_generate_iso.sh
 

@@ -24,34 +24,76 @@ cd ../../rootfs
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode. 
 rm -f linuxrc
 
-# Create root FS folders.
-mkdir dev
+# Create the missing root FS folders.
 mkdir etc
+mkdir dev
 mkdir lib
+mkdir mnt
 mkdir proc
 mkdir root
 mkdir src
 mkdir sys
 mkdir tmp
 
-# '1' means that only the owner of particular file/directory can remove it.
-chmod 1777 tmp
-
 cd etc
 
+# The script '/etc/prepare.sh' is automatically executed as part of the '/init'
+# process. We suppress most kernel messages and mount all crytical file systems.
+cat > prepare.sh << EOF
+#!/bin/sh
+
+dmesg -n 1
+
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t tmpfs none /tmp -o mode=1777
+mount -t sysfs none /sys
+
+EOF
+
+chmod +x prepare.sh
+
+# The script '/etc/switch.sh' is automatically executed as part of the '/init'
+# process. We copy all files/folders to new mountpoint and then execute the
+# command 'switch_root'.
+cat > switch.sh << EOF
+#!/bin/sh
+
+# Create the new mountpoint in RAM.
+mount -t tmpfs none /mnt
+
+# Create folders for all crytical file systems.
+mkdir /mnt/dev
+mkdir /mnt/sys
+mkdir /mnt/proc
+mkdir /mnt/tmp
+
+# Move all crytical file systems in the new mountpoint.
+mount --move /dev /mnt/dev
+mount --move /sys /mnt/sys
+mount --move /tmp /mnt/tmp
+mount --move /proc /mnt/proc
+
+# Copy all root folders in the new mountpoint.
+cp -a bin etc lib lib64 root sbin src usr /mnt
+
+# The new mountpoint becomes file system root. All original root folders are
+# deleted automatically as part of the command execution. The '/sbin/init' 
+# process is invoked and it becomes the new PID 1 parent process. 
+exec switch_root /mnt/ /sbin/init
+
+EOF
+
+chmod +x switch.sh
+
 # The script '/etc/bootscript.sh' is automatically executed as part of the
-# 'init' proess. We suppress most kernel messages, mount all crytical file
-# systems, loop through all available network devices and we configure them
-# through DHCP.
+# '/sbin/init' proess. All core boot configuration has been completed and now we
+# need to do the rest of the configuration on the user space level. Here we loop
+# through all available network devices and we configure them through DHCP.
 cat > bootscript.sh << EOF
 #!/bin/sh
 
 echo "Welcome to \"Minimal Linbux Live\" (/sbin/init)"
-
-dmesg -n 1
-mount -t devtmpfs none /dev
-mount -t proc none /proc
-mount -t sysfs none /sys
 
 for DEVICE in /sys/class/net/* ; do
   echo "Found network device \${DEVICE##*/}" 
@@ -123,14 +165,21 @@ EOF
 
 cd ..
 
-# The '/init' script passes the execution to '/sbin/init' which in turn looks
-# for the configuration file '/etc/inittab'.
+# The '/init' script is the first place where we gain execution control after
+# the kernel has been loaded. This script prepares the core file systems, then
+# creates new mountpoint in RAM which we use as new root location and finally
+# the execution is passed to the script '/sbin/init' which in turn looks for
+# the configuration file '/etc/inittab'.
 cat > init << EOF
 #!/bin/sh
 
 echo "Welcome to \"Minimal Linbux Live\" (/init)"
 
-exec /sbin/init
+# Let's mount all core file systems.
+/etc/prepare.sh
+
+# Now let's create new mountpoint in RAM and make it our new root location.
+exec /etc/switch.sh
 
 EOF
 

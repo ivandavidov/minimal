@@ -69,18 +69,25 @@ mkdir /mnt/proc
 mkdir /mnt/tmp
 
 # Move all crytical file systems in the new mountpoint.
+echo "Remounting /dev, /sys, /tmp and /proc in /mnt..."
 mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys
 mount --move /tmp /mnt/tmp
 mount --move /proc /mnt/proc
+echo "...done."
 
 # Copy all root folders in the new mountpoint.
+echo "Moving the rest of the root file system to /mnt..."
 cp -a bin etc lib lib64 root sbin src usr /mnt
+echo "...done."
 
 # The new mountpoint becomes file system root. All original root folders are
 # deleted automatically as part of the command execution. The '/sbin/init' 
 # process is invoked and it becomes the new PID 1 parent process. 
 exec switch_root /mnt/ /sbin/init
+
+echo "You can never see this... unless there is a serious bug..."
+sleep 99999
 
 EOF
 
@@ -93,7 +100,7 @@ chmod +x switch.sh
 cat > bootscript.sh << EOF
 #!/bin/sh
 
-echo "Welcome to \"Minimal Linbux Live\" (/sbin/init)"
+echo "Welcome to \"Minimal Linux Live\" (/sbin/init)"
 
 for DEVICE in /sys/class/net/* ; do
   echo "Found network device \${DEVICE##*/}" 
@@ -173,7 +180,7 @@ cd ..
 cat > init << EOF
 #!/bin/sh
 
-echo "Welcome to \"Minimal Linbux Live\" (/init)"
+echo "Welcome to \"Minimal Linux Live\" (/init)"
 
 # Let's mount all core file systems.
 /etc/prepare.sh

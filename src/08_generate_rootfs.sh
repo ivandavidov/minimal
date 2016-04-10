@@ -38,7 +38,7 @@ mkdir tmp
 cd etc
 
 # The script '/etc/prepare.sh' is automatically executed as part of the '/init'
-# process. We suppress most kernel messages and mount all crytical file systems.
+# process. We suppress most kernel messages and mount all cryitical file systems.
 cat > prepare.sh << EOF
 #!/bin/sh
 
@@ -62,8 +62,8 @@ cat > switch.sh << EOF
 # Create the new mountpoint in RAM.
 mount -t tmpfs none /mnt
 
-# Create folders for all crytical file systems.
-echo "Create folders for all crytical file systems..."
+# Create folders for all critical file systems.
+echo "Create folders for all critical file systems..."
 mkdir /mnt/dev
 mkdir /mnt/sys
 mkdir /mnt/proc
@@ -119,7 +119,7 @@ for DEVICE in /dev/* ; do
 done
 echo "...done."
 
-# Move crytical file systems to the new mountpoint.
+# Move critical file systems to the new mountpoint.
 echo "Remounting /dev, /sys, /tmp and /proc in /mnt..."
 mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys

@@ -54,8 +54,8 @@ EOF
 chmod +x prepare.sh
 
 # The script '/etc/switch.sh' is automatically executed as part of the '/init'
-# process. We copy all files/folders to new mountpoint and then execute the
-# command 'switch_root'.
+# process. We overlay the '/minimal/rootfs' folder from the boot media, copy all
+# files and folders to new mountpoint and then execute the command 'switch_root'.
 cat > switch.sh << EOF
 #!/bin/sh
 
@@ -63,28 +63,74 @@ cat > switch.sh << EOF
 mount -t tmpfs none /mnt
 
 # Create folders for all crytical file systems.
+echo "Create folders for all crytical file systems..."
 mkdir /mnt/dev
 mkdir /mnt/sys
 mkdir /mnt/proc
 mkdir /mnt/tmp
+echo "...done."
 
-# Move all crytical file systems in the new mountpoint.
+# Copy root folders in the new mountpoint.
+echo "Copying the root file system to /mnt..."
+cp -a bin etc lib lib64 root sbin src usr /mnt
+echo "...done."
+
+mkdir /tmp/mnt
+echo "Searching available devices for /minimal/rootfs folder..."
+for DEVICE in /dev/* ; do
+  DEV=\$(echo "\${DEVICE##*/}")
+  SYSDEV=\$(echo "/sys/class/block/\$DEV")
+
+  case \$DEV in
+    *loop*) continue ;;
+  esac
+
+  if [ ! -d "\$SYSDEV" ] ; then
+    continue
+  fi
+
+  mount \$DEVICE /tmp/mnt 2>/dev/null
+  if [ -d /tmp/mnt/minimal/rootfs ] ; then
+    echo "  Found /minimal/rootfs folder on device \$DEV."
+    
+    touch /tmp/mnt/minimal/rootfs/minimal.pid 2>/dev/null
+    if [ -f /tmp/mnt/minimal/rootfs/minimal.pid ] ; then
+      echo "  Trying to overlay in read/write mode..."
+      rm -f /tmp/mnt/minimal/rootfs/minimal.pid
+      mount -t overlay -o lowerdir=/mnt,upperdir=/tmp/mnt/minimal/rootfs,workdir=/tmp/mnt/minimal/work none /mnt
+      OUT=\$?
+      if [ ! "\$OUT" = "0" ] ; then
+        echo "  Mount failed (probably on vfat), moving on with other devices."
+        continue
+      fi
+    else
+      echo "  Trying to overlay in read only mode..."
+      mkdir -p /tmp/minimal/work
+      mkdir -p /tmp/minimal/rootfs
+      mount -t overlay -o lowerdir=/mnt:/tmp/mnt/minimal/rootfs,upperdir=/tmp/minimal/rootfs,workdir=/tmp/minimal/work none /mnt
+    fi
+    
+    echo "  ...done."
+    
+    break
+  else
+    umount /tmp/mnt 2>/dev/null
+  fi
+done
+echo "...done."
+
+# Move crytical file systems to the new mountpoint.
 echo "Remounting /dev, /sys, /tmp and /proc in /mnt..."
 mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys
-mount --move /tmp /mnt/tmp
 mount --move /proc /mnt/proc
-echo "...done."
-
-# Copy all root folders in the new mountpoint.
-echo "Moving the rest of the root file system to /mnt..."
-cp -a bin etc lib lib64 root sbin src usr /mnt
+mount --move /tmp /mnt/tmp
 echo "...done."
 
 # The new mountpoint becomes file system root. All original root folders are
 # deleted automatically as part of the command execution. The '/sbin/init' 
-# process is invoked and it becomes the new PID 1 parent process. 
-exec switch_root /mnt/ /sbin/init
+# process is invoked and it becomes the new PID 1 parent process.
+exec switch_root /mnt /sbin/init
 
 echo "You can never see this... unless there is a serious bug..."
 sleep 99999

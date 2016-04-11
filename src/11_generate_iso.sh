@@ -41,8 +41,8 @@ chmod +rx src/*.sh
 chmod +r src/.config
 chmod +r src/*.txt
 
-# Create the overlay directory '/minimal'. All files in this folder are merged
-# in the root folder and can be manipulated thanks to overlayfs.
+# Create the overlay directory '/minimal/rootfs'. All files in this folder are
+# merged in the root folder and can be manipulated thanks to overlayfs.
 mkdir -p minimal/rootfs
 cd minimal/rootfs
 echo 'Sample file 1 from CD.' > file_from_cd_1.txt

@@ -101,6 +101,7 @@ for DEVICE in /dev/* ; do
       OUT=\$?
       if [ ! "\$OUT" = "0" ] ; then
         echo "  Mount failed (probably on vfat), moving on with other devices."
+        umount /tmp/mnt 2>/dev/null
         continue
       fi
     else

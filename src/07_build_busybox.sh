@@ -15,7 +15,7 @@ cd work/busybox
 cd $(ls -d *)
 
 # Remove previously generated artifacts.
-# make distclean
+make distclean
 
 # Read the 'BUSYBOX_CONFIG_FILE' property from '.config'
 BUSYBOX_CONFIG_FILE="$SRC_DIR/$(grep -iBUSYBOX_CONFIG_FILE $SRC_DIR/.config | cut -f2 -d'=')"
@@ -32,8 +32,6 @@ else
   # not resolved. The easiest solution is to ignore this particular applet. 
   sed -i "s/.*CONFIG_INETD.*/CONFIG_INETD=n/" .config
 fi
-
-exit 0
 
 # This variable holds the full path to the glibc installation area as quoted string.
 # All back slashes are escaped (/ => \/) in order to keep the 'sed' command stable.

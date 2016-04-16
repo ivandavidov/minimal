@@ -5,6 +5,7 @@
 /src/source/**
 /src/work/**
 /src/*.iso
+/src/*.img
 
 /src/experimental/glibc-toybox/source/**
 /src/experimental/glibc-toybox/work/**

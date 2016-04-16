@@ -1,5 +1,9 @@
 ::sysinit:/etc/bootscript.sh
 ::restart:/sbin/init
+::shutdown:echo "Syncing file buffers..."
+::shutdown:/bin/sync
+::shutdown:echo "Unmounting all filesystems..."
+::shutdown:umount -a -r
 ::ctrlaltdel:/sbin/reboot
 ::once:cat /etc/welcome.txt
 ::respawn:/bin/cttyhack /bin/sh

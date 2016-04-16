@@ -40,7 +40,7 @@ for DEVICE in /dev/* ; do
   WORK_DIR=""
 
   mount $DEVICE $DEVICE_MNT 2>/dev/null
-  if [ -d $DEVICE_MNT/minimal/rootfs ] && [ -d $DEVICE_MNT/minimal/work ] ; then
+  if [ -d $DEVICE_MNT/minimal/rootfs -a -d $DEVICE_MNT/minimal/work ] ; then
     # folder
     echo "  Found '/minimal' folder on device '$DEVICE'."
     touch $DEVICE_MNT/minimal/rootfs/minimal.pid 2>/dev/null
@@ -145,5 +145,7 @@ mount --move /tmp /mnt/tmp
 exec switch_root /mnt /sbin/init
 
 echo "You can never see this... unless there is a serious bug..."
-sleep 99999
+
+# Wait until any key has been pressed.
+read -n1 -s
 

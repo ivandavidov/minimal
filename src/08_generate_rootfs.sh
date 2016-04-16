@@ -20,7 +20,7 @@ cd $(ls -d *)
 # Copy all BusyBox generated stuff to the location of our 'initramfs' folder.
 cp -r _install ../../rootfs
 
-# Copy all rootfs stuff to the location of our 'initramfs' folder.
+# Copy all rootfs resources to the location of our 'initramfs' folder.
 cp -r ../../../08_generate_rootfs/* ../../rootfs
 
 cd ../../rootfs
@@ -35,6 +35,7 @@ cp ../../*.txt src
 cp -r ../../08_generate_rootfs src
 cp -r ../../11_generate_iso src
 
+# Make all files readable and all scripts executable.
 chmod -R +rx **/*.sh
 chmod -R +r **/.config
 chmod -R +r **/*.txt

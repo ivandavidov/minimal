@@ -45,59 +45,58 @@ chmod +r src/*.txt
 
 # Read the 'OVERLAY_TYPE' property from '.config'
 OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
+
 if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
-  # sparse
+  # Use sparse file as storage place. The above check guarantees that the whole
+  # script is executed with root permissions or otherwise this block is skipped.
+  # All files and folders located in the folder '11_generate_iso' will be merged
+  # with the root folder on boot.
   
   echo "Using sparse file for overlay."
   
-  # This is the BusyBox executable.
+  # This is the BusyBox executable that we have already generated.
   BUSYBOX=../rootfs/bin/busybox  
   
-  # Create sparse image file with 1MB size.
+  # Create sparse image file with 1MB size. Note that this increases the ISO image size.
   $BUSYBOX truncate -s 1M minimal.img
   
   # Find available loop device.
   LOOP_DEVICE=$($BUSYBOX losetup -f)
   
-  # Associate loop device with the sparse image file.
+  # Associate the available loop device with the sparse image file.
   $BUSYBOX losetup $LOOP_DEVICE minimal.img
   
   # Format the sparse image file with Ext2 file system. 
   $BUSYBOX mkfs.ext2 $LOOP_DEVICE
   
-  # Mount the sparse file in folder 'tmp_min".
-  mkdir tmp_min
-  $BUSYBOX mount minimal.img tmp_min
+  # Mount the sparse file in folder 'sparse".
+  mkdir sparse
+  $BUSYBOX mount minimal.img sparse
   
   # Create the overlay folders.
-  mkdir -p tmp_min/rootfs
-  mkdir -p tmp_min/work
+  mkdir -p sparse/rootfs
+  mkdir -p sparse/work  
   
   # Copy the overlay content.
-  cp -r $SRC_DIR/11_generate_iso/* tmp_min/rootfs/
+  cp -r $SRC_DIR/11_generate_iso/* sparse/rootfs/
   
   # Unmount the sparse file and thelete the temporary folder.
-  $BUSYBOX umount tmp_min
-  rm -rf tmp_min
+  $BUSYBOX umount sparse
+  rm -rf sparse
   
-  # Detach the loop device.
+  # Detach the loop device since we no longer need it.
   $BUSYBOX losetup -d $LOOP_DEVICE
 elif [ "$OVERLAY_TYPE" = "folder" ] ; then
-  # folder
+  # Use normal folder structure for overlay. All files and folders located in
+  # the folder '11_generate_iso' will be merged with the root folder on boot.
+  
   echo "Using folder structure for overlay."
+  
   mkdir -p minimal/rootfs
-  mkdir -p minimal/work
+  mkdir -p minimal/work  
   
   cp -r $SRC_DIR/11_generate_iso/* minimal/rootfs/
 fi
-
-# Create the overlay directory '/minimal/rootfs'. All files in this folder are
-# merged in the root folder and can be manipulated thanks to overlayfs.
-#mkdir -p minimal/rootfs
-#cd minimal/rootfs
-#echo 'Sample file 1 from CD.' > file_from_cd_1.txt
-#echo 'Sample file 2 from CD.' > file_from_cd_2.txt
-#cd ../..
 
 # Create ISOLINUX configuration file.
 echo 'default kernel.bz  initrd=rootfs.gz' > ./isolinux.cfg

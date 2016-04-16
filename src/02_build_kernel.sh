@@ -8,7 +8,7 @@ cd work/kernel
 cd $(ls -d *)
 
 # Cleans up the kernel sources, including configuration files.
-# make mrproper
+make mrproper
 
 # Read the 'KERNEL_CONFIG_FILE' property from '.config'
 KERNEL_CONFIG_FILE="$SRC_DIR/$(grep -i KERNEL_CONFIG_FILE $SRC_DIR/.config | cut -f2 -d'=')"
@@ -26,8 +26,6 @@ else
   # Enable overlay support, e.g. merge ro and rw directories.
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
 fi
-
-exit 0
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
 # Good explanation of the different kernels:

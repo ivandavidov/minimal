@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Welcome to \"Minimal Linux Live\" (/init)"
+
+# Let's mount all core file systems.
+/etc/prepare.sh
+
+# Now let's create new mountpoint in RAM and make it our new root location.
+exec /etc/switch.sh
+

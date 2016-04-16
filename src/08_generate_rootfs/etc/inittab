@@ -1,0 +1,12 @@
+::sysinit:/etc/bootscript.sh
+::restart:/sbin/init
+::ctrlaltdel:/sbin/reboot
+::once:cat /etc/welcome.txt
+::respawn:/bin/cttyhack /bin/sh
+tty2::once:cat /etc/welcome.txt
+tty2::respawn:/bin/sh
+tty3::once:cat /etc/welcome.txt
+tty3::respawn:/bin/sh
+tty4::once:cat /etc/welcome.txt
+tty4::respawn:/bin/sh
+

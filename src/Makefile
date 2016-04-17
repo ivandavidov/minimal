@@ -13,6 +13,7 @@ clean:
 	@rm -rf source
 	@rm -rf work
 	@rm -f minimal_linux_live.iso
+	@rm -f minimal_linux_live.log
 
 emulator:
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi

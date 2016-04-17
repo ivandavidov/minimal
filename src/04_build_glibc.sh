@@ -26,8 +26,8 @@ cd ../glibc_objects
 
 # glibc is configured to use the root folder (--prefix=) and as result all libraries
 # will be installed in '/lib'. Kernel headers are taken from our already prepared
-# kernel header area (see 02_build_kernel.sh).
-../configure --prefix= --with-headers=$WORK_KERNEL_DIR/usr/include --disable-werror
+# kernel header area (see 02_build_kernel.sh). Packages 'gd' and 'selinux' are disabled.
+../configure --prefix= --with-headers=$WORK_KERNEL_DIR/usr/include --without-gd --without-selinux --disable-werror
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 make -j $(grep ^processor /proc/cpuinfo | wc -l)

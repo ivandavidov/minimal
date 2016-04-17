@@ -7,16 +7,22 @@
 .DEFAULT_GOAL := help
 
 all: clean
+	@echo "Launching the main build script..."
 	@time sh build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
 
 clean:
+	@echo "Removing source files..."
 	@rm -rf source
+	@echo "Removing generated work artifacts..."
 	@rm -rf work
+	@echo "Removing generated ISO image..."
 	@rm -f minimal_linux_live.iso
+	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 
 emulator:
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi
+	@echo "Launching emulator..."
 	@if [ "$(shell uname -m)" = "x86_64" ]; then sh qemu64.sh; else sh qemu32.sh; fi
 
 help:

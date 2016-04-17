@@ -1,3 +1,5 @@
+!.gitignore
+
 /www/download/**
 /www/favicon.ico
 /www/images/**
@@ -6,20 +8,4 @@
 /src/work/**
 /src/*.iso
 /src/*.img
-
-/src/experimental/glibc-toybox/source/**
-/src/experimental/glibc-toybox/work/**
-/src/experimental/glibc-toybox/*.iso
-
-/src/experimental/musl-busybox/source/**
-/src/experimental/musl-busybox/work/**
-/src/experimental/musl-busybox/*.iso
-
-/src/experimental/musl-toybox/source/**
-/src/experimental/musl-toybox/work/**
-/src/experimental/musl-toybox/*.iso
-
-/src/experimental/glibc-busybox/source/**
-/src/experimental/glibc-busybox/work/**
-/src/experimental/glibc-busybox/*.iso
 

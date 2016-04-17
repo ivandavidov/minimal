@@ -58,5 +58,9 @@ ln -s lib lib64
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
+# Delete the '.gitignore' files which we use in order to keep track of otherwise
+# empty folders.
+find * -type f -name '.gitignore' -exec rm {} +
+
 cd ../..
 

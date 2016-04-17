@@ -101,6 +101,10 @@ fi
 # Create ISOLINUX configuration file.
 echo 'default kernel.bz  initrd=rootfs.gz' > ./isolinux.cfg
 
+# Delete the '.gitignore' files which we use in order to keep track of otherwise
+# empty folders.
+find * -type f -name '.gitignore' -exec rm {} +
+
 # Now we generate the ISO image file.
 genisoimage -J -r -o ../minimal_linux_live.iso -b isolinux.bin -c boot.cat -input-charset UTF-8 -no-emul-boot -boot-load-size 4 -boot-info-table ./
 

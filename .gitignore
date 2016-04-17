@@ -8,4 +8,5 @@
 /src/work/**
 /src/*.iso
 /src/*.img
+/src/*.log
 

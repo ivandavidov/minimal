@@ -7,7 +7,7 @@
 .DEFAULT_GOAL := help
 
 all: clean
-	@time sh build_minimal_linux_live.sh
+	@time sh build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
 
 clean:
 	@rm -rf source

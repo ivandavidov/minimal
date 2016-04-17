@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "Cleaning up the work area..."
 rm -rf work
 mkdir work
 

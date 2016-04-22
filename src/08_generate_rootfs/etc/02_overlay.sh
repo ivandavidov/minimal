@@ -106,7 +106,7 @@ for DEVICE in /dev/* ; do
     mkdir -p $UPPER_DIR
     mkdir -p $WORK_DIR
 
-    mount -t overlay -o lowerdir=/mnt:$OVERLAY_DIR,upperdir=$UPPER_DIR,workdir=$WORK_DIR none /mnt 2>/dev/null
+    mount -t overlay -o lowerdir=$OVERLAY_DIR:/mnt,upperdir=$UPPER_DIR,workdir=$WORK_DIR none /mnt 2>/dev/null
 
     OUT=$?
     if [ ! "$OUT" = "0" ] ; then
@@ -142,9 +142,9 @@ mount --move /tmp /mnt/tmp
 # The new mountpoint becomes file system root. All original root folders are
 # deleted automatically as part of the command execution. The '/sbin/init' 
 # process is invoked and it becomes the new PID 1 parent process.
-exec switch_root /mnt /sbin/init
+exec switch_root /mnt /etc/03_init.sh
 
-echo "You can never see this... unless there is a serious bug..."
+echo "(/etc/02_overlay.sh) - there is a serious bug..."
 
 # Wait until any key has been pressed.
 read -n1 -s

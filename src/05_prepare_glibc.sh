@@ -25,13 +25,13 @@ cd glibc_installed
 # |  |
 # |  +--asm-generic (kernel)
 # |  |
-# |  +--asm-generic (kernel)
-# |  |
 # |  +--linux (kernel)
 # |  |
 # |  +--mtd (kernel)
 # |
 # +--lib (glibc)
+
+echo "Preparing glibc..."
 
 mkdir -p usr
 cd usr

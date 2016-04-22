@@ -10,6 +10,7 @@ cd ../../../..
 
 cd work
 
+echo "Preparing initramfs work area..."
 rm -rf rootfs
 
 cd busybox

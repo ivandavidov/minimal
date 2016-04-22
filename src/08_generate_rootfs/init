@@ -3,8 +3,14 @@
 echo "Welcome to \"Minimal Linux Live\" (/init)"
 
 # Let's mount all core file systems.
-/etc/prepare.sh
+/etc/01_prepare.sh
 
-# Now let's create new mountpoint in RAM and make it our new root location.
-exec /etc/switch.sh
+# Create new mountpoint in RAM, make it our new root location and overlay it
+# with our storage area (if overlay area exists at all). This operation invokes
+# the script '/etc/03_switch.sh' as the new init process.
+exec /etc/02_overlay.sh
 
+echo "(/init) - you can never see this unless there is a serious bug..."
+
+# Wait until any key has been pressed.
+read -n1 -s

@@ -17,6 +17,8 @@ clean:
 	@rm -rf work
 	@echo "Removing generated ISO image..."
 	@rm -f minimal_linux_live.iso
+	@echo "Removing predefined configuration files..."
+	@rm -f config_predefined/*.config
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 

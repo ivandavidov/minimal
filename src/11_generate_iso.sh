@@ -15,12 +15,15 @@ WORK_SYSLINUX_DIR=$(pwd)
 cd ../../..
 
 # Remove the old ISO file if it exists.
+echo "Removing old ISO image..."
 rm -f minimal_linux_live.iso
 
 # Remove the old ISO generation area if it exists.
+echo "Removing old ISO image work area..."
 rm -rf work/isoimage
 
 # This is the root folder of the ISO image.
+echo "Preparing ISO image work area..."
 mkdir work/isoimage
 cd work/isoimage
 
@@ -80,7 +83,7 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   # Copy the overlay content.
   cp -r $SRC_DIR/11_generate_iso/* sparse/rootfs/
   
-  # Unmount the sparse file and thelete the temporary folder.
+  # Unmount the sparse file and delete the temporary folder.
   $BUSYBOX umount sparse
   rm -rf sparse
   
@@ -95,7 +98,9 @@ elif [ "$OVERLAY_TYPE" = "folder" ] ; then
   mkdir -p minimal/rootfs
   mkdir -p minimal/work  
   
-  cp -r $SRC_DIR/11_generate_iso/* minimal/rootfs/
+  cp -rf $SRC_DIR/11_generate_iso/* minimal/rootfs/
+else
+  echo "Generated ISO image will have no overlay structure."
 fi
 
 # Create ISOLINUX configuration file.

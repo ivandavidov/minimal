@@ -15,16 +15,24 @@ cd work/busybox
 cd $(ls -d *)
 
 # Remove previously generated artifacts.
+echo "Preparing BusyBox work area..."
 make distclean
 
-# Read the 'BUSYBOX_CONFIG_FILE' property from '.config'
-BUSYBOX_CONFIG_FILE="$SRC_DIR/$(grep -iBUSYBOX_CONFIG_FILE $SRC_DIR/.config | cut -f2 -d'=')"
+# Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
+USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ -f $BUSYBOX_CONFIG_FILE ] ; then
+if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/config_predefined/busybox.config ] ; then
+  echo "Config file $SRC_DIR/config_predefined/busybox.config does not exist."
+  USE_PREDEFINED_BUSYBOX_CONFIG="false"
+fi
+
+if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
-  cp $BUSYBOX_CONFIG_FILE .config
+  echo "Using config file $SRC_DIR/config_predefined/busybox.config"  
+  cp -f $SRC_DIR/config_predefined/busybox.config .config
 else
   # Create default configuration file.
+  echo "Generating default BusyBox configuration..."  
   make defconfig
   
   # The 'inetd' applet fails to compile because we use the glibc installation area as
@@ -41,9 +49,11 @@ GLIBC_INSTALLED_ESCAPED=$(echo \"$GLIBC_INSTALLED\" | sed 's/\//\\\//g')
 sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_INSTALLED_ESCAPED/" .config
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
+echo "Building BusyBox..."
 make busybox -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
+echo "Generating BusyBox based initramfs area..."
 make install
 
 cd ../../..

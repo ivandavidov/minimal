@@ -8,16 +8,24 @@ cd work/kernel
 cd $(ls -d *)
 
 # Cleans up the kernel sources, including configuration files.
+echo "Preparing kernel work area..."
 make mrproper
 
-# Read the 'KERNEL_CONFIG_FILE' property from '.config'
-KERNEL_CONFIG_FILE="$SRC_DIR/$(grep -i KERNEL_CONFIG_FILE $SRC_DIR/.config | cut -f2 -d'=')"
+# Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
+USE_PREDEFINED_KERNEL_CONFIG="$(grep -i USE_PREDEFINED_KERNEL_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ -f $KERNEL_CONFIG_FILE ] ; then
+if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/config_predefined/kernel.config ] ; then
+  echo "Config file $SRC_DIR/config_predefined/kernel.config does not exist."
+  USE_PREDEFINED_KERNEL_CONFIG="false"
+fi
+
+if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   # Use predefined configuration file for the kernel.
-  cp $KERNEL_CONFIG_FILE .config
+  echo "Using config file $SRC_DIR/config_predefined/kernel.config"  
+  cp -f $SRC_DIR/config_predefined/kernel.config .config
 else
   # Create default configuration file for the kernel.
+  echo "Generating default kernel configuration..."
   make defconfig
 
   # Changes the name of the system to 'minimal'.
@@ -30,10 +38,12 @@ fi
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
 # Good explanation of the different kernels:
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
+echo "Building kernel..."
 make bzImage -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 # Install kernel headers in './usr' (this is not '/usr') which are used later
 # when we build and configure the GNU C library (glibc).
+echo "Generating kernel headers..."
 make headers_install
 
 cd ../../..

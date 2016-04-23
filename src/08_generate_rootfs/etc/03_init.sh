@@ -37,13 +37,15 @@
 #
 # exec /sbin/init
 
+# Print message on screen.
 cat << CEOF
 
-  Wait 5 seconds for the default system initialization process based on the
-  files /sbin/init and /etc/inittab or press any key for PID 1 shell.
+  Wait 5 seconds for the system initialization process or press any key for
+  PID 1 shell outside of the initramfs area.
 
 CEOF
 
+# Wait 5 second or until any keybord key is pressed.
 read -t 5 -n1 -s key
 
 if [ "$key" = "" ] ; then
@@ -51,19 +53,22 @@ if [ "$key" = "" ] ; then
   echo "Executing /sbin/init as PID 1."
   exec /sbin/init
 else
-
-# Using no indentation for this snippet or otherwise it causes kernel panic.
-cat << CEOF
-
-  This is PID 1 shell. Execute the following in order to continue with the
-  default system initialization process:
+  # Print message on screen.
+  cat << CEOF
+  This is PID 1 shell outside of the initramfs area. Execute the following in
+  order to continue with the system initialization.
 
   exec /sbin/init
 
 CEOF
 
-  # Interactive shell with controlling tty as PID 1.
-  exec setsid cttyhack sh
+  if [ "$PID1_SHELL" = "true" ] ; then
+    # PID1_SHELL flag is set which means we have controlling terminal.
+    exec sh
+  else
+    # Interactive shell with controlling tty as PID 1.
+    exec setsid cttyhack sh
+  fi
 fi
 
 echo "(/etc/03_init.sh) - there is a serious bug..."

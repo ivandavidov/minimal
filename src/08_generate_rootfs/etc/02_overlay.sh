@@ -159,7 +159,7 @@ for DEVICE in /dev/* ; do
 done
 
 # Move critical file systems to the new mountpoint.
-echo "Remounting /dev, /sys, /tmp and /proc in /mnt..."
+echo "Remounting /dev, /sys, /tmp and /proc in /mnt."
 mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys
 mount --move /proc /mnt/proc
@@ -168,6 +168,7 @@ mount --move /tmp /mnt/tmp
 # The new mountpoint becomes file system root. All original root folders are
 # deleted automatically as part of the command execution. The '/sbin/init' 
 # process is invoked and it becomes the new PID 1 parent process.
+echo "Moving from initramfs root area to overlayfs root area."
 exec switch_root /mnt /etc/03_init.sh
 
 echo "(/etc/02_overlay.sh) - there is a serious bug..."

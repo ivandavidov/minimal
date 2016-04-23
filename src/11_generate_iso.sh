@@ -119,5 +119,12 @@ isohybrid ../minimal_linux_live.iso 2>/dev/null || true
 # Copy the ISO image to the root project folder.
 cp ../minimal_linux_live.iso ../../
 
+if [ "$(id -u)" = "0" ] ; then
+  # Apply ownership back to original owner for all affected files.
+  chown $(logname) ../../minimal_linux_live.iso
+  chown $(logname) ../../work/minimal_linux_live.iso
+  chown -R $(logname) .  
+fi
+
 cd ../..
 

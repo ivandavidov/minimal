@@ -40,8 +40,8 @@
 # Print message on screen.
 cat << CEOF
 
-  Wait 5 seconds for the system initialization process or press any key for
-  PID 1 shell outside of the initramfs area.
+  Wait 5 seconds to continue with the system initialization process or press any
+  key for PID 1 shell outside of the initramfs area.
 
 CEOF
 

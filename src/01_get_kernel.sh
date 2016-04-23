@@ -20,14 +20,14 @@ cd source
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading kernel source bundle file. The '-c' option allows the download to resume.
-  echo "Downloading kernel source bundle from '$DOWNLOAD_URL'."
+  echo "Downloading kernel source bundle from $DOWNLOAD_URL"
   wget -c $DOWNLOAD_URL
 else
   echo "Using local kernel source bundle $SRC_DIR/source/$ARCHIVE_FILE"
 fi
 
 # Delete folder with previously extracted kernel.
-echo "Removing kernel work area..."
+echo "Removing kernel work area. This may take a while..."
 rm -rf ../work/kernel
 mkdir ../work/kernel
 

@@ -20,14 +20,14 @@ cd source
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading BusyBox source bundle file. The '-c' option allows the download to resume.
-  echo "Downloading BusyBox source bundle from '$DOWNLOAD_URL'."
+  echo "Downloading BusyBox source bundle from $DOWNLOAD_URL"
   wget -c $DOWNLOAD_URL
 else
   echo "Using local BusyBox source bundle $SRC_DIR/source/$ARCHIVE_FILE"
 fi
 
 # Delete folder with previously extracted busybox.
-echo "Removing BusyBox work area..."
+echo "Removing BusyBox work area. This may take a while..."
 rm -rf ../work/busybox
 mkdir ../work/busybox
 

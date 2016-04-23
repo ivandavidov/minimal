@@ -20,14 +20,14 @@ cd source
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading SYSLINUX source bundle file. The '-c' option allows the download to resume.
-  echo "Downloading SYSLINUX source bundle from '$DOWNLOAD_URL'."
+  echo "Downloading SYSLINUX source bundle from $DOWNLOAD_URL"
   wget -c $DOWNLOAD_URL
 else
   echo "Using local SYSLINUX source bundle $SRC_DIR/source/$ARCHIVE_FILE"
 fi
 
 # Delete folder with previously extracted Syslinux.
-echo "Removing SYSLINUX work area..."
+echo "Removing SYSLINUX work area. This may take a while..."
 rm -rf ../work/syslinux
 mkdir ../work/syslinux
 

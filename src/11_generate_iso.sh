@@ -15,17 +15,17 @@ WORK_SYSLINUX_DIR=$(pwd)
 cd ../../..
 
 # Remove the old ISO file if it exists.
-echo "Removing old ISO image..."
 rm -f minimal_linux_live.iso
+echo "Old ISO image files has been removed."
 
 # Remove the old ISO generation area if it exists.
 echo "Removing old ISO image work area..."
 rm -rf work/isoimage
 
 # This is the root folder of the ISO image.
-echo "Preparing ISO image work area..."
 mkdir work/isoimage
 cd work/isoimage
+echo "Prepared new ISO image work area."
 
 # Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image root folder.
 cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
@@ -100,7 +100,7 @@ elif [ "$OVERLAY_TYPE" = "folder" ] ; then
   
   cp -rf $SRC_DIR/11_generate_iso/* minimal/rootfs/
 else
-  echo "Generated ISO image will have no overlay structure."
+  echo "Generating ISO image with no overlay structure..."
 fi
 
 # Create ISOLINUX configuration file.
@@ -123,7 +123,8 @@ if [ "$(id -u)" = "0" ] ; then
   # Apply ownership back to original owner for all affected files.
   chown $(logname) ../../minimal_linux_live.iso
   chown $(logname) ../../work/minimal_linux_live.iso
-  chown -R $(logname) .  
+  chown -R $(logname) .
+  echo "Applied original ownership to all affected files and folders."
 fi
 
 cd ../..

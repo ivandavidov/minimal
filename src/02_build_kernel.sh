@@ -25,8 +25,8 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   cp -f $SRC_DIR/config_predefined/kernel.config .config
 else
   # Create default configuration file for the kernel.
-  echo "Generating default kernel configuration..."
   make defconfig
+  echo "Generated default kernel configuration."
 
   # Changes the name of the system to 'minimal'.
   sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .config

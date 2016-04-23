@@ -12,16 +12,16 @@ cd work/glibc
 cd $(ls -d *)
 
 # Prepare working area, e.g. 'work/glibc/glibc-2.23/glibc_objects'.
-echo "Preparing glibc object area..."
+echo "Preparing glibc object area. This may take a while..."
 rm -rf ./glibc_objects
 mkdir glibc_objects
 
 # Prepare install area, e.g. 'work/glibc/glibc-2.23/glibc_installed'.
-echo "Preparing glibc install area..."
 rm -rf ./glibc_installed
 mkdir glibc_installed
 cd glibc_installed
 GLIBC_INSTALLED=$(pwd)
+echo "Prepared glibc install area."
 
 # All glibc work is done from the working area.
 cd ../glibc_objects

@@ -2,7 +2,7 @@
 
 # System initialization sequence:
 #
-# /init (this file)
+# /init
 #  |
 #  +--(1) /etc/01_prepare.sh
 #  |
@@ -16,7 +16,7 @@
 #                    |       |
 #                    |       +-- udhcpc
 #                    |           |
-#                    |           +-- /etc/05_rc.udhcp
+#                    |           +-- /etc/05_rc.udhcp (this file)
 #                    |
 #                    +--(2) /bin/sh (Alt + F1, main console)
 #                    |
@@ -26,17 +26,16 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo "Welcome to \"Minimal Linux Live\" (/init)"
+ip addr add $ip/$mask dev $interface
 
-# Let's mount all core file systems.
-/etc/01_prepare.sh
+if [ "$router" ]; then
+  ip route add default via $router dev $interface
+fi
 
-# Create new mountpoint in RAM, make it our new root location and overlay it
-# with our storage area (if overlay area exists at all). This operation invokes
-# the script '/etc/03_init.sh' as the new init process.
-exec /etc/02_overlay.sh
+if [ "$ip" ]; then
+  echo "DHCP configuration for device $interface"
+  echo "ip:     $ip"
+  echo "mask:   $mask"
+  echo "router: $router"
+fi
 
-echo "(/init) - you can never see this unless there is a serious bug..."
-
-# Wait until any key has been pressed.
-read -n1 -s

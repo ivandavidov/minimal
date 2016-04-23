@@ -2,7 +2,7 @@
 
 # System initialization sequence:
 #
-# /init (this file)
+# /init
 #  |
 #  +--(1) /etc/01_prepare.sh
 #  |
@@ -12,7 +12,7 @@
 #               |
 #               +-- /sbin/init
 #                    |
-#                    +--(1) /etc/04_bootscript.sh
+#                    +--(1) /etc/04_bootscript.sh (this file)
 #                    |       |
 #                    |       +-- udhcpc
 #                    |           |
@@ -26,17 +26,11 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo "Welcome to \"Minimal Linux Live\" (/init)"
+echo "Welcome to \"Minimal Linux Live\" (/sbin/init)"
 
-# Let's mount all core file systems.
-/etc/01_prepare.sh
+for DEVICE in /sys/class/net/* ; do
+  echo "Found network device ${DEVICE##*/}" 
+  ip link set ${DEVICE##*/} up
+  [ ${DEVICE##*/} != lo ] && udhcpc -b -i ${DEVICE##*/} -s /etc/05_rc.dhcp
+done
 
-# Create new mountpoint in RAM, make it our new root location and overlay it
-# with our storage area (if overlay area exists at all). This operation invokes
-# the script '/etc/03_init.sh' as the new init process.
-exec /etc/02_overlay.sh
-
-echo "(/init) - you can never see this unless there is a serious bug..."
-
-# Wait until any key has been pressed.
-read -n1 -s

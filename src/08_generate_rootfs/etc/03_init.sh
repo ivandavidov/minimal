@@ -1,5 +1,31 @@
 #!/bin/sh
 
+# System initialization sequence:
+#
+# /init
+#  |
+#  +--(1) /etc/01_prepare.sh
+#  |
+#  +--(2) /etc/02_overlay.sh
+#          |
+#          +-- /etc/03_init.sh (this file)
+#               |
+#               +-- /sbin/init
+#                    |
+#                    +--(1) /etc/04_bootscript.sh
+#                    |       |
+#                    |       +-- udhcpc
+#                    |           |
+#                    |           +-- /etc/05_rc.udhcp
+#                    |
+#                    +--(2) /bin/sh (Alt + F1, main console)
+#                    |
+#                    +--(2) /bin/sh (Alt + F2)
+#                    |
+#                    +--(2) /bin/sh (Alt + F3)
+#                    |
+#                    +--(2) /bin/sh (Alt + F4)
+
 # If you have persistent overlay support then you can edit this file and replace
 # the default initialization  of the system. For example, you could use this:
 #
@@ -36,6 +62,7 @@ cat << CEOF
 
 CEOF
 
+  # Interactive shell with controlling tty as PID 1.
   exec setsid cttyhack sh
 fi
 

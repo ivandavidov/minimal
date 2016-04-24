@@ -10,3 +10,7 @@
 /src/*.img
 /src/*.log
 
+/docs/mdbook
+/docs/book/**
+/docs/src/theme/**
+

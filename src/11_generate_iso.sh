@@ -104,7 +104,7 @@ else
 fi
 
 # Create ISOLINUX configuration file.
-echo 'default kernel.bz  initrd=rootfs.gz vga=ask' > ./isolinux.cfg
+echo 'default kernel.bz  initrd=rootfs.gz' > ./isolinux.cfg
 
 # Delete the '.gitignore' files which we use in order to keep track of otherwise
 # empty folders.

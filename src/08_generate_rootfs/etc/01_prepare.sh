@@ -26,12 +26,12 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo "Suppress most kernel messages."
 dmesg -n 1
+echo "Most kernel messages have been suppressed."
 
-echo "Mount all core filesystems."
 mount -t devtmpfs none /dev
 mount -t proc none /proc
 mount -t tmpfs none /tmp -o mode=1777
 mount -t sysfs none /sys
+echo "Mounted all core filesystems. Ready to continue."
 

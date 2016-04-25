@@ -63,5 +63,7 @@ ln -s lib lib64
 # empty folders.
 find * -type f -name '.gitignore' -exec rm {} +
 
+echo "The initramfs area has been generated."
+
 cd ../..
 

@@ -41,7 +41,7 @@
 cat << CEOF
 
   Wait 5 seconds to continue with the system initialization process or press any
-  key for PID 1 shell outside of the initramfs area.
+  key for PID 1 shell outside of the initramfs area, or press SPACE to continue.
 
 CEOF
 

@@ -50,7 +50,7 @@ sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_INSTALLED_ESCAPED/" .config
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
 echo "Building BusyBox..."
-make busybox -j $(grep ^processor /proc/cpuinfo | wc -l)
+make EXTRA_CFLAGS="-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0" busybox -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
 echo "Generating BusyBox based initramfs area..."

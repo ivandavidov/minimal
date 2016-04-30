@@ -30,11 +30,11 @@
 mount -t tmpfs none /mnt
 
 # Create folders for all critical file systems.
-echo "Create folders for all critical file systems..."
 mkdir /mnt/dev
 mkdir /mnt/sys
 mkdir /mnt/proc
 mkdir /mnt/tmp
+echo "Created folders for all critical file systems."
 
 # Copy root folders in the new mountpoint.
 echo "Copying the root file system to /mnt..."
@@ -144,7 +144,6 @@ for DEVICE in /dev/* ; do
       rmdir $DEFAULT_OVERLAY_DIR 2>/dev/null
       rmdir $DEFAULT_UPPER_DIR 2>/dev/null
       rmdir $DEFAULT_WORK_DIR 2>/dev/null
-      
     else
       # All done, time to go.
       echo "  Overlay data from device '$DEVICE' has been merged."
@@ -159,16 +158,16 @@ for DEVICE in /dev/* ; do
 done
 
 # Move critical file systems to the new mountpoint.
-echo "Remounting /dev, /sys, /tmp and /proc in /mnt."
 mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys
 mount --move /proc /mnt/proc
 mount --move /tmp /mnt/tmp
+echo "Mount locations /dev, /sys, /tmp and /proc have been moved to /mnt."
 
 # The new mountpoint becomes file system root. All original root folders are
 # deleted automatically as part of the command execution. The '/sbin/init' 
 # process is invoked and it becomes the new PID 1 parent process.
-echo "Moving from initramfs root area to overlayfs root area."
+echo "Switching from initramfs root area to overlayfs root area."
 exec switch_root /mnt /etc/03_init.sh
 
 echo "(/etc/02_overlay.sh) - there is a serious bug..."

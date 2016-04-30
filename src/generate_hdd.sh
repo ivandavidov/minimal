@@ -2,14 +2,14 @@
 
 # Create sparse file of 20MB which can be used by QEMU.
 
-if [ "$1" = "" ] ; then
+if [ "$1" = "-e" -o "$1" = "--empty" ] ; then
   # Create new hard disk image file.
   rm -f hdd.img
   truncate -s 20M hdd.img
   echo "Created new hard disk image file 'hdd.img' with 20MB size."
-elif [ "$1" = "-f" -o "$1" = "-folder" ] ; then
+elif [ "$1" = "-f" -o "$1" = "--folder" ] ; then
   if [ ! "$(id -u)" = "0" ] ; then
-    echo "Using option '-f' (or '-folder') requires root permissions."
+    echo "Using option '-f' (or '--folder') requires root permissions."
     exit 1
   fi
   
@@ -44,9 +44,9 @@ elif [ "$1" = "-f" -o "$1" = "-folder" ] ; then
   
   chown $(logname) hdd.img
   echo "Applied original ownership to hard disk image file."
-elif [ "$1" = "-s" -o "$1" = "-sparse" ] ; then
+elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   if [ ! "$(id -u)" = "0" ] ; then
-    echo "Using option '-s' (or '-sparse') requires root permissions."
+    echo "Using option '-s' (or '--sparse') requires root permissions."
     exit 1
   fi
   
@@ -110,7 +110,24 @@ elif [ "$1" = "-s" -o "$1" = "-sparse" ] ; then
   
   chown $(logname) hdd.img
   echo "Applied original ownership to hard disk image file."
+elif [ "$1" = "-h" -o "$1" = "--help" ] ; then
+  cat << CEOF
+  Usage: $0 [OPTION]
+  This utility generates 20MB sparse file 'hdd.img' which can be used as QEMU
+  disk image where all filesystem changes from the live session are persisted.
+  
+  -e, --empty     Create empty sparse image file which is not formatted.
+  -f, --folder    Create sparse image file formatted with Ext2 filesystem which
+                  contains compatible overlay folder structure.
+  -h, --help      Prints this help information.
+  -s, --sparse    Create sparse image file formatted with FAT filesystem which
+                  contains sparse image file 'minimal.img' (1MB) formatted with
+                  Ext2 filesystem which contains the actual overlay structure.
+CEOF
+
+elif [ "$1" = "" ] ; then
+  echo "No option specified. Use '-h' or '--help' for more info."
 else
-  echo "Option '$1' is not recognized. Valid options are '-f' and '-s'."
+  echo "Option '$1' is not recognized. Use '-h' or '--help' for more info."
 fi
 

@@ -7,6 +7,8 @@ Tutorial: http://minimal.linux-bg.org/the_dao_of_minimal_linux_live.txt
 
 Architecture: http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html
 
+YouTube: http://youtu.be/VuEqqENVj24
+
 ===   ===   ===
 
 Other projects based on "Minimal Linux Live":

@@ -30,7 +30,13 @@ cd ../glibc_objects
 # will be installed in '/lib'. Kernel headers are taken from our already prepared
 # kernel header area (see 02_build_kernel.sh). Packages 'gd' and 'selinux' are disabled.
 echo "Configuring glibc..."
-../configure --prefix= --with-headers=$WORK_KERNEL_DIR/usr/include --without-gd --without-selinux --disable-werror
+../configure \
+  --prefix= \
+  --with-headers=$WORK_KERNEL_DIR/usr/include \
+  --without-gd \
+  --without-selinux \
+  --disable-werror \
+  CFLAGS="-Os -fno-stack-protector -U_FORTIFY_SOURCE"
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 echo "Building glibc..."

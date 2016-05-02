@@ -39,7 +39,9 @@ fi
 # Good explanation of the different kernels:
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel..."
-make bzImage -j $(grep ^processor /proc/cpuinfo | wc -l)
+make \
+  CFLAGS="-Os -fno-stack-protector -U_FORTIFY_SOURCE" \
+  bzImage -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 # Install kernel headers in './usr' (this is not '/usr') which are used later
 # when we build and configure the GNU C library (glibc).

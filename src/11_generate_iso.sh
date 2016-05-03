@@ -41,10 +41,10 @@ cp ../rootfs.cpio.xz ./rootfs.xz
 mkdir src
 cp ../../*.sh src
 cp ../../.config src
-cp ../../*.txt src
+cp ../../README src
 chmod +rx src/*.sh
 chmod +r src/.config
-chmod +r src/*.txt
+chmod +r src/README
 
 # Read the 'OVERLAY_TYPE' property from '.config'
 OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"

@@ -22,14 +22,14 @@ rm -f linuxrc
 # Copy all source files to '/src'. Note that the scripts won't work there.
 cp ../../*.sh src
 cp ../../.config src
-cp ../../*.txt src
+cp ../../README src
 cp -r ../../08_generate_rootfs src
 cp -r ../../11_generate_iso src
 
 # Make all files readable and all scripts executable.
 chmod -R +rx **/*.sh
 chmod -R +r **/.config
-chmod -R +r **/*.txt
+chmod -R +r **/README
 
 # Copy all necessary 'glibc' libraries to '/lib' BEGIN.
 

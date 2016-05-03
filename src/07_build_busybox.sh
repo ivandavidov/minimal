@@ -34,9 +34,6 @@ else
   echo "Generating default BusyBox configuration..."  
   make defconfig
   
-  # Set the installation folder for BusyBox.
-  #sed -i "s/.*CONFIG_PREFIX.*/CONFIG_PREFIX=\"..\/busybox_installed\"/" .config  
-  
   # The 'inetd' applet fails to compile because we use the glibc installation area as
   # main pointer to the kernel headers (see 05_prepare_glibc.sh) and some headers are
   # not resolved. The easiest solution is to ignore this particular applet. 
@@ -47,7 +44,7 @@ fi
 # All back slashes are escaped (/ => \/) in order to keep the 'sed' command stable.
 GLIBC_PREPARED_ESCAPED=$(echo \"$GLIBC_PREPARED\" | sed 's/\//\\\//g')
 
-# Now we tell BusyBox to use the glibc installation area.
+# Now we tell BusyBox to use the glibc prepared area.
 sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_PREPARED_ESCAPED/" .config
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
@@ -58,7 +55,9 @@ make \
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
 echo "Generating BusyBox based initramfs area..."
-make CONFIG_PREFIX="../busybox_installed" install
+make \
+  CONFIG_PREFIX="../busybox_installed" \
+  install
 
 cd ../../..
 

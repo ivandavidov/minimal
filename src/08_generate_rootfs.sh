@@ -1,30 +1,20 @@
 #!/bin/sh
 
-# Find the glibc installation area.
-cd work/glibc
-cd $(ls -d *)
-cd glibc_installed
-GLIBC_INSTALLED=$(pwd)
-
-cd ../../../..
+# Remember the prepared glibc folder.
+GLIBC_PREPARED=$(pwd)/work/glibc/glibc_prepared
 
 cd work
 
 echo "Preparing initramfs work area..."
 rm -rf rootfs
 
-cd busybox
-
-# Change to the first directory ls finds, e.g. 'busybox-1.24.2'.
-cd $(ls -d *)
-
 # Copy all BusyBox generated stuff to the location of our 'initramfs' folder.
-cp -r _install ../../rootfs
+cp -r busybox/busybox_installed rootfs
 
 # Copy all rootfs resources to the location of our 'initramfs' folder.
-cp -r ../../../08_generate_rootfs/* ../../rootfs
+cp -r ../08_generate_rootfs/* rootfs
 
-cd ../../rootfs
+cd rootfs
 
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode. 
 rm -f linuxrc
@@ -44,15 +34,15 @@ chmod -R +r **/*.txt
 # Copy all necessary 'glibc' libraries to '/lib' BEGIN.
 
 # This is the dynamic loader. The file name is different for 32-bit and 64-bit machines.
-cp $GLIBC_INSTALLED/lib/ld-linux* ./lib
+cp $GLIBC_PREPARED/lib/ld-linux* ./lib
 
 # BusyBox has direct dependencies on these libraries.
-cp $GLIBC_INSTALLED/lib/libm.so.6 ./lib
-cp $GLIBC_INSTALLED/lib/libc.so.6 ./lib
+cp $GLIBC_PREPARED/lib/libm.so.6 ./lib
+cp $GLIBC_PREPARED/lib/libc.so.6 ./lib
 
 # These libraries are necessary for the DNS resolving.
-cp $GLIBC_INSTALLED/lib/libresolv.so.2 ./lib
-cp $GLIBC_INSTALLED/lib/libnss_dns.so.2 ./lib
+cp $GLIBC_PREPARED/lib/libresolv.so.2 ./lib
+cp $GLIBC_PREPARED/lib/libnss_dns.so.2 ./lib
 
 # Make sure the dynamic loader is visible on 64-bit machines.
 ln -s lib lib64

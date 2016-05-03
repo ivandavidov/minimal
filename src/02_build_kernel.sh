@@ -4,8 +4,8 @@ SRC_DIR=$(pwd)
 
 cd work/kernel
 
-# Change to the first directory ls finds, e.g. 'linux-4.4.6'.
-cd $(ls -d *)
+# Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
+cd $(ls -d linux-*)
 
 # Cleans up the kernel sources, including configuration files.
 echo "Preparing kernel work area..."
@@ -33,6 +33,12 @@ else
 
   # Enable overlay support, e.g. merge ro and rw directories.
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
+  
+  # Step 1 - disable all active kernel compression options (should be only one).
+  sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config  
+  
+  # Step 2 - enable the 'xz' compression option.
+  sed -i "s/.*CONFIG_KERNEL_XZ.*/CONFIG_KERNEL_XZ=y/" .config
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
@@ -40,7 +46,7 @@ fi
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel..."
 make \
-  CFLAGS="-Os -fno-stack-protector -U_FORTIFY_SOURCE" \
+  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
   bzImage -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 # Install kernel headers in './usr' (this is not '/usr') which are used later

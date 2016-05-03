@@ -8,10 +8,12 @@ cd ../../..
 
 cd work/glibc
 
-# Change to the first directory ls finds, e.g. 'glibc-2.22'
-cd $(ls -d *)
+echo "Preparing glibc..."
 
-cd glibc_installed
+rm -rf glibc_prepared
+cp -r glibc_installed glibc_prepared
+
+cd glibc_prepared
 
 # Create custom 'usr' area and link it with some of the kernel header directories.
 # BusyBox compilation process uses these linked directories. The following
@@ -31,29 +33,17 @@ cd glibc_installed
 # |
 # +--lib (glibc)
 
-echo "Preparing glibc..."
-
 mkdir -p usr
 cd usr
 
-unlink include 2>/dev/null
 ln -s ../include include
-
-unlink lib 2>/dev/null
 ln -s ../lib lib
 
 cd ../include
 
-unlink linux 2>/dev/null
 ln -s $WORK_KERNEL_DIR/usr/include/linux linux
-
-unlink asm 2>/dev/null
 ln -s $WORK_KERNEL_DIR/usr/include/asm asm
-
-unlink asm-generic 2>/dev/null
 ln -s $WORK_KERNEL_DIR/usr/include/asm-generic asm-generic
-
-unlink mtd 2>/dev/null
 ln -s $WORK_KERNEL_DIR/usr/include/mtd mtd
 
 cd ../../../..

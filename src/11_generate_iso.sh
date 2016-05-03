@@ -32,10 +32,10 @@ cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
 cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
 
 # Now we copy the kernel.
-cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.bz
+cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.xz
 
 # Now we copy the root file system.
-cp ../rootfs.cpio.gz ./rootfs.gz
+cp ../rootfs.cpio.xz ./rootfs.xz
 
 # Copy all source files to '/src'. Note that the scripts won't work there.
 mkdir src
@@ -104,7 +104,7 @@ else
 fi
 
 # Create ISOLINUX configuration file.
-echo 'default kernel.bz  initrd=rootfs.gz' > ./isolinux.cfg
+echo 'default kernel.xz  initrd=rootfs.xz' > ./isolinux.cfg
 
 # Delete the '.gitignore' files which we use in order to keep track of otherwise
 # empty folders.

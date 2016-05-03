@@ -23,6 +23,7 @@ rm -f linuxrc
 cp ../../*.sh src
 cp ../../.config src
 cp ../../README src
+cp ../../*.txt src
 cp -r ../../08_generate_rootfs src
 cp -r ../../11_generate_iso src
 
@@ -30,6 +31,7 @@ cp -r ../../11_generate_iso src
 chmod -R +rx **/*.sh
 chmod -R +r **/.config
 chmod -R +r **/README
+chmod -R +r **/*.txt
 
 # Copy all necessary 'glibc' libraries to '/lib' BEGIN.
 

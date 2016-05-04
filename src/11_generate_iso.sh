@@ -43,10 +43,14 @@ cp ../../*.sh src
 cp ../../.config src
 cp ../../README src
 cp ../../*.txt src
-chmod +rx src/*.sh
-chmod +r src/.config
-chmod +r src/README
-chmod +r src/*.txt
+cp -r ../../08_generate_rootfs src
+cp -r ../../11_generate_iso src
+
+# Make all files readable and all scripts executable.
+chmod -R +rx **/*.sh
+chmod -R +r **/.config
+chmod -R +r **/README
+chmod -R +r **/*.txt
 
 # Read the 'OVERLAY_TYPE' property from '.config'
 OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"

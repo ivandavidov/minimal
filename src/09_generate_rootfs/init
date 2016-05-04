@@ -34,8 +34,9 @@ echo "Welcome to \"Minimal Linux Live\" (/init)"
 # Print message on screen.
 cat << CEOF
 
-  Wait 5 seconds or press SPACE key to continue with the overlay initialization
-  process, or press any other key for PID 1 shell inside the initramfs area.
+  Press empty key (ESC, TAB, SPACE, ENTER) or wait 5 seconds to continue with
+  the overlay initialization process. Press any other key for PID 1 rescue shell
+  inside the initramfs area.
 
 CEOF
 
@@ -45,8 +46,8 @@ read -t 5 -n1 -s key
 if [ ! "$key" = "" ] ; then
   # Print message on screen.
   cat << CEOF
-  This is PID 1 shell inside the initramfs area. Execute the following in order
-  to continue with the overlay initialization process.
+  This is PID 1 rescue shell inside the initramfs area. Execute the following in
+  order to continue with the overlay initialization process:
 
   exec /etc/02_overlay.sh
   

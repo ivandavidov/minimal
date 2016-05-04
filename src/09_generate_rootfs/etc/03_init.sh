@@ -40,8 +40,9 @@
 # Print message on screen.
 cat << CEOF
 
-  Wait 5 seconds or press SPACE key to continue with the system initialization
-  process, or press any other key for PID 1 shell outside the initramfs area.
+  Press empty key (ESC, TAB, SPACE, ENTER) or wait 5 seconds to continue with
+  the system initialization process. Press any other key for PID 1 rescue shell
+  outside of the initramfs area.
 
 CEOF
 
@@ -55,8 +56,8 @@ if [ "$key" = "" ] ; then
 else
   # Print message on screen.
   cat << CEOF
-  This is PID 1 shell outside of the initramfs area. Execute the following in
-  order to continue with the system initialization.
+  This is PID 1 rescue shell outside of the initramfs area. Execute the
+  following in order to continue with the system initialization:
 
   exec /sbin/init
 

@@ -7,6 +7,7 @@
 /src/source/**
 /src/work/**
 /src/minimal_linux_live*
+/src/*.img
 
 /docs/mdbook
 /docs/book/**

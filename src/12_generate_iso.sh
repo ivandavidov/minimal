@@ -19,7 +19,7 @@ rm -f minimal_linux_live.iso
 echo "Old ISO image files has been removed."
 
 # Remove the old ISO generation area if it exists.
-echo "Removing old ISO image work area..."
+echo "Removing old ISO image work area. This may take a while..."
 rm -rf work/isoimage
 
 # This is the root folder of the ISO image.
@@ -37,20 +37,17 @@ cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.xz
 # Now we copy the root file system.
 cp ../rootfs.cpio.xz ./rootfs.xz
 
-# Copy all source files to '/src'. Note that the scripts won't work there.
-mkdir src
-cp ../../*.sh src
-cp ../../.config src
-cp ../../README src
-cp ../../*.txt src
-cp -r ../../08_generate_rootfs src
-cp -r ../../11_generate_iso src
+# Read the 'COPY_SOURCE_ISO' property from '.config'
+COPY_SOURCE_ISO="$(grep -i COPY_SOURCE_ISO ../../.config | cut -f2 -d'=')"
 
-# Make all files readable and all scripts executable.
-chmod -R +rx **/*.sh
-chmod -R +r **/.config
-chmod -R +r **/README
-chmod -R +r **/*.txt
+if [ "$COPY_SOURCE_ISO" = "true" ] ; then
+  # Copy all prepared source files and folders to '/src'. Note that the scripts
+  # will not work there because you also need proper toolchain.
+  cp -r ../src src
+  echo "Original source files and folders have been copied."
+else
+  echo "Original source files and folders have been skipped."
+fi
 
 # Read the 'OVERLAY_TYPE' property from '.config'
 OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
@@ -58,7 +55,7 @@ OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
 if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   # Use sparse file as storage place. The above check guarantees that the whole
   # script is executed with root permissions or otherwise this block is skipped.
-  # All files and folders located in the folder '11_generate_iso' will be merged
+  # All files and folders located in the folder '12_generate_iso' will be merged
   # with the root folder on boot.
   
   echo "Using sparse file for overlay."
@@ -87,7 +84,7 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   mkdir -p sparse/work  
   
   # Copy the overlay content.
-  cp -r $SRC_DIR/11_generate_iso/* sparse/rootfs/
+  cp -r $SRC_DIR/12_generate_iso/* sparse/rootfs/
   
   # Unmount the sparse file and delete the temporary folder.
   $BUSYBOX umount sparse
@@ -97,24 +94,20 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   $BUSYBOX losetup -d $LOOP_DEVICE
 elif [ "$OVERLAY_TYPE" = "folder" ] ; then
   # Use normal folder structure for overlay. All files and folders located in
-  # the folder '11_generate_iso' will be merged with the root folder on boot.
+  # the folder '12_generate_iso' will be merged with the root folder on boot.
   
   echo "Using folder structure for overlay."
   
   mkdir -p minimal/rootfs
   mkdir -p minimal/work  
   
-  cp -rf $SRC_DIR/11_generate_iso/* minimal/rootfs/
+  cp -rf $SRC_DIR/12_generate_iso/* minimal/rootfs/
 else
   echo "Generating ISO image with no overlay structure..."
 fi
 
 # Create ISOLINUX configuration file.
 echo 'default kernel.xz  initrd=rootfs.xz' > ./isolinux.cfg
-
-# Delete the '.gitignore' files which we use in order to keep track of otherwise
-# empty folders.
-find * -type f -name '.gitignore' -exec rm {} +
 
 # Now we generate the ISO image file.
 genisoimage -J -r -o ../minimal_linux_live.iso -b isolinux.bin -c boot.cat -input-charset UTF-8 -no-emul-boot -boot-load-size 4 -boot-info-table ./
@@ -133,5 +126,5 @@ if [ "$(id -u)" = "0" ] ; then
   echo "Applied original ownership to all affected files and folders."
 fi
 
-cd ../..
+cd $SRC_DIR
 

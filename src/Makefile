@@ -22,9 +22,9 @@ clean:
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 
-emulator:
+qemu:
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi
-	@echo "Launching emulator..."
+	@echo "Launching QEMU..."
 	@if [ "$(shell uname -m)" = "x86_64" ]; then sh qemu64.sh; else sh qemu32.sh; fi
 
 help:
@@ -33,7 +33,7 @@ help:
 	@echo ""
 	@echo "    make clean        remove all generated files"
 	@echo ""
-	@echo "    make emulator     run \"Minimal Linux Live\" in qemu"
+	@echo "    make qemu         run \"Minimal Linux Live\" in qemu"
 	@echo ""
 	@echo "    make help         this is the default target"
 	@echo ""

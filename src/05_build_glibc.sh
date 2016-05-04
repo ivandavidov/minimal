@@ -2,7 +2,7 @@
 
 # Find the kernel build directory.
 cd work/kernel
-cd $(ls -d kernel-*)
+cd $(ls -d linux-*)
 WORK_KERNEL_DIR=$(pwd)
 cd ../../..
 
@@ -28,9 +28,11 @@ GLIBC_INSTALLED=$(pwd)/glibc_installed
 cd glibc_objects
 
 # glibc is configured to use the root folder (--prefix=) and as result all
-# libraries will be installed in '/lib'. Kernel headers are taken from our
-# already prepared kernel header area (see 02_build_kernel.sh). Packages 'gd'
-# and 'selinux' are disabled.
+# libraries will be installed in '/lib'. Note that on 64-bit machines BusyBox
+# will be linked with the libraries in '/lib' while the Linux loader is expected
+# to be in '/lib64'. Kernel headers are taken from our already prepared kernel
+# header area (see 03_build_kernel.sh). Packages 'gd' and 'selinux' are disabled
+# for better build compatibility with the host system.
 echo "Configuring glibc..."
 $GLIBC_SRC/configure \
   --prefix= \

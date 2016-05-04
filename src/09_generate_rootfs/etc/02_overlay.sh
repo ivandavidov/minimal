@@ -38,7 +38,7 @@ echo "Created folders for all critical file systems."
 
 # Copy root folders in the new mountpoint.
 echo "Copying the root file system to /mnt..."
-cp -a bin etc lib lib64 root sbin src usr /mnt
+cp -a bin etc lib lib64 root sbin src usr /mnt 2>/dev/null
 
 DEFAULT_OVERLAY_DIR="/tmp/minimal/overlay"
 DEFAULT_UPPER_DIR="/tmp/minimal/rootfs"

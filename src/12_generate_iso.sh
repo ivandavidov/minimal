@@ -44,9 +44,9 @@ if [ "$COPY_SOURCE_ISO" = "true" ] ; then
   # Copy all prepared source files and folders to '/src'. Note that the scripts
   # will not work there because you also need proper toolchain.
   cp -r ../src src
-  echo "Original source files and folders have been copied."
+  echo "Source files and folders have been copied to '/src'."
 else
-  echo "Original source files and folders have been skipped."
+  echo "Source files and folders have been skipped."
 fi
 
 # Read the 'OVERLAY_TYPE' property from '.config'

@@ -6,9 +6,7 @@
 
 /src/source/**
 /src/work/**
-/src/*.iso
-/src/*.img
-/src/*.log
+/src/minimal_linux_live*
 
 /docs/mdbook
 /docs/book/**

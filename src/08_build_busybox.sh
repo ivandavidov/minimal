@@ -59,5 +59,5 @@ make \
   CONFIG_PREFIX="../busybox_installed" \
   install
 
-cd ../../..
+cd $SRC_DIR
 

@@ -54,5 +54,5 @@ make \
 echo "Generating kernel headers..."
 make headers_install
 
-cd ../../..
+cd $SRC_DIR
 

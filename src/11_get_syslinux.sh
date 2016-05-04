@@ -35,5 +35,5 @@ mkdir ../work/syslinux
 # Full path will be something like 'work/syslinux/syslinux-6.03'.
 tar -xvf $ARCHIVE_FILE -C ../work/syslinux
 
-cd ..
+cd $SRC_DIR
 

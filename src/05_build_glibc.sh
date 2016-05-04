@@ -1,10 +1,12 @@
 #!/bin/sh
 
+SRC_DIR=$(pwd)
+
 # Find the kernel build directory.
 cd work/kernel
 cd $(ls -d linux-*)
 WORK_KERNEL_DIR=$(pwd)
-cd ../../..
+cd $SRC_DIR
 
 cd work/glibc
 
@@ -52,5 +54,5 @@ make install \
   DESTDIR=$GLIBC_INSTALLED \
   -j $(grep ^processor /proc/cpuinfo | wc -l)
 
-cd ../../..
+cd $SRC_DIR
 

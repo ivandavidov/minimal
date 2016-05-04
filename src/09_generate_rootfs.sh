@@ -36,10 +36,10 @@ else
   echo "Source files and folders have been skipped."
 fi
 
-# This is for the dynamic loader. Note that the file name and the the location
-# are both specific for 32-bit and 64-bit machines. First we check the BusyBox
-# executable and then we copy the loader to its appropriate location.
-BUSYBOX_ARCH=$(file bin/busybox | cut -d\  -f3)
+# This is for the dynamic loader. Note that the name and the location are both
+# specific for 32-bit and 64-bit machines. First we check the BusyBox executable
+# and then we copy the dynamic loader to its appropriate location.
+BUSYBOX_ARCH=$(file bin/busybox | cut -d' '  -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
   mkdir lib64
   cp $GLIBC_PREPARED/lib/ld-linux* lib64

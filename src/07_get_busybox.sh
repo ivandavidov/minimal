@@ -35,5 +35,5 @@ mkdir ../work/busybox
 # Full path will be something like 'work/busybox/busybox-1.24.2'.
 tar -xvf $ARCHIVE_FILE -C ../work/busybox
 
-cd ..
+cd $SRC_DIR
 

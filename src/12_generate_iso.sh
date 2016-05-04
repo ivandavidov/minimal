@@ -6,13 +6,13 @@ SRC_DIR=$(pwd)
 cd work/kernel
 cd $(ls -d *)
 WORK_KERNEL_DIR=$(pwd)
-cd ../../..
+cd $SRC_DIR
 
 # Find the Syslinux build directory.
 cd work/syslinux
 cd $(ls -d *)
 WORK_SYSLINUX_DIR=$(pwd)
-cd ../../..
+cd $SRC_DIR
 
 # Remove the old ISO file if it exists.
 rm -f minimal_linux_live.iso

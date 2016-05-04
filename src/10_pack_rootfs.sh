@@ -1,5 +1,7 @@
 #!/bin/sh
 
+SRC_DIR=$(pwd)
+
 cd work
 
 # Remove the old 'initramfs' archive if it exists.
@@ -11,5 +13,5 @@ cd rootfs
 echo "Packing initramfs..."
 find . | cpio -R root:root -H newc -o | xz --check=none > ../rootfs.cpio.xz
 
-cd ../..
+cd cd $SRC_DIR
 

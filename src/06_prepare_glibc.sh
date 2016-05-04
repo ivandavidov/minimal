@@ -1,14 +1,16 @@
 #!/bin/sh
 
+SRC_DIR=$(pwd)
+
 # Find the kernel build directory.
 cd work/kernel
 cd $(ls -d *)
 WORK_KERNEL_DIR=$(pwd)
-cd ../../..
+cd $SRC_DIR
 
 cd work/glibc
 
-echo "Preparing glibc..."
+echo "Preparing glibc. This may take a while..."
 
 rm -rf glibc_prepared
 cp -r glibc_installed glibc_prepared
@@ -46,5 +48,5 @@ ln -s $WORK_KERNEL_DIR/usr/include/asm asm
 ln -s $WORK_KERNEL_DIR/usr/include/asm-generic asm-generic
 ln -s $WORK_KERNEL_DIR/usr/include/mtd mtd
 
-cd ../../../..
+cd $SRC_DIR
 

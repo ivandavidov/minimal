@@ -35,5 +35,5 @@ mkdir ../work/kernel
 # Full path will be something like 'work/kernel/linux-4.4.6'.
 tar -xvf $ARCHIVE_FILE -C ../work/kernel
 
-cd ..
+cd $SRC_DIR
 

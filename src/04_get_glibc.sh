@@ -35,5 +35,5 @@ mkdir ../work/glibc
 # Full path will be something like 'work/glibc/glibc-2.23'.
 tar -xvf $ARCHIVE_FILE -C ../work/glibc
 
-cd ..
+cd $SRC_DIR
 

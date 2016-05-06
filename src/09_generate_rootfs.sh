@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** GENERATE ROOTFS BEGIN ***"
+
 SRC_ROOT=$(pwd)
 
 # Remember the glibc prepared folder.
@@ -17,7 +19,7 @@ rm -rf rootfs
 cp -r $BUSYBOX_INSTALLED rootfs
 
 # Copy all rootfs resources to the location of our 'initramfs' folder.
-cp -r src/09_generate_rootfs/* rootfs
+cp -r src/minimal_rootfs/* rootfs
 
 cd rootfs
 
@@ -64,4 +66,6 @@ cp $GLIBC_PREPARED/lib/libnss_dns.so.2 lib
 echo "The initramfs area has been generated."
 
 cd $SRC_ROOT
+
+echo "*** GENERATE ROOTFS END ***"
 

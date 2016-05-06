@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** GET SYSLINUX BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
@@ -36,4 +38,6 @@ mkdir ../work/syslinux
 tar -xvf $ARCHIVE_FILE -C ../work/syslinux
 
 cd $SRC_DIR
+
+echo "*** GET SYSLINUX END ***"
 

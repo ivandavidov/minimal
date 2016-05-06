@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** PACK ROOTFS BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 cd work
@@ -13,5 +15,7 @@ cd rootfs
 echo "Packing initramfs..."
 find . | cpio -R root:root -H newc -o | xz --check=none > ../rootfs.cpio.xz
 
-cd cd $SRC_DIR
+cd $SRC_DIR
+
+echo "*** PACK ROOTFS END ***"
 

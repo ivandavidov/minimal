@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** BUILD BUSYBOX BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Remember the glibc installation area.
@@ -20,15 +22,15 @@ make distclean
 # Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
 USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/config_predefined/busybox.config ] ; then
-  echo "Config file $SRC_DIR/config_predefined/busybox.config does not exist."
+if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/busybox.config ] ; then
+  echo "Config file $SRC_DIR/minimal_config/busybox.config does not exist."
   USE_PREDEFINED_BUSYBOX_CONFIG="false"
 fi
 
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
-  echo "Using config file $SRC_DIR/config_predefined/busybox.config"  
-  cp -f $SRC_DIR/config_predefined/busybox.config .config
+  echo "Using config file $SRC_DIR/minimal_config/busybox.config"  
+  cp -f $SRC_DIR/minimal_config/busybox.config .config
 else
   # Create default configuration file.
   echo "Generating default BusyBox configuration..."  
@@ -60,4 +62,6 @@ make \
   install
 
 cd $SRC_DIR
+
+echo "*** BUILD BUSYBOX END ***"
 

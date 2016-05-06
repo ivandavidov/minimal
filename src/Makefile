@@ -18,7 +18,9 @@ clean:
 	@echo "Removing generated ISO image..."
 	@rm -f minimal_linux_live.iso
 	@echo "Removing predefined configuration files..."
-	@rm -f config_predefined/*.config
+	@rm -rf minimal_overlay/*.config
+	@echo "Removing source level overlay software..."
+	@cd minimal_overlay && rm -rf $(shell ls -d */) && cd ..
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 
@@ -31,7 +33,7 @@ src:
 	@echo "Generating source archive..."
 	@rm -f minimal_linux_live_*_src.tar.xz
 	@mkdir -p work
-	@sh 01_prepare_src.sh 1>/dev/null
+	@sh 08_prepare_src.sh 1>/dev/null
 	@$(eval DATE_PARSED := $(shell LANG=en_US ; date +"%d-%b-%Y"))
 	@cd work/src && tar -cpf - `ls -A` | xz - > ../../minimal_linux_live_$(DATE_PARSED)_src.tar.xz && cd ../..
 	@echo "Source archive: minimal_linux_live_$(DATE_PARSED)_src.tar.xz"

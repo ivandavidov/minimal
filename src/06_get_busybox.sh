@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** GET BUSYBOX BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
@@ -36,4 +38,6 @@ mkdir ../work/busybox
 tar -xvf $ARCHIVE_FILE -C ../work/busybox
 
 cd $SRC_DIR
+
+echo "*** GET BUSYBOX END ***"
 

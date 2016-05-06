@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** GET KERNEL BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
@@ -36,4 +38,6 @@ mkdir ../work/kernel
 tar -xvf $ARCHIVE_FILE -C ../work/kernel
 
 cd $SRC_DIR
+
+echo "*** GET KERNEL END ***"
 

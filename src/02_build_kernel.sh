@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** BUILD KERNEL BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 cd work/kernel
@@ -14,15 +16,15 @@ make mrproper
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
 USE_PREDEFINED_KERNEL_CONFIG="$(grep -i USE_PREDEFINED_KERNEL_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/config_predefined/kernel.config ] ; then
-  echo "Config file $SRC_DIR/config_predefined/kernel.config does not exist."
+if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/kernel.config ] ; then
+  echo "Config file $SRC_DIR/minimal_config/kernel.config does not exist."
   USE_PREDEFINED_KERNEL_CONFIG="false"
 fi
 
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   # Use predefined configuration file for the kernel.
-  echo "Using config file $SRC_DIR/config_predefined/kernel.config"  
-  cp -f $SRC_DIR/config_predefined/kernel.config .config
+  echo "Using config file $SRC_DIR/minimal_config/kernel.config"  
+  cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
   # Create default configuration file for the kernel.
   make defconfig
@@ -55,4 +57,6 @@ echo "Generating kernel headers..."
 make headers_install
 
 cd $SRC_DIR
+
+echo "*** BUILD KERNEL END ***"
 

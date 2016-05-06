@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** PREPARE GLIBC BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Find the kernel build directory.
@@ -49,4 +51,6 @@ ln -s $WORK_KERNEL_DIR/usr/include/asm-generic asm-generic
 ln -s $WORK_KERNEL_DIR/usr/include/mtd mtd
 
 cd $SRC_DIR
+
+echo "*** PREPARE GLIBC END ***"
 

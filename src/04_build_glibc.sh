@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "*** BUILD GLIBC BEGIN ***"
+
 SRC_DIR=$(pwd)
 
 # Find the kernel build directory.
@@ -55,4 +57,6 @@ make install \
   -j $(grep ^processor /proc/cpuinfo | wc -l)
 
 cd $SRC_DIR
+
+echo "*** BUILD GLIBC END ***"
 

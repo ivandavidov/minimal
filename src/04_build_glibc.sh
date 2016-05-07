@@ -35,7 +35,7 @@ cd glibc_objects
 # libraries will be installed in '/lib'. Note that on 64-bit machines BusyBox
 # will be linked with the libraries in '/lib' while the Linux loader is expected
 # to be in '/lib64'. Kernel headers are taken from our already prepared kernel
-# header area (see 03_build_kernel.sh). Packages 'gd' and 'selinux' are disabled
+# header area (see xx_build_kernel.sh). Packages 'gd' and 'selinux' are disabled
 # for better build compatibility with the host system.
 echo "Configuring glibc..."
 $GLIBC_SRC/configure \

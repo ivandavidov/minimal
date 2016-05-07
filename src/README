@@ -1,3 +1,4 @@
+
 The easiest way to build "Minimal Linux Live" is to run the following script:
 
 sh build_minimal_linux_live.sh
@@ -7,6 +8,20 @@ configured. Check the project's website for more information:
 
 http://minimal.linux-bg.org
 
+Once you have your ISO image up and running perhaps you'd like to play with the
+configuration file '.config' and see what options you have there. For example
+you can set the property 'BUILD_OVERLAY_SOFTWARE=true'. If you do that you will
+have additional software being downloaded, built and installed on the ISO image.
+
+Available overlay software:
+
+  * Links - text based browser. Requires ~3MB additional space. Use the 'links'
+    command to activate the browser.
+
+In time there might be other overlay software packages available.
+
+###   ###   ###
+
 I only provide the build scripts. It's entirely up to you to configure and
 prepare your build environment. I use "Linux Mint" both 32 and 64 bit editions.
 Your distribution might have different build dependencies but most of the time
@@ -15,5 +30,5 @@ there is a single meta-package which installs most of the stuff that you need.
 The build proces is slow, so be prepared to wait. In the end you should have
 the ISO image file "minimal_linux_live.iso" in the same folder where you
 executed the build process. You can burn the ISO image on CD/DVD or (better)
-run it with PC emulator like QEMU or VirtualBox.  
+run it with PC emulator like QEMU or VirtualBox.
 

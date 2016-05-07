@@ -2,26 +2,26 @@ The build process allows you to use predefined configuration files for the
 kernel and for BusyBox. This is what you need to do in order to use your own
 predefined configuration files:
 
-1) First of all you need to have ".config" configuration file. The assumption is
-   that you already know what ".config" file is and how it is used during the
-   kernel & BusyBox build process. Take the ".config", place it in this folder
+1) First of all you need to have '.config' configuration file. The assumption is
+   that you already know what '.config' file is and how it is used during the
+   kernel & BusyBox build process. Take the '.config', place it in this folder
    and finally rename the file. The predefined configuration file name is:
    
    kernel.config  - for kernel (obviously)
    busybox.config - for BusyBox (what a surprise)
    
-2) Change the corresponding property in ".config" (that's the minimal's config
-   file, you dumbass) to value "true":
+2) Change the corresponding property in the main '.config' (that's the minimal's 
+   config file) to value 'true':
 
    USE_PREDEFINED_KERNEL_CONFIG  - for kernel
    
    USE_PREDEFINED_BUSYBOX_CONFIG - for BusyBox
 
 3) That's it. Now during the build process instead of generating default
-   ".config" files, the predefined configuration files will be used, That's
+   '.config' files, the predefined configuration files will be used, That's
    particularly useful if you want to experiment with many non-default config
    options. In this case it's easier to use configuration file instead of using
    the scripts in order to generate tons of options. Another useful scenario is
-   when you distribute your OS based on "Minimal Linux Live" and you want to use
-   non-default kernel and/or BusyBox options "out of the box".
+   when you distribute your OS based on 'Minimal Linux Live' and you want to use
+   non-default kernel and/or BusyBox options 'out of the box'.
 

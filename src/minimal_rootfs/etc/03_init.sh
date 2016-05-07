@@ -65,6 +65,7 @@ CEOF
 
   if [ "$PID1_SHELL" = "true" ] ; then
     # PID1_SHELL flag is set which means we have controlling terminal.
+    unset PID1_SHELL
     exec sh
   else
     # Interactive shell with controlling tty as PID 1.

@@ -14,7 +14,7 @@ echo "Configuring Links..."
 ./configure \
   --prefix=../links_installed \
   --disable-graphics \
-  --enable-utf8 \
+  --disable-utf8 \
   --without-ipv6 \
   --without-ssl \
   --without-x

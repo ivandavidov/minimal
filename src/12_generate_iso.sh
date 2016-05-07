@@ -52,7 +52,8 @@ fi
 
 cd work/isoimage
 
-# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image root folder.
+# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image
+# root folder.
 cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
 cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
 
@@ -76,7 +77,8 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   # This is the BusyBox executable that we have already generated.
   BUSYBOX=../rootfs/bin/busybox  
   
-  # Create sparse image file with 1MB size. Note that this increases the ISO image size.
+  # Create sparse image file with 1MB size. Note that this increases the ISO
+  # image size.
   $BUSYBOX truncate -s 1M minimal.img
   
   # Find available loop device.
@@ -123,7 +125,17 @@ fi
 echo 'default kernel.xz  initrd=rootfs.xz' > ./isolinux.cfg
 
 # Now we generate the ISO image file.
-genisoimage -J -r -o ../minimal_linux_live.iso -b isolinux.bin -c boot.cat -input-charset UTF-8 -no-emul-boot -boot-load-size 4 -boot-info-table ./
+genisoimage \
+  -J \
+  -r \
+  -o ../minimal_linux_live.iso \
+  -b isolinux.bin \
+  -c boot.cat \
+  -input-charset UTF-8 \
+  -no-emul-boot \
+  -boot-load-size 4 \
+  -boot-info-table \
+  ./
 
 # This allows the ISO image to be bootable if it is burned on USB flash drive.
 isohybrid ../minimal_linux_live.iso 2>/dev/null || true

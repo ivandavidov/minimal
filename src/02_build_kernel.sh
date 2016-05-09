@@ -41,6 +41,11 @@ else
   
   # Step 2 - enable the 'xz' compression option.
   sed -i "s/.*CONFIG_KERNEL_XZ.*/CONFIG_KERNEL_XZ=y/" .config
+
+  #sed -i "s/.*CONFIG_DRM_CIRRUS_QEMU.*/CONFIG_DRM_CIRRUS_QEMU=y/" .config
+  #sed -i "s/.*CONFIG_DRM_BOCHS.*/CONFIG_DRM_BOCHS=y/" .config
+  #sed -i "s/.*CONFIG_FB_CIRRUS.*/CONFIG_FB_CIRRUS=y/" .config
+  sed -i "s/.*CONFIG_FB_VESA.*/CONFIG_FB_VESA=y/" .config
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.

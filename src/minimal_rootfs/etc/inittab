@@ -7,7 +7,7 @@
 ::shutdown:echo -e "\n\\e[32mSee you soon! :)\\e[0m\n"
 ::shutdown:sleep 1
 ::ctrlaltdel:/sbin/reboot
-::once:/etc/welcome.sh 32
+::once:/etc/welcome.sh 0
 ::respawn:/bin/cttyhack /bin/sh
 tty2::once:cat /etc/welcome.txt
 tty2::respawn:/bin/sh

@@ -26,7 +26,7 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo "Welcome to \"Minimal Linux Live\" (/sbin/init)"
+echo -e "\\e[32mWelcome to \"Minimal Linux Live\" \\e[35m(/sbin/init)\\e[0m"
 
 for DEVICE in /sys/class/net/* ; do
   echo "Found network device ${DEVICE##*/}" 

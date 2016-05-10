@@ -9,9 +9,9 @@
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."
-  qemu-system-x86_64 -m 64M -cdrom minimal_linux_live.iso -hda hdd.img -boot d
+  qemu-system-x86_64 -m 64M -cdrom minimal_linux_live.iso -hda hdd.img -boot d -vga std
 else
   echo "Starting QEMU with attached ISO image."
-  qemu-system-x86_64 -m 64M -cdrom minimal_linux_live.iso -boot d
+  qemu-system-x86_64 -m 64M -cdrom minimal_linux_live.iso -boot d -vga std
 fi
 

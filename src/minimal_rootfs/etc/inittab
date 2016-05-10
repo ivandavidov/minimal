@@ -1,11 +1,13 @@
 ::sysinit:/etc/04_bootscript.sh
 ::restart:/sbin/init
-::shutdown:echo "Sync file buffers..."
+::shutdown:echo -e "\n\\e[35mSync all file buffers...\\e[0m"
 ::shutdown:sync
-::shutdown:echo "Unmount all filesystems..."
+::shutdown:echo -e "\\e[35mUnmount all filesystems...\\e[0m"
 ::shutdown:umount -a -r
+::shutdown:echo -e "\n\\e[32mSee you soon! :)\\e[0m\n"
+::shutdown:sleep 1
 ::ctrlaltdel:/sbin/reboot
-::once:cat /etc/welcome.txt
+::once:/etc/welcome.sh 32
 ::respawn:/bin/cttyhack /bin/sh
 tty2::once:cat /etc/welcome.txt
 tty2::respawn:/bin/sh

@@ -37,14 +37,20 @@
 #
 # exec /sbin/init
 
+# Set cyan color.
+echo -en "\\e[36m"
+
 # Print message on screen.
 cat << CEOF
 
-  Press empty key (ESC, TAB, SPACE, ENTER) or wait 5 seconds to continue with
-  the system initialization process. Press any other key for PID 1 rescue shell
+  Press empty key (TAB, SPACE, ENTER) or wait 5 seconds to continue with the
+  system initialization process. Press any other key for PID 1 rescue shell
   outside of the initramfs area.
 
 CEOF
+
+# Unset all attributes.
+echo -en "\\e[0m"
 
 # Wait 5 second or until any keybord key is pressed.
 read -t 5 -n1 -s key

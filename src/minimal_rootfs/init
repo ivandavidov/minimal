@@ -26,13 +26,13 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo -e "\\e[32mWelcome to \"Minimal Linux Live\" \\e[35m(/init)\\e[0m"
+echo -e "Welcome to \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/init)"
 
 # Let's mount all core file systems.
 /etc/01_prepare.sh
 
-# Set cyan color.
-echo -en "\\e[36m"
+# Set white color.
+echo -en "\\e[1m"
 
 # Print message on screen.
 cat << CEOF
@@ -46,24 +46,43 @@ CEOF
 # Unset all attributes.
 echo -en "\\e[0m"
 
-
 # Wait 5 second or until any keybord key is pressed.
 read -t 5 -n1 -s key
 
 if [ ! "$key" = "" ] ; then
+  # Set white color.
+  echo -en "\\e[1m"
+
   # Print message on screen.
   cat << CEOF
   This is PID 1 rescue shell inside the initramfs area. Execute the following in
   order to continue with the overlay initialization process:
-
+  
+CEOF
+  # Set green color.
+  echo -en "\\e[32m"
+  
+  cat << CEOF
   exec /etc/02_overlay.sh
   
+CEOF
+  # Set white color.
+  echo -en "\\e[0m\\e[1m"
+
+  cat << CEOF
   Execute the following in order to skip the overlay initialization and continue
   directly with the system initialization:
 
-  exec /sbin/init
-
 CEOF
+  # Set green color.
+  echo -en "\\e[32m"
+
+  cat << CEOF
+  exec /sbin/init
+  
+CEOF
+  # Unset all attributes.
+  echo -en "\\e[0m"
 
   # Set flag which indicates that we have obtained controlling terminal.
   export PID1_SHELL=true

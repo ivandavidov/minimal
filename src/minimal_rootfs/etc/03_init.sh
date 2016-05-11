@@ -37,8 +37,8 @@
 #
 # exec /sbin/init
 
-# Set cyan color.
-echo -en "\\e[36m"
+# Set white color.
+echo -en "\\e[1m"
 
 # Print message on screen.
 cat << CEOF
@@ -60,14 +60,24 @@ if [ "$key" = "" ] ; then
   echo "Executing /sbin/init as PID 1."
   exec /sbin/init
 else
+  # Set white color.
+  echo -en "\\e[1m"
+
   # Print message on screen.
   cat << CEOF
   This is PID 1 rescue shell outside of the initramfs area. Execute the
   following in order to continue with the system initialization:
 
+CEOF
+  # Set green color.
+  echo -en "\\e[32m"
+
+  cat << CEOF
   exec /sbin/init
 
 CEOF
+  # Unset all attributes.
+  echo -en "\\e[0m"
 
   if [ "$PID1_SHELL" = "true" ] ; then
     # PID1_SHELL flag is set which means we have controlling terminal.

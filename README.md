@@ -7,7 +7,7 @@ Tutorial: http://minimal.linux-bg.org/the_dao_of_minimal_linux_live.txt
 
 Architecture: http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html
 
-YouTube: http://youtu.be/VuEqqENVj24
+YouTube: https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS
 
 ===   ===   ===
 

@@ -55,6 +55,9 @@ else
     sed -i "s/.*CONFIG_LOGO_LINUX_CLUT224.*/\\# CONFIG_LOGO_LINUX_CLUT224 is not set/" .config
     echo "Boot logo is disabled."
   fi
+  
+  # Disable debug symbols in kernel => smaller kernel binary.
+  sed -i "s/^CONFIG_DEBUG_KERNEL.*/\\# CONFIG_DEBUG_KERNEL is not set/" .config
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.

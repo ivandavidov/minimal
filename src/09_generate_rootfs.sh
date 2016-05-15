@@ -63,6 +63,13 @@ cp $GLIBC_PREPARED/lib/libnss_dns.so.2 lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
+strip -g \
+  $SRC_ROOT/work/rootfs/bin/* \
+  $SRC_ROOT/work/rootfs/sbin/* \
+  $SRC_ROOT/work/rootfs/lib/* \
+  2>/dev/null
+echo "Size of libraries and executables has been reduced."
+
 echo "The initramfs area has been generated."
 
 cd $SRC_ROOT

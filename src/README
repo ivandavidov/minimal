@@ -15,10 +15,17 @@ have additional software being downloaded, built and installed on the ISO image.
 
 Available overlay software:
 
-  * Links - text based browser. Requires ~3MB additional space. Use the 'links'
-    command to activate the browser.
+  * Links    - text based browser. Requires ~1MB additional space. Use the
+               'links' command to activate the browser.
 
-In time there might be other overlay software packages available.
+  * Dropbear - SSH server/client. Requires ~1MB additional space. The build
+               process creates user 'root' with password 'toor'. These are
+               sample commands which demonstrate how to use Dropbear:
+    
+               SSH server (Alt + F1): dropbear -E -F
+               SSH client (Alt + F2): dbclient 10.0.2.15 -l root
+
+In time there may be other overlay software packages available.
 
 ###   ###   ###
 

@@ -68,7 +68,7 @@ strip -g \
   $SRC_ROOT/work/rootfs/sbin/* \
   $SRC_ROOT/work/rootfs/lib/* \
   2>/dev/null
-echo "Size of libraries and executables has been reduced."
+echo "Reduced the size of libraries and executables."
 
 echo "The initramfs area has been generated."
 

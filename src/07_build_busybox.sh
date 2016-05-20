@@ -20,7 +20,7 @@ echo "Preparing BusyBox work area. This may take a while..."
 make distclean
 
 # Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
-USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
+USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i ^USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
 
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/busybox.config ] ; then
   echo "Config file $SRC_DIR/minimal_config/busybox.config does not exist."

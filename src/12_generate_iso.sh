@@ -29,7 +29,7 @@ mkdir work/isoimage
 echo "Prepared new ISO image work area."
 
 # Read the 'COPY_SOURCE_ISO' property from '.config'
-COPY_SOURCE_ISO="$(grep -i COPY_SOURCE_ISO .config | cut -f2 -d'=')"
+COPY_SOURCE_ISO="$(grep -i ^COPY_SOURCE_ISO .config | cut -f2 -d'=')"
 
 if [ "$COPY_SOURCE_ISO" = "true" ] ; then
   # Copy all prepared source files and folders to '/src'. Note that the scripts
@@ -41,7 +41,7 @@ else
 fi
 
 # Read the 'BUILD_OVERLAY_SOFTWARE' property from '.config'
-BUILD_OVERLAY_SOFTWARE="$(grep -i BUILD_OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
+BUILD_OVERLAY_SOFTWARE="$(grep -i ^BUILD_OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
 
 if [ "$BUILD_OVERLAY_SOFTWARE" = "true" ] ; then
   echo "Generating additional overlay software. This may take a while..."
@@ -64,7 +64,7 @@ cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.xz
 cp ../rootfs.cpio.xz ./rootfs.xz
 
 # Read the 'OVERLAY_TYPE' property from '.config'
-OVERLAY_TYPE="$(grep -i OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
+OVERLAY_TYPE="$(grep -i ^OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
 
 if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   # Use sparse file as storage place. The above check guarantees that the whole

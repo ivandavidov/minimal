@@ -27,7 +27,7 @@ cd rootfs
 rm -f linuxrc
 
 # Read the 'COPY_SOURCE_ROOTFS' property from '.config'
-COPY_SOURCE_ROOTFS="$(grep -i COPY_SOURCE_ROOTFS $SRC_ROOT/.config | cut -f2 -d'=')"
+COPY_SOURCE_ROOTFS="$(grep -i ^COPY_SOURCE_ROOTFS $SRC_ROOT/.config | cut -f2 -d'=')"
 
 if [ "$COPY_SOURCE_ROOTFS" = "true" ] ; then
   # Copy all prepared source files and folders to '/src'. Note that the scripts

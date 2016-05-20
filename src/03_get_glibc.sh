@@ -5,13 +5,13 @@ echo "*** GET GLIBC BEGIN ***"
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i GLIBC_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$(grep -i ^GLIBC_SOURCE_URL .config | cut -f2 -d'=')
 
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
 # Read the 'USE_LOCAL_SOURCE' property from '.config'
-USE_LOCAL_SOURCE="$(grep -i USE_LOCAL_SOURCE .config | cut -f2 -d'=')"
+USE_LOCAL_SOURCE="$(grep -i ^USE_LOCAL_SOURCE .config | cut -f2 -d'=')"
 
 if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $SRC_DIR/source/$ARCHIVE_FILE  ] ; then
   echo "Source bundle $SRC_DIR/source/$ARCHIVE_FILE is missing and will be downloaded."

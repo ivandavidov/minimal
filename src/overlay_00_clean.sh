@@ -20,7 +20,7 @@ for dir in $(ls -d */ 2>/dev/null) ; do
   echo "Overlay folder '$dir' has been removed."
 done
 
-echo "Ready to continue building the overlay software."
+echo "Ready to continue with the overlay software."
 
 cd $SRC_DIR
 

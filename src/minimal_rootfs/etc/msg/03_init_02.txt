@@ -1,0 +1,5 @@
+[1m  This is PID 1 rescue shell outside of the initramfs area. Execute the
+  following in order to continue with the system initialization:
+[1m[32m
+  exec /sbin/init
+[0m

@@ -1,0 +1,5 @@
+[1m
+  Press empty key (TAB, SPACE, ENTER) or wait 5 seconds to continue with the
+  system initialization process. Press any other key for PID 1 rescue shell
+  outside of the initramfs area.
+[0m

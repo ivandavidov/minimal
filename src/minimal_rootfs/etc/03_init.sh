@@ -37,20 +37,8 @@
 #
 # exec /sbin/init
 
-# Set white color.
-echo -en "\\e[1m"
-
-# Print message on screen.
-cat << CEOF
-
-  Press empty key (TAB, SPACE, ENTER) or wait 5 seconds to continue with the
-  system initialization process. Press any other key for PID 1 rescue shell
-  outside of the initramfs area.
-
-CEOF
-
-# Unset all attributes.
-echo -en "\\e[0m"
+# Print first message on screen.
+cat /etc/msg/03_init_01.txt
 
 # Wait 5 second or until any keybord key is pressed.
 read -t 5 -n1 -s key
@@ -60,24 +48,8 @@ if [ "$key" = "" ] ; then
   echo "Executing /sbin/init as PID 1."
   exec /sbin/init
 else
-  # Set white color.
-  echo -en "\\e[1m"
-
-  # Print message on screen.
-  cat << CEOF
-  This is PID 1 rescue shell outside of the initramfs area. Execute the
-  following in order to continue with the system initialization:
-
-CEOF
-  # Set green color.
-  echo -en "\\e[32m"
-
-  cat << CEOF
-  exec /sbin/init
-
-CEOF
-  # Unset all attributes.
-  echo -en "\\e[0m"
+  # Print second message on screen.
+  cat /etc/msg/03_init_02.txt
 
   if [ "$PID1_SHELL" = "true" ] ; then
     # PID1_SHELL flag is set which means we have controlling terminal.

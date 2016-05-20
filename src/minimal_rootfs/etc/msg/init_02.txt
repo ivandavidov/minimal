@@ -1,0 +1,10 @@
+[1m  This is PID 1 rescue shell inside the initramfs area. Execute the following in
+  order to continue with the overlay initialization process:
+[1m[32m
+  exec /etc/02_overlay.sh
+[0m[1m
+  Execute the following in order to skip the overlay initialization and continue
+  directly with the system initialization:
+[1m[32m
+  exec /sbin/init
+[0m

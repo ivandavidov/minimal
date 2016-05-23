@@ -24,6 +24,7 @@ do
   FILE_KEEP=$(ls $FILE_DEL.*)
 
   if [ ! "$FILE_KEEP" = "" ] ; then
+    # We remove the shorter file and replace it with symbolic link.
     rm $FILE_DEL
     ln -s $FILE_KEEP $FILE_DEL
   fi
@@ -39,3 +40,4 @@ cp -r $SRC_DIR/work/overlay/glibc/lib $SRC_DIR/work/src/minimal_overlay
 echo "All libraries have been installed."
 
 cd $SRC_DIR
+

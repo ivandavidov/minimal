@@ -10,13 +10,23 @@ http://minimal.linux-bg.org
 
 Once you have your ISO image up and running perhaps you'd like to play with the
 configuration file '.config' and see what options you have there. For example
-you can set the property 'BUILD_OVERLAY_SOFTWARE=true'. If you do that you will
-have additional software being downloaded, built and installed on the ISO image.
+you can change the property 'OVERLAY_SOFTWARE'. If you do that you will have
+additional software being downloaded, built and installed on the ISO image.
 
-Available overlay software:
+Currently available overlay software:
+
+  * GLIBC    - Set of all core GNU C libraries packaged together. Requires ~3MB
+               additional space. This overlay bundle is not host specific and
+               can always be built. The libraries are useful if you plan to use
+               more software after boot.
+
+               This overlay bundle depends on the GLIBC build process.
 
   * Links    - text based browser. Requires ~1MB additional space. Use the
                'links' command to activate the browser.
+
+               This overlay bundle is self sufficient and doesn't require other
+               overlay bundles.
 
   * Dropbear - SSH server/client. Requires ~1MB additional space. The build
                process creates user 'root' with password 'toor'. These are
@@ -25,7 +35,7 @@ Available overlay software:
                SSH server (Alt + F1): dropbear -E -F
                SSH client (Alt + F2): dbclient 10.0.2.15 -l root
 
-In time there may be other overlay software packages available.
+               This overlay bundle depends on the GLIBC build process.
 
 ###   ###   ###
 

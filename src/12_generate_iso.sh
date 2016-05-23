@@ -40,10 +40,10 @@ else
   echo "Source files and folders have been skipped."
 fi
 
-# Read the 'BUILD_OVERLAY_SOFTWARE' property from '.config'
-BUILD_OVERLAY_SOFTWARE="$(grep -i ^BUILD_OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
+# Read the 'OVERLAY_SOFTWARE' property from '.config'
+OVERLAY_SOFTWARE="$(grep -i ^OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
 
-if [ "$BUILD_OVERLAY_SOFTWARE" = "true" ] ; then
+if [ ! "$OVERLAY_SOFTWARE" = "" ] ; then
   echo "Generating additional overlay software. This may take a while..."
   sh build_minimal_linux_overlay.sh
 else

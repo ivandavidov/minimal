@@ -4,6 +4,15 @@ echo "*** BUILD KERNEL BEGIN ***"
 
 SRC_DIR=$(pwd)
 
+# Read the 'JOB_FACTOR' property from '.config'
+JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
+
+# Find the number of available CPU cores.
+NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
+
+# Calculate the number of 'make' jobs to be used later.
+NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
+
 cd work/kernel
 
 # Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
@@ -11,7 +20,7 @@ cd $(ls -d linux-*)
 
 # Cleans up the kernel sources, including configuration files.
 echo "Preparing kernel work area..."
-make mrproper
+make mrproper -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
 USE_PREDEFINED_KERNEL_CONFIG="$(grep -i ^USE_PREDEFINED_KERNEL_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
@@ -27,7 +36,7 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
   # Create default configuration file for the kernel.
-  make defconfig
+  make defconfig -j $NUM_JOBS
   echo "Generated default kernel configuration."
 
   # Changes the name of the system to 'minimal'.
@@ -66,12 +75,12 @@ fi
 echo "Building kernel..."
 make \
   CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
-  bzImage -j $(grep ^processor /proc/cpuinfo | wc -l)
+  bzImage -j $NUM_JOBS
 
 # Install kernel headers in './usr' (this is not '/usr') which are used later
 # when we build and configure the GNU C library (glibc).
 echo "Generating kernel headers..."
-make headers_install
+make headers_install -j $NUM_JOBS
 
 cd $SRC_DIR
 

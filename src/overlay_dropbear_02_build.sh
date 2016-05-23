@@ -2,6 +2,15 @@
 
 SRC_DIR=$(pwd)
 
+# Read the 'JOB_FACTOR' property from '.config'
+JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
+
+# Find the number of available CPU cores.
+NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
+
+# Calculate the number of 'make' jobs to be used later.
+NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
+
 if [ ! -d $SRC_DIR/work/glibc/glibc_prepared ] ; then
   echo "Cannot continue - Dropbear SSH depends on GLIBC. Please buld GLIBC first."
   exit 1
@@ -13,7 +22,7 @@ cd work/overlay/dropbear
 cd $(ls -d dropbear-*)
 
 echo "Preparing Dropbear work area. This may take a while..."
-make clean 2>/dev/null
+make clean -j $NUM_JOBS 2>/dev/null
 
 rm -rf ../dropbear_installed
 
@@ -25,10 +34,10 @@ echo "Configuring Dropbear..."
   CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE"
 
 echo "Building Dropbear..."
-make
+make -j $NUM_JOBS
 
 echo "Installing Dropbear..."
-make install
+make install -j $NUM_JOBS
 
 mkdir -p ../dropbear_installed/lib
 

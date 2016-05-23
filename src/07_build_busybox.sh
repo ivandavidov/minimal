@@ -4,6 +4,15 @@ echo "*** BUILD BUSYBOX BEGIN ***"
 
 SRC_DIR=$(pwd)
 
+# Read the 'JOB_FACTOR' property from '.config'
+JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
+
+# Find the number of available CPU cores.
+NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
+
+# Calculate the number of 'make' jobs to be used later.
+NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
+
 # Remember the glibc installation area.
 GLIBC_PREPARED=$(pwd)/work/glibc/glibc_prepared
 
@@ -17,7 +26,7 @@ cd $(ls -d busybox-*)
 
 # Remove previously generated artifacts.
 echo "Preparing BusyBox work area. This may take a while..."
-make distclean
+make distclean -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
 USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i ^USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
@@ -34,7 +43,7 @@ if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
 else
   # Create default configuration file.
   echo "Generating default BusyBox configuration..."  
-  make defconfig
+  make defconfig -j $NUM_JOBS
   
   # The 'inetd' applet fails to compile because we use the glibc installation area as
   # main pointer to the kernel headers (see 05_prepare_glibc.sh) and some headers are
@@ -53,13 +62,13 @@ sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_PREPARED_ESCAPED/" .config
 echo "Building BusyBox..."
 make \
   EXTRA_CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
-  busybox -j $(grep ^processor /proc/cpuinfo | wc -l)
+  busybox -j $NUM_JOBS
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
 echo "Generating BusyBox based initramfs area..."
 make \
   CONFIG_PREFIX="../busybox_installed" \
-  install
+  install -j $NUM_JOBS
 
 cd $SRC_DIR
 

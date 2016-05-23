@@ -4,6 +4,15 @@ echo "*** BUILD GLIBC BEGIN ***"
 
 SRC_DIR=$(pwd)
 
+# Read the 'JOB_FACTOR' property from '.config'
+JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
+
+# Find the number of available CPU cores.
+NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
+
+# Calculate the number of 'make' jobs to be used later.
+NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
+
 # Find the kernel build directory.
 cd work/kernel
 cd $(ls -d linux-*)
@@ -48,13 +57,13 @@ $GLIBC_SRC/configure \
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 echo "Building glibc..."
-make -j $(grep ^processor /proc/cpuinfo | wc -l)
+make -j $NUM_JOBS
 
 # Install glibc in the installation area, e.g. 'work/glibc/glibc_installed'.
 echo "Installing glibc..."
 make install \
   DESTDIR=$GLIBC_INSTALLED \
-  -j $(grep ^processor /proc/cpuinfo | wc -l)
+  -j $NUM_JOBS
 
 cd $SRC_DIR
 

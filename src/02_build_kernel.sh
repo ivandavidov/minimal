@@ -15,6 +15,10 @@ NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
 cd work/kernel
 
+# Prepare the kernel install area.
+rm -rf kernel_installed
+mkdir kernel_installed
+
 # Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
 cd $(ls -d linux-*)
 
@@ -77,10 +81,16 @@ make \
   CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
   bzImage -j $NUM_JOBS
 
-# Install kernel headers in './usr' (this is not '/usr') which are used later
-# when we build and configure the GNU C library (glibc).
+# Install the kernel file.
+cp arch/x86/boot/bzImage \
+  $SRC_DIR/work/kernel/kernel_installed/kernel
+
+# Install kernel headers which are used later when we build and configure the
+# GNU C library (glibc).
 echo "Generating kernel headers..."
-make headers_install -j $NUM_JOBS
+make \
+  INSTALL_HDR_PATH=$SRC_DIR/work/kernel/kernel_installed \
+  headers_install -j $NUM_JOBS
 
 cd $SRC_DIR
 

@@ -13,11 +13,8 @@ NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 # Calculate the number of 'make' jobs to be used later.
 NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
-# Find the kernel build directory.
-cd work/kernel
-cd $(ls -d linux-*)
-WORK_KERNEL_DIR=$(pwd)
-cd $SRC_DIR
+# Save the kernel installation directory.
+KERNEL_INSTALLED=$SRC_DIR/work/kernel/kernel_installed
 
 cd work/glibc
 
@@ -49,7 +46,7 @@ cd glibc_objects
 echo "Configuring glibc..."
 $GLIBC_SRC/configure \
   --prefix= \
-  --with-headers=$WORK_KERNEL_DIR/usr/include \
+  --with-headers=$KERNEL_INSTALLED/include \
   --without-gd \
   --without-selinux \
   --disable-werror \

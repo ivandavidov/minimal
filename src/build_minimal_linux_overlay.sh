@@ -1,24 +1,24 @@
 #!/bin/sh
 
-# Read the 'OVERLAY_SOFTWARE' property from '.config'
-OVERLAY_SOFTWARE="$(grep -i ^OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
+# Read the 'OVERLAY_BUNDLES' property from '.config'
+OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 
-if [ "$OVERLAY_SOFTWARE" = "" ] ; then
-  echo "There is no overlay software to build."
+if [ "$OVERLAY_BUNDLES" = "" ] ; then
+  echo "There are no overlay bundles to build."
 else
-  sh overlay_00_clean.sh
+  time sh overlay_00_clean.sh
 
-  OVERLAY_PIECES="$(echo $OVERLAY_SOFTWARE | tr ',' ' ')"
+  OVERLAY_BUNDLES_LIST="$(echo $OVERLAY_BUNDLES | tr ',' ' ')"
 
-  for OVERLAY in $OVERLAY_PIECES
+  for BUNDLE in $OVERLAY_BUNDLES_LIST
   do
-    OVERLAY_SCRIPT=overlay_$OVERLAY.sh
+    OVERLAY_SCRIPT=overlay_$BUNDLE.sh
     
     if [ ! -f $OVERLAY_SCRIPT ] ; then
       echo "Error - cannot find overlay script file '$OVERLAY_SCRIPT'."
     else
-      echo "Building '$OVERLAY'..."
-      sh $OVERLAY_SCRIPT
+      echo "Building overlay bundle '$BUNDLE'..."
+      time sh $OVERLAY_SCRIPT
     fi
   done
 fi

@@ -6,6 +6,8 @@ SRC_DIR=$(pwd)
 
 cd work
 
+echo "Preparing source files and folders. This may take a while..."
+
 # Remove old sources (if they exist)
 rm -rf src
 mkdir src

@@ -4,11 +4,8 @@ echo "*** GENERATE ISO BEGIN ***"
 
 SRC_DIR=$(pwd)
 
-# Find the kernel build directory.
-cd work/kernel
-cd $(ls -d *)
-WORK_KERNEL_DIR=$(pwd)
-cd $SRC_DIR
+# Save the kernel installation directory.
+KERNEL_INSTALLED=$SRC_DIR/work/kernel/kernel_installed
 
 # Find the Syslinux build directory.
 cd work/syslinux
@@ -40,14 +37,14 @@ else
   echo "Source files and folders have been skipped."
 fi
 
-# Read the 'OVERLAY_SOFTWARE' property from '.config'
-OVERLAY_SOFTWARE="$(grep -i ^OVERLAY_SOFTWARE .config | cut -f2 -d'=')"
+# Read the 'OVERLAY_BUNDLES' property from '.config'
+OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 
-if [ ! "$OVERLAY_SOFTWARE" = "" ] ; then
-  echo "Generating additional overlay software. This may take a while..."
-  sh build_minimal_linux_overlay.sh
+if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
+  echo "Generating additional overlay bundles. This may take a while..."
+  time sh build_minimal_linux_overlay.sh
 else
-  echo "Generation of additional overlay software has been skipped."
+  echo "Generation of additional overlay bundles has been skipped."
 fi
 
 cd work/isoimage
@@ -58,7 +55,7 @@ cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
 cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
 
 # Now we copy the kernel.
-cp $WORK_KERNEL_DIR/arch/x86/boot/bzImage ./kernel.xz
+cp $KERNEL_INSTALLED/kernel ./kernel.xz
 
 # Now we copy the root file system.
 cp ../rootfs.cpio.xz ./rootfs.xz
@@ -121,8 +118,7 @@ else
   echo "Generating ISO image with no overlay structure..."
 fi
 
-# Create ISOLINUX configuration file.
-#echo 'default kernel.xz  initrd=rootfs.xz vga=769' > ./isolinux.cfg
+# Create the ISOLINUX configuration file.
 echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./isolinux.cfg
 
 # Now we generate the ISO image file.
@@ -139,7 +135,9 @@ genisoimage \
   ./
 
 # This allows the ISO image to be bootable if it is burned on USB flash drive.
-isohybrid ../minimal_linux_live.iso 2>/dev/null || true
+# The -u option is used in EFI boot mode (still not supported) and it reduces
+# the ISO image size.
+isohybrid -u ../minimal_linux_live.iso 2>/dev/null || true
 
 # Copy the ISO image to the root project folder.
 cp ../minimal_linux_live.iso ../../

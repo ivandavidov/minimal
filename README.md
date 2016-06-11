@@ -20,6 +20,8 @@ YouTube: https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS
 
 Other projects based on "Minimal Linux Live":
 
+* https://github.com/ivandavidov/minimal-linux-script - create live Linux OS by using shell script with less than 60 lines.
+
 * https://github.com/mhiramat/boot2minc
 
 * https://github.com/rleon/kerneliso
@@ -32,4 +34,4 @@ Other projects based on "Minimal Linux Live":
 
 * https://github.com/cirosantilli/runlinux
 
-* https://github.com/redox-os/installer - Installer for the Redox OS (http://redox-os.org).
+* https://github.com/redox-os/installer - installer for the Redox OS (http://redox-os.org).

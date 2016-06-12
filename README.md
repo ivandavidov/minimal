@@ -20,7 +20,7 @@ YouTube: https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS
 
 Other projects based on "Minimal Linux Live":
 
-* https://github.com/ivandavidov/minimal-linux-script - create live Linux OS by using shell script with less than 60 lines.
+* https://github.com/ivandavidov/minimal-linux-script - create live Linux OS by using one short shell script.
 
 * https://github.com/mhiramat/boot2minc
 

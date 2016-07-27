@@ -5,7 +5,7 @@ echo "*** PREPARE GLIBC BEGIN ***"
 SRC_DIR=$(pwd)
 
 # Save the kernel installation directory.
-KERNEL_INSTALLED=$(pwd)
+KERNEL_INSTALLED=$(pwd)/work/kernel/kernel_installed
 
 cd work/glibc
 
@@ -44,7 +44,7 @@ cd ../include
 
 ln -s $KERNEL_INSTALLED/include/linux linux
 ln -s $KERNEL_INSTALLED/include/asm asm
-ln -s $KERNEL_INSTALLED/asm-generic asm-generic
+ln -s $KERNEL_INSTALLED/include/asm-generic asm-generic
 ln -s $KERNEL_INSTALLED/include/mtd mtd
 
 cd $SRC_DIR

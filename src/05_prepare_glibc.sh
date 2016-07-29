@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** PREPARE GLIBC BEGIN ***"
 
 SRC_DIR=$(pwd)

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** GENERATE ISO BEGIN ***"
 
 SRC_DIR=$(pwd)

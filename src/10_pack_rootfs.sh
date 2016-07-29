@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** PACK ROOTFS BEGIN ***"
 
 SRC_DIR=$(pwd)

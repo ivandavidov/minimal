@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # This script installs Oracle's JRE or JDK from already downloaded 'tar.gz'
 # archive. Oracle's license doesn't allow direct downloads, so you need to do
 # the following:

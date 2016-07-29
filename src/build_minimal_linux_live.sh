@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 sh time 00_clean.sh
 sh time 01_get_kernel.sh
 sh time 02_build_kernel.sh

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SRC_DIR=$(pwd)
 
 if [ ! -d $SRC_DIR/work/glibc/glibc_prepared ] ; then

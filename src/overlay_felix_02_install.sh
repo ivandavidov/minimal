@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SRC_DIR=$(pwd)
 
 echo "Removing old Apache Felix artifacts. This may take a while..."

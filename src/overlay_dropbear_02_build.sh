@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SRC_DIR=$(pwd)
 
 # Read the 'JOB_FACTOR' property from '.config'

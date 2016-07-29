@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** CLEAN BEGIN ***"
 
 echo "Cleaning up the main work area. This may take a while..."

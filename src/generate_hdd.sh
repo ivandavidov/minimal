@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Create sparse file of 20MB which can be used by QEMU.
 
 if [ "$1" = "-e" -o "$1" = "--empty" ] ; then

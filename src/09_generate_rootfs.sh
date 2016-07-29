@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** GENERATE ROOTFS BEGIN ***"
 
 SRC_ROOT=$(pwd)

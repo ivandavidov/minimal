@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.

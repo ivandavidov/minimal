@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Use this script without arguments to run the generated ISO image with QEMU.
 # If you pass '-hdd' or '-h' the virtual hard disk 'hdd.img' will be attached.
 # Note that this virtual hard disk has to be created in advance. You can use

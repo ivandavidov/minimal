@@ -1,16 +1,16 @@
 #!/bin/sh
 
-sh time 00_clean.sh
-sh time 01_get_kernel.sh
-sh time 02_build_kernel.sh
-sh time 03_get_glibc.sh
-sh time 04_build_glibc.sh
-sh time 05_prepare_glibc.sh
-sh time 06_get_busybox.sh
-sh time 07_build_busybox.sh
-sh time 08_prepare_src.sh
-sh time 09_generate_rootfs.sh
-sh time 10_pack_rootfs.sh
-sh time 11_get_syslinux.sh
-sh time 12_generate_iso.sh
+time sh 00_clean.sh
+time sh 01_get_kernel.sh
+time sh 02_build_kernel.sh
+time sh 03_get_glibc.sh
+time sh 04_build_glibc.sh
+time sh 05_prepare_glibc.sh
+time sh 06_get_busybox.sh
+time sh 07_build_busybox.sh
+time sh 08_prepare_src.sh
+time sh 09_generate_rootfs.sh
+time sh 10_pack_rootfs.sh
+time sh 11_get_syslinux.sh
+time sh 12_generate_iso.sh
 

@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# TODO - this shell script file needs serios refactoring since right now it does
+# too many things:
+# 
+# 1) Deal with 'src' copy.
+# 2) Generate the 'overlay' software bundles.
+# 3) Create proper overlay structure.
+# 4) Prepare the actual ISO structure.
+# 5) Generate the actual ISO image.
+#
+# Probably it's best to create separate shell scripts for each functionality. 
+
 echo "*** GENERATE ISO BEGIN ***"
 
 SRC_DIR=$(pwd)

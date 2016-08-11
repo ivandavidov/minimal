@@ -35,3 +35,5 @@ Other projects based on "Minimal Linux Live":
 * https://github.com/cirosantilli/runlinux
 
 * https://github.com/redox-os/installer - installer for the Redox OS (http://redox-os.org).
+
+* https://bitbucket.org/bdheeman/minimal - KISS fork (Keep It, Simple, Safe/Secure/Stupid)

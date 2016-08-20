@@ -1,37 +1,55 @@
-<!doctype html>
-<title>Minimal Linux Live - PC emulator</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Minimal Linux Live">
+    <meta name="keywords" content="minimal minimalistic tiny linux live tutorial howto kernel busybox cd usb iso image"/>
+    <meta name="author" content="Ivan Davidov - davidov (dot) i [at] gmail {dot} com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="libv86.js"></script>
-<script>
-"use strict";
-window.onload = function()
-{
-    var image_name = "minimal_linux_live_03-Apr-2016_32-bit.iso";
-    var cdrom_full = "../download/" + image_name;
-    var emulator = window.emulator = new V86Starter({
-        memory_size: 64 * 1024 * 1024,
-        vga_memory_size: 8 * 1024 * 1024,
-        screen_container: document.getElementById("screen_container"),
-        bios: {
-            url: "seabios.bin",
-        },
-        vga_bios: {
-            url: "vgabios.bin",
-        },
-        cdrom: {
-            url: cdrom_full,
-        },
-        autostart: true,
-    });
-}
-</script>
+    <title>Minimal Linux Live - PC emulator</title>
 
-<div id="title" style="white-space: pre; font: 20px monospace;"> Minimal Linux Live (version 03-Apr-2016)</div>
-<br />
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico"  />
+</head>
+<body>
+<div id="title" style="white-space: pre; font: 20px monospace;">
+    Minimal Linux Live (version 03-Apr-2016)
+</div>
+
+<br/>
+
 <div id="screen_container">
     <div style="white-space: pre; font: 20px monospace; line-height: 22px"></div>
     <canvas style="display: none"></canvas>
 </div>
-<div id="title" style="white-space: pre; font: 12px monospace;">
-  This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave properly in it.
+
+<div style="white-space: pre; font: 12px monospace;">
+    This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave
+    properly in it.
 </div>
+
+<script src="libv86.min.js"></script>
+<script>
+    "use strict";
+    window.onload = function () {
+        var image_name = "minimal_linux_live_03-Apr-2016_32-bit.iso";
+        var cdrom_full = "../download/" + image_name;
+        var emulator = window.emulator = new V86Starter({
+            memory_size: 64 * 1024 * 1024,
+            vga_memory_size: 8 * 1024 * 1024,
+            screen_container: document.getElementById("screen_container"),
+            bios: {
+                url: "seabios.bin"
+            },
+            vga_bios: {
+                url: "vgabios.bin"
+            },
+            cdrom: {
+                url: cdrom_full
+            },
+            autostart: true
+        });
+    }
+</script>
+</body>
+</html>

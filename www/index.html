@@ -7,45 +7,10 @@
   <meta name="keywords" content="minimal minimalistic tiny linux live tutorial howto kernel busybox cd usb iso image" />
   <meta name="author" content="Ivan Davidov - davidov (dot) i [at] gmail {dot} com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico"  />
 
-  <script language="JavaScript" type="text/javascript">
-    function menuSwap(itemIndex) {
-      for(var i = 1; i <= 6; i++) {
-        var strItem = "item" + i;
-        var objItem = document.getElementById(strItem);
-        objItem.style.display = (i == itemIndex) ? "block" : "none"; 
-      }
-    }
-    
-    function logSwap(itemIndex, show) {
-      for(var i = 1; i <= 5; i++) {
-        var showObj = document.getElementById("show" + i);
-        var hideObj = document.getElementById("hide" + i);
-        var textObj = document.getElementById("text" + i);
-        
-        if(i == itemIndex) {
-          if(show == true) {
-            showObj.style.display = "none";
-            hideObj.style.display = "block";
-            textObj.style.display = "block";
-          } else {
-            showObj.style.display = "block";
-            hideObj.style.display = "none";
-            textObj.style.display = "none";
-          }
-        } else if(show == true) {
-          showObj.style.display = "block";
-          hideObj.style.display = "none";
-          textObj.style.display = "none";
-        }
-      }
-    }    
-  </script>  
+  <link rel="stylesheet" href="assets/css/style.min.css">
+
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"  />
 </head>
 <body>
   <div class="container">
@@ -75,9 +40,9 @@
         <div class="twelve columns">
           <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimalistic Live
           Linux OS with basic network support via DHCP. The generated operating system is based on
-          <a target="_blank" href="http://kernel.org">Linux kernel</a>,
-          <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and
-          <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
+          <a target="_blank" href="https://www.kernel.org/">Linux kernel</a>,
+          <a target="_blank" href="https://www.gnu.org/software/libc/">GNU C library</a> and
+          <a target="_blank" href="https://busybox.net/">BusyBox</a>. All necessary source codes are automatically
           downloaded and all build operations are fully encapsulated in the scripts.
         </div>
       </div>
@@ -94,7 +59,7 @@
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
-      <div class="row">      
+      <div class="row">
         <div class="twelve columns">
           <ul>
             <li>
@@ -110,7 +75,7 @@
             </li>
             <li>
               Depending on which Linux OS you are using, there might be one or more (or none, or even more) build dependencies that you
-              need to resolve before you start the build process. If you work with <a target="_blank" href="http://ubuntu.com">Ubuntu</a>,
+              need to resolve before you start the build process. If you work with <a target="_blank" href="http://www.ubuntu.com/">Ubuntu</a>,
               the following commands should resolve all necessary build dependencies:
               <ul>
                 <li>
@@ -140,10 +105,10 @@
               Execute the script <code>build_minimal_linux_live.sh</code> and wait. If you have resolved all build dependencies, the whole
               process should take less than 30 minutes on a modern computer. If the build fails for some reason, most probably there
               are unresolved build dependencies. Several users reported that the <code>build-essential</code> package resolves all unexpected
-              build dependencies for Ubuntu. If you are using <a target="_blank" href="http://linuxmint.com">Linux Mint</a> try to
+              build dependencies for Ubuntu. If you are using <a target="_blank" href="https://linuxmint.com/">Linux Mint</a> try to
               install the package <code>g++</code> and if you still have troubles then try the <code>build-essential</code> package. On
-              <a target="_blank" href="http://fedoraproject.org">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>.
-              On <a target="_blank" href="http://www.archlinux.org/">Arch Linux</a> and <a target="_blank" href="http://debian.org">Debian</a>
+              <a target="_blank" href="https://getfedora.org/">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>.
+              On <a target="_blank" href="https://www.archlinux.org/">Arch Linux</a> and <a target="_blank" href="https://www.debian.org/">Debian</a>
               you might need to locate <code>isolinux.bin</code> and copy it to <code>/usr/lib/syslinux/isolinux.bin</code>.
               <div style="font-size: 10%;">&nbsp;</div>
               Please have in mind that the build dependencies can vary a lot depending on the Linux OS which you use and the software
@@ -157,13 +122,13 @@
               When the scripts finish their job you will find newly generated <code>minimal_linux_live.iso</code> in the same folder where you
               executed the scripts. You can burn the ISO image file on CD/DVD, install it on USB flash drive via
               <a target="_blank" href="http://www.pendrivelinux.com">Universal USB Installer</a>,
-              or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>. Minimal Linux Live
+              or run it directly via PC emulator like <a target="_blank" href="https://www.virtualbox.org/">VirtualBox</a>. Minimal Linux Live
               requires at least 64MB RAM, otherwise the boot process most probably will hang.
             </li>
           </ul>
         </div>
       </div>
-      <div class="row">      
+      <div class="row">
         <div class="twelve columns">
           The generated ISO image file contains Linux kernel compiled with default options, GNU C library compiled with default options,
           BusyBox compiled with default options and quite simple initramfs. This means that you don't get Windows support out of the box,
@@ -171,7 +136,7 @@
           that's all. This is why it's called "minimal".
         </div>
       </div>
-      <div style="font-size: 10%;">&nbsp;</div>      
+      <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
           The good news is that the build scripts are very small in size and simple to understand. You can easily learn from the scripts
@@ -180,7 +145,7 @@
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
-      <div class="row">      
+      <div class="row">
         <div class="twelve columns">
           The <a href="#" onclick="javascript:menuSwap(4); return false;">tutorial</a> provides more details about the inner structure
           of the scripts and the overall build process. I encourage you to go through this document when you have the time. The same tutorial
@@ -188,51 +153,51 @@
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
-      <div class="row">      
+      <div class="row">
         <div class="twelve columns">
           Below you can find several screenshots which show what the environment looks like when you boot your newly generated
-          Minimal Linux Live OS. 
+          Minimal Linux Live OS.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="six columns">
-          <a href="./images/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
-            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="./images/screen1.png" />
+          <a href="assets/img/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
+            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="assets/img/screen1.png" />
           </a>
         </div>
         <div class="six columns">
-          <a href="./images/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
-            <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="./images/screen2.png" />
+          <a href="assets/img/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
+            <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="assets/img/screen2.png" />
           </a>
         </div>
       </div class="row">
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="six columns">
-          <a href="./images/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
-            <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="./images/screen3.png" />
+          <a href="assets/img/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
+            <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="assets/img/screen3.png" />
           </a>
         </div>
         <div class="six columns">
-          <a href="./images/screen4.png" target="_blank" title="Minimal Linux Live - screenshot 4">
-            <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="./images/screen4.png" />
+          <a href="assets/img/screen4.png" target="_blank" title="Minimal Linux Live - screenshot 4">
+            <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="assets/img/screen4.png" />
           </a>
         </div>
       </div class="row">
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="six columns">
-          <a href="./images/screen5.png" target="_blank" title="Minimal Linux Live - screenshot 5">
-            <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="./images/screen5.png" />
+          <a href="assets/img/screen5.png" target="_blank" title="Minimal Linux Live - screenshot 5">
+            <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="assets/img/screen5.png" />
           </a>
         </div>
         <div class="six columns">
-          <a href="./images/screen6.png" target="_blank" title="Minimal Linux Live - screenshot 6">
-            <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="./images/screen6.png" />
+          <a href="assets/img/screen6.png" target="_blank" title="Minimal Linux Live - screenshot 6">
+            <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="assets/img/screen6.png" />
           </a>
         </div>
-      </div>  
+      </div>
     </div>
     <div id="item2" style="display:none;">
       <div class="row">
@@ -240,11 +205,11 @@
           <h4>Change Log</h4>
         </div>
       </div>
-      <div class="row">      
+      <div class="row">
       <div class="twelve columns">
         <div id="show5" style="display:none;">
           <strong>03-Apr-2016</strong>
-          <a href="#" onclick="javascript:logSwap(5, true); return false;">show</a>      
+          <a href="#" onclick="javascript:logSwap(5, true); return false;">show</a>
         </div>
         <div id="hide5" style="display:block;">
           <strong>03-Apr-2016</strong>
@@ -268,7 +233,7 @@
             </li>
             <li>
               The ISO image generation process is now in a separate script file, completely detached from the kernel build infrastructure.
-              This allows the Mnimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
+              This allows the Minimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
             </li>
             <li>
               The internal script comments have been revised and now they are more descriptive than before.
@@ -281,7 +246,7 @@
         <div style="font-size: 10%;">&nbsp;</div>
         <div id="show4" style="display:block;">
           <strong>14-Sep-2015</strong>
-          <a href="#" onclick="javascript:logSwap(4, true); return false;">show</a>      
+          <a href="#" onclick="javascript:logSwap(4, true); return false;">show</a>
         </div>
         <div id="hide4" style="display:none;">
           <strong>14-Sep-2015</strong>
@@ -308,7 +273,7 @@
             <li>
               In addition to the above changes, if you <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> the latest
               stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting
-              scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of
+              scripts which produce ISO based on Linux kernel and <a href="https://landley.net/toybox/" target="_blank">ToyBox</a> instead of
               BusyBox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
             </li>
           </ul>
@@ -316,7 +281,7 @@
         <div style="font-size: 10%;">&nbsp;</div>
         <div id="show3" style="display:block;">
           <strong>07-Feb-2015</strong>
-          <a href="#" onclick="javascript:logSwap(3, true); return false;">show</a>      
+          <a href="#" onclick="javascript:logSwap(3, true); return false;">show</a>
         </div>
         <div id="hide3" style="display:none;">
           <strong>07-Feb-2015</strong>
@@ -336,7 +301,7 @@
           <a href="#" onclick="javascript:logSwap(2, true); return false;">show</a>
         </div>
         <div id="hide2" style="display:none;">
-          <strong>25-Aug-2014</strong> 
+          <strong>25-Aug-2014</strong>
           <a href="#" onclick="javascript:logSwap(2, false); return false;">hide</a>
         </div>
         <div id="text2" style="display:none;">
@@ -367,7 +332,7 @@
           <a href="#" onclick="javascript:logSwap(1, false); return false;">hide</a>
         </div>
         <div id="text1" style="display:none;">
-          <div style="font-size: 10%;">&nbsp;</div>        
+          <div style="font-size: 10%;">&nbsp;</div>
           <ul>
             <li>
               <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.15.6</strong> and <strong>BusyBox 1.22.1</strong>.
@@ -388,9 +353,9 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        My name is <a target="_blank" href="http://linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
-        live and work in <a target="_blank" href="http://en.wikipedia.org/wiki/Sofia">Sofia</a>,
-        <a target="_blank" href="http://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
+        My name is <a target="_blank" href="https://www.linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
+        live and work in <a target="_blank" href="https://en.wikipedia.org/wiki/Sofia">Sofia</a>,
+        <a target="_blank" href="https://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -420,9 +385,9 @@
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
-    <div class="row">      
+    <div class="row">
       <div class="twelve columns">
-        My LinkedIn profile is here: <a target="_blank" href="http://linkedin.com/in/ivandavidov">http://linkedin.com/in/ivandavidov</a>
+        My LinkedIn profile is here: <a target="_blank" href="https://www.linkedin.com/in/ivandavidov">http://linkedin.com/in/ivandavidov</a>
       </div>
     </div>
   </div>
@@ -499,7 +464,7 @@
     <div class="row">
       <div class="twelve columns">
         You can take a look at the latest development sources in
-        <a target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>.
+        <a target="_blank" href="https://github.com/ivandavidov/minimal">GitHub</a>.
       </div>
     </div>
   </div>
@@ -507,18 +472,53 @@
   <div style="font-size: 10%;">&nbsp;</div>
   <div class="row">
     <div class="twelve columns" style="text-align: center;">
-      <a class="button" href="#">Go to top</a>      
-    </div>    
+      <a class="button" href="#">Go to top</a>
+    </div>
   </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row" style="text-align: center;">
       <div class="twelve columns">
         Copyright &copy; 2014 - 2016
-        <span class="separator">|</span> 
-        <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>        
+        <span class="separator">|</span>
+        <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>
       </div>
     </div>
   </div>
+
+  <script language="JavaScript" type="text/javascript">
+      function menuSwap(itemIndex) {
+          for(var i = 1; i <= 6; i++) {
+              var strItem = "item" + i;
+              var objItem = document.getElementById(strItem);
+              objItem.style.display = (i == itemIndex) ? "block" : "none";
+          }
+      }
+
+      function logSwap(itemIndex, show) {
+          for(var i = 1; i <= 5; i++) {
+              var showObj = document.getElementById("show" + i);
+              var hideObj = document.getElementById("hide" + i);
+              var textObj = document.getElementById("text" + i);
+
+              if(i == itemIndex) {
+                  if(show == true) {
+                      showObj.style.display = "none";
+                      hideObj.style.display = "block";
+                      textObj.style.display = "block";
+                  } else {
+                      showObj.style.display = "block";
+                      hideObj.style.display = "none";
+                      textObj.style.display = "none";
+                  }
+              } else if(show == true) {
+                  showObj.style.display = "block";
+                  hideObj.style.display = "none";
+                  textObj.style.display = "none";
+              }
+          }
+      }
+  </script>
+
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,5 +1,6 @@
 Minimal Linux Live
 =======
+I'm looking for reliable hosting for the project's website. If you know someone willing to host the website, please let me know! Meanwhile you can use Google's [cached copy of the website](https://www.google.bg/#q=cache:minimal.linux-bg.org).
 
 Website:  http://minimal.linux-bg.org
 

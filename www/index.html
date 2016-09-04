@@ -12,11 +12,11 @@
 
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"  />
 </head>
-<body>
+<body onload="javascript:thankYou();">
   <div class="container">
     <div class="row">
       <div class="twelve columns" style="text-align: center;">
-        <h2><a href="/" style="text-decoration: none; color: #000;">Minimal Linux Live</a></h2>
+        <h2><a href="#" style="text-decoration: none; color: #000;">Minimal Linux Live</a></h2>
       </div>
     </div>
     <div class="row">
@@ -40,16 +40,16 @@
         <div class="twelve columns">
           <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimalistic Live
           Linux OS with basic network support via DHCP. The generated operating system is based on
-          <a target="_blank" href="https://www.kernel.org/">Linux kernel</a>,
-          <a target="_blank" href="https://www.gnu.org/software/libc/">GNU C library</a> and
-          <a target="_blank" href="https://busybox.net/">BusyBox</a>. All necessary source codes are automatically
+          <a target="_blank" href="http://kernel.org">Linux kernel</a>,
+          <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and
+          <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
           downloaded and all build operations are fully encapsulated in the scripts.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS" frameborder="0" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="http://youtube.com/embed/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
@@ -105,10 +105,10 @@
               Execute the script <code>build_minimal_linux_live.sh</code> and wait. If you have resolved all build dependencies, the whole
               process should take less than 30 minutes on a modern computer. If the build fails for some reason, most probably there
               are unresolved build dependencies. Several users reported that the <code>build-essential</code> package resolves all unexpected
-              build dependencies for Ubuntu. If you are using <a target="_blank" href="https://linuxmint.com/">Linux Mint</a> try to
+              build dependencies for Ubuntu. If you are using <a target="_blank" href="http://linuxmint.com">Linux Mint</a> try to
               install the package <code>g++</code> and if you still have troubles then try the <code>build-essential</code> package. On
-              <a target="_blank" href="https://getfedora.org/">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>.
-              On <a target="_blank" href="https://www.archlinux.org/">Arch Linux</a> and <a target="_blank" href="https://www.debian.org/">Debian</a>
+              <a target="_blank" href="http://getfedora.org">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>.
+              On <a target="_blank" href="http://archlinux.org">Arch Linux</a> and <a target="_blank" href="http://debian.org">Debian</a>
               you might need to locate <code>isolinux.bin</code> and copy it to <code>/usr/lib/syslinux/isolinux.bin</code>.
               <div style="font-size: 10%;">&nbsp;</div>
               Please have in mind that the build dependencies can vary a lot depending on the Linux OS which you use and the software
@@ -122,7 +122,7 @@
               When the scripts finish their job you will find newly generated <code>minimal_linux_live.iso</code> in the same folder where you
               executed the scripts. You can burn the ISO image file on CD/DVD, install it on USB flash drive via
               <a target="_blank" href="http://www.pendrivelinux.com">Universal USB Installer</a>,
-              or run it directly via PC emulator like <a target="_blank" href="https://www.virtualbox.org/">VirtualBox</a>. Minimal Linux Live
+              or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>. Minimal Linux Live
               requires at least 64MB RAM, otherwise the boot process most probably will hang.
             </li>
           </ul>
@@ -273,7 +273,7 @@
             <li>
               In addition to the above changes, if you <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> the latest
               stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting
-              scripts which produce ISO based on Linux kernel and <a href="https://landley.net/toybox/" target="_blank">ToyBox</a> instead of
+              scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of
               BusyBox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
             </li>
           </ul>
@@ -353,9 +353,9 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        My name is <a target="_blank" href="https://www.linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
-        live and work in <a target="_blank" href="https://en.wikipedia.org/wiki/Sofia">Sofia</a>,
-        <a target="_blank" href="https://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
+        My name is <a target="_blank" href="http://linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
+        live and work in <a target="_blank" href="http://en.wikipedia.org/wiki/Sofia">Sofia</a>,
+        <a target="_blank" href="http://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -387,7 +387,7 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        My LinkedIn profile is here: <a target="_blank" href="https://www.linkedin.com/in/ivandavidov">http://linkedin.com/in/ivandavidov</a>
+        My LinkedIn profile is here: <a target="_blank" href="http://linkedin.com/in/ivandavidov">http://linkedin.com/in/ivandavidov</a>
       </div>
     </div>
   </div>
@@ -464,7 +464,7 @@
     <div class="row">
       <div class="twelve columns">
         You can take a look at the latest development sources in
-        <a target="_blank" href="https://github.com/ivandavidov/minimal">GitHub</a>.
+        <a target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>.
       </div>
     </div>
   </div>
@@ -476,56 +476,91 @@
     </div>
   </div>
     <div style="font-size: 10%;">&nbsp;</div>
-    <div class="row" style="text-align: center;">
+    <div id="footer" class="row" style="text-align: center;">
       <div class="twelve columns">
         Copyright &copy; 2014 - 2016
         <span class="separator">|</span>
-        <a href="/" title="Minimal Linux Live">Minimal Linux Live</a>
+        <a href="#" title="Minimal Linux Live">Minimal Linux Live</a>
       </div>
     </div>
   </div>
 
   <script language="JavaScript" type="text/javascript">
-      function menuSwap(itemIndex) {
-          for(var i = 1; i <= 6; i++) {
-              var strItem = "item" + i;
-              var objItem = document.getElementById(strItem);
-              objItem.style.display = (i == itemIndex) ? "block" : "none";
-          }
+    function menuSwap(itemIndex) {
+      for(var i = 1; i <= 6; i++) {
+        var strItem = "item" + i;
+        var objItem = document.getElementById(strItem);
+        objItem.style.display = (i == itemIndex) ? "block" : "none";
       }
+    }
 
-      function logSwap(itemIndex, show) {
-          for(var i = 1; i <= 5; i++) {
-              var showObj = document.getElementById("show" + i);
-              var hideObj = document.getElementById("hide" + i);
-              var textObj = document.getElementById("text" + i);
+    function logSwap(itemIndex, show) {
+      for(var i = 1; i <= 5; i++) {
+        var showObj = document.getElementById("show" + i);
+        var hideObj = document.getElementById("hide" + i);
+        var textObj = document.getElementById("text" + i);
 
-              if(i == itemIndex) {
-                  if(show == true) {
-                      showObj.style.display = "none";
-                      hideObj.style.display = "block";
-                      textObj.style.display = "block";
-                  } else {
-                      showObj.style.display = "block";
-                      hideObj.style.display = "none";
-                      textObj.style.display = "none";
-                  }
-              } else if(show == true) {
-                  showObj.style.display = "block";
-                  hideObj.style.display = "none";
-                  textObj.style.display = "none";
-              }
+        if(i == itemIndex) {
+          if(show == true) {
+            showObj.style.display = "none";
+            hideObj.style.display = "block";
+            textObj.style.display = "block";
+          } else {
+            showObj.style.display = "block";
+            hideObj.style.display = "none";
+            textObj.style.display = "none";
           }
+        } else if(show == true) {
+          showObj.style.display = "block";
+          hideObj.style.display = "none";
+          textObj.style.display = "none";
+        }
       }
+    }
+	  
+	  function thankYou() {
+      var footer = document.getElementById("footer");
+		  var footerDiv = footer.getElementsByTagName("div")[0];
+		  var html = footerDiv.innerHTML;
+      
+      var sepa = ' <span class="separator">|</span> ';
+      var afterSepa = 'Hosting by <a target="_blank" href="http://{1}">{2}</a>.'
+      
+      var hostname = window.location.hostname;
+      //hostname = 'linux-bg.org';
+      
+      switch(hostname) {
+        case 'linux-bg.org': {
+          html += sepa;
+          html += 'Hosting by <a target="_blank" href="http://linux-bg.org">linux-bg.org</a>';
+          html += ' and ';
+          html += '<a target="_blank" href="http://linux-bulgaria.org">linux-bulgaria.org</a>.';
+
+          footerDiv.innerHTML = html;
+          
+          break;
+        }
+        default: {
+          if(hostname != "") {
+            html += sepa;
+            html += afterSepa.replace("{1}", hostname).replace("{2}", hostname);
+
+            footerDiv.innerHTML = html;
+			    }
+		    }
+		  }
+	  }
   </script>
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-53254151-1', 'auto');
-    ga('send', 'pageview');
+    if(window.location.hostname != "") {
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-53254151-1', 'auto');
+      ga('send', 'pageview');
+    }
   </script>
 </body>
 </html>

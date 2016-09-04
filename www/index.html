@@ -517,18 +517,18 @@
         }
       }
     }
-	  
-	  function thankYou() {
+
+    function thankYou() {
       var footer = document.getElementById("footer");
-		  var footerDiv = footer.getElementsByTagName("div")[0];
-		  var html = footerDiv.innerHTML;
-      
+      var footerDiv = footer.getElementsByTagName("div")[0];
+      var html = footerDiv.innerHTML;
+
       var sepa = ' <span class="separator">|</span> ';
       var afterSepa = 'Hosting by <a target="_blank" href="http://{1}">{2}</a>.'
-      
+
       var hostname = window.location.hostname;
       //hostname = 'linux-bg.org';
-      
+
       switch(hostname) {
         case 'linux-bg.org': {
           html += sepa;
@@ -537,7 +537,7 @@
           html += '<a target="_blank" href="http://linux-bulgaria.org">linux-bulgaria.org</a>.';
 
           footerDiv.innerHTML = html;
-          
+
           break;
         }
         default: {
@@ -546,10 +546,10 @@
             html += afterSepa.replace("{1}", hostname).replace("{2}", hostname);
 
             footerDiv.innerHTML = html;
-			    }
-		    }
-		  }
-	  }
+          }
+        }
+      }
+    }
   </script>
 
   <script>

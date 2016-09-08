@@ -8,7 +8,7 @@ Tutorial: http://skamilinux.hu/minimal/the_dao_of_minimal_linux_live.txt
 Architecture: http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html
 
 
-Emulator: http://minimal.linux-bg.org/emulator
+Emulator: http://skamilinux.hu/minimal/emulator
 
 ![Minimal Linux Live JavaScript Emulator](http://skamilinux.hu/minimal/assets/img/minimal_linux_live_javascript_emulator.png)
 

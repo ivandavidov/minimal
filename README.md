@@ -1,21 +1,23 @@
 Minimal Linux Live
 =======
 
-Website:  http://skamilinux.hu/minimal
+Website 1: http://minimal.idzona.com
 
-Tutorial: http://skamilinux.hu/minimal/the_dao_of_minimal_linux_live.txt
+Website 2: http://skamilinux.hu/minimal
+
+Tutorial: http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt
 
 Architecture: http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html
 
 
-Emulator: http://skamilinux.hu/minimal/emulator
+Emulator: http://minimal.idzona.com/emulator
 
-![Minimal Linux Live JavaScript Emulator](http://skamilinux.hu/minimal/assets/img/minimal_linux_live_javascript_emulator.png)
+![Minimal Linux Live JavaScript Emulator](http://minimal.idzona.com/assets/img/minimal_linux_live_javascript_emulator.png)
 
 
 YouTube: https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS
 
-![Minimal Linux Live](http://skamilinux.hu/minimal/assets/img/minimal_linux_live.png)
+![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
 
 
 Other projects based on "Minimal Linux Live":

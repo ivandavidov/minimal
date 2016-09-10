@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns" style="text-align: center;">
-        <h2><a href="#" style="text-decoration: none; color: #000;">Minimal Linux Live</a></h2>
+        <h2><a href="." style="text-decoration: none; color: #000;">Minimal Linux Live</a></h2>
       </div>
     </div>
     <div class="row">
@@ -478,9 +478,9 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div id="footer" class="row" style="text-align: center;">
       <div class="twelve columns">
-        Copyright &copy; 2014 - 2016
+        <a href="." title="Minimal Linux Live">Minimal Linux Live</a>
         <span class="separator">|</span>
-        <a href="#" title="Minimal Linux Live">Minimal Linux Live</a>
+        Copyright &copy; 2014 - 2016
       </div>
     </div>
   </div>
@@ -524,21 +524,18 @@
       var html = footerDiv.innerHTML;
 
       var sepa = ' <span class="separator">|</span> ';
-      var afterSepa = 'Hosting by <a target="_blank" href="http://{1}">{2}</a>.'
+      var afterSepa = '<a target="_blank" href="http://{1}">{2}</a>'
 
       var hostname = window.location.hostname;
-      //hostname = 'linux-bg.org';
 
       switch(hostname) {
-        case 'linux-bg.org': {
-          html += sepa;
-          html += 'Hosting by <a target="_blank" href="http://linux-bg.org">linux-bg.org</a>';
-          html += ' and ';
-          html += '<a target="_blank" href="http://linux-bulgaria.org">linux-bulgaria.org</a>.';
+        case 'minimal.idzona.com' : {
+            html += sepa;
+            html += afterSepa.replace("{1}", 'microweber.com').replace("{2}", 'Microweber CMS');
 
-          footerDiv.innerHTML = html;
-
-          break;
+            footerDiv.innerHTML = html;
+            
+            break;
         }
         default: {
           if(hostname != "") {

@@ -537,6 +537,22 @@
             
             break;
         }
+        case 'linux.idzona.com' : {
+            html += sepa;
+            html += 'Hosted by John Doe - thank you!';
+
+            footerDiv.innerHTML = html;
+            
+            break;
+        }
+        case 'skamilinux.hu' : {
+            html += sepa;
+            html += 'Hosted by <a target="_blank" href="http://skamilinux.hu">skamilinux.hu</a> - thank you!';
+
+            footerDiv.innerHTML = html;
+            
+            break;
+        }
         default: {
           if(hostname != "") {
             html += sepa;

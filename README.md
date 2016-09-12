@@ -5,6 +5,8 @@ Website 1: http://minimal.idzona.com
 
 Website 2: http://skamilinux.hu/minimal
 
+Website 3: http://linux.idzona.com
+
 Tutorial: http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt
 
 Architecture: http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html

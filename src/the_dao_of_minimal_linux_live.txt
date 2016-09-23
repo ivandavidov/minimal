@@ -1,8 +1,11 @@
 ﻿   
-   The Dao of Minimal Linux Live (15-Feb-2015)
+   The Dao of Minimal Linux Live (22-Sep-2016)
    
    Author:    Ivan Davidov
-   Website:   http://minimal.linux-bg.org
+   Website:   http://minimal.idzona.com
+              http://skamilinux.hu/minimal
+              http://linux.idzona.com
+              http://minimal.linux-bg.org
    Email:     davidov (dot) i {at} gmail [dot] com
    
    Redistributed by: <put your name and contact details somewhere here>
@@ -88,7 +91,7 @@
       7_generate_iso.sh
       build_minimal_linux_live.sh
       
-   If you have followed the explanation posted on http://minimal.linux-bg.org then you already
+   If you have followed the explanation posted on http://minimal.idzona.com then you already
    know that you need to execute the script "build_minimal_linux_live.sh". If you open this
    file with text editor you will find out that all this script does is to execute all other
    scripts one by one.
@@ -448,6 +451,24 @@
    The above command generates bootable ISO based on the already compiled Linux kernel and
    it uses the initramfs file which we pass to the "make" command as additional parameter.
    The generated ISO file is then copied to the folder where we are executing our scripts.
+   
+   UPDATE (22-Sep-2016): The "make isoimage" command relies on Syslinux older than 5.0.
+   The issue is that Syslinux versions after 5.0 require ldlinux.c32 which is not handled
+   correctly by the kernel's Makefile. You need to appply a patch to the Makefile in order
+   to make it work correctly. I find it easier to edit the Makefile and apply the patch
+   changes manually:
+   
+   https://github.com/ivandavidov/minimal/issues/10
+   
+   http://github.com/mhiramat/boot2minc/blob/master/src/patches/kernel/x86-copy-linux-c32-for-newer.patch
+   
+   if [ -f /usr/$$i/syslinux/isolinux.bin ] ; then \                 # old line
+     cp /usr/$$i/syslinux/isolinux.bin $(obj)/isoimage ; \           # old line
+     if [ -f /usr/$$i/syslinux/ldlinux.c32 ] ; then \                # new line (patch)
+       cp /usr/$$i/syslinux/ldlinux.c32 $(obj)/isoimage ; \          # new line (patch)
+     fi ; \                                                          # new line (patch)
+     break ; \                                                       # old line
+   fi ; \                                                            # old line
    
    ###   ###   ###
    

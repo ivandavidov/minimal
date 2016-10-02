@@ -1,11 +1,16 @@
 ﻿   
-   The Dao of Minimal Linux Live (22-Sep-2016)
+   The Dao of Minimal Linux Live (02-Oct-2016)
    
    Author:    Ivan Davidov
+   
    Website:   http://minimal.idzona.com
               http://skamilinux.hu/minimal
               http://linux.idzona.com
               http://minimal.linux-bg.org
+   
+   GitHub:    http://github.com/ivandavidov/minimal
+              http://github.com/ivandavidov/minimal-linux-script
+
    Email:     davidov (dot) i {at} gmail [dot] com
    
    Redistributed by: <put your name and contact details somewhere here>
@@ -452,7 +457,7 @@
    it uses the initramfs file which we pass to the "make" command as additional parameter.
    The generated ISO file is then copied to the folder where we are executing our scripts.
    
-   UPDATE (22-Sep-2016): The "make isoimage" command relies on Syslinux older than 5.0.
+   UPDATE (02-Oct-2016): The "make isoimage" command relies on Syslinux older than 5.0.
    The issue is that Syslinux versions after 5.0 require ldlinux.c32 which is not handled
    correctly by the kernel's Makefile. You need to appply a patch to the Makefile in order
    to make it work correctly. I find it easier to edit the Makefile and apply the patch
@@ -469,6 +474,12 @@
      fi ; \                                                          # new line (patch)
      break ; \                                                       # old line
    fi ; \                                                            # old line
+   
+   Another possible solution is to manually generate the ISO image by executing the
+   command "genisoimage" with the appropriate arguaments. You can take a look at the
+   project "Minimal Linux Script" which follows the "genisoimage" approach:
+   
+   http://github.com/ivandavidov/minimal-linux-script
    
    ###   ###   ###
    

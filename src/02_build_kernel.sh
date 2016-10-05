@@ -81,8 +81,19 @@ make \
   CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
   bzImage -j $NUM_JOBS
 
+# Determine arch directory for the kernel image.
+UNAMEM=$(uname -m)
+if [ "$UNAMEM" = "x86_64" ] || [ "$UNAMEM" = "x86" ] || [ "$UNAMEM" = "i386" ] || [ "$UNAMEM" = "i686" ]; then
+  ARCH=x86
+elif [ "$UNAMEM" = "ppc" ] || [ "$UNAMEM" = "ppc64" ]; then
+  ARCH=powerpc
+else
+  echo "ERROR: Unknown architecture..."
+  exit 1
+fi
+
 # Install the kernel file.
-cp arch/x86/boot/bzImage \
+cp arch/$ARCH/boot/bzImage \
   $SRC_DIR/work/kernel/kernel_installed/kernel
 
 # Install kernel headers which are used later when we build and configure the

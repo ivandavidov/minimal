@@ -85,7 +85,7 @@ make \
 UNAMEM=$(uname -m)
 if [ "$UNAMEM" = "x86_64" ] || [ "$UNAMEM" = "x86" ] || [ "$UNAMEM" = "i386" ] || [ "$UNAMEM" = "i686" ]; then
   ARCH=x86
-elif [ "$UNAMEM" = "ppc" ] || [ "$UNAMEM" = "ppc64" ]; then
+elif [ "$UNAMEM" = "ppc" ] || [ "$UNAMEM" = "ppc64" ] || [ "$UNAMEM" = "ppcemb" ]; then
   ARCH=powerpc
 else
   echo "ERROR: Unknown architecture..."

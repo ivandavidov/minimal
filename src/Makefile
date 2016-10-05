@@ -28,7 +28,7 @@ qemu:
 	@$(eval UNAMEM := $(shell uname -m))
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi
 	@echo "Launching QEMU..."
-	@if [ "$(UNAMEM)" = "x86_64" ]; then sh qemu64.sh; elif [ "$(UNAMEM)" = "x86" ] || [ "$(UNAMEM)" = "i686" ] || [ "$(UNAMEM)" = "i386" ]; then sh qemu32.sh; elif [ "$(UNAMEM)" = "ppc" ]; then sh qemu-ppc32.sh; elif [ "$(UNAMEM)" = "ppc64" ]; then sh qemu-ppc64.sh fi
+	@if [ "$(UNAMEM)" = "x86_64" ]; then sh qemu64.sh; elif [ "$(UNAMEM)" = "x86" ] || [ "$(UNAMEM)" = "i686" ] || [ "$(UNAMEM)" = "i386" ]; then sh qemu32.sh; elif [ "$(UNAMEM)" = "ppc" ]; then sh qemu-ppc32.sh; elif [ "$(UNAMEM)" = "ppc64" ]; then sh qemu-ppc64.sh; elif [ "$(UNAMEM)" = "ppcemb" ]; then sh qemu-ppcemb.sh; fi
 
 src:
 	@echo "Generating source archive..."

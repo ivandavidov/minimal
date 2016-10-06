@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 time sh 00_clean.sh
 time sh 01_get_kernel.sh

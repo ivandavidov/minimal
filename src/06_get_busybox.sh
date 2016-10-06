@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 echo "*** GET BUSYBOX BEGIN ***"
 

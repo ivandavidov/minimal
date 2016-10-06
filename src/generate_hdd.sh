@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 # Create sparse file of 20MB which can be used by QEMU.
 

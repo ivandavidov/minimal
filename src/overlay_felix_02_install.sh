@@ -24,7 +24,7 @@ cp -r * $SRC_DIR/work/overlay/felix/felix_installed/opt/felix
 
 cd $SRC_DIR/work/overlay/felix/felix_installed
 
-ln -s ../opt/felix/bin/felix-start.sh bin/felix-start.sh 
+ln -s ../opt/felix/bin/felix-start.sh bin/felix-start
 
 cp -r $SRC_DIR/work/overlay/felix/felix_installed/* \
   $SRC_DIR/work/src/minimal_overlay

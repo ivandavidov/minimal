@@ -28,6 +28,7 @@ echo "Configuring Links..."
   --disable-utf8 \
   --without-ipv6 \
   --without-ssl \
+  --without-zlib \
   --without-x
 
 # Set CFLAGS directly in Makefile.

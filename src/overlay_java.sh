@@ -11,7 +11,7 @@
 #
 #    Example:
 #
-#      JAVA_ARCHIVE=/home/myself/Downloads/jdk-8u91-linux-x64.tar.gz
+#      JAVA_ARCHIVE=/home/ivan/Downloads/jdk-8u102-linux-x64.tar.gz
 #
 # 3) Run this script. Note that the script will fail with error message if the
 #    'JAVA_ARCHIVE' property is not set or if it points to invalid file.
@@ -25,7 +25,7 @@ if [ "$JAVA_ARCHIVE" = "" ] ; then
   echo "ERROR: configuration property 'JAVA_ARCHIVE' is not set."
   exit 1
 elif [ ! -f "$JAVA_ARCHIVE" ] ; then
-  echo "ERROR: configuration property 'JAVA_ARCHIVE' points to non existent file."
+  echo "ERROR: configuration property 'JAVA_ARCHIVE' points to nonexistent file."
   exit 1
 fi
 

@@ -6,36 +6,48 @@ sh build_minimal_linux_live.sh
 Note that the build process requires proper toolchain already installed and
 configured. Check the project's website for more information:
 
-http://minimal.linux-bg.org
+http://minimal.idzona.com
 
 Once you have your ISO image up and running perhaps you'd like to play with the
-configuration file '.config' and see what options you have there. For example
-you can change the property 'OVERLAY_SOFTWARE'. If you do that you will have
+configuration file ".config" and see what options you have there. For example
+you can enable the property "OVERLAY_BUNDLES". If you do that you will have
 additional software being downloaded, built and installed on the ISO image.
 
-Currently available overlay software:
+Currently available overlay bundles:
 
-  * GLIBC    - Set of all core GNU C libraries packaged together. Requires ~3MB
+* GLIBC      - Set of all core GNU C libraries packaged together. Requires ~3MB
                additional space. This overlay bundle is not host specific and
                can always be built. The libraries are useful if you plan to use
                more software after boot.
 
                This overlay bundle depends on the GLIBC build process.
 
-  * Links    - text based browser. Requires ~1MB additional space. Use the
-               'links' command to activate the browser.
+* Links      - text based browser. Requires ~1MB additional space. Use the
+               "links" command to activate the browser.
 
                This overlay bundle is self sufficient and doesn't require other
                overlay bundles.
 
-  * Dropbear - SSH server/client. Requires ~1MB additional space. The build
+* Dropbear   - SSH server/client. Requires ~1MB additional space. The build
                process creates user 'root' with password 'toor'. These are
                sample commands which demonstrate how to use Dropbear:
-    
+
                SSH server (Alt + F1): dropbear -E -F
                SSH client (Alt + F2): dbclient 10.0.2.15 -l root
 
                This overlay bundle depends on the GLIBC build process.
+
+* JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
+               This overlay bundle requires some manual preparation steps. Refer
+               to the "JAVA_ARCHIVE" property in the ".config" file for more
+               detailed information.
+
+               This overlay bundle depends on the GLIBC build process.
+
+* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
+               the "felix-start" command to run the Apache Felix OSGi framework. 
+
+               This overlay bundle depends on the Java overlay bundle.
 
 ###   ###   ###
 

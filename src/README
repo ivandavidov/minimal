@@ -35,19 +35,19 @@ Currently available overlay bundles:
                SSH server (Alt + F1): dropbear -E -F
                SSH client (Alt + F2): dbclient 10.0.2.15 -l root
 
-               This overlay bundle depends on the GLIBC build process.
+               This overlay bundle requires GLIBC.
 
 * JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
                This overlay bundle requires some manual preparation steps. Refer
                to the "JAVA_ARCHIVE" property in the ".config" file for more
                detailed information.
 
-               This overlay bundle depends on the GLIBC build process.
+               This overlay bundle requires GLIBC.
 
 * Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
                the "felix-start" command to run the Apache Felix OSGi framework. 
 
-               This overlay bundle depends on the Java overlay bundle.
+               This overlay bundle requires JRE or JDK.
 
 ###   ###   ###
 

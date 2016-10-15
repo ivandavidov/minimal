@@ -48,6 +48,17 @@ Currently available overlay bundles:
                the "felix-start" command to run the Apache Felix OSGi framework. 
 
                This overlay bundle requires JRE or JDK.
+               
+* Ncurses    - GNU New Curses (Ncurses) Library. Requires ~3MB additional space
+               for Ncurses. Provides libraries for Nano and Dialog and main 
+               GUI-Like Framework.
+               
+               This overlay bundle requires GLIBC.
+               
+* Nano       - GNU Nano Text Editor. Requires ~2MB additional space. Use the
+               "nano" command to start the Nano text editor. Alternative to Vi.
+               
+               This overlay bundle requires Ncurses.
 
 ###   ###   ###
 

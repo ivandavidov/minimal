@@ -130,7 +130,7 @@ else
 fi
 
 # Create the ISOLINUX configuration file.
-echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./isolinux.cfg
+echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./syslinux.cfg
 
 # Now we generate the ISO image file.
 genisoimage \

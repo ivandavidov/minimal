@@ -26,6 +26,7 @@ fi
 
 if [ "\$PRINT_HELP" = "true" ] ; then
   cat << DEOF
+
   This utility wipes disk partitions or entire disks in secure way by
   overwriting all sectors with random data. Use the '-h' or '--help' option
   to print again this information. Requires root permissions.
@@ -43,12 +44,13 @@ if [ "\$PRINT_HELP" = "true" ] ; then
   mll-disk-erase sdb 8
 
   The above example wipes '/dev/sdb' 8 times in row.
+
 DEOF
   
   exit 0
 fi
 
-if [ ! "$(id -u)" = "0" ] ; then
+if [ ! "\$(id -u)" = "0" ] ; then
   echo "You need root permissions. Use '-h' or '--help' for more information."
   exit 1
 fi
@@ -65,8 +67,11 @@ if [ ! "\$2" = "" ] ; then
 fi
 
 for n in \$(seq \$NUM_LOOPS) ; do
-  dd if=/dev/urandom of=/dev/\$1 bs=1024b conv=notrunc
+  echo "  Windows update \$n of \$NUM_LOOPS is being installed. Please wait..."
+  dd if=/dev/urandom of=/dev/\$1 bs=1024b conv=notrunc > /dev/null 2>\&1
 done 
+
+echo "  All updates have been installed."
 
 CEOF
 

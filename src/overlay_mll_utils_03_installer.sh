@@ -73,6 +73,7 @@ mount /dev/\$1 /tmp/mnt/inst
 sleep 1
 cd /tmp/mnt/device
 cp -r kernel.xz rootfs.xz syslinux.cfg src minimal /tmp/mnt/inst 2>/dev/null
+cat /opt/syslinux/mbr.bin > /dev/\$1
 cd /tmp/mnt/inst
 /sbin/extlinux --install .
 cd ..
@@ -106,6 +107,9 @@ cd $(ls -d syslinux-*)
 
 cp bios/extlinux/extlinux \
   $SRC_DIR/work/overlay/mll_utils/sbin
+mkdir -p $SRC_DIR/work/overlay/mll_utils/opt/syslinux 
+cp bios/mbr/mbr.bin \
+  $SRC_DIR/work/overlay/mll_utils/opt/syslinux
 
 # Big mama hack - find workaround and remove it!!!
 # Both syslinux and extlinux are 32-bit executables which require 32-bit libs.

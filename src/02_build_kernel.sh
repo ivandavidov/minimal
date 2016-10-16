@@ -75,8 +75,15 @@ else
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
 
-  # Explicitly enable the mixed EFI mode.
-  echo "CONFIG_EFI_MIXED=y" > .config
+  # Check if we are building 32-bit kernel. The exit code is '1' when we are
+  # building 64-bit kernel, otherwise the exit status is '0'.
+  grep -q "CONFIG_X86_32=y" .config
+
+  # The '$?' variable holds the exit code of the last issued command.
+  if [ $? = 1 ] ; then
+    # Enable the mixed EFI mode when building 64-bit kernel.
+    echo "CONFIG_EFI_MIXED=y" > .config
+  fi
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.

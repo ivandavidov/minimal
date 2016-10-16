@@ -136,7 +136,7 @@ echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./syslinux.cfg
 mkdir -p efi/boot
 cat << CEOF > ./efi/boot/startup.nsh
 echo -off
-echo "Minimal Linux Live" is starting...
+echo Minimal Linux Live is starting...
 \\kernel.xz initrd=\\rootfs.xz
 CEOF
 

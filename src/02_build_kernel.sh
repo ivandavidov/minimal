@@ -71,6 +71,12 @@ else
   
   # Disable debug symbols in kernel => smaller kernel binary.
   sed -i "s/^CONFIG_DEBUG_KERNEL.*/\\# CONFIG_DEBUG_KERNEL is not set/" .config
+
+  # Enable the EFI stub
+  sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
+
+  # Explicitly enable the mixed EFI mode.
+  echo "CONFIG_EFI_MIXED=y" > .config
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.

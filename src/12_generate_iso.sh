@@ -60,11 +60,6 @@ fi
 
 cd work/isoimage
 
-# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image
-# root folder.
-cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
-cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
-
 # Now we copy the kernel.
 cp $KERNEL_INSTALLED/kernel ./kernel.xz
 
@@ -129,8 +124,21 @@ else
   echo "Generating ISO image with no overlay structure..."
 fi
 
+# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image
+# root folder.
+cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
+cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
+
 # Create the ISOLINUX configuration file.
 echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./syslinux.cfg
+
+# Create UEFI start script.
+mkdir -p efi/boot
+cat << CEOF > ./efi/boot/startup.nsh
+echo -off
+echo "Minimal Linux Live" is starting...
+\\kernel.xz initrd=\\rootfs.xz
+CEOF
 
 # Now we generate the ISO image file.
 genisoimage \
@@ -146,8 +154,7 @@ genisoimage \
   ./
 
 # This allows the ISO image to be bootable if it is burned on USB flash drive.
-# The -u option is used in EFI boot mode (still not supported) and it reduces
-# the ISO image size.
+# The -u option is used in EFI boot mode and it reduces the ISO image size.
 isohybrid -u ../minimal_linux_live.iso 2>/dev/null || true
 
 # Copy the ISO image to the root project folder.

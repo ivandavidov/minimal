@@ -76,7 +76,7 @@ else
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
 
   # Check if we are building 32-bit kernel. The exit code is '1' when we are
-  # building 64-bit kernel, otherwise the exit status is '0'.
+  # building 64-bit kernel, otherwise the exit code is '0'.
   grep -q "CONFIG_X86_32=y" .config
 
   # The '$?' variable holds the exit code of the last issued command.

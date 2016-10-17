@@ -82,7 +82,7 @@ else
   # The '$?' variable holds the exit code of the last issued command.
   if [ $? = 1 ] ; then
     # Enable the mixed EFI mode when building 64-bit kernel.
-    echo "CONFIG_EFI_MIXED=y" > .config
+    echo "CONFIG_EFI_MIXED=y" >> .config
   fi
 fi
 

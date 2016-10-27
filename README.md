@@ -1,47 +1,18 @@
-## Minimal Linux Live
+## Minimal Linux Mincs (experimental work)
 
 You can find the main website here:
 
-[Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
+The purpose of this branch is to add the [MINCS](https://github.com/mhiramat/mincs) container support to Minimal Linux Live. Proof of concept (PoC) project is [Boot2MINC](https://github.com/mhiramat/boot2minc).
 
-If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live"), [here](http://linux.idzona.com "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
+In the long term the goal is to run [Docker](https://www.docker.com/) directly in Minimal Linux Live. However, there are several issues:
 
-[The DAO of Minimal Linux Live](http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt "The DAO of Minimal Linux Live") - this tutorial explains step by step what you need to do in order to create your own minimalistic live Linux OS. The tutorial is based on the first published version of Minimal Linux Live.
+- Currently MLL provides kernel without cgroups/namespaces support.
+- Assuming the first condition has been fulfilled, currently the initializing process doesn't mount the cgroups hierarchy at all. Moreover, Docker has special requirements in this particular area.
+- The MLL userland (based on BusyBox) doesn't provide the binary utilities required by Docker.
 
-[Component Architecture of Minimal Linux Live](http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html "Component Architecture of Minimal Linux Live") - this publication describes the high level components included in the "03-Apr-2016" version of Minimal Linux Live.
+One way to solve all these issues is the following:
 
-You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
-
-![Minimal Linux Live JavaScript Emulator](http://minimal.idzona.com/assets/img/minimal_linux_live_javascript_emulator.png)
-
-Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
-
-This is a screenshot of the current development version of Minimal Linux Live:
-
-![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
-
-## Notable projects based on Minimal Linux Live:
-
-* [Redox OS Installer](https://github.com/redox-os/installer) - Minimal Linux Live has been chosen by the [Redox OS](https://www.redox-os.org) developers to build the installer part of the operating system.
-
-* [Boot2Minc](https://github.com/mhiramat/boot2minc) - this fork adds [Mincs](https://github.com/mhiramat/mincs) and as result you can run Linux containers. One interesting Mincs feature - it provides tools which allow you to reuse alredy existing Docker containers.
-
-* [K1773R's MLL](https://github.com/K1773R/minimal) - PowerPC version of Minimal Linux Live with [memtester](http://pyropus.ca/software/memtester) as additional software. Impressive work!
-
-## Other projects based on Minimal Linux Live
-
-* [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL.
-
-* [Ladiko's MLL](https://github.com/ladiko/minimal) - This fork automatically downloads and uses the latest available Kernel and BusyBox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
-
-* [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux) - MLL fork which provides additional overlay bundles (ncurses and Nano).
-
-* [prologic's MLL](https://github.com/prologic/minimal) - this fork adds Python support to the MLL runtime environment.
-
-* [KernelISO](https://github.com/rleon/kerneliso) - extended version of MLL.
-
-* [diaob's MLL](https://github.com/Diaob/minimal) - MLL translation to Simplified Chinese.
-
-* [bdheeman's MLL](https://bitbucket.org/bdheeman/minimal) - MLL KISS fork (Keep It, Simple, Safe/Secure/Stupid).
-
-* [Runlinux](https://github.com/cirosantilli/runlinux) - environment to build and test Linux kernels.
+- Add proper support for MINCS (that's what the current branch is about).
+- Find Docker image which in turn contains Docker as is able to run it properly.
+- Use the MINCS utilities to convert the above mentioned docker image to MINCS image.
+- Use MINCS as wrapper container for the converted Docker image.

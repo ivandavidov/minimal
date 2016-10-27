@@ -1,8 +1,8 @@
 ## Minimal Linux Mincs (experimental work)
 
-The purpose of this branch is to add the [MINCS](https://github.com/mhiramat/mincs) container support to Minimal Linux Live. Proof of concept (PoC) project is [Boot2MINC](https://github.com/mhiramat/boot2minc).
+The purpose of this branch is to add the [MINCS](https://github.com/mhiramat/mincs) container support in Minimal Linux Live. Most of the work will be based on the [Boot2MINC](https://github.com/mhiramat/boot2minc) project.
 
-In the long term the goal is to run [Docker](https://www.docker.com/) directly in Minimal Linux Live. However, there are several issues:
+The long term goal is to run [Docker](https://www.docker.com/) directly in Minimal Linux Live. However, there are several issues:
 
 - Currently MLL provides kernel without cgroups/namespaces support.
 - Assuming the first condition has been fulfilled, currently the initializing process doesn't mount the cgroups hierarchy at all. Moreover, Docker has special requirements in this particular area.

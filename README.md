@@ -12,7 +12,7 @@ The long term goal is to run [Docker](https://www.docker.com/) directly in Minim
 One way to solve all these issues and make Docker work in MLL is the following:
 
 - Add proper support for MINCS (that's what the current branch is about).
-- Find Docker image which in turn contains Docker as is able to run it properly (Docker in Docker).
+- Find Docker image which in turn contains Docker and is able to run it properly (Docker in Docker).
 - Use the MINCS utilities to convert the above mentioned docker image to MINCS image.
 - Use MINCS as wrapper container for the converted Docker image.
 

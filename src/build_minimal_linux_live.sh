@@ -8,6 +8,8 @@ time sh 04_build_glibc.sh
 time sh 05_prepare_glibc.sh
 time sh 06_get_busybox.sh
 time sh 07_build_busybox.sh
+time sh 07_1_get_mincs.sh
+time sh 07_2_get_docker.sh
 time sh 08_prepare_src.sh
 time sh 09_generate_rootfs.sh
 time sh 10_pack_rootfs.sh

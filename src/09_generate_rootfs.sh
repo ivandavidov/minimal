@@ -23,6 +23,14 @@ cp -r src/minimal_rootfs/* rootfs
 
 cd rootfs
 
+# Install mincs
+cd ../mincs
+cd $(ls -d *)
+
+PREFIX=../../rootfs/usr/ LIBEXEC=/usr/libexec ./install.sh
+
+cd $SRC_ROOT/work/rootfs
+
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode. 
 rm -f linuxrc
 

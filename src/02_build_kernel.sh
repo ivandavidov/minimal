@@ -34,6 +34,23 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/ke
   USE_PREDEFINED_KERNEL_CONFIG="false"
 fi
 
+yconfig() { # yes configs
+while [ $# -ne 0 ]; do
+  sed -i "s/.*CONFIG_$1\ .*/CONFIG_$1=y/" .config
+  grep ^"CONFIG_$1=y" .config || echo "CONFIG_$1=y" >> .config
+  shift 1
+done
+}
+
+nconfig() { # no configs
+while [ $# -ne 0 ]; do
+  sed -i "s/.*CONFIG_$1\ .*/CONFIG_$1/" .config
+  grep ^"# CONFIG_$1 is not set" .config || echo "# CONFIG_$1 is not set" >> .config
+  shift 1
+done
+}
+
+
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   # Use predefined configuration file for the kernel.
   echo "Using config file $SRC_DIR/minimal_config/kernel.config"  
@@ -84,6 +101,38 @@ else
     # Enable the mixed EFI mode when building 64-bit kernel.
     echo "CONFIG_EFI_MIXED=y" >> .config
   fi
+
+  # MINCS configuration BEGIN
+
+  # Config for Virtio environment
+  echo "CONFIG_VIRTIO=y" >> .config
+  echo "CONFIG_VIRTIO_PCI=y" >> .config
+  echo "CONFIG_VIRTIO_MMIO=y" >> .config
+  echo "CONFIG_VIRTIO_CONSOLE=y" >> .config
+  echo "CONFIG_VIRTIO_BLK=y" >> .config
+  echo "CONFIG_VIRTIO_NET=y" >> .config
+  
+  # Config adding Realtek NIC
+  echo "CONFIG_8139TOO=y" >> .config
+  echo "CONFIG_8139CP=y" >> .config
+
+  sed -i "s/.*CONFIG_SQUASHFS\ .*/CONFIG_SQUASHFS=y/" .config
+
+  yconfig CGROUPS EVENTFD CGROUP_DEVICE CPUSETS CGROUP_CPUACCT \
+          PAGE_COUNTER MEMCG MEMCG_SWAP MEMCG_SWAP_ENABLED \
+          CGROUP_PERF CGROUP_SCHED CGROUP_HUGETLB FAIR_GROUP_SCHED \
+          CFS_BANDWIDTH RT_GROUP_SCHED BLK_CGROUP VIRTIO_PCI_LEGACY \
+          SQUASHFS_FILE_CACHE SQUASHFS_DECOMP_SINGLE SQUASHFS_ZLIB \
+          
+
+  nconfig DEBUG_BLK_CGROUP BLK_DEV_THROTTLING CFQ_GROUP_IOSCHED \
+          HW_RANDOM_VIRTIO DRM_VIRTIO_GPU VIRTIO_BALLOON VIRTIO_INPUT \
+          VIRTIO_MMIO_CMDLINE_DEVICES SQUASHFS_XATTR SQUASHFS_LZ4 \
+          SQUASHFS_LZO SQUASHFS_XZ SQUASHFS_4K_DEVBLK_SIZE \
+          SQUASHFS_EMBEDDED SQUASHFS_FILE_DIRECT SQUASHFS_DECOMP_MULTI \
+          SQUASHFS_DECOMP_MULTI_PERCPU
+
+  # MINCS configuration END
 fi
 
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.

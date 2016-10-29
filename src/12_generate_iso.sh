@@ -140,6 +140,12 @@ echo Minimal Linux Live is starting...
 \\kernel.xz initrd=\\rootfs.xz
 CEOF
 
+# Docker BEGIN
+mkdir -p minimal/rootfs/usr/bin
+mkdir -p minimal/work
+cp $SRC_DIR/source/docker/* minimal/rootfs/usr/bin
+# Docker END
+
 # Now we generate the ISO image file.
 genisoimage \
   -J \

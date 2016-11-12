@@ -3,6 +3,8 @@
 time sh 00_clean.sh
 time sh 01_get_kernel.sh
 time sh 02_build_kernel.sh
+time sh 02_1_build_kernel_modules.sh
+time sh 02_2_build_kernel_firmware.sh
 time sh 03_get_glibc.sh
 time sh 04_build_glibc.sh
 time sh 05_prepare_glibc.sh

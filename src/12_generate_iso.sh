@@ -142,8 +142,40 @@ CEOF
 
 # Docker BEGIN
 mkdir -p minimal/rootfs/usr/bin
+mkdir -p minimal/rootfs/var/run
+mkdir -p minimal/rootfs/sbin
+mkdir -p minimal/rootfs/lib
 mkdir -p minimal/work
 cp $SRC_DIR/source/docker/* minimal/rootfs/usr/bin
+
+cp /sbin/iptables minimal/rootfs/sbin
+cp /lib/x86_64-linux-gnu/libip4tc.so.0 minimal/rootfs/lib
+cp /lib/x86_64-linux-gnu/libip6tc.so.0 minimal/rootfs/lib
+cp /lib/x86_64-linux-gnu/libip6tc.so.0 minimal/rootfs/lib
+cp /lib/x86_64-linux-gnu/libxtables.so.11 minimal/rootfs/lib
+cp /lib/x86_64-linux-gnu/libdl.so.2 minimal/rootfs/lib
+
+cp /lib/xtables/libipt* minimal/rootfs/lib
+cp /lib/x86_64-linux-gnu/libipt* minimal/rootfs/lib
+
+cp /sbin/modprobe minimal/rootfs/sbin
+
+cd minimal/rootfs
+
+wget http://mirrors.kernel.org/ubuntu/pool/main/i/iptables/iptables_1.6.0-2ubuntu3_amd64.deb
+ar -x iptables_1.6.0-2ubuntu3_amd64.deb
+tar -xvf data.tar.xz
+
+cd ../..
+
+cat << CEOF > minimal/rootfs/sbin/dod
+#!/bin/sh
+
+dockerd --storage-driver overlay
+
+CEOF
+
+chmod +x minimal/rootfs/sbin/dod
 # Docker END
 
 # Now we generate the ISO image file.

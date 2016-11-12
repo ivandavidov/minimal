@@ -71,6 +71,10 @@ cp $GLIBC_PREPARED/lib/libnss_dns.so.2 lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
+# Prepare kernel modules and firmware BEGIN
+cp -r $SRC_ROOT/work/kernel/kernel_installed/lib/* lib
+# Prepare kernel modules and firmware END
+
 strip -g \
   $SRC_ROOT/work/rootfs/bin/* \
   $SRC_ROOT/work/rootfs/sbin/* \

@@ -11,8 +11,6 @@ all: clean
 	@time sh build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
 
 clean:
-	@echo "Removing source files..."
-	@rm -rf source
 	@echo "Removing generated work artifacts..."
 	@rm -rf work
 	@echo "Removing generated ISO image..."
@@ -23,6 +21,8 @@ clean:
 	@cd minimal_overlay && rm -rf $(shell ls -d */) && cd ..
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
+	@$(eval USE_LOCAL_SOURCE := $(shell grep -i ^USE_LOCAL_SOURCE .config | cut -f2 -d'='))
+	@if [ "$(USE_LOCAL_SOURCE)" = "false" ]; then echo "Removing source files..."; rm -rf source; fi
 
 qemu:
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi

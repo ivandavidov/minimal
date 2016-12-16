@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
+source .config
 
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i DROPBEAR_SOURCE_URL .config | cut -f2 -d'=')
-
+#DOWNLOAD_URL=$(grep -i DROPBEAR_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$DROPBEAR_SOURCE_URL
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
@@ -28,7 +30,7 @@ fi
 
 # Delete folder with previously extracted Dropbear.
 echo "Removing Dropbear work area. This may take a while..."
-rm -rf ../../work/overlay/dropbear
+rm -rf work/overlay/dropbear
 mkdir ../../work/overlay/dropbear
 
 # Extract Dropbear to folder 'work/overlay/dropbear'.

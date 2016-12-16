@@ -1,10 +1,13 @@
-#!/bin/sh
+#!/bin/bash
+
+source .config
 
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i LINKS_SOURCE_URL .config | cut -f2 -d'=')
 
+#DOWNLOAD_URL=$(grep -i LINKS_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$LINKS_SOURCE_URL
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
@@ -28,8 +31,8 @@ fi
 
 # Delete folder with previously extracted Links.
 echo "Removing Links work area. This may take a while..."
-rm -rf ../../work/overlay/links
-mkdir ../../work/overlay/links
+rm -rf work/overlay/links
+mkdir -p work/overlay/links
 
 # Extract Links to folder 'work/overlay/links'.
 # Full path will be something like 'work/overlay/links/links-2.12'.

@@ -1,11 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+
+source .config
 
 echo "*** GET SYSLINUX BEGIN ***"
 
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i ^SYSLINUX_SOURCE_URL .config | cut -f2 -d'=')
+#DOWNLOAD_URL=$(grep -i ^SYSLINUX_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$SYSLINUX_SOURCE_URL
 
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}

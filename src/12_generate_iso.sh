@@ -33,7 +33,7 @@ echo "Removing old ISO image work area. This may take a while..."
 rm -rf work/isoimage
 
 # This is the root folder of the ISO image.
-mkdir work/isoimage
+mkdir -p work/isoimage
 echo "Prepared new ISO image work area."
 
 # Read the 'COPY_SOURCE_ISO' property from '.config'

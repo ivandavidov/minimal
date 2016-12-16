@@ -1,11 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+
+source .config
 
 echo "*** GET KERNEL BEGIN ***"
 
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i ^KERNEL_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$KERNEL_SOURCE_URL
+#DOWNLOAD_URL=$(grep -i ^KERNEL_SOURCE_URL .config | cut -f2 -d'=')
 
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
@@ -23,7 +26,7 @@ cd source
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading kernel source bundle file. The '-c' option allows the download to resume.
   echo "Downloading kernel source bundle from $DOWNLOAD_URL"
-  wget -c $DOWNLOAD_URL
+wget -c $DOWNLOAD_URL
 else
   echo "Using local kernel source bundle $SRC_DIR/source/$ARCHIVE_FILE"
 fi

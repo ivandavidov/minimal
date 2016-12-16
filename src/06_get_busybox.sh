@@ -1,12 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
+source .config
 echo "*** GET BUSYBOX BEGIN ***"
 
 SRC_DIR=$(pwd)
 
 # Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i ^BUSYBOX_SOURCE_URL .config | cut -f2 -d'=')
-
+#DOWNLOAD_URL=$(grep -i ^BUSYBOX_SOURCE_URL .config | cut -f2 -d'=')
+DOWNLOAD_URL=$BUSYBOX_SOURCE_URL
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 

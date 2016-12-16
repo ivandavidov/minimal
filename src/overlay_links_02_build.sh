@@ -11,7 +11,7 @@ NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 # Calculate the number of 'make' jobs to be used later.
 NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
-cd work/overlay/links
+cd ../../work/overlay/links
 
 # Change to the Links source directory which ls finds, e.g. 'links-2.12'.
 cd $(ls -d links-*)

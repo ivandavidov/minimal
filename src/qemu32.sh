@@ -6,6 +6,9 @@
 # the script 'generate_hdd.sh' to generate the hard disk image file. Once you
 # have hard disk image, you can use it as overlay device and persist all your
 # changes. See the '.config' file for more information on the overlay support.
+#
+# If you get kernel panic with message "No working init found", then try to
+# increase the RAM from 128M to 256M.
 
 cmd="qemu-system-i386 -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
 

@@ -50,7 +50,7 @@ $GLIBC_SRC/configure \
   --without-gd \
   --without-selinux \
   --disable-werror \
-  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE"
+  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE -fomit-frame-pointer"
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 echo "Building glibc..."

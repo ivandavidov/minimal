@@ -2,7 +2,7 @@
 
 **Current development state**
 
-* Linuk kernel 4.4.40 (longterm)
+* Linux kernel 4.4.40 (longterm)
 * GNU C Library 2.24 (stable)
 * BusyBox 1.26.1 (stable)
 * Stable build on default Ubuntu 16.04.1 installation (64-bit) with applied system updates (08-Jan-2017).

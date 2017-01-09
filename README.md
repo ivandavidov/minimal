@@ -6,6 +6,7 @@
 * GNU C Library 2.24 (stable)
 * BusyBox 1.26.1 (stable)
 * Stable build on default Ubuntu 16.04.1 installation (64-bit) with applied system updates (08-Jan-2017).
+* Stable build on default Ubuntu 16.04.1 installation (32-bit) with applied system updates (10-Jan-2017).
 
 You can find the main website here:
 

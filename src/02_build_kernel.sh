@@ -7,6 +7,9 @@ SRC_DIR=$(pwd)
 # Read the 'JOB_FACTOR' property from '.config'
 JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
 
+# Read the 'CFLAGS' property from '.config'
+CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+
 # Find the number of available CPU cores.
 NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 
@@ -91,7 +94,7 @@ fi
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel..."
 make \
-  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
+  CFLAGS="$CFLAGS" \
   bzImage -j $NUM_JOBS
 
 # Install the kernel file.

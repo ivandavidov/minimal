@@ -58,10 +58,13 @@ GLIBC_PREPARED_ESCAPED=$(echo \"$GLIBC_PREPARED\" | sed 's/\//\\\//g')
 # Now we tell BusyBox to use the glibc prepared area.
 sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_PREPARED_ESCAPED/" .config
 
+# Read the 'CFLAGS' property from '.config'
+CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
 echo "Building BusyBox..."
 make \
-  EXTRA_CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
+  EXTRA_CFLAGS="$CFLAGS" \
   busybox -j $NUM_JOBS
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.

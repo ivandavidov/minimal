@@ -153,10 +153,6 @@ genisoimage \
   -boot-info-table \
   ./
 
-# This allows the ISO image to be bootable if it is burned on USB flash drive.
-# The -u option is used in EFI boot mode and it reduces the ISO image size.
-isohybrid -u ../minimal_linux_live.iso 2>/dev/null || true
-
 # Copy the ISO image to the root project folder.
 cp ../minimal_linux_live.iso ../../
 

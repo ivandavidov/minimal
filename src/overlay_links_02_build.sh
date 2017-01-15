@@ -5,6 +5,9 @@ SRC_DIR=$(pwd)
 # Read the 'JOB_FACTOR' property from '.config'
 JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
 
+# Read the 'CFLAGS' property from '.config'
+CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+
 # Find the number of available CPU cores.
 NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 
@@ -32,7 +35,7 @@ echo "Configuring Links..."
   --without-x
 
 # Set CFLAGS directly in Makefile.
-sed -i "s/^CFLAGS = .*/CFLAGS = \\-Os \\-s \\-fno\\-stack\\-protector \\-U_FORTIFY_SOURCE/" Makefile
+sed -i "s/^CFLAGS = .*/CFLAGS = $CFLAGS/" Makefile
 
 echo "Building Links..."
 make -j $NUM_JOBS

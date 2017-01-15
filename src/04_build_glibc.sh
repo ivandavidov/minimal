@@ -7,6 +7,9 @@ SRC_DIR=$(pwd)
 # Read the 'JOB_FACTOR' property from '.config'
 JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
 
+# Read the 'CFLAGS' property from '.config'
+CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+
 # Find the number of available CPU cores.
 NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 
@@ -50,7 +53,7 @@ $GLIBC_SRC/configure \
   --without-gd \
   --without-selinux \
   --disable-werror \
-  CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE -fomit-frame-pointer"
+  CFLAGS="$CFLAGS"
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
 echo "Building glibc..."

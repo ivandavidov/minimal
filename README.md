@@ -1,13 +1,5 @@
 ## Minimal Linux Live
 
-**Current development state**
-
-* Linux kernel 4.4.40 (longterm)
-* GNU C Library 2.24 (stable)
-* BusyBox 1.26.1 (stable)
-* Stable build on default Ubuntu 16.04.1 installation (64-bit) with applied system updates (08-Jan-2017).
-* Stable build on default Ubuntu 16.04.1 installation (32-bit) with applied system updates (10-Jan-2017).
-
 You can find the main website here:
 
 [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
@@ -28,17 +20,77 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
 
-## Notable projects based on Minimal Linux Live:
+## Current development state (15-Jan-2017)
 
-* [Redox OS Installer](https://github.com/redox-os/installer) - Minimal Linux Live has been chosen by the [Redox OS](https://www.redox-os.org) developers to build the installer part of the operating system.
+* Linux kernel 4.4.43 (longterm)
+* GNU C Library 2.24 (stable)
+* BusyBox 1.26.2 (stable)
+* Stable on default Ubuntu 16.04.1 installation (32-bit and 64-bit) with applied system updates.
+
+## How to build
+
+The section below is for Ubuntu and other Debian based distros.
+
+```
+# Resove build dependencies
+sudo apt install wget make gawk gcc bc genisoimage
+
+# Build everything and produce ISO image.
+./build_minimal_linux_live.sh
+```
+
+The default build process uses some custom provided ``CFLAGS``. They can be found in the ``.config`` file. Some of these additional flags were introduced in order to fix different issues which were reported during the development phase. However, there is no guarantee that the build process will run smoothly on your system with these particular flags. If you get compilation issues (please note that I'm talking about compilation issues, not about general shell script issues), you can try to disable these flags and then start the build process again. It may turn out that on your particular host system you don't need these flags. 
+
+## Overlay bundles
+
+**Important note!** The overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Therefore the bundle build process is disabled by default.
+
+The current development version introduces the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. Currently this is the mechanism which allows you to build additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependcies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem as last step before you produce the final ISO image.
+
+```
+# How to build all overlay bundles
+
+cd minimal_overlay
+./overlay_build.sh
+```
+
+```
+# How to build specific overlay bundle (e.g. links)
+
+cd minimal_overlay
+./overlay_build.sh links
+```
+
+## BIOS and EFI
+
+The current development version adds EFI support and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
+
+## Installation
+
+The build process produces ISO image which you can use in virtual machine or you can burn it on real CD/DVD. Installing MLL on USB flash drive currently is not supported but it can be easily achieved by using ``syslinux`` or  ``extlinux`` since MLL requires just two files (one kernel file and another initramfs file).
+
+Another way to install MLL on USB flash drive is by using [YUMI](http://pendrivelinux.com/yumi-multiboot-usb-creator) or other similar tools.
+
+Yet another way to install MLL on USB flash drive is manually, like this:
+
+```
+# Resolve the dependency for isohybrid
+sudo apt install syslinux-utils
+
+# Process the ISO image and prepare it for installation on USB flash drive
+isohybrid minimal_linux_live.iso
+
+# Directly write the ISO image to your USB flash device (e.g. /dev/xxx)
+dd if=minimal_linux_live.iso of=/dev/xxx
+```
+
+## Projects based on Minimal Linux Live:
+
+* [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL. Recommended for 100% noobs.
 
 * [Boot2Minc](https://github.com/mhiramat/boot2minc) - this fork adds [Mincs](https://github.com/mhiramat/mincs) and as result you can run Linux containers. One interesting Mincs feature - it provides tools which allow you to reuse alredy existing Docker containers.
 
 * [K1773R's MLL](https://github.com/K1773R/minimal) - PowerPC version of Minimal Linux Live with [memtester](http://pyropus.ca/software/memtester) as additional software. Impressive work!
-
-## Other projects based on Minimal Linux Live
-
-* [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL.
 
 * [Ladiko's MLL](https://github.com/ladiko/minimal) - This fork automatically downloads and uses the latest available Kernel and BusyBox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
 

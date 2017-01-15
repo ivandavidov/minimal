@@ -52,12 +52,13 @@ Currently available overlay bundles:
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and
-prepare your build environment. I use "Linux Mint" both 32 and 64 bit editions.
-Your distribution might have different build dependencies but most of the time
-there is a single meta-package which installs most of the stuff that you need.
+prepare your build environment. I use Linux Mint and Ubuntu, both 32 and 64 bit
+editions. Your distribution might have different build dependencies but most of
+the time there is a single meta-package which installs most of the stuff that
+you need.
 
 The build proces is slow, so be prepared to wait. In the end you should have
 the ISO image file "minimal_linux_live.iso" in the same folder where you
-executed the build process. You can burn the ISO image on CD/DVD or (better)
-run it with PC emulator like QEMU or VirtualBox.
+started the build process. You can burn the ISO image on CD/DVD or (better) run
+it with PC emulator like QEMU or VirtualBox.
 

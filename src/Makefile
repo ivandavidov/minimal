@@ -18,7 +18,7 @@ clean:
 	@echo "Removing predefined configuration files..."
 	@rm -rf minimal_overlay/*.config
 	@echo "Removing source level overlay software..."
-	@cd minimal_overlay && rm -rf $(shell ls -d */) && cd ..
+	@cd minimal_overlay/rootfs && rm -rf $(shell ls -d */) && cd ..
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 	@$(eval USE_LOCAL_SOURCE := $(shell grep -i ^USE_LOCAL_SOURCE .config | cut -f2 -d'='))

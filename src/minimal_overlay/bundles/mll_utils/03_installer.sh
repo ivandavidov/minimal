@@ -2,12 +2,17 @@
 
 SRC_DIR=$(pwd)
 
-if [ ! -d "$SRC_DIR/work/overlay/mll_utils" ] ; then
-  echo "The directory $SRC_DIR/work/overlay/mll_utils does not exist. Cannot continue."
+# Find the main source directory
+cd ../../..
+MAIN_SRC_DIR=$(pwd)
+cd $SRC_DIR
+
+if [ ! -d "$MAIN_SRC_DIR/work/overlay/mll_utils" ] ; then
+  echo "The directory $MAIN_SRC_DIR/work/overlay/mll_utils does not exist. Cannot continue."
   exit 1
 fi
 
-cd work/overlay/mll_utils
+cd $MAIN_SRC_DIR/work/overlay/mll_utils
 
 # 'mll-install' BEGIN
 
@@ -97,28 +102,30 @@ chmod +rx sbin/mll-install
 
 # 'mll-install' END
 
-if [ ! -d "$SRC_DIR/work/syslinux" ] ; then
+if [ ! -d "$MAIN_SRC_DIR/work/syslinux" ] ; then
 echo "The installer depends on Syslinux which is missing. Cannot continue."
   exit 1
 fi;
 
-cd $SRC_DIR/work/syslinux
+cd $MAIN_SRC_DIR/work/syslinux
 cd $(ls -d syslinux-*)
 
 cp bios/extlinux/extlinux \
-  $SRC_DIR/work/overlay/mll_utils/sbin
-mkdir -p $SRC_DIR/work/overlay/mll_utils/opt/syslinux 
+  $MAIN_SRC_DIR/work/overlay/mll_utils/sbin
+mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/opt/syslinux 
 cp bios/mbr/mbr.bin \
-  $SRC_DIR/work/overlay/mll_utils/opt/syslinux
+  $MAIN_SRC_DIR/work/overlay/mll_utils/opt/syslinux
 
-# Big mama hack - find workaround and remove it!!!
+# Big mama hack - need to find proper workaround!!!
 # Both syslinux and extlinux are 32-bit executables which require 32-bit libs.
-mkdir -p $SRC_DIR/work/overlay/mll_utils/lib
-mkdir -p $SRC_DIR/work/overlay/mll_utils/usr/lib
+# Possible solution 1 - build 32-bit GLIBC on demand.
+# Possible solution 2 - drop 32-bit MLL and provide 64-bit with multi-arch.
+mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/lib
+mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/usr/lib
 cp /lib/ld-linux.so.2 \
-  $SRC_DIR/work/overlay/mll_utils/lib
+  $MAIN_SRC_DIR/work/overlay/mll_utils/lib
 cp /lib/i386-linux-gnu/libc.so.6 \
-  $SRC_DIR/work/overlay/mll_utils/usr/lib
+  $MAIN_SRC_DIR/work/overlay/mll_utils/usr/lib
 # Big mama hack - end.
 
 echo "Minimal Linux Live installer has been generated."

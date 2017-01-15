@@ -53,7 +53,9 @@ OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 
 if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
   echo "Generating additional overlay bundles. This may take a while..."
-  time sh build_minimal_linux_overlay.sh
+  cd minimal_overlay
+  time sh overlay_build.sh
+  cd $SRC_DIR
 else
   echo "Generation of additional overlay bundles has been skipped."
 fi
@@ -102,7 +104,7 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   mkdir -p sparse/work  
   
   # Copy the overlay content.
-  cp -r $SRC_DIR/work/src/minimal_overlay/* sparse/rootfs/
+  cp -r $SRC_DIR/work/src/minimal_overlay/rootfs/* sparse/rootfs/
   
   # Unmount the sparse file and delete the temporary folder.
   $BUSYBOX umount sparse
@@ -119,7 +121,8 @@ elif [ "$OVERLAY_TYPE" = "folder" ] ; then
   mkdir -p minimal/rootfs
   mkdir -p minimal/work  
   
-  cp -rf $SRC_DIR/work/src/minimal_overlay/* minimal/rootfs/
+  cp -rf $SRC_DIR/work/src/minimal_overlay/rootfs/* \
+    minimal/rootfs/
 else
   echo "Generating ISO image with no overlay structure..."
 fi

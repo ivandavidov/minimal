@@ -2,21 +2,26 @@
 
 SRC_DIR=$(pwd)
 
-if [ ! -d $SRC_DIR/work/glibc/glibc_prepared ] ; then
+# Find the main source directory
+cd ../../..
+MAIN_SRC_DIR=$(pwd)
+cd $SRC_DIR
+
+if [ ! -d $MAIN_SRC_DIR/work/glibc/glibc_prepared ] ; then
   echo "Cannot continue - GLIBC is missing. Please buld GLIBC first."
   exit 1
 fi
 
 echo "Preparing the overlay glibc folder. This may take a while..."
-rm -rf work/overlay/glibc
-mkdir -p work/overlay/glibc/lib
+rm -rf $MAIN_SRC_DIR/work/overlay/glibc
+mkdir -p $MAIN_SRC_DIR/work/overlay/glibc/lib
 
-cd work/glibc/glibc_prepared/lib
+cd $MAIN_SRC_DIR/work/glibc/glibc_prepared/lib
 
-find . -type l -exec cp {} $SRC_DIR/work/overlay/glibc/lib \;
+find . -type l -exec cp {} $MAIN_SRC_DIR/work/overlay/glibc/lib \;
 echo "All libraries have been copied."
 
-cd $SRC_DIR/work/overlay/glibc/lib
+cd $MAIN_SRC_DIR/work/overlay/glibc/lib
 
 for FILE_DEL in $(ls *.so)
 do
@@ -33,8 +38,10 @@ echo "Duplicate libraries have been replaced with soft links."
 strip -g *
 echo "All libraries have been optimized for size."
 
-cp -r $SRC_DIR/work/overlay/glibc/lib $SRC_DIR/work/src/minimal_overlay
-echo "All libraries have been installed."
+cp -r $MAIN_SRC_DIR/work/overlay/glibc/lib \
+  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
+
+echo "All GNU C libraries have been installed."
 
 cd $SRC_DIR
 

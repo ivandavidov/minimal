@@ -18,8 +18,13 @@
 
 SRC_DIR=$(pwd)
 
+# Find the main source directory
+cd ../../..
+MAIN_SRC_DIR=$(pwd)
+cd $SRC_DIR
+
 # Read the 'JAVA_ARCHIVE' property from '.config'
-JAVA_ARCHIVE="$(grep -i ^JAVA_ARCHIVE .config | cut -f2 -d'=')"
+JAVA_ARCHIVE="$(grep -i ^JAVA_ARCHIVE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
 
 if [ "$JAVA_ARCHIVE" = "" ] ; then
   echo "ERROR: configuration property 'JAVA_ARCHIVE' is not set."
@@ -29,24 +34,25 @@ elif [ ! -f "$JAVA_ARCHIVE" ] ; then
   exit 1
 fi
 
-rm -rf $SRC_DIR/work/overlay/java
-mkdir -p $SRC_DIR/work/overlay/java/opt
+rm -rf $MAIN_SRC_DIR/work/overlay/java
+mkdir -p $MAIN_SRC_DIR/work/overlay/java/opt
 
 tar -xvf \
   $JAVA_ARCHIVE \
-  -C $SRC_DIR/work/overlay/java/opt
+  -C $MAIN_SRC_DIR/work/overlay/java/opt
 
-cd $SRC_DIR/work/overlay/java/opt
+cd $MAIN_SRC_DIR/work/overlay/java/opt
 mv $(ls -d *) java
 
-mkdir $SRC_DIR/work/overlay/java/bin
+mkdir $MAIN_SRC_DIR/work/overlay/java/bin
 
 for FILE in $(ls java/bin)
 do
   ln -s ../opt/java/bin/$FILE ../bin/$FILE
 done
 
-cp -r $SRC_DIR/work/overlay/java/* $SRC_DIR/work/src/minimal_overlay
+cp -r $MAIN_SRC_DIR/work/overlay/java/* \
+  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
 
 echo "Java has been installed."
 

@@ -2,11 +2,16 @@
 
 SRC_DIR=$(pwd)
 
+# Find the main source directory
+cd ../../..
+MAIN_SRC_DIR=$(pwd)
+cd $SRC_DIR
+
 # Read the 'JOB_FACTOR' property from '.config'
-JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
+JOB_FACTOR="$(grep -i ^JOB_FACTOR $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
 
 # Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+CFLAGS="$(grep -i ^CFLAGS $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
 
 # Find the number of available CPU cores.
 NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
@@ -14,12 +19,12 @@ NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 # Calculate the number of 'make' jobs to be used later.
 NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
-if [ ! -d $SRC_DIR/work/glibc/glibc_prepared ] ; then
+if [ ! -d $MAIN_SRC_DIR/work/glibc/glibc_prepared ] ; then
   echo "Cannot continue - Dropbear SSH depends on GLIBC. Please buld GLIBC first."
   exit 1
 fi
 
-cd work/overlay/dropbear
+cd $MAIN_SRC_DIR/work/overlay/dropbear
 
 # Change to the Dropbear source directory which ls finds, e.g. 'dropbear-2016.73'.
 cd $(ls -d dropbear-*)
@@ -31,7 +36,7 @@ rm -rf ../dropbear_installed
 
 echo "Configuring Dropbear..."
 ./configure \
-  --prefix=$SRC_DIR/work/overlay/dropbear/dropbear_installed \
+  --prefix=$MAIN_SRC_DIR/work/overlay/dropbear/dropbear_installed \
   --disable-zlib \
   --disable-loginfunc \
   CFLAGS="$CFLAGS"
@@ -45,10 +50,10 @@ make install -j $NUM_JOBS
 mkdir -p ../dropbear_installed/lib
 
 # Copy all dependent GLIBC libraries.
-cp $SRC_DIR/work/glibc/glibc_prepared/lib/libnsl.so.1 ../dropbear_installed/lib
-cp $SRC_DIR/work/glibc/glibc_prepared/lib/libnss_compat.so.2 ../dropbear_installed/lib
-cp $SRC_DIR/work/glibc/glibc_prepared/lib/libutil.so.1 ../dropbear_installed/lib
-cp $SRC_DIR/work/glibc/glibc_prepared/lib/libcrypt.so.1 ../dropbear_installed/lib
+cp $MAIN_SRC_DIR/work/glibc/glibc_prepared/lib/libnsl.so.1 ../dropbear_installed/lib
+cp $MAIN_SRC_DIR/work/glibc/glibc_prepared/lib/libnss_compat.so.2 ../dropbear_installed/lib
+cp $MAIN_SRC_DIR/work/glibc/glibc_prepared/lib/libutil.so.1 ../dropbear_installed/lib
+cp $MAIN_SRC_DIR/work/glibc/glibc_prepared/lib/libcrypt.so.1 ../dropbear_installed/lib
 
 mkdir -p ../dropbear_installed/etc/dropbear
 
@@ -97,7 +102,7 @@ cp -r \
   ../dropbear_installed/bin \
   ../dropbear_installed/sbin \
   ../dropbear_installed/lib \
-  $SRC_DIR/work/src/minimal_overlay
+  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
 
 echo "Dropbear has been installed."
 

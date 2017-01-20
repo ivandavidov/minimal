@@ -105,3 +105,7 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 * [bdheeman's MLL](https://bitbucket.org/bdheeman/minimal) - MLL KISS fork (Keep It, Simple, Safe/Secure/Stupid).
 
 * [Runlinux](https://github.com/cirosantilli/runlinux) - environment to build and test Linux kernels.
+
+## Thank you!
+
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive). Thank you!

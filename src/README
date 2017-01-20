@@ -8,6 +8,11 @@ configured. Check the project's website for more information:
 
 http://minimal.idzona.com
 
+For Ubuntu and other Debian based operating systems you can use the following
+command in order to resolve the required build dependencies:
+
+sudo apt install wget make gawk gcc bc genisoimage
+
 Once you have your ISO image up and running perhaps you'd like to play with the
 configuration file ".config" and see what options you have there. For example
 you can enable the property "OVERLAY_BUNDLES". If you do that you will have
@@ -48,6 +53,12 @@ Currently available overlay bundles:
                the "felix-start" command to run the Apache Felix OSGi framework. 
 
                This overlay bundle requires JRE or JDK.
+
+* MLL Utils  - Set of experimental shell scripts (mll-*.sh) which provide
+               additional functionality, e.g. installer and useful tools.
+
+               This overlay bundle is currently experimental and its build
+               process depends on the host machine.
 
 ###   ###   ###
 

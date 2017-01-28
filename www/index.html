@@ -38,12 +38,7 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimalistic Live
-          Linux OS with basic network support via DHCP. The generated operating system is based on
-          <a target="_blank" href="http://kernel.org">Linux kernel</a>,
-          <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and
-          <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary source codes are automatically
-          downloaded and all build operations are fully encapsulated in the scripts.
+          <strong>Minimal Linux Live</strong> is a set of Linux shell scripts which automatically build minimalistic Live Linux OS with basic network support via DHCP. The generated operating system is based on <a target="_blank" href="http://kernel.org">Linux kernel</a>, <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and <a target="_blank" href="http://busybox.net">BusyBox</a>. All necessary sourcs are automatically downloaded and all build operations are fully encapsulated in the shell scripts.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
@@ -63,138 +58,107 @@
         <div class="twelve columns">
           <ul>
             <li>
-              Get the latest scripts from the <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> section.
+              Get the latest scripts from the <a href="#" onclick="javascript:menuSwap(6); return false;">download</a> section.
             </li>
             <li>
-              Extract the scripts to some folder. Note that even though the scripts are small in size, you need ~2GB free disk space for the
-              actual build process.
+              Extract the scripts to some folder. Note that even though the scripts are small in size, you need ~2GB free disk space for the actual build process.
             </li>
             <li>
-              Just for convenience, make sure that all scripts are executable (<code>chmod +x *.sh</code>). If you decide to skip this step you
-              can still run the scripts like this (example): <code>sh build_minimal_linux_live.sh</code>
+              Just for convenience, make sure that all scripts are executable (<code>chmod -R +x *.sh</code>). If you decide to skip this step you can still run the scripts like this (example): <code>sh build_minimal_linux_live.sh</code>
             </li>
             <li>
-              Depending on which Linux OS you are using, there might be one or more (or none, or even more) build dependencies that you
-              need to resolve before you start the build process. If you work with <a target="_blank" href="http://www.ubuntu.com/">Ubuntu</a>,
-              the following commands should resolve all necessary build dependencies:
+              Depending on which Linux OS you are using, there might be one or more (or none, or even more) build dependencies that you need to resolve before you start the build process. If you work with <a target="_blank" href="http://www.ubuntu.com/">Ubuntu</a>, the following command should resolve all necessary build dependencies:
               <ul>
                 <li>
-                  <code>sudo apt-get install wget</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install make</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install gawk</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install gcc</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install bc</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install syslinux</code>
-                </li>
-                <li>
-                  <code>sudo apt-get install genisoimage</code>
+                  <code>sudo apt wget make gawk gcc bc genisoimage</code>
                 </li>
               </ul>
             </li>
             <li>
-              Execute the script <code>build_minimal_linux_live.sh</code> and wait. If you have resolved all build dependencies, the whole
-              process should take less than 30 minutes on a modern computer. If the build fails for some reason, most probably there
-              are unresolved build dependencies. Several users reported that the <code>build-essential</code> package resolves all unexpected
-              build dependencies for Ubuntu. If you are using <a target="_blank" href="http://linuxmint.com">Linux Mint</a> try to
-              install the package <code>g++</code> and if you still have troubles then try the <code>build-essential</code> package. On
-              <a target="_blank" href="http://getfedora.org">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>.
-              On <a target="_blank" href="http://archlinux.org">Arch Linux</a> and <a target="_blank" href="http://debian.org">Debian</a>
-              you might need to locate <code>isolinux.bin</code> and copy it to <code>/usr/lib/syslinux/isolinux.bin</code>.
+              Execute the script <code>build_minimal_linux_live.sh</code> and wait. If you have resolved all build dependencies, the whole process should take less than 30 minutes on a modern computer. If the build fails for some reason, most probably there are unresolved build dependencies. Several users reported that the <code>build-essential</code> package resolves all unexpected build dependencies for Ubuntu. If you are using <a target="_blank" href="http://linuxmint.com">Linux Mint</a> try to install the package <code>g++</code> and if you still have troubles then try the <code>build-essential</code> package. On <a target="_blank" href="http://getfedora.org">Fedora</a> you might need the static 'glibc' package <code>glibc-static</code>. Please have in mind that the build dependencies can vary a lot depending on the Linux OS which you use and the software which you have already installed.
               <div style="font-size: 10%;">&nbsp;</div>
-              Please have in mind that the build dependencies can vary a lot depending on the Linux OS which you use and the software
-              which you have already installed.
-              <div style="font-size: 10%;">&nbsp;</div>
-              If you still have troubles then examine the failure message and google it. If you are unable to find solution, then you
-              can ask someone more experienced Linux guru (if you know any) or as alternative you can contact me. Please, make sure that
-              you have researched your problem in advance before you send me your question.
+              If you still have troubles then examine the failure message and google it. If you are unable to find solution, then you can ask more experienced Linux guru around you or as alternative you can <a href="http://github.com/ivandavidov/minimal/issues" target="_blank">submit an issue</a>.
             </li>
             <li>
-              When the scripts finish their job you will find newly generated <code>minimal_linux_live.iso</code> in the same folder where you
-              executed the scripts. You can burn the ISO image file on CD/DVD, install it on USB flash drive via
-              <a target="_blank" href="http://www.pendrivelinux.com">Universal USB Installer</a>,
-              or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>. Minimal Linux Live
-              requires at least 64MB RAM, otherwise the boot process most probably will hang.
+              When the scripts finish their job you will find newly generated ISO image file <code>minimal_linux_live.iso</code> in the same folder where you executed the scripts. You can burn the ISO image file on CD/DVD, install it on USB flash drive via <a target="_blank" href="http://www.pendrivelinux.com">Universal USB Installer</a>, or run it directly via PC emulator like <a target="_blank" href="http://virtualbox.org">VirtualBox</a>. The most recent version of Minimal Linux Live requires 256MB RAM, otherwise the boot process most probably will hang.
             </li>
           </ul>
         </div>
       </div>
       <div class="row">
         <div class="twelve columns">
-          The generated ISO image file contains Linux kernel compiled with default options, GNU C library compiled with default options,
-          BusyBox compiled with default options and quite simple initramfs. This means that you don't get Windows support out of the box,
-          nor you get any fancy desktop environment. All you get is a simple shell console which supports all BusyBox applets and... well,
-          that's all. This is why it's called "minimal".
+          The generated ISO image file contains Linux kernel compiled with default options, GNU C library compiled with default options, BusyBox compiled with default options and quite simple initramfs. This means that you don't get Windows support out of the box, nor you get any fancy desktop environment. All you get is a simple shell console which supports all BusyBox applets and... well, that's all. This is why it's called "minimal".
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
-          The good news is that the build scripts are very small in size and simple to understand. You can easily learn from the scripts
-          and later modify them to include more stuff (I encourage you to do so). After you learn the basics you will have all the necessary
-          tools and skills to create your own fully functional Linux based operating system. Entirely from scratch!
+          The good news is that the build scripts are well organized and small in size. You can easily learn from the scripts and later modify them to include more stuff (I encourage you to do so). After you learn the basics, you will have all the necessary tools and skills to create your own fully functional Linux based operating system. Entirely from scratch!
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
-          The <a href="#" onclick="javascript:menuSwap(4); return false;">tutorial</a> provides more details about the inner structure
-          of the scripts and the overall build process. I encourage you to go through this document when you have the time. The same tutorial
-          document is automatically included in the generated ISO image, so you can always refer to it.
+          The <a href="#" onclick="javascript:menuSwap(4); return false;">tutorial</a> provides more details about the inner structure of the scripts and the overall build process. I encourage you to go through this document when you have the time. The same tutorial document is automatically included in the generated ISO image, so you can always refer to it.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
-          Below you can find several screenshots which show what the environment looks like when you boot your newly generated
-          Minimal Linux Live OS.
+          Below you can find several screenshots which show what the environment looks like when you boot your newly generated Minimal Linux Live OS.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
-        <div class="six columns">
-          <a href="assets/img/screen1.png" target="_blank" title="Minimal Linux Live - screenshot 1">
-            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="assets/img/screen1.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_01.png" target="_blank" title="Minimal Linux Live - screenshot 1">
+            <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="assets/img/mll_01.png" />
           </a>
         </div>
-        <div class="six columns">
-          <a href="assets/img/screen2.png" target="_blank" title="Minimal Linux Live - screenshot 2">
-            <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="assets/img/screen2.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_02.png" target="_blank" title="Minimal Linux Live - screenshot 2">
+            <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="assets/img/mll_02.png" />
+          </a>
+        </div>
+        <div class="four columns">
+          <a href="assets/img/mll_03.png" target="_blank" title="Minimal Linux Live - screenshot 3">
+            <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="assets/img/mll_03.png" />
           </a>
         </div>
       </div class="row">
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
-        <div class="six columns">
-          <a href="assets/img/screen3.png" target="_blank" title="Minimal Linux Live - screenshot 3">
-            <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="assets/img/screen3.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_04.png" target="_blank" title="Minimal Linux Live - screenshot 4">
+            <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="assets/img/mll_04.png" />
           </a>
         </div>
-        <div class="six columns">
-          <a href="assets/img/screen4.png" target="_blank" title="Minimal Linux Live - screenshot 4">
-            <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="assets/img/screen4.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_05.png" target="_blank" title="Minimal Linux Live - screenshot 5">
+            <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="assets/img/mll_05.png" />
           </a>
         </div>
-      </div class="row">
+        <div class="four columns">
+          <a href="assets/img/mll_06.png" target="_blank" title="Minimal Linux Live - screenshot 6">
+            <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="assets/img/mll_06.png" />
+          </a>
+        </div>
+      </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
-        <div class="six columns">
-          <a href="assets/img/screen5.png" target="_blank" title="Minimal Linux Live - screenshot 5">
-            <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="assets/img/screen5.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_07.png" target="_blank" title="Minimal Linux Live - screenshot 7">
+            <img alt="Minimal Linux Live" id="screenshot7" width="100%" height="100%" border="0" src="assets/img/mll_07.png" />
           </a>
         </div>
-        <div class="six columns">
-          <a href="assets/img/screen6.png" target="_blank" title="Minimal Linux Live - screenshot 6">
-            <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="assets/img/screen6.png" />
+        <div class="four columns">
+          <a href="assets/img/mll_08.png" target="_blank" title="Minimal Linux Live - screenshot 8">
+            <img alt="Minimal Linux Live" id="screenshot8" width="100%" height="100%" border="0" src="assets/img/mll_08.png" />
+          </a>
+        </div>
+        <div class="four columns">
+          <a href="assets/img/mll_09.png" target="_blank" title="Minimal Linux Live - screenshot 9">
+            <img alt="Minimal Linux Live" id="screenshot9" width="100%" height="100%" border="0" src="assets/img/mll_09.png" />
           </a>
         </div>
       </div>
@@ -207,15 +171,68 @@
       </div>
       <div class="row">
       <div class="twelve columns">
-        <div id="show5" style="display:none;">
+        <div id="show6" style="display:none;">
+          <strong>20-Jan-2017</strong>
+          <a href="#" onclick="javascript:logSwap(6, true); return false;">show</a>
+        </div>
+        <div id="hide6" style="display:block;">
+          <strong>20-Jan-2017</strong>
+          <a href="#" onclick="javascript:logSwap(6, false); return false;">hide</a>
+        </div>
+        <div id="text6" style="display:block;">
+          <ul>
+            <div style="font-size: 10%;">&nbsp;</div>
+            <li>
+              <strong>Updated software base</strong> - Minimal Linux Live (MLL) is based on Linux kernel 4.4.44, GNU C library 2.24 and BusyBox 1.26.2. The generated ISO image file is 7MB in size and requires 256MB RAM in order to run properly.
+            </li>
+            <li>
+              <strong>UEFI support</strong> - MLL is UEFI compliant and the live CD can boot on EFI based systems.
+            </li>
+            <li>
+              <strong>Additional software via overlay bundles</strong> - the MLL architecture has been significantly improved and you can add more software via the so called "overlay bindles". This feature has been documented in the ".config" file, as well as in the internal README documents. By default these overlay bundles are not part of the build process because they rely on the host machine environment and the may or may not be built correctly on your particular machine. Nevertheless, turning this feature on is very simple and I encourage you to experiment with it.
+            </li>
+            <li>
+              <strong>Persistence support</strong> - MLL has the ability to transparently persist the changes that have been made during the live session and these changes will be preserved between reboots. You can use this feature to add your own software in MLL, change the MLL file/directory structure or simply to persist whatever changes you've made during the live session. This feature has been documented in the ".config" file, the internal README documents and in the internal shell script comments.
+            </li>
+            <li>
+              <strong>Smaller ISO image size</strong> - one of the goals for this release was to minimize the ISO image size and make it as small as possible. The final result is ISO image which is now less than 7MB when MLL has been generated with the default configuration options. However, the smaller ISO image size comes at cost and you need more RAM (256MB) in order to boot MLL properly.
+            </li>
+            <li>
+              <strong>GCC optimization flags</strong> - the MLL configuration allows you to provide your own GCC flags which are used when the software pieces are compiled. These GCC optimization flags are not magical and they may or may not work fine on your particular host machine. They work fine on Ubuntu/Mint host machines and should work fine on other Debian based host machines. You can disable this feature if you get weird compilation issues on your host machine during the build process.
+            </li>
+            <li>
+              <strong>Syslinux as download dependency</strong> - the "Syslinux" build dependency is no longer mandatory prerequisite requirement because the Syslinux source package is downloaded automatically as part of the build process.
+            </li>
+            <li>
+              <strong>Graphical boot mode with configurable screen resolution</strong> - MLL can boot in graphical mode. At the begining of the boot process you are presented with option to choose the screen resolution. This feature currently works in BIOS boot mode only.
+            </li>
+            <li>
+              <strong>Rescue shells during boot</strong> - the MLL boot process has been enhanced and you can temporarily "exit" the boot process in the so called "rescue shell". In fact this is normal shell which runs with PID 1. This is useful if you want to have interactive environment (i.e. shell) while you are still in early "pre-init" boot stage.
+            </li>
+            <li>
+              <strong>Initial RAM filesystem in separate directory structure</strong> - the initramfs structure has been externalized in separate directory. This makes it easier to modify the initramfs environment.
+            </li>
+            <li>
+              <strong>Optional use of preconfigured Linux kernel and BusyBox</strong> - you can provide custom Linux kernel and BusyBox configurations. This is useful if you want to build MLL with many non-default options or if you want to distribute your own version of MLL.
+            </li>
+            <li>
+              <strong>Optional use of already downloaded sources</strong> - this feature does what it says: if you turn it on, you don't need internet connection and you will be using already downloaded sources. This is useful if you don't want to use internet connection or if you want to distribute your own version of MLL which includes specific sources.
+            </li>
+            <li>
+              <strong>Many more internal improvements</strong> - script enhancements, improved comments and better documentation, the newly introduced overlay build subsystem, additional helpful scripts, etc. Check the ".config" file and the internal README documents for more details.
+            </li>
+          </ul>
+        </div>
+        <div style="font-size: 10%;">&nbsp;</div>        
+        <div id="show5" style="display:block;">
           <strong>03-Apr-2016</strong>
           <a href="#" onclick="javascript:logSwap(5, true); return false;">show</a>
         </div>
-        <div id="hide5" style="display:block;">
+        <div id="hide5" style="display:none;">
           <strong>03-Apr-2016</strong>
           <a href="#" onclick="javascript:logSwap(5, false); return false;">hide</a>
         </div>
-        <div id="text5" style="display:block;">
+        <div id="text5" style="display:none;">
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
@@ -353,29 +370,25 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        My name is <a target="_blank" href="http://linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently
-        live and work in <a target="_blank" href="http://en.wikipedia.org/wiki/Sofia">Sofia</a>,
-        <a target="_blank" href="http://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
+        My name is <a target="_blank" href="http://linkedin.com/in/ivandavidov">Ivan Davidov</a> and I currently live and work in <a target="_blank" href="http://en.wikipedia.org/wiki/Sofia">Sofia</a>, <a target="_blank" href="http://en.wikipedia.org/wiki/Bulgaria">Bulgaria</a>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        I am professional Java software engineer (yes, Java developers tend to know some Linux stuff) and I've
-        been trying to create my own Linux OS for a very long time. There are some good tutorials which you
-        can find online but almost none of them are simple to follow and almost none of them explain in details
-        what has been done and why it's done in this particular way. In most cases the tutorials are incomplete and
-        there is high chance that you end up with something broken.
+        I am professional Java software engineer (surprisingly, Java developers tend to know some Linux stuff) and I had been trying to create my own Linux OS for a very long time. Over the years I found some good tutorials online but most of them are not simple to follow and pretty much none of them explain in details what has been done and why it's done in this particular way. In most cases the tutorials are outdated or incomplete and there is high chance that you end up with something broken.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        Don't get me wrong, you can learn a lot from these tutorials, as I did. In fact the scripts which I created
-        (did you take a look at them?) are based on the same information resources which you might have already found.
-        The difference is that this site provides you not only with detailed tutorial, but also with fully functional
-        set of shell scripts which automatically build fully functional live Linux OS. And the tutorial explains it
-        all for you!
+        Don't get me wrong, you can learn a lot from these tutorials, as I did. In fact the scripts which I created are based on the same information resources which you might have already found. The difference is that this website provides you not only with fully functional set of shell scripts which automatically build fully functional live Linux OS, but also with detailed tutorial and probably the best internal documentation you will ever find in an open source project.
+      </div>
+    </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row">
+      <div class="twelve columns">
+        You can follow MLL on <a href="http://facebook.com/MinimalLinuxLive" target="_blank">Facebook</a> and if you find this project useful, I'd very much appreciate it if you <a href="http://paypal.me/MinimalLinuxLive" target="_blank">buy me a beer</a>. Thanks! :)
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -405,10 +418,13 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        <a target="_blank" href="./the_dao_of_minimal_linux_live.txt">The Dao of Minimal Linux Live</a> explains in details
-        what steps are involved in creating simple live Linux OS entirely from scratch, the inner structure of the
-        build scripts (I assume you have already downloaded them) and provides you with more information on how to
-        improve/upgrade the generated OS with other generic stuff (e.g. users &amp; groups, /etc/inittab).
+        <a target="_blank" href="./the_dao_of_minimal_linux_live.txt">The Dao of Minimal Linux Live</a> is a tutorial document based on the first published version of Minimal Linux Live. The tutorial explains in details what steps are involved in creating simple live Linux OS entirely from scratch, the inner structure of the build scripts and provides you with more information on how to improve/upgrade the generated OS with other generic stuff (e.g. users &amp; groups, /etc/inittab).
+      </div>
+    </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row">
+      <div class="twelve columns">
+        You can also refer to the <a href="http://github.com/ivandavidov/minimal-linux-script" target="_blank">Minimal Linux Script</a> project which provides you with the minimal set of shell scrip commands that you need in order to create simple, yet fully functional Linux based operating system.
       </div>
     </div>
   </div>
@@ -420,9 +436,7 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        You can try <b>Minimal Linux Live</b> directly in your browser. The link below will open new browser window
-        with JavaScript based PC emulator which will run the latest version of Minimal Linux Live. Please be advised
-        that this emulator runs entirely in your browser and therefore it is not very fast.
+        You can try <b>Minimal Linux Live</b> directly in your browser. The link below will open new browser window (or tab) with JavaScript based PC emulator which will automatically run the latest version of Minimal Linux Live. Please be advised that this PC emulator runs entirely in your browser and therefore it is not very fast.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -431,6 +445,35 @@
         <a target="_blank" href="emulator">Minimal Linux Live - emulator</a>
       </div>
     </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row">
+      <div class="twelve columns">
+        Some screenshots with Minimal Linux Live running in the JavaScript PC emulator:
+      </div>
+    </div>
+    <div style="font-size: 10%;">&nbsp;</div>
+    <div class="row">
+      <div class="three columns">
+        <a href="assets/img/emulator_01.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 1">
+          <img alt="Minimal Linux Live" id="emulator1" width="100%" height="100%" border="0" src="assets/img/emulator_01.jpg" />
+        </a>
+      </div>
+      <div class="three columns">
+        <a href="assets/img/emulator_02.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 2">
+          <img alt="Minimal Linux Live" id="emulator2" width="100%" height="100%" border="0" src="assets/img/emulator_02.jpg" />
+        </a>
+      </div>
+      <div class="three columns">
+        <a href="assets/img/emulator_03.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 3">
+          <img alt="Minimal Linux Live" id="emulator3" width="100%" height="100%" border="0" src="assets/img/emulator_03.jpg" />
+        </a>
+      </div>
+      <div class="three columns">
+        <a href="assets/img/emulator_04.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 4">
+          <img alt="Minimal Linux Live" id="emulator4" width="100%" height="100%" border="0" src="assets/img/emulator_04.jpg" />
+        </a>
+      </div>
+    </div class="row">    
   </div>
   <div id="item6" style="display:none;">
     <div class="row">
@@ -440,17 +483,17 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        The latest stable scripts (03-Apr-2016) can be downloaded as ZIP archive
-        <a href="./download/minimal_linux_live_03-Apr-2016_src.zip" title="Minimal Linux Live - shell scripts">here</a>.
+        The latest stable scripts (20-Jan-2017) can be downloaded as "tar.xz" archive
+        <a href="./download/minimal_linux_live_20-Jan-2017_src.tar.xz" title="Minimal Linux Live - shell scripts">here</a>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
         Pre-built ISO image files generated with the latest stable scripts are available for
-        <a href="./download/minimal_linux_live_03-Apr-2016_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
+        <a href="./download/minimal_linux_live_20-Jan-2017_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">32-bit</a>
         and
-        <a href="./download/minimal_linux_live_03-Apr-2016_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
+        <a href="./download/minimal_linux_live_20-Jan-2017_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">64-bit</a>
         CPUs.
       </div>
     </div>
@@ -480,7 +523,7 @@
       <div class="twelve columns">
         <a href="." title="Minimal Linux Live">Minimal Linux Live</a>
         <span class="separator">|</span>
-        Copyright &copy; 2014 - 2016
+        Copyright &copy; 2014 - 2017
       </div>
     </div>
   </div>
@@ -495,7 +538,7 @@
     }
 
     function logSwap(itemIndex, show) {
-      for(var i = 1; i <= 5; i++) {
+      for(var i = 1; i <= 6; i++) {
         var showObj = document.getElementById("show" + i);
         var hideObj = document.getElementById("hide" + i);
         var textObj = document.getElementById("text" + i);

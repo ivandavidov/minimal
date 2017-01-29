@@ -12,7 +12,7 @@ If the above link doesn't work, website mirrors are available [here](http://skam
 
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
-![Minimal Linux Live JavaScript Emulator](http://minimal.idzona.com/assets/img/minimal_linux_live_javascript_emulator.png)
+![Minimal Linux Live JavaScript Emulator](http://minimal.idzona.com/assets/img/emulator_01.jpg)
 
 Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
 
@@ -20,12 +20,19 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
 
-## Current development state (15-Jan-2017)
+## Current development state (29-Jan-2017)
 
 * Linux kernel 4.4.44 (longterm)
 * GNU C Library 2.24 (stable)
 * BusyBox 1.26.2 (stable)
 * Stable on default Ubuntu 16.04.1 installation (32-bit and 64-bit) with applied system updates.
+
+## Future improvements
+
+* Add kernel modules and firmware.
+* Reorganize and simplify the ISO image generation script.
+
+The above list is not fixed it may be updated at any time.
 
 ## How to build
 
@@ -108,4 +115,4 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 
 ## Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive). Thank you!
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!

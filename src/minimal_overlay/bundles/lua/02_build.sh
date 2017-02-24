@@ -31,15 +31,15 @@ make clean -j $NUM_JOBS 2>/dev/null
 rm -rf ../lua_installed
 
 echo "Building Lua..."
-make generic -j $NUM_JOBS CFLAGS="$CFLAGS --sysroot=$MAIN_SRC_DIR/work/glibc/glibc_prepared/"
+make posix -j $NUM_JOBS CFLAGS="$CFLAGS --sysroot=$MAIN_SRC_DIR/work/glibc/glibc_prepared/"
 
-make install -j $NUM_JOBS INSTALL_TOP=../../lua_installed/usr/local
+make install -j $NUM_JOBS INSTALL_TOP=../../lua_installed/usr
 
 echo "Reducing Lua size..."
-strip -g ../lua_installed/usr/local/bin/* 2>/dev/null
+strip -g ../lua_installed/bin/* 2>/dev/null
 
-mkdir -p $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/local
-cp -r ../lua_installed/usr/local/* $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/local
+mkdir -p $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/
+cp -r ../lua_installed/usr/* $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr
 
 echo "Lua has been installed."
 echo "*******************************************************************************"

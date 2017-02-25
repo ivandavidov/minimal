@@ -63,9 +63,6 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
-               This overlay bundle requires GLIBC.
-
-
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and

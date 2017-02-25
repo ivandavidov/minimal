@@ -42,10 +42,5 @@ mkdir -p $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/
 cp -r ../lua_installed/usr/* $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr
 
 echo "Lua has been installed."
-echo "*******************************************************************************"
-echo "*** NOTE:                                                                   ***"
-echo "*** lua currently depends on glibc to be present for dynamic linking        ***"
-echo "*** So make sure to build and include glibc_full                            ***"
-echo "*******************************************************************************"
 
 cd $SRC_DIR

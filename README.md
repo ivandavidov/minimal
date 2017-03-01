@@ -31,6 +31,7 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 * Add kernel modules and firmware.
 * Reorganize and simplify the ISO image generation script.
+* Allow individual overlay bundles to be downloaded and installed.
 
 The above list is not fixed it may be updated at any time.
 
@@ -68,9 +69,9 @@ cd minimal_overlay
 ./overlay_build.sh links
 ```
 
-## BIOS and EFI
+## BIOS and UEFI
 
-The current development version adds EFI support and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
+Minimal Linux Live is UEFI compatible and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
 
 ## Installation
 
@@ -115,4 +116,4 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 
 ## Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive) and perhaps spend a minute to give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!

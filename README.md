@@ -4,7 +4,7 @@ You can find the main website here:
 
 [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
 
-If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live"), [here](http://linux.idzona.com "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
+If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
 
 [The DAO of Minimal Linux Live](http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt "The DAO of Minimal Linux Live") - this tutorial explains step by step what you need to do in order to create your own minimalistic live Linux OS. The tutorial is based on the first published version of Minimal Linux Live.
 

@@ -1,7 +1,7 @@
 #!/bin/sh
-SRC_DIR=$(PWD)
+SRC_DIR=$(pwd)
 
-mkdir -p ../../../work/src/minimal_overlay/rootfs/
+mkdir -p ../../../work/src/minimal_overlay/rootfs/usr/bin
 
 cd ../../../work/src/minimal_overlay/rootfs/
 

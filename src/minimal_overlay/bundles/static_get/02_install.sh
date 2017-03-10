@@ -23,6 +23,7 @@ cp static-get.sh $MAIN_SRC_DIR/work/overlay/staget/staget_installed/opt/staget
 cd $MAIN_SRC_DIR/work/overlay/staget/staget_installed
 
 ln -s ../opt/staget/static-get.sh bin/static-get
+ln -s ../opt/staget/static-get.sh bin/mll-get
 
 cp -r $MAIN_SRC_DIR/work/overlay/staget/staget_installed/* \
   $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs

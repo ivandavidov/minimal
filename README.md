@@ -4,7 +4,7 @@ You can find the main website here:
 
 [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
 
-If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live"), [here](http://linux.idzona.com "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
+If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
 
 [The DAO of Minimal Linux Live](http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt "The DAO of Minimal Linux Live") - this tutorial explains step by step what you need to do in order to create your own minimalistic live Linux OS. The tutorial is based on the first published version of Minimal Linux Live.
 
@@ -31,6 +31,7 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 * Add kernel modules and firmware.
 * Reorganize and simplify the ISO image generation script.
+* Allow individual overlay bundles to be downloaded and installed.
 
 The above list is not fixed it may be updated at any time.
 
@@ -68,9 +69,9 @@ cd minimal_overlay
 ./overlay_build.sh links
 ```
 
-## BIOS and EFI
+## BIOS and UEFI
 
-The current development version adds EFI support and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
+Minimal Linux Live is UEFI compatible and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
 
 ## Installation
 
@@ -115,4 +116,4 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 
 ## Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive) and perhaps spend a minute to give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!

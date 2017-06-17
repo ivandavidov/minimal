@@ -38,14 +38,14 @@ mkdir /mnt/var
 echo "Created folders for all critical file systems."
 
 # Copy root folders in the new mountpoint.
-echo "Copying the root file system to /mnt..."
+echo -e "Copying the root file system to \\e[94m/mnt\\e[0m."
 cp -a bin etc lib lib64 root sbin src usr var /mnt 2>/dev/null
 
 DEFAULT_OVERLAY_DIR="/tmp/minimal/overlay"
 DEFAULT_UPPER_DIR="/tmp/minimal/rootfs"
 DEFAULT_WORK_DIR="/tmp/minimal/work"
 
-echo "Searching available devices for overlay content..."
+echo "Searching available devices for overlay content."
 for DEVICE in /dev/* ; do
   DEV=$(echo "${DEVICE##*/}")
   SYSDEV=$(echo "/sys/class/block/$DEV")
@@ -69,11 +69,11 @@ for DEVICE in /dev/* ; do
   mount $DEVICE $DEVICE_MNT 2>/dev/null
   if [ -d $DEVICE_MNT/minimal/rootfs -a -d $DEVICE_MNT/minimal/work ] ; then
     # folder
-    echo "  Found '/minimal' folder on device '$DEVICE'."
+    echo -e "  Found \\e[94m/minimal\\e[0m folder on device \\e[31m$DEVICE\\e[0m."
     touch $DEVICE_MNT/minimal/rootfs/minimal.pid 2>/dev/null
     if [ -f $DEVICE_MNT/minimal/rootfs/minimal.pid ] ; then
       # read/write mode
-      echo "  Device '$DEVICE' is mounted in read/write mode."
+      echo -e "  Device \\e[31m$DEVICE\\e[0m is mounted in read/write mode."
 
       rm -f $DEVICE_MNT/minimal/rootfs/minimal.pid
 
@@ -83,7 +83,7 @@ for DEVICE in /dev/* ; do
       WORK_DIR=$DEVICE_MNT/minimal/work
     else
       # read only mode
-      echo "  Device '$DEVICE' is mounted in read only mode."
+      echo -e "  Device \\e[31m$DEVICE\\e[0m is mounted in read only mode."
 
       OVERLAY_DIR=$DEVICE_MNT/minimal/rootfs
       OVERLAY_MNT=$DEVICE_MNT
@@ -92,7 +92,7 @@ for DEVICE in /dev/* ; do
     fi
   elif [ -f $DEVICE_MNT/minimal.img ] ; then
     #image
-    echo "  Found '/minimal.img' image on device '$DEVICE'."
+    echo -e "  Found \\e[94m/minimal.img\\e[0m image on device \\e[31m$DEVICE\\e[0m."
 
     mkdir -p /tmp/mnt/image
     IMAGE_MNT=/tmp/mnt/image
@@ -105,7 +105,7 @@ for DEVICE in /dev/* ; do
       touch $IMAGE_MNT/rootfs/minimal.pid 2>/dev/null
       if [ -f $IMAGE_MNT/rootfs/minimal.pid ] ; then
         # read/write mode
-        echo "  Image '$DEVICE/minimal.img' is mounted in read/write mode."
+        echo -e "  Image \\e[94m$DEVICE/minimal.img\\e[0m is mounted in read/write mode."
 
         rm -f $IMAGE_MNT/rootfs/minimal.pid
 
@@ -115,7 +115,7 @@ for DEVICE in /dev/* ; do
         WORK_DIR=$IMAGE_MNT/work
       else
         # read only mode
-        echo "  Image '$DEVICE/minimal.img' is mounted in read only mode."
+        echo -e "  Image \\e[94m$DEVICE/minimal.img\\e[0m is mounted in read only mode."
 
         OVERLAY_DIR=$IMAGE_MNT/rootfs
         OVERLAY_MNT=$IMAGE_MNT
@@ -137,21 +137,21 @@ for DEVICE in /dev/* ; do
 
     OUT=$?
     if [ ! "$OUT" = "0" ] ; then
-      echo "  Mount failed (probably on vfat)."
-      
+      echo -e "  \\e[31mMount failed (probably on vfat).\\e[0m"
+
       umount $OVERLAY_MNT 2>/dev/null
       rmdir $OVERLAY_MNT 2>/dev/null
-      
+
       rmdir $DEFAULT_OVERLAY_DIR 2>/dev/null
       rmdir $DEFAULT_UPPER_DIR 2>/dev/null
       rmdir $DEFAULT_WORK_DIR 2>/dev/null
     else
       # All done, time to go.
-      echo "  Overlay data from device '$DEVICE' has been merged."
+      echo -e "  Overlay data from device \\e[31m$DEVICE\\e[0m has been merged."
       break
     fi
   else
-    echo "  Device '$DEVICE' has no proper overlay structure."
+    echo -e "  Device \\e[31m$DEVICE\\e[0m has no proper overlay structure."
   fi
 
   umount $DEVICE_MNT 2>/dev/null
@@ -163,10 +163,10 @@ mount --move /dev /mnt/dev
 mount --move /sys /mnt/sys
 mount --move /proc /mnt/proc
 mount --move /tmp /mnt/tmp
-echo "Mount locations /dev, /sys, /tmp and /proc have been moved to /mnt."
+echo -e "Mount locations \\e[94m/dev\\e[0m, \\e[94m/sys\\e[0m, \\e[94m/tmp\\e[0m and \\e[94m/proc\\e[0m have been moved to \\e[94m/mnt\\e[0m."
 
 # The new mountpoint becomes file system root. All original root folders are
-# deleted automatically as part of the command execution. The '/sbin/init' 
+# deleted automatically as part of the command execution. The '/sbin/init'
 # process is invoked and it becomes the new PID 1 parent process.
 echo "Switching from initramfs root area to overlayfs root area."
 exec switch_root /mnt /etc/03_init.sh

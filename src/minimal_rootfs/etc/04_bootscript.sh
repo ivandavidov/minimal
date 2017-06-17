@@ -14,9 +14,7 @@
 #                    |
 #                    +--(1) /etc/04_bootscript.sh (this file)
 #                    |       |
-#                    |       +-- udhcpc
-#                    |           |
-#                    |           +-- /etc/05_rc.udhcp
+#                    |       +-- /etc/autorun/* (all scripts)
 #                    |
 #                    +--(2) /bin/sh (Alt + F1, main console)
 #                    |
@@ -28,9 +26,9 @@
 
 echo -e "Welcome to \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/sbin/init)"
 
-for DEVICE in /sys/class/net/* ; do
-  echo "Found network device ${DEVICE##*/}" 
-  ip link set ${DEVICE##*/} up
-  [ ${DEVICE##*/} != lo ] && udhcpc -b -i ${DEVICE##*/} -s /etc/05_rc.dhcp
+# Autorun functionality
+for AUTOSCRIPT in /etc/autorun/*
+do
+  echo -e "Executing \\e[32m$AUTOSCRIPT\\e[0m in subshell."
+  sh $AUTOSCRIPT
 done
-

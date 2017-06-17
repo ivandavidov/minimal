@@ -45,7 +45,7 @@ read -t 5 -n1 -s key
 
 if [ "$key" = "" ] ; then
   # Use default initialization logic based on configuration in '/etc/inittab'.
-  echo "Executing /sbin/init as PID 1."
+  echo -e "Executing \\e[32m/sbin/init\\e[0m as PID 1."
   exec /sbin/init
 else
   # Print second message on screen.

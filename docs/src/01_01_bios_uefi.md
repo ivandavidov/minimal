@@ -1,4 +1,0 @@
-# BIOS / UEFI
-
-TODO
-

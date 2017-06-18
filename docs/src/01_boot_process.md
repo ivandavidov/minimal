@@ -1,4 +1,0 @@
-# Boot Process
-
-TODO
-

@@ -1,4 +1,0 @@
-# Minimal Linux Live
-
-TODO
-

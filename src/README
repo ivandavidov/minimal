@@ -63,9 +63,6 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
-* static-get - download statically linked versions of over 1000 programs like
-               git or curl
-
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and

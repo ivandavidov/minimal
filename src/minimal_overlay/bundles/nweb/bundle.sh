@@ -30,7 +30,7 @@ install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www" # FHS c
 install -m644 "$SRC_DIR/index.html" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www/index.html"
 install -m644 "$SRC_DIR/favicon.ico" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www/favicon.ico"
 install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/etc"
-install -m755 "$SRC_DIR/nweb.sh" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/etc/nweb.sh"
+install -m755 "$SRC_DIR/nweb.sh" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/etc/autorun/90_nweb.sh"
 
 echo "nweb has been installed."
 echo "it will be autostarted on boot"

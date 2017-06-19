@@ -29,10 +29,6 @@ install -m755 nweb "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/bin/nweb"
 install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www" # FHS compliant location
 install -m644 "$SRC_DIR/index.html" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www/index.html"
 install -m644 "$SRC_DIR/favicon.ico" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/srv/www/favicon.ico"
-install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/share"
-install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/share/man"
-install -d -m755 "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/share/man/man8"
-install -m644 "$SRC_DIR/nweb.8" "$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs/usr/share/man/man8/nweb.8"
 
 echo "nweb has been installed."
-echo "type 'man nweb' to see what it can do on your mimial system"
+echo "run 'nweb 80 /srv/www &' on your minimal system to run it"

@@ -64,6 +64,10 @@ Currently available overlay bundles:
                space. Use the "lua" command to run an interactive lua interpreter
 
 * nweb       - nweb is a very small and easy to use webserver
+               run it using 'nweb 80 /srv/www'
+               to portforward port 8080 on the host to port 80 on the guest (minimal)
+               add '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to the cmd in
+               qemu64.sh and qemu32.sh
 
 ###   ###   ###
 

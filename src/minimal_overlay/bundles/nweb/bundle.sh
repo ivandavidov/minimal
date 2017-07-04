@@ -14,11 +14,13 @@ rm -rf $MAIN_SRC_DIR/work/overlay/nweb
 mkdir -p $MAIN_SRC_DIR/work/overlay/nweb
 cd $MAIN_SRC_DIR/work/overlay/nweb
 
+set -x
 # nweb
-cc $CFLAGS $SRC_DIR/nweb23.c -o nweb
+gcc $CFLAGS --sysroot=$MAIN_SRC_DIR/work/glibc/glibc_prepared/ $SRC_DIR/nweb23.c -o nweb
 
 # client
 #cc $CFLAGS $SRC_DIR/client.c -o client
+set +x
 
 echo "nweb has been build."
 

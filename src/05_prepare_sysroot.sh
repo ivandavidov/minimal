@@ -41,6 +41,19 @@ ln -s ../../kernel/kernel_installed/include/asm include/asm
 ln -s ../../kernel/kernel_installed/include/asm-generic include/asm-generic
 ln -s ../../kernel/kernel_installed/include/mtd include/mtd
 
+cd ..
+
+echo "generating sysroot.specs"
+SYSROOT="$PWD/sysroot"
+
+# gcc has a "internal" path that needs to be added to find the static versions of libgcc_*
+GCC_INTERNAL_PATH=$(dirname $(gcc -print-libgcc-file-name))
+
+cat << CEOF > sysroot.specs
+*link_libgcc
+-L$SYSROOT/lib -L$SYSROOT/lib64 -L$SYSROOT/usr/lib -L$SYSROOT/usr/lib64 -L$SYSROOT/usr/local/lib -L$SYSROOT/usr/local/lib64 -L$GCC_INTERNAL_PATH
+CEOF
+
 cd $SRC_DIR
 
 echo "*** PREPARE SYSROOT END ***"

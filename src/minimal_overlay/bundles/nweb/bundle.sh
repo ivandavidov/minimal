@@ -2,7 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-. ../common.sh
+. ../../common.sh
 
 # Find the main source directory
 cd ../../..

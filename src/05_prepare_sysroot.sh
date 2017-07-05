@@ -50,7 +50,7 @@ SYSROOT="$PWD/sysroot"
 GCC_INTERNAL_PATH=$(dirname $(gcc -print-libgcc-file-name))
 
 cat << CEOF > sysroot.specs
-*link_libgcc
+*link_libgcc:
 -L$SYSROOT/lib -L$SYSROOT/lib64 -L$SYSROOT/usr/lib -L$SYSROOT/usr/lib64 -L$SYSROOT/usr/local/lib -L$SYSROOT/usr/local/lib64 -L$GCC_INTERNAL_PATH
 CEOF
 

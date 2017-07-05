@@ -12,8 +12,7 @@ DESTDIR="$PWD/links_installed"
 cd $(ls -d links-*)
 
 echo "Preparing Links work area. This may take a while..."
-# distclean to also clear configure files
-make -j $NUM_JOBS distclean
+make -j $NUM_JOBS clean
 
 rm -rf $DESTDIR
 

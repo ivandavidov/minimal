@@ -4,21 +4,16 @@ SRC_DIR=$(pwd)
 
 . ../../common.sh
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
-
 echo "removing previous work area"
-rm -rf $MAIN_SRC_DIR/work/overlay/nweb
-mkdir -p $MAIN_SRC_DIR/work/overlay/nweb
-cd $MAIN_SRC_DIR/work/overlay/nweb
+rm -rf $WORK_DIR/overlay/nweb
+mkdir -p $WORK_DIR/overlay/nweb
+cd $WORK_DIR/overlay/nweb
 
 # nweb
-${CC-gcc} $CFLAGS $SRC_DIR/nweb23.c -o nweb
+$CC $CFLAGS $LDFLAGS $SRC_DIR/nweb23.c -o nweb
 
 # client
-#${CC-gcc} $CFLAGS $SRC_DIR/client.c -o client
+#$CC $CFLAGS $LDFLAGS $SRC_DIR/client.c -o client
 
 echo "nweb has been build."
 

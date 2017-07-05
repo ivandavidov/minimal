@@ -2,10 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Grab everything after the '=' character.
 DOWNLOAD_URL=$(grep -i LUA_SOURCE_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
@@ -33,11 +30,11 @@ fi
 
 # Delete folder with previously extracted Lua.
 echo "Removing Lua work area. This may take a while..."
-rm -rf ../../work/overlay/lua
-mkdir ../../work/overlay/lua
+rm -rf $WORK_DIR/overlay/lua
+mkdir $WORK_DIR/overlay/lua
 
 # Extract lua to folder 'work/overlay/lua'.
 # Full path will be something like 'work/overlay/lua/lua-5.3.4'.
-tar -xvf $ARCHIVE_FILE -C ../../work/overlay/lua
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/lua
 
 cd $SRC_DIR

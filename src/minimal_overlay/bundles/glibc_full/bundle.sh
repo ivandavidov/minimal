@@ -13,7 +13,7 @@ echo "Preparing the overlay glibc folder. This may take a while..."
 rm -rf $WORK_DIR/overlay/glibc
 mkdir -p $WORK_DIR/overlay/glibc/lib
 
-cd $WORK_DIR/glibc/glibc_prepared/lib
+cd $SYSROOT
 
 find . -type l -exec cp {} $WORK_DIR/overlay/glibc/lib \;
 echo "All libraries have been copied."

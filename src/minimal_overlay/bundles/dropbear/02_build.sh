@@ -72,12 +72,13 @@ strip -g \
   $DESTDIR/usr/sbin/* \
   $DESTDIR/lib/*
 
-cp -r \
-  $DESTDIR/etc \
-  $DESTDIR/usr/bin \
-  $DESTDIR/usr/sbin \
-  $DESTDIR/lib \
-  $WORK_DIR/src/minimal_overlay/rootfs
+ROOTFS=$WORK_DIR/src/minimal_overlay/rootfs
+
+mkdir -p $ROOTFS/usr
+cp -r $DESTDIR/etc $ROOTFS
+cp -r $DESTDIR/usr/bin $ROOTFS/usr
+cp -r $DESTDIR/usr/sbin $ROOTFS/usr
+cp -r $DESTDIR/lib $ROOTFS
 
 echo "Dropbear has been installed."
 

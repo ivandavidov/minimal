@@ -2,10 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Grab everything after the '=' character.
 DOWNLOAD_URL=$(grep -i STATIC_GET_SOURCE_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
@@ -30,11 +27,11 @@ fi
 
 # Delete folder with previously prepared static-get.
 echo "Removing static-get work area. This may take a while..."
-rm -rf ../../work/overlay/staget
-mkdir ../../work/overlay/staget
+rm -rf $WORK_DIR/overlay/staget
+mkdir $WORK_DIR/overlay/staget
 
 # Copy static-get to folder 'work/overlay/staget'.
-cp static-get.sh ../../work/overlay/staget
+cp static-get.sh $WORK_DIR/overlay/staget
 
 cd $SRC_DIR
 

@@ -2,17 +2,14 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
-if [ ! -d "$MAIN_SRC_DIR/work/overlay/mll_utils" ] ; then
-  echo "The directory $MAIN_SRC_DIR/work/overlay/mll_utils does not exist. Cannot continue."
+if [ ! -d "$WORK_DIR/overlay/mll_utils" ] ; then
+  echo "The directory $WORK_DIR/overlay/mll_utils does not exist. Cannot continue."
   exit 1
 fi
 
-cd $MAIN_SRC_DIR/work/overlay/mll_utils
+cd $WORK_DIR/overlay/mll_utils
 
 # 'mll-disk-erase' BEGIN
 

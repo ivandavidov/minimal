@@ -4,7 +4,7 @@ SRC_DIR=$(pwd)
 
 . ../../common.sh
 
-if [ ! -d $WORK_DIR/glibc/glibc_prepared ] ; then
+if [ ! -d $SYSROOT ] ; then
   echo "Cannot continue - GLIBC is missing. Please buld GLIBC first."
   exit 1
 fi

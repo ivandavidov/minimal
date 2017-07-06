@@ -2,17 +2,14 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
-if [ ! -d "$MAIN_SRC_DIR/work/overlay/mll_utils" ] ; then
-  echo "The directory $MAIN_SRC_DIR/work/overlay/mll_utils does not exist. Cannot continue."
+if [ ! -d "$WORK_DIR/overlay/mll_utils" ] ; then
+  echo "The directory $WORK_DIR/overlay/mll_utils does not exist. Cannot continue."
   exit 1
 fi
 
-cd $MAIN_SRC_DIR/work/overlay/mll_utils
+cd $WORK_DIR/overlay/mll_utils
 
 # 'mll-install' BEGIN
 
@@ -102,30 +99,30 @@ chmod +rx sbin/mll-install
 
 # 'mll-install' END
 
-if [ ! -d "$MAIN_SRC_DIR/work/syslinux" ] ; then
+if [ ! -d "$WORK_DIR/syslinux" ] ; then
 echo "The installer depends on Syslinux which is missing. Cannot continue."
   exit 1
 fi;
 
-cd $MAIN_SRC_DIR/work/syslinux
+cd $WORK_DIR/syslinux
 cd $(ls -d syslinux-*)
 
 cp bios/extlinux/extlinux \
-  $MAIN_SRC_DIR/work/overlay/mll_utils/sbin
-mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/opt/syslinux 
+  $WORK_DIR/overlay/mll_utils/sbin
+mkdir -p $WORK_DIR/overlay/mll_utils/opt/syslinux 
 cp bios/mbr/mbr.bin \
-  $MAIN_SRC_DIR/work/overlay/mll_utils/opt/syslinux
+  $WORK_DIR/overlay/mll_utils/opt/syslinux
 
 # Big mama hack - need to find proper workaround!!!
 # Both syslinux and extlinux are 32-bit executables which require 32-bit libs.
 # Possible solution 1 - build 32-bit GLIBC on demand.
 # Possible solution 2 - drop 32-bit MLL and provide 64-bit with multi-arch.
-mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/lib
-mkdir -p $MAIN_SRC_DIR/work/overlay/mll_utils/usr/lib
+mkdir -p $WORK_DIR/overlay/mll_utils/lib
+mkdir -p $WORK_DIR/overlay/mll_utils/usr/lib
 cp /lib/ld-linux.so.2 \
-  $MAIN_SRC_DIR/work/overlay/mll_utils/lib
+  $WORK_DIR/overlay/mll_utils/lib
 cp /lib/i386-linux-gnu/libc.so.6 \
-  $MAIN_SRC_DIR/work/overlay/mll_utils/usr/lib
+  $WORK_DIR/overlay/mll_utils/usr/lib
 # Big mama hack - end.
 
 echo "Minimal Linux Live installer has been generated."

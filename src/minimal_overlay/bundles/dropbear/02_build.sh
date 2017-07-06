@@ -18,6 +18,7 @@ rm -rf $DESTDIR
 echo "Configuring Dropbear..."
 ./configure \
   --prefix=/usr \
+  --disable-zlib \
   --disable-loginfunc \
   CC="$CC" \
   CFLAGS="$CFLAGS" \
@@ -41,20 +42,12 @@ mkdir -p $DESTDIR/etc/dropbear
 
 # Create Dropbear SSH configuration BEGIN
 
-# Create RSA key.
-$DESTDIR/usr/bin/dropbearkey \
-  -t rsa \
-  -f $DESTDIR/etc/dropbear/dropbear_rsa_host_key 
-
-# Create DSS key.
-$DESTDIR/usr/bin/dropbearkey \
-  -t dss \
-  -f $DESTDIR/etc/dropbear/dropbear_dss_host_key 
-
-# Create ECDSA key.
-$DESTDIR/usr/bin/dropbearkey \
-  -t ecdsa \
-  -f $DESTDIR/etc/dropbear/dropbear_ecdsa_host_key 
+for key_type in rsa dss ecdsa; do
+  echo "generating $key_type host key"
+  $DESTDIR/usr/bin/dropbearkey \
+    -t $key_type \
+    -f $DESTDIR/etc/dropbear/dropbear_${key_type}_host_key
+done
 
 # Create user/group configuration files.
 touch $DESTDIR/etc/passwd
@@ -77,14 +70,12 @@ echo "Reducing Dropbear size..."
 strip -g \
   $DESTDIR/usr/bin/* \
   $DESTDIR/usr/sbin/* \
-  $DESTDIR/usr/lib/* \
   $DESTDIR/lib/*
 
 cp -r \
   $DESTDIR/etc \
   $DESTDIR/usr/bin \
   $DESTDIR/usr/sbin \
-  $DESTDIR/usr/lib \
   $DESTDIR/lib \
   $WORK_DIR/src/minimal_overlay/rootfs
 

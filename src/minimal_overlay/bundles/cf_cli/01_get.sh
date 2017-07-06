@@ -2,10 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Grab everything after the '=' character.
 #DOWNLOAD_URL=$(grep -i CLOUD_FOUNDRY_CLI_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
@@ -32,11 +29,11 @@ fi
 
 # Delete folder with previously prepared cloud foundry cli.
 echo "Removing cloud foundry cli work area. This may take a while..."
-rm -rf ../../work/overlay/clofo
-mkdir ../../work/overlay/clofo
+rm -rf $WORK_DIR/overlay/clofo
+mkdir $WORK_DIR/overlay/clofo
 
 # Copy cf-cli.tgz to folder 'work/overlay/clofo'.
-cp cf-cli.tgz ../../work/overlay/clofo
+cp cf-cli.tgz $WORK_DIR/overlay/clofo
 
 cd $SRC_DIR
 

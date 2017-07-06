@@ -18,10 +18,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Read the 'JAVA_ARCHIVE' property from '.config'
 JAVA_ARCHIVE="$(grep -i ^JAVA_ARCHIVE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
@@ -34,25 +31,25 @@ elif [ ! -f "$JAVA_ARCHIVE" ] ; then
   exit 1
 fi
 
-rm -rf $MAIN_SRC_DIR/work/overlay/java
-mkdir -p $MAIN_SRC_DIR/work/overlay/java/opt
+rm -rf $WORK_DIR/overlay/java
+mkdir -p $WORK_DIR/overlay/java/opt
 
 tar -xvf \
   $JAVA_ARCHIVE \
-  -C $MAIN_SRC_DIR/work/overlay/java/opt
+  -C $WORK_DIR/overlay/java/opt
 
-cd $MAIN_SRC_DIR/work/overlay/java/opt
+cd $WORK_DIR/overlay/java/opt
 mv $(ls -d *) java
 
-mkdir $MAIN_SRC_DIR/work/overlay/java/bin
+mkdir $WORK_DIR/overlay/java/bin
 
 for FILE in $(ls java/bin)
 do
   ln -s ../opt/java/bin/$FILE ../bin/$FILE
 done
 
-cp -r $MAIN_SRC_DIR/work/overlay/java/* \
-  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/java/* \
+  $WORK_DIR/src/minimal_overlay/rootfs
 
 echo "Java has been installed."
 

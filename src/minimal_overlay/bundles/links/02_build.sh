@@ -2,57 +2,41 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
-# Read the 'JOB_FACTOR' property from '.config'
-JOB_FACTOR="$(grep -i ^JOB_FACTOR $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+cd $WORK_DIR/overlay/links
 
-# Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
-
-# Find the number of available CPU cores.
-NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
-
-# Calculate the number of 'make' jobs to be used later.
-NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
-
-cd $MAIN_SRC_DIR/work/overlay/links
+DESTDIR="$PWD/links_installed"
 
 # Change to the Links source directory which ls finds, e.g. 'links-2.12'.
 cd $(ls -d links-*)
 
 echo "Preparing Links work area. This may take a while..."
-make clean -j $NUM_JOBS 2>/dev/null
+make -j $NUM_JOBS clean
 
-rm -rf ../links_installed
+rm -rf $DESTDIR
 
 echo "Configuring Links..."
-./configure \
-  --prefix=../links_installed \
+CC="$CC" CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" ./configure \
+  --prefix=/usr \
   --disable-graphics \
   --disable-utf8 \
   --without-ipv6 \
-  --without-ssl \
-  --without-zlib \
-  --without-x
-
-# Set CFLAGS directly in Makefile.
-sed -i "s/^CFLAGS = .*/CFLAGS = $CFLAGS/" Makefile
+  --without-ssl
 
 echo "Building Links..."
 make -j $NUM_JOBS
 
 echo "Installing Links..."
-make install -j $NUM_JOBS
+make -j $NUM_JOBS install DESTDIR=$DESTDIR
 
 echo "Reducing Links size..."
-strip -g ../links_installed/bin/* 2>/dev/null
+strip -g $DESTDIR/usr/bin/*
 
-cp -r ../links_installed/bin \
-  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
+ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
+
+mkdir -p "$ROOTFS/usr/bin"
+cp -r $DESTDIR/usr/bin/* $ROOTFS/usr/bin/
 
 echo "Links has been installed."
 

@@ -4,8 +4,8 @@ echo "*** GENERATE ROOTFS BEGIN ***"
 
 SRC_ROOT=$(pwd)
 
-# Remember the glibc prepared folder.
-GLIBC_PREPARED=$(pwd)/work/glibc/glibc_prepared
+# Remember the sysroot
+SYSROOT=$(pwd)/work/sysroot
 
 # Remember the BysyBox install folder.
 BUSYBOX_INSTALLED=$(pwd)/work/busybox/busybox_installed
@@ -44,22 +44,22 @@ fi
 BUSYBOX_ARCH=$(file bin/busybox | cut -d' '  -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
   mkdir lib64
-  cp $GLIBC_PREPARED/lib/ld-linux* lib64
+  cp $SYSROOT/lib/ld-linux* lib64
   echo "Dynamic loader is accessed via '/lib64'."
 else
-  cp $GLIBC_PREPARED/lib/ld-linux* lib
+  cp $SYSROOT/lib/ld-linux* lib
   echo "Dynamic loader is accessed via '/lib'."
 fi
 
 # Copy all necessary 'glibc' libraries to '/lib' BEGIN.
 
 # BusyBox has direct dependencies on these libraries.
-cp $GLIBC_PREPARED/lib/libm.so.6 lib
-cp $GLIBC_PREPARED/lib/libc.so.6 lib
+cp $SYSROOT/lib/libm.so.6 lib
+cp $SYSROOT/lib/libc.so.6 lib
 
 # These libraries are necessary for the DNS resolving.
-cp $GLIBC_PREPARED/lib/libresolv.so.2 lib
-cp $GLIBC_PREPARED/lib/libnss_dns.so.2 lib
+cp $SYSROOT/lib/libresolv.so.2 lib
+cp $SYSROOT/lib/libnss_dns.so.2 lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 

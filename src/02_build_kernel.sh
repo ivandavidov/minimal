@@ -52,6 +52,9 @@ else
   # Enable overlay support, e.g. merge ro and rw directories.
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
   
+  # Enable overlayfs redirection 
+  echo "CONFIG_OVERLAY_FS_REDIRECT_DIR=y" >> .config
+  
   # Step 1 - disable all active kernel compression options (should be only one).
   sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config  
   
@@ -77,6 +80,9 @@ else
 
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
+  
+  # Disable Apple Properties (Useful for Macs but useless in general)
+  echo "CONFIG_APPLE_PROPERTIES=n" >> .config
 
   # Check if we are building 32-bit kernel. The exit code is '1' when we are
   # building 64-bit kernel, otherwise the exit code is '0'.

@@ -9,11 +9,15 @@ rm -rf $WORK_DIR/overlay/nweb
 mkdir -p $WORK_DIR/overlay/nweb
 cd $WORK_DIR/overlay/nweb
 
+set -x
+
 # nweb
 $CC $CFLAGS $LDFLAGS $SRC_DIR/nweb23.c -o nweb
 
 # client
 #$CC $CFLAGS $LDFLAGS $SRC_DIR/client.c -o client
+
+set +x
 
 echo "nweb has been build."
 

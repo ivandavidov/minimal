@@ -13,8 +13,8 @@ NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
 # Calculate the number of 'make' jobs to be used later.
 NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
-# Remember the glibc installation area.
-GLIBC_PREPARED=$(pwd)/work/glibc/glibc_prepared
+# Remember the sysroot
+SYSROOT=$(pwd)/work/sysroot
 
 cd work/busybox
 
@@ -53,10 +53,10 @@ fi
 
 # This variable holds the full path to the glibc installation area as quoted string.
 # All back slashes are escaped (/ => \/) in order to keep the 'sed' command stable.
-GLIBC_PREPARED_ESCAPED=$(echo \"$GLIBC_PREPARED\" | sed 's/\//\\\//g')
+SYSROOT_ESCAPED=$(echo \"$SYSROOT\" | sed 's/\//\\\//g')
 
 # Now we tell BusyBox to use the glibc prepared area.
-sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$GLIBC_PREPARED_ESCAPED/" .config
+sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$SYSROOT_ESCAPED/" .config
 
 # Read the 'CFLAGS' property from '.config'
 CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"

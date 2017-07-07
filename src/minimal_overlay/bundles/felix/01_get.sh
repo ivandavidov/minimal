@@ -2,10 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Grab everything after the '=' character.
 DOWNLOAD_URL=$(grep -i FELIX_SOURCE_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
@@ -33,12 +30,12 @@ fi
 
 # Delete folder with previously extracted Felix.
 echo "Removing Apache Felix work area. This may take a while..."
-rm -rf ../../work/overlay/felix
-mkdir ../../work/overlay/felix
+rm -rf $WORK_DIR/overlay/felix
+mkdir $WORK_DIR/overlay/felix
 
 # Extract Felix to folder 'work/overlay/felix'.
 # Full path will be something like 'work/overlay/felix/felix-framework-5.4.0'.
-tar -xvf $ARCHIVE_FILE -C ../../work/overlay/felix
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/felix
 
 cd $SRC_DIR
 

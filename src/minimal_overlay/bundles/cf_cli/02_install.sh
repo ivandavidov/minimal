@@ -2,17 +2,14 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 echo "Removing old cloud foundry artifacts. This may take a while..."
-rm -rf $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed
-mkdir -p $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed/opt/clofo
-mkdir -p $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed/bin
+rm -rf $WORK_DIR/overlay/clofo/clofo_installed
+mkdir -p $WORK_DIR/overlay/clofo/clofo_installed/opt/clofo
+mkdir -p $WORK_DIR/overlay/clofo/clofo_installed/bin
 
-cd $MAIN_SRC_DIR/work/overlay/clofo
+cd $WORK_DIR/overlay/clofo
 
 cp $MAIN_SRC_DIR/source/overlay/cf-cli.tgz .
 
@@ -20,14 +17,13 @@ tar -xvf cf-cli.tgz
 rm -f LICENSE NOTICE cf-cli.tgz
 chmod +rx cf
 
-cp cf $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed/opt/clofo/cf
+cp cf $WORK_DIR/overlay/clofo/clofo_installed/opt/clofo/cf
 
-cd $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed
+cd $WORK_DIR/overlay/clofo/clofo_installed
 
 ln -s ../opt/clofo/cf bin/cf
 
-cp -r $MAIN_SRC_DIR/work/overlay/clofo/clofo_installed/* \
-  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/clofo/clofo_installed/* $WORK_DIR/src/minimal_overlay/rootfs
 
 echo "cloud foundry cli has been installed."
 

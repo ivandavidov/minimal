@@ -1,24 +1,23 @@
 #!/bin/sh
+
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
-
-# Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+. ../../common.sh
 
 echo "removing previous work area"
-rm -rf $MAIN_SRC_DIR/work/overlay/nweb
-mkdir -p $MAIN_SRC_DIR/work/overlay/nweb
-cd $MAIN_SRC_DIR/work/overlay/nweb
+rm -rf $WORK_DIR/overlay/nweb
+mkdir -p $WORK_DIR/overlay/nweb
+cd $WORK_DIR/overlay/nweb
+
+set -x
 
 # nweb
-cc $CFLAGS $SRC_DIR/nweb23.c -o nweb
+$CC $CFLAGS $LDFLAGS $SRC_DIR/nweb23.c -o nweb
 
 # client
-#cc $CFLAGS $SRC_DIR/client.c -o client
+#$CC $CFLAGS $LDFLAGS $SRC_DIR/client.c -o client
+
+set +x
 
 echo "nweb has been build."
 

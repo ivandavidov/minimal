@@ -2,10 +2,7 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 # Grab everything after the '=' character.
 DOWNLOAD_URL=$(grep -i LINKS_SOURCE_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
@@ -33,12 +30,12 @@ fi
 
 # Delete folder with previously extracted Links.
 echo "Removing Links work area. This may take a while..."
-rm -rf ../../work/overlay/links
-mkdir ../../work/overlay/links
+rm -rf $WORK_DIR/overlay/links
+mkdir $WORK_DIR/overlay/links
 
 # Extract Links to folder 'work/overlay/links'.
 # Full path will be something like 'work/overlay/links/links-2.12'.
-tar -xvf $ARCHIVE_FILE -C ../../work/overlay/links
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/links
 
 cd $SRC_DIR
 

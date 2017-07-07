@@ -2,17 +2,14 @@
 
 SRC_DIR=$(pwd)
 
-# Find the main source directory
-cd ../../..
-MAIN_SRC_DIR=$(pwd)
-cd $SRC_DIR
+. ../../common.sh
 
 echo "Removing old Apache Felix artifacts. This may take a while..."
-rm -rf $MAIN_SRC_DIR/work/overlay/felix/felix_installed
-mkdir -p $MAIN_SRC_DIR/work/overlay/felix/felix_installed/opt/felix
-mkdir -p $MAIN_SRC_DIR/work/overlay/felix/felix_installed/bin
+rm -rf $WORK_DIR/overlay/felix/felix_installed
+mkdir -p $WORK_DIR/overlay/felix/felix_installed/opt/felix
+mkdir -p $WORK_DIR/overlay/felix/felix_installed/bin
 
-cd $MAIN_SRC_DIR/work/overlay/felix
+cd $WORK_DIR/overlay/felix
 cd $(ls -d felix-*)
 
 cat << CEOF > bin/felix-start.sh
@@ -25,14 +22,14 @@ CEOF
 
 chmod +rx bin/felix-start.sh
 
-cp -r * $MAIN_SRC_DIR/work/overlay/felix/felix_installed/opt/felix
+cp -r * $WORK_DIR/overlay/felix/felix_installed/opt/felix
 
-cd $MAIN_SRC_DIR/work/overlay/felix/felix_installed
+cd $WORK_DIR/overlay/felix/felix_installed
 
 ln -s ../opt/felix/bin/felix-start.sh bin/felix-start
 
-cp -r $MAIN_SRC_DIR/work/overlay/felix/felix_installed/* \
-  $MAIN_SRC_DIR/work/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/felix/felix_installed/* \
+  $WORK_DIR/src/minimal_overlay/rootfs
 
 echo "Apache Felix has been installed."
 

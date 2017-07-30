@@ -14,9 +14,7 @@
 #                    |
 #                    +--(1) /etc/04_bootscript.sh
 #                    |       |
-#                    |       +-- udhcpc
-#                    |           |
-#                    |           +-- /etc/05_rc.udhcp
+#                    |       +-- /etc/autorun/* (all scripts)
 #                    |
 #                    +--(2) /bin/sh (Alt + F1, main console)
 #                    |
@@ -43,7 +41,7 @@ if [ ! "$key" = "" ] ; then
 
   # Set flag which indicates that we have obtained controlling terminal.
   export PID1_SHELL=true
-  
+
   # Interactive shell with controlling tty as PID 1.
   exec setsid cttyhack sh
 fi

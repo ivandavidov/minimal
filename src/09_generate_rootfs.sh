@@ -57,10 +57,6 @@ fi
 cp $SYSROOT/lib/libm.so.6 lib
 cp $SYSROOT/lib/libc.so.6 lib
 
-# These libraries are necessary for the DNS resolving.
-cp $SYSROOT/lib/libresolv.so.2 lib
-cp $SYSROOT/lib/libnss_dns.so.2 lib
-
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
 strip -g \

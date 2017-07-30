@@ -69,6 +69,8 @@ Currently available overlay bundles:
                add '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to the cmd in
                qemu64.sh and qemu32.sh
 
+* dhcp       - DHCP and DNS functionality
+
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and

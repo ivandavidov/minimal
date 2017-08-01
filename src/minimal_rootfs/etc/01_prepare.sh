@@ -14,9 +14,7 @@
 #                    |
 #                    +--(1) /etc/04_bootscript.sh
 #                    |       |
-#                    |       +-- udhcpc
-#                    |           |
-#                    |           +-- /etc/05_rc.udhcp
+#                    |       +-- /etc/autorun/* (all scripts)
 #                    |
 #                    +--(2) /bin/sh (Alt + F1, main console)
 #                    |

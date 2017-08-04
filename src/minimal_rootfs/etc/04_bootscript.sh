@@ -27,8 +27,11 @@
 echo -e "Welcome to \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/sbin/init)"
 
 # Autorun functionality
+if [ -d /etc/autorun ] ; then
 for AUTOSCRIPT in /etc/autorun/*
-do
-  echo -e "Executing \\e[32m$AUTOSCRIPT\\e[0m in subshell."
-  sh $AUTOSCRIPT
-done
+  do
+    echo -e "Executing \\e[32m$AUTOSCRIPT\\e[0m in subshell."
+    sh $AUTOSCRIPT
+  done
+fi
+

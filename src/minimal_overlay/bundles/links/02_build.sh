@@ -17,12 +17,14 @@ make -j $NUM_JOBS clean
 rm -rf $DESTDIR
 
 echo "Configuring Links..."
-CC="$CC" CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" ./configure \
+CFLAGS="$CFLAGS" ./configure \
   --prefix=/usr \
   --disable-graphics \
   --disable-utf8 \
   --without-ipv6 \
-  --without-ssl
+  --without-ssl \
+  --without-zlib \
+  --without-x
 
 echo "Building Links..."
 make -j $NUM_JOBS

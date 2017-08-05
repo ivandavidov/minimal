@@ -20,7 +20,7 @@ make -j $NUM_JOBS clean
 rm -rf $DESTDIR
 
 echo "Building Lua..."
-make -j $NUM_JOBS posix CC="$CC" CFLAGS="$CFLAGS"
+make -j $NUM_JOBS posix CFLAGS="$CFLAGS"
 
 make -j $NUM_JOBS install INSTALL_TOP="$DESTDIR/usr"
 

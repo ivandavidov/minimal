@@ -19,10 +19,8 @@ echo "Configuring Dropbear..."
 ./configure \
   --prefix=/usr \
   --disable-zlib \
-  --disable-loginfunc \
-  CC="$CC" \
-  CFLAGS="$CFLAGS" \
-  LDFLAGS="$LDFLAGS"
+  --disable-loginfunc
+  CFLAGS="$CFLAGS"
 
 echo "Building Dropbear..."
 make -j $NUM_JOBS

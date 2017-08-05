@@ -27,11 +27,12 @@ export NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 # sysroot flags for the compiler
 
 #-Wl,-nostdlib is required to make ld / gcc ignore the host's /usr/lib and /lib
-ld_flags="-Wl,-nostdlib $(grep -- \"-L\" $SYSROOT_SPECS)"
+#ld_flags="-Wl,-nostdlib $(grep -- \"-L\" $SYSROOT_SPECS)"
 #-static-libgcc is neeeded since we don't have the gcc-libs in our sysroot
-gcc_flags="-specs=$SYSROOT_SPECS -static-libgcc"
+#gcc_flags="-specs=$SYSROOT_SPECS -static-libgcc"
 
 # $ld_flags is passed 2 times because sometimes bundles ignore one of the variables
-export CC="${CC-gcc} $gcc_flags $ld_flags"
-export CFLAGS="$CFLAGS"
-export LDFLAGS="$LDFLAGS $ld_flags"
+#export CC="${CC-gcc} $gcc_flags $ld_flags"
+#export CFLAGS="$CFLAGS"
+#export LDFLAGS="$LDFLAGS $ld_flags"
+

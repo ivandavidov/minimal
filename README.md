@@ -20,18 +20,19 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
 
-## Current development state (29-Jan-2017)
+## Current development state (23-Sep-2017)
 
-* Linux kernel 4.4.44 (longterm)
-* GNU C Library 2.24 (stable)
-* BusyBox 1.26.2 (stable)
-* Stable on default Ubuntu 16.04.1 installation (32-bit and 64-bit) with applied system updates.
+* Linux kernel 4.13.3 (stable)
+* GNU C Library 2.26 (stable)
+* BusyBox 1.27.2 (stable)
+* Stable on default Ubuntu 16.04 installation with applied system updates.
 
 ## Future improvements
 
 * Add kernel modules and firmware.
 * Reorganize and simplify the ISO image generation script.
 * Allow individual overlay bundles to be downloaded and installed.
+* Add more overlay bundles.
 
 The above list is not fixed it may be updated at any time.
 

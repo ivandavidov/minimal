@@ -49,11 +49,14 @@ else
   # Changes the name of the system to 'minimal'.
   sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .config
 
-  # Enable overlay support, e.g. merge ro and rw directories.
+  # Enable overlay support, e.g. merge ro and rw directories (3.18+).
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
   
-  # Enable overlayfs redirection 
+  # Enable overlayfs redirection (4.10+).
   echo "CONFIG_OVERLAY_FS_REDIRECT_DIR=y" >> .config
+
+  # Turn on inodes index feature by default (4.13+).
+  echo "CONFIG_OVERLAY_FS_INDEX=y" >> .config
   
   # Step 1 - disable all active kernel compression options (should be only one).
   sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config  

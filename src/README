@@ -27,6 +27,11 @@ Currently available overlay bundles:
 
                This overlay bundle depends on the GLIBC build process.
 
+* ZLIB       - Software library used for data compression.
+
+               This overlay bundle is self sufficient and doesn't require other
+               overlay bundles.
+
 * Links      - text based browser. Requires ~1MB additional space. Use the
                "links" command to activate the browser.
 
@@ -48,6 +53,10 @@ Currently available overlay bundles:
                detailed information.
 
                This overlay bundle requires GLIBC.
+
+* Open JDK   - The open source JDK. No need for manual steps.
+
+               This overlay bundle requires GLIBC and ZLIB.
 
 * Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
                the "felix-start" command to run the Apache Felix OSGi framework.

@@ -66,8 +66,8 @@
       7) Since we are talking about minimal live CD, in theory, /init is not supposed to do much.
          All we need from /init is to prepare the environment and provide the user with shell.
          In most live Linux distributions, the /init script is supposed to do much more than
-		 this, but for the time being, it's enough to know that the point at which we take 
-		 control is exactly the /init script.
+         this, but for the time being, it's enough to know that the point at which we take 
+         control is exactly the /init script.
      
    ###   ###   ###
    
@@ -715,7 +715,7 @@
          not be persisted between reboots. Probably, you would like to handle this edge case.
       
       4) You need to prepare the stuff that you want to be present in the compressed file
-		 system in advance. Assuming that we are building a useful live Linux OS, the
+         system in advance. Assuming that we are building a useful live Linux OS, the
          absolute minimum is "GNU Coreutils", network management utilities and probably
          some kind of package manager, e.g. "pacman" or "apt-get". Don't forget that most
          of this additional stuff very likely relies on different kernel options that

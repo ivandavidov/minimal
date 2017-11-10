@@ -37,10 +37,8 @@ strip -g $DESTDIR/usr/bin/*
 
 ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
 
-mkdir -p "$ROOTFS/usr/bin"
-cp -r $DESTDIR/usr/bin/* $ROOTFS/usr/bin/
+cp -r $DESTDIR/* $ROOTFS
 
 echo "util-linux has been installed."
 
 cd $SRC_DIR
-

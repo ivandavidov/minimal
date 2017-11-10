@@ -18,13 +18,19 @@ rm -rf $DESTDIR
 
 echo "Configuring util-linux..."
 CFLAGS="$CFLAGS" ./configure \
-  --prefix=/usr \
-  --disable-graphics \
-  --disable-utf8 \
-  --without-ipv6 \
-  --without-ssl \
-  --without-zlib \
-  --without-x
+  ADJTIME_PATH=/var/lib/hwclock/adjtime   \
+  --docdir=/usr/share/doc/util-linux-2.31 \
+  --disable-chfn-chsh  \
+  --disable-login      \
+  --disable-nologin    \
+  --disable-su         \
+  --disable-setpriv    \
+  --disable-runuser    \
+  --disable-pylibmount \
+  --disable-static     \
+  --without-python     \
+  --without-systemd    \
+  --without-systemdsystemunitdir
 
 echo "Building util-linux..."
 make -j $NUM_JOBS

@@ -27,7 +27,7 @@ clean:
 qemu:
 	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi
 	@echo "Launching QEMU..."
-	@if [ "$(shell uname -m)" = "x86_64" ]; then sh qemu64.sh; else sh qemu32.sh; fi
+	@qemu.sh
 
 src:
 	@echo "Generating source archive..."

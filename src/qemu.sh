@@ -10,7 +10,7 @@
 # If you get kernel panic with message "No working init found", then try to
 # increase the RAM from 128M to 256M.
 
-cmd="qemu-system-i386 -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
+cmd="qemu-system-$(uname -m) -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."

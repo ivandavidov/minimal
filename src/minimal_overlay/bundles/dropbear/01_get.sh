@@ -22,7 +22,7 @@ cd $MAIN_SRC_DIR/source/overlay
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading Dropbear source bundle file. The '-c' option allows the download to resume.
-  echo "Downloading Links source bundle from $DOWNLOAD_URL"
+  echo "Downloading Dropbear source bundle from $DOWNLOAD_URL"
   wget -c $DOWNLOAD_URL
 else
   echo "Using local Dropbear source bundle $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE"

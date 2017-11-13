@@ -8,7 +8,7 @@
 
 all: clean
 	@echo "Launching the main build script..."
-	@time sh build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
+	@time ./build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
 
 clean:
 	@echo "Removing generated work artifacts..."
@@ -33,7 +33,7 @@ src:
 	@echo "Generating source archive..."
 	@rm -f minimal_linux_live_*_src.tar.xz
 	@mkdir -p work
-	@sh 08_prepare_src.sh 1>/dev/null
+	@./08_prepare_src.sh 1>/dev/null
 	@$(eval DATE_PARSED := $(shell LANG=en_US ; date +"%d-%b-%Y"))
 	@cd work/src && tar -cpf - `ls -A` | xz - > ../../minimal_linux_live_$(DATE_PARSED)_src.tar.xz && cd ../..
 	@echo "Source archive: minimal_linux_live_$(DATE_PARSED)_src.tar.xz"

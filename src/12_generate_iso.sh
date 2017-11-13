@@ -54,7 +54,7 @@ OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
   echo "Generating additional overlay bundles. This may take a while..."
   cd minimal_overlay
-  time sh overlay_build.sh
+  time ./overlay_build.sh
   cd $SRC_DIR
 else
   echo "Generation of additional overlay bundles has been skipped."

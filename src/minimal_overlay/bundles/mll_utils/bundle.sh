@@ -2,10 +2,10 @@
 
 SRC_DIR=$(pwd)
 
-time sh 01_prepare.sh
-time sh 02_disk_erase.sh
-time sh 03_installer.sh
-time sh 04_install.sh
+time ./01_prepare.sh
+time ./02_disk_erase.sh
+time ./03_installer.sh
+time ./04_install.sh
 
 cd $SRC_DIR
 

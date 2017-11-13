@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # TODO - this shell script file needs serios refactoring since right now it does
 # too many things:

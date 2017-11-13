@@ -72,7 +72,7 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
-* ncurses    - "GUI-like" API that runs within a terminal emulator
+* ncurses    - 'GUI-like' API that runs within a terminal emulator
 
 * nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
                to portforward port 80 from the guest (minimal) to port 8080 on the host add
@@ -82,7 +82,7 @@ Currently available overlay bundles:
 
 * util_linux - util-linux is a standard package distributed by the Linux Kernel
                Organization similar to busybox or GNU Core Utils.
-               
+
                Some packages in this overlay bundle require ncurses.
 
 ###   ###   ###

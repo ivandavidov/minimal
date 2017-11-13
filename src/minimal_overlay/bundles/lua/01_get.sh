@@ -22,7 +22,7 @@ cd $MAIN_SRC_DIR/source/overlay
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
   # Downloading the Lua bundle file. The '-c' option allows the download to resume.
-  echo "Downloading the Lua source bundle from $DOWNLOAD_URL"
+  echo "Downloading Lua source bundle from $DOWNLOAD_URL"
   wget -c $DOWNLOAD_URL
 else
   echo "Using local Lua source bundle $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE"

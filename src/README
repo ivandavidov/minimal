@@ -52,7 +52,7 @@ Currently available overlay bundles:
                to the "JAVA_ARCHIVE" property in the ".config" file for more
                detailed information.
 
-               This overlay bundle requires GLIBC.
+               This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
 * Open JDK   - The open source JDK. No need for manual steps.
 
@@ -74,11 +74,9 @@ Currently available overlay bundles:
 
 * ncurses    - "GUI-like" API that runs within a terminal emulator
 
-* nweb       - nweb is a very small and easy to use webserver
-               run it using 'nweb 80 /srv/www'
-               to portforward port 8080 on the host to port 80 on the guest (minimal)
-               add '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to the cmd in
-               qemu64.sh and qemu32.sh
+* nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
+               to portforward port 80 from the guest (minimal) to port 8080 on the host add
+               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to 'cmd' in qemu.sh
 
 * dhcp       - DHCP and DNS functionality
 

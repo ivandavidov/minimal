@@ -80,6 +80,9 @@ Currently available overlay bundles:
 
 * dhcp       - DHCP and DNS functionality
 
+* util_linux - util-linux is a standard package distributed by the Linux Kernel
+               Organization similar to busybox or GNU Core Utils.
+
 ###   ###   ###
 
 I only provide the build scripts. It's entirely up to you to configure and

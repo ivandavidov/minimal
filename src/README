@@ -52,7 +52,7 @@ Currently available overlay bundles:
                to the "JAVA_ARCHIVE" property in the ".config" file for more
                detailed information.
 
-               This overlay bundle requires GLIBC.
+               This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
 * Open JDK   - The open source JDK. No need for manual steps.
 
@@ -72,6 +72,8 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
+* ncurses    - 'GUI-like' API that runs within a terminal emulator
+
 * nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
                to portforward port 80 from the guest (minimal) to port 8080 on the host add
                '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to 'cmd' in qemu.sh
@@ -80,6 +82,8 @@ Currently available overlay bundles:
 
 * util_linux - util-linux is a standard package distributed by the Linux Kernel
                Organization similar to busybox or GNU Core Utils.
+
+               Some packages in this overlay bundle require ncurses.
 
 ###   ###   ###
 

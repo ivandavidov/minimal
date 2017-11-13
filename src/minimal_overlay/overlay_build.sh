@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SRC_DIR=$(pwd)
 
@@ -19,7 +19,7 @@ if [ "$OVERLAY_BUNDLES" = "" ] ; then
   exit 1
 fi
 
-time sh overlay_clean.sh
+time ./overlay_clean.sh
 
 BUNDLES_LIST="$(echo $OVERLAY_BUNDLES | tr ',' ' ')"
 
@@ -42,7 +42,7 @@ do
   cd $BUNDLE_DIR
 
   echo "Building overlay bundle '$BUNDLE'..."
-  time sh $BUNDLE_SCRIPT
+  time $BUNDLE_SCRIPT
 
   cd $SRC_DIR
 done

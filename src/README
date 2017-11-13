@@ -72,6 +72,8 @@ Currently available overlay bundles:
 * Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                space. Use the "lua" command to run an interactive lua interpreter
 
+* nano       - GNU nano is an enhanced clone of the Pico text editor
+
 * ncurses    - 'GUI-like' API that runs within a terminal emulator
 
 * nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80

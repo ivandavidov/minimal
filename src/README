@@ -27,16 +27,7 @@ Currently available overlay bundles:
 
                This overlay bundle depends on the GLIBC build process.
 
-* ZLIB       - Software library used for data compression.
-
-               This overlay bundle is self sufficient and doesn't require other
-               overlay bundles.
-
-* Links      - text based browser. Requires ~1MB additional space. Use the
-               "links" command to activate the browser.
-
-               This overlay bundle is self sufficient and doesn't require other
-               overlay bundles.
+* dhcp       - DHCP and DNS functionality to connect to the Internet.
 
 * Dropbear   - SSH server/client. Requires ~1MB additional space. The build
                process creates user 'root' with password 'toor'. These are
@@ -47,6 +38,11 @@ Currently available overlay bundles:
 
                This overlay bundle requires GLIBC.
 
+* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
+               the "felix-start" command to run the Apache Felix OSGi framework.
+
+               This overlay bundle requires JRE or JDK.
+
 * JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
                This overlay bundle requires some manual preparation steps. Refer
                to the "JAVA_ARCHIVE" property in the ".config" file for more
@@ -54,14 +50,16 @@ Currently available overlay bundles:
 
                This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
+* Links      - Text based browser. Requires ~1MB additional space. Use the
+               "links" command to activate the browser.
+
 * Open JDK   - The open source JDK. No need for manual steps.
 
                This overlay bundle requires GLIBC and ZLIB.
 
-* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
-               the "felix-start" command to run the Apache Felix OSGi framework.
-
-               This overlay bundle requires JRE or JDK.
+* Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
+               space. Use the "lua" command to run an interactive lua
+               interpreter.
 
 * MLL Utils  - Set of experimental shell scripts (mll-*.sh) which provide
                additional functionality, e.g. installer and useful tools.
@@ -69,23 +67,25 @@ Currently available overlay bundles:
                This overlay bundle is currently experimental and its build
                process depends on the host machine.
 
-* Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
-               space. Use the "lua" command to run an interactive lua interpreter
+* nano       - Simple command-line text editor with on-screen shortcuts.
 
-* nano       - GNU nano is an enhanced clone of the Pico text editor
+               This overlay bundle requires ncurses.
 
-* ncurses    - 'GUI-like' API that runs within a terminal emulator
+* ncurses    - "GUI-like" API that runs within a terminal emulator.
 
-* nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
-               to portforward port 80 from the guest (minimal) to port 8080 on the host add
-               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to 'cmd' in qemu.sh
+* nweb       - nweb is a very small and easy to use webserver, it is run
+               automatically on port 80. To portforward port 80 from the
+               guest (minimal) to port 8080 on the host add
+               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
+               'cmd' in the qemu.sh file.
 
-* dhcp       - DHCP and DNS functionality
-
-* util_linux - util-linux is a standard package distributed by the Linux Kernel
-               Organization similar to busybox or GNU Core Utils.
+* util_linux - Set of executable utilities distributed by the Linux Kernel
+               similar to busybox or GNU Core Utils.
 
                Some packages in this overlay bundle require ncurses.
+
+* ZLIB       - Software library used for data compression.
+
 
 ###   ###   ###
 

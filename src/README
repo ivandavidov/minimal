@@ -74,6 +74,10 @@ Currently available overlay bundles:
 
 * ncurses    - 'GUI-like' API that runs within a terminal emulator
 
+* dialog     - shell scripting library for ncurses
+
+               This overlay bundle requires ncurses
+
 * nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
                to portforward port 80 from the guest (minimal) to port 8080 on the host add
                '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to 'cmd' in qemu.sh

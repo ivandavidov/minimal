@@ -77,6 +77,8 @@ cp -r $DESTDIR/etc $ROOTFS
 cp -r $DESTDIR/usr/bin $ROOTFS/usr
 cp -r $DESTDIR/usr/sbin $ROOTFS/usr
 cp -r $DESTDIR/lib $ROOTFS
+mkdir -p "$ROOTFS/etc/autorun"
+install -m 0755 "$SRC_DIR/20_dropbear.sh" "$ROOTFS/etc/autorun/"
 
 echo "Dropbear has been installed."
 

@@ -86,6 +86,12 @@ Currently available overlay bundles:
 
                Some packages in this overlay bundle require ncurses.
 
+* vim        - An advanced text editor that seeks to provide the power of
+               the de-facto Unix editor 'Vi', with a more complete feature
+               set.
+
+               This package will create symlinks on top of vi.
+
 * ZLIB       - Software library used for data compression.
 
 

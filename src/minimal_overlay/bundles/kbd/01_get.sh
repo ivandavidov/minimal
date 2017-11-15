@@ -42,12 +42,13 @@ cd "$WORK_DIR/overlay/kbd"
 cd $(ls -d kbd-*)
 
 # rename keymaps with the same name
-mv data/keymaps/i386/qwertz/cz{,-qwertz}.map
-mv data/keymaps/i386/olpc/es{,-olpc}.map
-mv data/keymaps/i386/olpc/pt{,-olpc}.map
-mv data/keymaps/i386/dvorak/no{,-dvorak}.map
-mv data/keymaps/i386/fgGIod/trf{,-fgGIod}.map
-mv data/keymaps/i386/colemak/{en-latin9,colemak}.map
+mv data/keymaps/i386/qwertz/cz.map data/keymaps/i386/qwertz/cz-qwertz.map
+mv data/keymaps/i386/olpc/es.map data/keymaps/i386/olpc/es-olpc.map
+mv data/keymaps/i386/olpc/pt.map data/keymaps/i386/olpc/pt-olpc.map
+mv data/keymaps/i386/dvorak/no.map data/keymaps/i386/dvorak/no-dvorak.map
+mv data/keymaps/i386/fgGIod/trf.map data/keymaps/i386/fgGIod/trf-fgGIod.map
+mv data/keymaps/i386/colemak/en-latin9.map data/keymaps/i386/colemak/colemak.map
+
 
 cd $SRC_DIR
 

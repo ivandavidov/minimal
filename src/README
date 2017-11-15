@@ -27,6 +27,8 @@ Currently available overlay bundles:
 
                This overlay bundle depends on the GLIBC build process.
 
+* coreutils  - set of commonly used GNU executable utilities.
+
 * dhcp       - DHCP and DNS functionality to connect to the Internet.
 
 * Dropbear   - SSH server/client. Requires ~1MB additional space. The build

@@ -18,9 +18,8 @@ rm -rf $DESTDIR
 
 echo "Configuring nano..."
 CFLAGS="$CFLAGS" ./configure \
-    --prefix=/usr
-    --disable-utf8 \
-    CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE"
+    --prefix=/usr \
+    LDFLAGS=-L$WORK_DIR/overlay/ncurses/ncurses_installed/usr/include
 
 echo "Building nano..."
 make -j $NUM_JOBS

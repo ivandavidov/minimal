@@ -17,7 +17,9 @@ rm -rf $DESTDIR
 
 echo "Configuring kbd..."
 CFLAGS="$CFLAGS" ./configure \
-  --prefix=/usr
+  --prefix=/usr \
+  --disable-vlock
+# vlock requires PAM
 
 echo "Building kbd..."
 make -j $NUM_JOBS

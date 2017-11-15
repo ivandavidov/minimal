@@ -50,6 +50,11 @@ Currently available overlay bundles:
 
                This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
+* kbd        - Keyboard utilities and keymaps, you can for example load
+               a german keyboard layout:
+
+                 loadkeys de
+
 * Links      - Text based browser. Requires ~1MB additional space. Use the
                "links" command to activate the browser.
 

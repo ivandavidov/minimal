@@ -22,7 +22,7 @@ sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
 
 # Configure Ncurses
 echo "Configuring Ncurses..."
-./configure \
+CFLAGS="$CFLAGS" ./configure \
     --prefix=/usr \
     --with-termlib \
     --with-terminfo-dirs=/lib/terminfo \
@@ -36,7 +36,6 @@ echo "Configuring Ncurses..."
     --with-shared \
     CPPFLAGS=-I$PWD/ncurses/widechar \
     LDFLAGS=-L$PWD/lib \
-    CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
     CPPFLAGS="-P"
 
 # Most configuration switches are from AwlsomeAlex
@@ -68,3 +67,4 @@ cp -r $DESTDIR/usr/* $ROOTFS
 echo "ncurses has been installed."
 
 cd $SRC_DIR
+

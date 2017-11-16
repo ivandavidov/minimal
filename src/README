@@ -27,16 +27,13 @@ Currently available overlay bundles:
 
                This overlay bundle depends on the GLIBC build process.
 
-* ZLIB       - Software library used for data compression.
+* coreutils  - set of commonly used GNU executable utilities.
 
-               This overlay bundle is self sufficient and doesn't require other
-               overlay bundles.
+* dhcp       - DHCP and DNS functionality to connect to the Internet.
 
-* Links      - text based browser. Requires ~1MB additional space. Use the
-               "links" command to activate the browser.
+* dialog     - shell scripting library for ncurses
 
-               This overlay bundle is self sufficient and doesn't require other
-               overlay bundles.
+               This overlay bundle requires ncurses
 
 * Dropbear   - SSH server/client. Requires ~1MB additional space. The build
                process creates user 'root' with password 'toor'. These are
@@ -47,6 +44,15 @@ Currently available overlay bundles:
 
                This overlay bundle requires GLIBC.
 
+* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
+               the "felix-start" command to run the Apache Felix OSGi framework.
+
+               This overlay bundle requires JRE or JDK.
+
+* fio        - I/O load generator that can simulate a wide variety of workloads
+               on RAM or disks.  fio is essential for troubleshooting data
+               bottlenecks.
+
 * JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
                This overlay bundle requires some manual preparation steps. Refer
                to the "JAVA_ARCHIVE" property in the ".config" file for more
@@ -54,14 +60,25 @@ Currently available overlay bundles:
 
                This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
+* kbd        - Keyboard utilities and keymaps, you can for example load
+               a german keyboard layout:
+
+                 loadkeys de
+
+* libevent   - event notification library API provides a mechanism to execute a
+               callback function when a specific event occurs on a file
+               descriptor or after a timeout has been reached.
+
+* Links      - Text based browser. Requires ~1MB additional space. Use the
+               "links" command to activate the browser.
+
 * Open JDK   - The open source JDK. No need for manual steps.
 
                This overlay bundle requires GLIBC and ZLIB.
 
-* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
-               the "felix-start" command to run the Apache Felix OSGi framework.
-
-               This overlay bundle requires JRE or JDK.
+* Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
+               space. Use the "lua" command to run an interactive lua
+               interpreter.
 
 * MLL Utils  - Set of experimental shell scripts (mll-*.sh) which provide
                additional functionality, e.g. installer and useful tools.
@@ -69,25 +86,33 @@ Currently available overlay bundles:
                This overlay bundle is currently experimental and its build
                process depends on the host machine.
 
-* Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
-               space. Use the "lua" command to run an interactive lua interpreter
+* nano       - Simple command-line text editor with on-screen shortcuts.
 
-* ncurses    - 'GUI-like' API that runs within a terminal emulator
+               This overlay bundle requires ncurses.
 
-* dialog     - shell scripting library for ncurses
+* nweb       - nweb is a very small and easy to use webserver, it is run
+               automatically on port 80. To portforward port 80 from the
+               guest (minimal) to port 8080 on the host add
+               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
+               'cmd' in the qemu.sh file.
 
-               This overlay bundle requires ncurses
+* stress     - simple workload generator. Imposes a configurable amount of CPU,
+               memory, I/O, and disk stress on the system. stress is useful for
+               troubleshooting CPU and RAM.
 
-* nweb       - nweb is a very small and easy to use webserver, it is run automatically on port 80
-               to portforward port 80 from the guest (minimal) to port 8080 on the host add
-               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to 'cmd' in qemu.sh
-
-* dhcp       - DHCP and DNS functionality
-
-* util_linux - util-linux is a standard package distributed by the Linux Kernel
-               Organization similar to busybox or GNU Core Utils.
+* util_linux - Set of executable utilities distributed by the Linux Kernel
+               similar to busybox or GNU Core Utils.
 
                Some packages in this overlay bundle require ncurses.
+
+* vim        - An advanced text editor that seeks to provide the power of
+               the de-facto Unix editor 'Vi', with a more complete feature
+               set.
+
+               This package will create symlinks on top of vi.
+
+* ZLIB       - Software library used for data compression.
+
 
 ###   ###   ###
 

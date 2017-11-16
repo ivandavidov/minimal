@@ -22,17 +22,20 @@ sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
 
 # Configure Ncurses
 echo "Configuring Ncurses..."
-./configure \
+CFLAGS="$CFLAGS" ./configure \
     --prefix=/usr \
     --with-termlib \
-    --with-shared \
     --with-terminfo-dirs=/lib/terminfo \
     --with-default-terminfo-dirs=/lib/terminfo \
     --without-normal \
     --without-debug \
     --without-cxx-binding \
     --with-abi-version=5 \
-    CFLAGS="-Os -s -fno-stack-protector -U_FORTIFY_SOURCE" \
+    --enable-widec \
+    --enable-pc-files \
+    --with-shared \
+    CPPFLAGS=-I$PWD/ncurses/widechar \
+    LDFLAGS=-L$PWD/lib \
     CPPFLAGS="-P"
 
 # Most configuration switches are from AwlsomeAlex
@@ -46,6 +49,13 @@ make -j $NUM_JOBS
 
 echo "Installing ncurses..."
 make -j $NUM_JOBS install DESTDIR=$DESTDIR
+
+# Symnlink wide character libraries
+cd $DESTDIR/usr/lib
+ln -s libncursesw.so.5 libncurses.so.5
+ln -s libncurses.so.5 libncurses.so
+ln -s libtinfow.so.5 libtinfo.so.5
+ln -s libtinfo.so.5 libtinfo.so
 
 echo "Reducing ncurses size..."
 strip -g $DESTDIR/usr/bin/*

@@ -94,6 +94,10 @@ Currently available overlay bundles:
                '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
                'cmd' in the qemu.sh file.
 
+* stress     - simple workload generator. Imposes a configurable amount of CPU,
+               memory, I/O, and disk stress on the system. stress is useful for
+               troubleshooting CPU and RAM.
+
 * util_linux - Set of executable utilities distributed by the Linux Kernel
                similar to busybox or GNU Core Utils.
 

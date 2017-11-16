@@ -45,6 +45,10 @@ Currently available overlay bundles:
 
                This overlay bundle requires JRE or JDK.
 
+* fio        - I/O load generator that can simulate a wide variety of workloads
+               on RAM or disks.  fio is essential for troubleshooting data
+               bottlenecks.
+
 * JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
                This overlay bundle requires some manual preparation steps. Refer
                to the "JAVA_ARCHIVE" property in the ".config" file for more

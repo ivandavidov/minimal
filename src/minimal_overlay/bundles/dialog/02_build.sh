@@ -19,8 +19,7 @@ rm -rf $DESTDIR
 # Configure dialog
 echo "Configuring dialog..."
 CFLAGS="$CFLAGS" ./configure \
-    --prefix=/usr \
-    --with-ncursesw
+    --prefix=/usr
 
 echo "Building dialog..."
 make -j $NUM_JOBS

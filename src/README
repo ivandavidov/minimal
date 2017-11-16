@@ -31,6 +31,10 @@ Currently available overlay bundles:
 
 * dhcp       - DHCP and DNS functionality to connect to the Internet.
 
+* dialog     - shell scripting library for ncurses
+
+               This overlay bundle requires ncurses
+
 * Dropbear   - SSH server/client. Requires ~1MB additional space. The build
                process creates user 'root' with password 'toor'. These are
                sample commands which demonstrate how to use Dropbear:

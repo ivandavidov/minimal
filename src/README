@@ -90,6 +90,8 @@ Currently available overlay bundles:
 
                This overlay bundle requires ncurses.
 
+* ncurses    - "GUI-like" API that runs within a terminal emulator.
+
 * nweb       - nweb is a very small and easy to use webserver, it is run
                automatically on port 80. To portforward port 80 from the
                guest (minimal) to port 8080 on the host add

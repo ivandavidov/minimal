@@ -20,10 +20,9 @@ additional software being downloaded, built and installed on the ISO image.
 
 Currently available overlay bundles:
 
-* GLIBC      - Set of all core GNU C libraries packaged together. Requires ~3MB
-               additional space. This overlay bundle is not host specific and
-               can always be built. The libraries are useful if you plan to use
-               more software after boot.
+* GLIBC      - Set of all core GNU C libraries packaged together. This overlay
+               bundle is not host specific and can always be built. The
+               libraries are useful if you plan to use more software after boot.
 
                This overlay bundle depends on the GLIBC build process.
 

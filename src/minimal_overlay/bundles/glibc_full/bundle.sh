@@ -35,8 +35,8 @@ echo "Duplicate libraries have been replaced with soft links."
 strip -g *
 echo "All libraries have been optimized for size."
 
-cp -r $WORK_DIR/overlay/glibc/lib $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/glibc/* $WORK_DIR/src/minimal_overlay/rootfs
 
-echo "All GNU C libraries have been installed."
+echo "GNU C lib has been installed."
 
 cd $SRC_DIR

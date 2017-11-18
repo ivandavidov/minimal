@@ -24,7 +24,7 @@ install -m644 "$SRC_DIR/index.html" "$DESTDIR/srv/www/index.html"
 install -m644 "$SRC_DIR/favicon.ico" "$DESTDIR/srv/www/favicon.ico"
 install -d -m755 "$DESTDIR/etc"
 install -d -m755 "$DESTDIR/etc/autorun"
-install -m755 "$SRC_DIR/nweb.sh" "$DESTDIR/etc/autorun/90_nweb.sh"
+install -m755 "$SRC_DIR/90_nweb.sh" "$DESTDIR/etc/autorun/90_nweb.sh"
 
 echo "nweb has been installed."
 echo "It will be autostarted on boot."

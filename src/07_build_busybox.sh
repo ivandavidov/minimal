@@ -38,13 +38,13 @@ fi
 
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
-  echo "Using config file $SRC_DIR/minimal_config/busybox.config"  
+  echo "Using config file $SRC_DIR/minimal_config/busybox.config"
   cp -f $SRC_DIR/minimal_config/busybox.config .config
 else
   # Create default configuration file.
-  echo "Generating default BusyBox configuration..."  
+  echo "Generating default BusyBox configuration..."
   make defconfig -j $NUM_JOBS
-  
+
   # The 'inetd' applet fails to compile because we use the glibc installation area as
   # main pointer to the kernel headers (see 05_prepare_glibc.sh) and some headers are
   # not resolved. The easiest solution is to ignore this particular applet. 

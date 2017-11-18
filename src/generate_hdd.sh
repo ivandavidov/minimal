@@ -12,36 +12,36 @@ elif [ "$1" = "-f" -o "$1" = "--folder" ] ; then
     echo "Using option '-f' (or '--folder') requires root permissions."
     exit 1
   fi
-  
+
   rm -f hdd.img
   truncate -s 20M hdd.img
   echo "Created new hard disk image file 'hdd.img' with 20MB size."
-  
+
   LOOP_DEVICE=$(losetup -f)
   losetup $LOOP_DEVICE hdd.img
   echo "Attached hard disk image file to loop device."
-  
+
   mkfs.ext2 $LOOP_DEVICE
   echo "Hard disk image file has been formatted with Ext2 filesystem."
-  
+
   mkdir folder
   mount hdd.img folder
   echo "Mounted hard disk image file to temporary folder."
-  
+
   mkdir -p folder/minimal/rootfs
   mkdir -p folder/minimal/work
   echo "Overlay structure has been created."
-  
-  echo "This file is on external hard disk." > folder/minimal/rootfs/overlay.txt 
+
+  echo "This file is on external hard disk." > folder/minimal/rootfs/overlay.txt
   echo "Created sample text file."
 
   umount folder
   rm -rf folder
   echo "Unmounted hard disk image file."
-  
+
   losetup -d $LOOP_DEVICE
   echo "Detached hard disk image file from loop device."
-  
+
   chown $(logname) hdd.img
   echo "Applied original ownership to hard disk image file."
 elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
@@ -49,22 +49,22 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
     echo "Using option '-s' (or '--sparse') requires root permissions."
     exit 1
   fi
-  
+
   rm -f hdd.img
   truncate -s 20M hdd.img
   echo "Created new hard disk image file 'hdd.img' with 20MB size."
-  
+
   LOOP_DEVICE_HDD=$(losetup -f)
   losetup $LOOP_DEVICE_HDD hdd.img
   echo "Attached hard disk image file to loop device."
-  
+
   mkfs.vfat $LOOP_DEVICE_HDD
   echo "Hard disk image file has been formatted with FAT filesystem."
-  
+
   mkdir sparse
   mount hdd.img sparse
   echo "Mounted hard disk image file to temporary folder."
-  
+
   rm -f sparse/minimal.img
   truncate -s 1M sparse/minimal.img
   echo "Created new overlay image file with 1MB size."
@@ -79,11 +79,11 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   mkdir ovl
   mount sparse/minimal.img ovl
   echo "Mounted overlay image file to temporary folder."
-  
+
   mkdir -p ovl/rootfs
   mkdir -p ovl/work
   echo "Overlay structure has been created."
-  
+
   echo "Create sample text file."
   echo "This file is on external hard disk." > ovl/rootfs/overlay.txt
 
@@ -99,15 +99,15 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   sleep 1
   echo "Overlay image file has been detached from loop device."
 
-  umount sparse  
+  umount sparse
   sleep 1
   rm -rf sparse
   echo "Unmounted hard disk image file."
-  
+
   losetup -d $LOOP_DEVICE_HDD
   sleep 1
   echo "Hard disk image file has been detached from loop device."
-  
+
   chown $(logname) hdd.img
   echo "Applied original ownership to hard disk image file."
 elif [ "$1" = "-h" -o "$1" = "--help" ] ; then
@@ -115,7 +115,7 @@ elif [ "$1" = "-h" -o "$1" = "--help" ] ; then
   Usage: $0 [OPTION]
   This utility generates 20MB sparse file 'hdd.img' which can be used as QEMU
   disk image where all filesystem changes from the live session are persisted.
-  
+
   -e, --empty     Create empty sparse image file which is not formatted.
   -f, --folder    Create sparse image file formatted with Ext2 filesystem which
                   contains compatible overlay folder structure.

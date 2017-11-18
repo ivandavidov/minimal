@@ -39,7 +39,7 @@ fi
 
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   # Use predefined configuration file for the kernel.
-  echo "Using config file $SRC_DIR/minimal_config/kernel.config"  
+  echo "Using config file $SRC_DIR/minimal_config/kernel.config"
   cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
   # Create default configuration file for the kernel.
@@ -51,16 +51,16 @@ else
 
   # Enable overlay support, e.g. merge ro and rw directories (3.18+).
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
-  
+
   # Enable overlayfs redirection (4.10+).
   echo "CONFIG_OVERLAY_FS_REDIRECT_DIR=y" >> .config
 
   # Turn on inodes index feature by default (4.13+).
   echo "CONFIG_OVERLAY_FS_INDEX=y" >> .config
-  
+
   # Step 1 - disable all active kernel compression options (should be only one).
-  sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config  
-  
+  sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config
+
   # Step 2 - enable the 'xz' compression option.
   sed -i "s/.*CONFIG_KERNEL_XZ.*/CONFIG_KERNEL_XZ=y/" .config
 
@@ -77,13 +77,13 @@ else
     sed -i "s/.*CONFIG_LOGO_LINUX_CLUT224.*/\\# CONFIG_LOGO_LINUX_CLUT224 is not set/" .config
     echo "Boot logo is disabled."
   fi
-  
+
   # Disable debug symbols in kernel => smaller kernel binary.
   sed -i "s/^CONFIG_DEBUG_KERNEL.*/\\# CONFIG_DEBUG_KERNEL is not set/" .config
 
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
-  
+
   # Disable Apple Properties (Useful for Macs but useless in general)
   echo "CONFIG_APPLE_PROPERTIES=n" >> .config
 

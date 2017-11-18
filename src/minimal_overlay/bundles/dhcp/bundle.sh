@@ -13,6 +13,8 @@ DESTDIR="$MAIN_SRC_DIR/work/src/minimal_overlay/rootfs"
 mkdir -p "$DESTDIR"
 
 install -d -m755 "$DESTDIR/etc"
+install -m644 "$SRC_DIR/hosts" "$DESTDIR/etc/hosts"
+install -m644 "$SRC_DIR/nsswitch.conf" "$DESTDIR/etc/nsswitch.conf"
 install -m644 "$SRC_DIR/resolv.conf" "$DESTDIR/etc/resolv.conf"
 install -d -m755 "$DESTDIR/etc/autorun"
 install -m755 "$SRC_DIR/01_network.sh" "$DESTDIR/etc/autorun/01_network.sh"
@@ -22,6 +24,7 @@ install -m755 "$SRC_DIR/05_rc.dhcp" "$DESTDIR/etc/05_rc.dhcp"
 install -d -m755 "$DESTDIR/lib"
 install -m755 "$SYSROOT/lib/libresolv.so.2" "$DESTDIR/lib/libresolv.so.2"
 install -m755 "$SYSROOT/lib/libnss_dns.so.2" "$DESTDIR/lib/libnss_dns.so.2"
+install -m755 "$SYSROOT/lib/libnss_files.so.2" "$DESTDIR/lib/libnss_files.so.2"
 strip -g "$DESTDIR/lib/*" 2>/dev/null
 
 echo "dhcp scripts and libraries have been installed"

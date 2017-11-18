@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 echo "*** GENERATE ROOTFS BEGIN ***"
 
@@ -23,7 +24,7 @@ cp -r src/minimal_rootfs/* rootfs
 
 cd rootfs
 
-# Remove 'linuxrc' which is used when we boot in 'RAM disk' mode. 
+# Remove 'linuxrc' which is used when we boot in 'RAM disk' mode.
 rm -f linuxrc
 
 # Read the 'COPY_SOURCE_ROOTFS' property from '.config'

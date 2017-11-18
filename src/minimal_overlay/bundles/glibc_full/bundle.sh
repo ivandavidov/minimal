@@ -10,19 +10,19 @@ if [ ! -d $SYSROOT ] ; then
 fi
 
 echo "Preparing the overlay glibc folder. This may take a while..."
-rm -rf $WORK_DIR/overlay/glibc
-mkdir -p $WORK_DIR/overlay/glibc/lib
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/lib
 
 cd $SYSROOT
 
-find . -type l -exec cp {} $WORK_DIR/overlay/glibc/lib \;
+find . -type l -exec cp {} $WORK_DIR/overlay/$BUNDLE_NAME/lib \;
 echo "All libraries have been copied."
 
-cd $WORK_DIR/overlay/glibc/lib
+cd $WORK_DIR/overlay/$BUNDLE_NAME/lib
 
-for FILE_DEL in $(ls *.so)
+for FILE_DEL in `ls *.so`
 do
-  FILE_KEEP=$(ls $FILE_DEL.*)
+  FILE_KEEP=`ls $FILE_DEL.*`
 
   if [ ! "$FILE_KEEP" = "" ] ; then
     # We remove the shorter file and replace it with symbolic link.
@@ -35,7 +35,7 @@ echo "Duplicate libraries have been replaced with soft links."
 strip -g *
 echo "All libraries have been optimized for size."
 
-cp -r $WORK_DIR/overlay/glibc/lib $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/$BUNDLE_NAME/lib $WORK_DIR/src/minimal_overlay/rootfs
 
 echo "All GNU C libraries have been installed."
 

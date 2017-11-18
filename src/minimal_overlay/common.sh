@@ -2,9 +2,10 @@
 # common code used by all bundles
 # should be included at the top of every *.sh file of each bundle
 
-export MAIN_SRC_DIR=$(realpath --no-symlinks $PWD/../../../)
+export MAIN_SRC_DIR=`realpath --no-symlinks $PWD/../../../`
 export WORK_DIR="$MAIN_SRC_DIR/work"
-export SRC_DIR=$(pwd)
+export SRC_DIR=`pwd`
+export BUNDLE_NAME=`basename $SRC_DIR`
 export CONFIG="$MAIN_SRC_DIR/.config"
 export SYSROOT="$WORK_DIR/sysroot"
 export SYSROOT_SPECS="$WORK_DIR/sysroot.specs"

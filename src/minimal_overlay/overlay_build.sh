@@ -7,6 +7,11 @@ cd ..
 MAIN_SRC_DIR=$(pwd)
 cd $SRC_DIR
 
+if [ "$1" = "--skip-clean" ] ; then
+  SKIP_CLEAN=true
+  shift
+fi
+
 if [ "$1" = "" ] ; then
   # Read the 'OVERLAY_BUNDLES' property from '.config'
   OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
@@ -19,7 +24,9 @@ if [ "$OVERLAY_BUNDLES" = "" ] ; then
   exit 1
 fi
 
-time ./overlay_clean.sh
+if [ ! "$SKIP_CLEAN" = "true" ] ; then
+  ./overlay_clean.sh
+fi
 
 BUNDLES_LIST="$(echo $OVERLAY_BUNDLES | tr ',' ' ')"
 
@@ -29,20 +36,43 @@ do
 
   if [ ! -d $BUNDLE_DIR ] ; then
       echo "Error - cannot find overlay bundle directory '$BUNDLE_DIR'."
-      continue
+      exit 1
   fi
 
+  # Deal with dependencies BEGIN
+  if [ -f $BUNDLE_DIR/mll_deps ] ; then
+    echo "Overlay bundle '$BUNDLE' depends on the following overlay bundles:"
+    cat $BUNDLE_DIR/mll_deps
+
+    while read line; do
+      # Trim all white spaces in bundle name
+      BUNDLE_DEP=`echo $line | awk '{print $1}'`
+
+      if [ "$BUNDLE_DEP" = "" ] ; then
+        continue
+      elif [ -d $MAIN_SRC_DIR/work/overlay/$BUNDLE_DEP ] ; then
+        echo "Overlay bundle '$BUNDLE_DEP' has already been prepared."
+      else
+        echo "Preparing overlay bundle '$BUNDLE_DEP'..."
+        cd $SRC_DIR
+        ./overlay_build.sh --skip-clean $BUNDLE_DEP
+        echo "Overlay bundle '$BUNDLE_DEP' has been prepared."
+      fi
+    done < $BUNDLE_DIR/mll_deps
+  fi
+  # Deal with dependencies END
+
   BUNDLE_SCRIPT=$BUNDLE_DIR/bundle.sh
-  
+
   if [ ! -f $BUNDLE_SCRIPT ] ; then
     echo "Error - cannot find overlay bundle script file '$BUNDLE_SCRIPT'."
-    continue
+    exit 1
   fi
 
   cd $BUNDLE_DIR
 
   echo "Building overlay bundle '$BUNDLE'..."
-  time $BUNDLE_SCRIPT
+  $BUNDLE_SCRIPT
 
   cd $SRC_DIR
 done

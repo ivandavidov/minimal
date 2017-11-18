@@ -14,6 +14,7 @@ mkdir -p "$DESTDIR"
 
 install -d -m755 "$DESTDIR/etc"
 install -m644 "$SRC_DIR/resolv.conf" "$DESTDIR/etc/resolv.conf"
+install -m644 "$SRC_DIR/hosts" "$DESTDIR/etc/hosts"
 install -d -m755 "$DESTDIR/etc/autorun"
 install -m755 "$SRC_DIR/01_network.sh" "$DESTDIR/etc/autorun/01_network.sh"
 install -m755 "$SRC_DIR/05_rc.dhcp" "$DESTDIR/etc/05_rc.dhcp"

@@ -20,102 +20,102 @@ additional software being downloaded, built and installed on the ISO image.
 
 Currently available overlay bundles:
 
-* GLIBC      - Set of all core GNU C libraries packaged together. Requires ~3MB
-               additional space. This overlay bundle is not host specific and
-               can always be built. The libraries are useful if you plan to use
-               more software after boot.
+* GLIBC       - Set of all core GNU C libraries packaged together. Requires ~3MB
+                additional space. This overlay bundle is not host specific and
+                can always be built. The libraries are useful if you plan to use
+                more software after boot.
 
-               This overlay bundle depends on the GLIBC build process.
+                This overlay bundle depends on the GLIBC build process.
 
-* coreutils  - set of commonly used GNU executable utilities.
+* coreutils   - set of commonly used GNU executable utilities.
 
-* dhcp       - DHCP and DNS functionality to connect to the Internet.
+* dhcp        - DHCP and DNS functionality to connect to the Internet.
 
-* dialog     - shell scripting library for ncurses
+* dialog      - shell scripting library for ncurses
 
-               This overlay bundle requires ncurses
+                This overlay bundle requires ncurses
 
-* Dropbear   - SSH server/client. Requires ~1MB additional space. The build
-               process creates user 'root' with password 'toor'. These are
-               sample commands which demonstrate how to use Dropbear:
+* Dropbear    - SSH server/client. Requires ~1MB additional space. The build
+                process creates user 'root' with password 'toor'. These are
+                sample commands which demonstrate how to use Dropbear:
 
-               SSH server (Alt + F1): dropbear -E -F
-               SSH client (Alt + F2): dbclient 10.0.2.15 -l root
+                SSH server (Alt + F1): dropbear -E -F
+                SSH client (Alt + F2): dbclient 10.0.2.15 -l root
 
-               This overlay bundle requires GLIBC.
+                This overlay bundle requires GLIBC.
 
-* Felix OSGi - Apache Felix OSGi framework. Requires ~2MB additional space. Use
-               the "felix-start" command to run the Apache Felix OSGi framework.
+* Felix OSGi  - Apache Felix OSGi framework. Requires ~2MB additional space. Use
+                the "felix-start" command to run the Apache Felix OSGi framework.
 
-               This overlay bundle requires JRE or JDK.
+                This overlay bundle requires JRE or JDK.
 
-* fio        - I/O load generator that can simulate a wide variety of workloads
-               on RAM or disks.  fio is essential for troubleshooting data
-               bottlenecks.
+* fio         - I/O load generator that can simulate a wide variety of workloads
+                on RAM or disks.  fio is essential for troubleshooting data
+                bottlenecks.
 
-* JRE / JDK  - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
-               This overlay bundle requires some manual preparation steps. Refer
-               to the "JAVA_ARCHIVE" property in the ".config" file for more
-               detailed information.
+* JRE / JDK   - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
+                This overlay bundle requires some manual preparation steps. Refer
+                to the "JAVA_ARCHIVE" property in the ".config" file for more
+                detailed information.
 
-               This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
+                This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
 
-* kbd        - Keyboard utilities and keymaps, you can for example load
-               a german keyboard layout:
+* kbd         - Keyboard utilities and keymaps, you can for example load
+                a german keyboard layout:
 
-                 loadkeys de
+                  loadkeys de
 
-* libevent   - event notification library API provides a mechanism to execute a
-               callback function when a specific event occurs on a file
-               descriptor or after a timeout has been reached.
+* libevent    - event notification library API provides a mechanism to execute a
+                callback function when a specific event occurs on a file
+                descriptor or after a timeout has been reached.
 
 * kexec-tools - Kexec tools, can be used to boot another kernel from userspace
 
-* Links      - Text based browser. Requires ~1MB additional space. Use the
-               "links" command to activate the browser.
+* Links       - Text based browser. Requires ~1MB additional space. Use the
+                "links" command to activate the browser.
 
-* Open JDK   - The open source JDK. No need for manual steps.
+* Open JDK    - The open source JDK. No need for manual steps.
 
-               This overlay bundle requires GLIBC and ZLIB.
+                This overlay bundle requires GLIBC and ZLIB.
 
-* Lua        - The Lua Scripting Language 5.3. Requires ~ 800kb additional
-               space. Use the "lua" command to run an interactive lua
-               interpreter.
+* Lua         - The Lua Scripting Language 5.3. Requires ~ 800kb additional
+                space. Use the "lua" command to run an interactive lua
+                interpreter.
 
-* MLL Utils  - Set of experimental shell scripts (mll-*.sh) which provide
-               additional functionality, e.g. installer and useful tools.
+* MLL Utils   - Set of experimental shell scripts (mll-*.sh) which provide
+                additional functionality, e.g. installer and useful tools.
 
-               This overlay bundle is currently experimental and its build
-               process depends on the host machine.
+                This overlay bundle is currently experimental and its build
+                process depends on the host machine.
 
-* nano       - Simple command-line text editor with on-screen shortcuts.
+* nano        - Simple command-line text editor with on-screen shortcuts.
 
-               This overlay bundle requires ncurses.
+                This overlay bundle requires ncurses.
 
-* ncurses    - "GUI-like" API that runs within a terminal emulator.
+* ncurses     - "GUI-like" API that runs within a terminal emulator.
 
-* nweb       - nweb is a very small and easy to use webserver, it is run
-               automatically on port 80. To portforward port 80 from the
-               guest (minimal) to port 8080 on the host add
-               '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
-               'cmd' in the qemu.sh file.
+* nweb        - nweb is a very small and easy to use webserver, it is run
+                automatically on port 80. To portforward port 80 from the
+                guest (minimal) to port 8080 on the host add
+                '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
+                'cmd' in the qemu.sh file.
 
-* stress     - simple workload generator. Imposes a configurable amount of CPU,
-               memory, I/O, and disk stress on the system. stress is useful for
-               troubleshooting CPU and RAM.
+* stress      - simple workload generator. Imposes a configurable amount of CPU,
+                memory, I/O, and disk stress on the system. stress is useful for
+                troubleshooting CPU and RAM.
 
-* util_linux - Set of executable utilities distributed by the Linux Kernel
-               similar to busybox or GNU Core Utils.
+* util_linux  - Set of executable utilities distributed by the Linux Kernel
+                similar to busybox or GNU Core Utils.
 
-               Some packages in this overlay bundle require ncurses.
+                Some packages in this overlay bundle require ncurses.
 
-* vim        - An advanced text editor that seeks to provide the power of
-               the de-facto Unix editor 'Vi', with a more complete feature
-               set.
+* vim         - An advanced text editor that seeks to provide the power of
+                the de-facto Unix editor 'Vi', with a more complete feature
+                set.
 
-               This package will create symlinks on top of vi.
+                This package will create symlinks on top of vi.
 
-* ZLIB       - Software library used for data compression.
+* ZLIB        - Software library used for data compression.
 
 
 ###   ###   ###

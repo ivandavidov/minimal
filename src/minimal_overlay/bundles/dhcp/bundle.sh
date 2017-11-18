@@ -24,6 +24,7 @@ install -m755 "$SRC_DIR/05_rc.dhcp" "$DESTDIR/etc/05_rc.dhcp"
 install -d -m755 "$DESTDIR/lib"
 install -m755 "$SYSROOT/lib/libresolv.so.2" "$DESTDIR/lib/libresolv.so.2"
 install -m755 "$SYSROOT/lib/libnss_dns.so.2" "$DESTDIR/lib/libnss_dns.so.2"
+install -m755 "$SYSROOT/lib/libnss_files.so.2" "$DESTDIR/lib/libnss_files.so.2"
 strip -g "$DESTDIR/lib/*" 2>/dev/null
 
 echo "dhcp scripts and libraries have been installed"

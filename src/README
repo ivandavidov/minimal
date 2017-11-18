@@ -69,6 +69,8 @@ Currently available overlay bundles:
                callback function when a specific event occurs on a file
                descriptor or after a timeout has been reached.
 
+* kexec-tools - Kexec tools, can be used to boot another kernel from userspace
+
 * Links      - Text based browser. Requires ~1MB additional space. Use the
                "links" command to activate the browser.
 

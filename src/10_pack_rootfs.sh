@@ -10,7 +10,7 @@ cd work
 echo "Packing initramfs. This may take a while..."
 
 # Remove the old 'initramfs' archive if it exists.
-rm -f rootfs.cpio.gz
+rm -f rootfs.cpio.xz
 
 cd rootfs
 

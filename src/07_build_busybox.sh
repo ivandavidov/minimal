@@ -52,8 +52,8 @@ else
 fi
 
 # This variable holds the full path to the glibc installation area as quoted string.
-# All back slashes are escaped (/ => \/) in order to keep the 'sed' command stable.
-SYSROOT_ESCAPED=$(echo \"$SYSROOT\" | sed 's/\//\\\//g')
+# All forward slashes are escaped (/ => \/) in order to keep the 'sed' command stable.
+SYSROOT_ESCAPED=$(echo \"$SYSROOT\" | sed 's|/|\\/|g')
 
 # Now we tell BusyBox to use the glibc prepared area.
 sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$SYSROOT_ESCAPED/" .config

@@ -121,4 +121,4 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 
 ## Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you [buy me a beer](https://paypal.me/MinimalLinuxLive) and perhaps spend a minute to give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!

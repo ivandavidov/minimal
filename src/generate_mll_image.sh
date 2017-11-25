@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -ex
+set -e
 
 SRC_DIR=$PWD
 STATUS=xxx

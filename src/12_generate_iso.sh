@@ -144,7 +144,8 @@ echo Minimal Linux Live is starting...
 CEOF
 
 # Now we generate the ISO image file.
-genisoimage \
+xorriso \
+  -as mkisofs \
   -J \
   -r \
   -o ../minimal_linux_live.iso \

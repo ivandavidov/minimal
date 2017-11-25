@@ -84,6 +84,9 @@ else
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
 
+  # Request that the firmware clear the contents of RAM after a reboot (4.14+).
+  echo "CONFIG_RESET_ATTACK_MITIGATION=y" >> .config
+
   # Disable Apple Properties (Useful for Macs but useless in general)
   echo "CONFIG_APPLE_PROPERTIES=n" >> .config
 

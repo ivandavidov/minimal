@@ -11,7 +11,7 @@ http://minimal.idzona.com
 For Ubuntu and other Debian based operating systems you can use the following
 command in order to resolve the required build dependencies:
 
-sudo apt install wget make gawk gcc bc genisoimage
+sudo apt install wget make gawk gcc bc xorriso
 
 Once you have your ISO image up and running perhaps you'd like to play with the
 configuration file ".config" and see what options you have there. For example

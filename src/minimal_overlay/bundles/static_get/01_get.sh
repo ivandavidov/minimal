@@ -27,11 +27,11 @@ fi
 
 # Delete folder with previously prepared static-get.
 echo "Removing static-get work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/staget
-mkdir $WORK_DIR/overlay/staget
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
-# Copy static-get to folder 'work/overlay/staget'.
-cp static-get.sh $WORK_DIR/overlay/staget
+# Copy static-get to folder 'work/overlay/static_get'.
+cp static-get.sh $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
 

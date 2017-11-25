@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -ex
 
 SRC_DIR=$PWD
 STATUS=xxx
@@ -57,8 +57,11 @@ extractISO() {
 }
 
 prepareTempDir() {
-  chmod -R ugo+rw mll_docker_*
-  rm -rf mll_docker_*
+  if [ -d "`ls -d mll_docker_*`" ] ; then
+    chmod -R ugo+rw mll_docker_*
+    rm -rf mll_docker_*
+  fi
+
   TEMP_DIR=`mktemp -d mll_docker_XXXX`
 }
 

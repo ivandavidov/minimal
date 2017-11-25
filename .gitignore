@@ -8,6 +8,7 @@
 /src/work/**
 /src/minimal_linux_live*
 /src/*.img
+/src/*.tgz
 
 /docs/mdbook
 /docs/book/**

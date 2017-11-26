@@ -1,16 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
 SRC_DIR=$(pwd)
 
 . ../../common.sh
 
-cd $SRC_DIR
-
 cd $WORK_DIR/src
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
+mkdir -p ./minimal_overlay/rootfs/usr/src
 
-mkdir -p "$ROOTFS/usr"
-cp -r "$WORK_DIR/src" "$ROOTFS/usr/src"
+shopt -s extglob
 
-echo "Source files and folders have been copied to '/src'."
+cp -r ./!(minimal_overlay/rootfs) ./minimal_overlay/rootfs/usr/src
+
+shopt -u extglob
+
+echo "Source files and folders have been copied to '/usr/src'."
+
+cd $SRC_DIR

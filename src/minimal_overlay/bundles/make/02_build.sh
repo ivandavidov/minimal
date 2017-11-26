@@ -26,6 +26,9 @@ make -j $NUM_JOBS
 echo "Installing make..."
 make -j $NUM_JOBS install DESTDIR=$DESTDIR
 
+mkdir -p $DESTDIR/lib
+cp $SYSROOT/lib/libdl.so.2 $DESTDIR/lib/
+
 echo "Reducing make size..."
 strip -g $DESTDIR/usr/bin/*
 

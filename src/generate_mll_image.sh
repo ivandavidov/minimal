@@ -28,17 +28,20 @@ cleanup() {
   rm -rf $TEMP_DIR
 }
 
-buildDockerImage() {
+buildImage() {
   rm -f $SRC_DIR/mll_image.tgz
-  cd $TEMP_DIR/docker_root
+  cd $TEMP_DIR/image_root
   tar -zcf $SRC_DIR/mll_image.tgz *
   cd $SRC_DIR
 }
 
-prepareDocker() {
-  mkdir $TEMP_DIR/docker_root
-  cp -r $TEMP_DIR/rootfs_extracted/* $TEMP_DIR/docker_root
-  cp -r $TEMP_DIR/iso_extracted/minimal/rootfs/* $TEMP_DIR/docker_root
+prepareImage() {
+  mkdir $TEMP_DIR/image_root
+  cp -r $TEMP_DIR/rootfs_extracted/* $TEMP_DIR/image_root
+
+  if [ -d $TEMP_DIR/iso_extracted/minimal/rootfs ] ; then
+    cp -r $TEMP_DIR/iso_extracted/minimal/rootfs/* $TEMP_DIR/image_root
+  fi
 }
 
 extractRootfs() {
@@ -57,12 +60,12 @@ extractISO() {
 }
 
 prepareTempDir() {
-  if [ -d "`ls -d mll_docker_*`" ] ; then
-    chmod -R ugo+rw mll_docker_*
-    rm -rf mll_docker_*
+  if [ -d mll_image ] ; then
+    chmod -R ugo+rw mll_image
+    rm -rf mll_image
   fi
 
-  TEMP_DIR=`mktemp -d mll_docker_XXXX`
+  TEMP_DIR=$SRC_DIR/mll_image
 }
 
 checkPrerequsites() {
@@ -104,8 +107,8 @@ main() {
   prepareTempDir
   extractISO
   extractRootfs
-  prepareDocker
-  buildDockerImage
+  prepareImage
+  buildImage
   cleanup
   finalWords
 }

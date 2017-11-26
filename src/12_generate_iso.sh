@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/sh
+
+set -e
 
 # TODO - this shell script file needs serios refactoring since right now it does
 # too many things:
@@ -26,7 +28,7 @@ cd $SRC_DIR
 
 # Remove the old ISO file if it exists.
 rm -f minimal_linux_live.iso
-echo "Old ISO image files has been removed."
+echo "Old ISO image file has been removed."
 
 # Remove the old ISO generation area if it exists.
 echo "Removing old ISO image work area. This may take a while..."
@@ -54,7 +56,7 @@ OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
   echo "Generating additional overlay bundles. This may take a while..."
   cd minimal_overlay
-  time ./overlay_build.sh
+  ./overlay_build.sh
   cd $SRC_DIR
 else
   echo "Generation of additional overlay bundles has been skipped."
@@ -169,6 +171,16 @@ if [ "$(id -u)" = "0" ] ; then
 fi
 
 cd $SRC_DIR
+
+cat << CEOF
+
+  ###############################################################
+  #                                                             #
+  # ISO image file 'minimal_linux_live.iso' has been generated. #
+  #                                                             #
+  ###############################################################
+
+CEOF
 
 echo "*** GENERATE ISO END ***"
 

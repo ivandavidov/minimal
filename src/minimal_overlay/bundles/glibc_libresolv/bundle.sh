@@ -9,6 +9,7 @@ if [ ! -d $SYSROOT ] ; then
   exit 1
 fi
 
+mkdir -p "$WORK_DIR/overlay/$BUNDLE_NAME"
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 DESTDIR="$PWD/${BUNDLE_NAME}_installed"

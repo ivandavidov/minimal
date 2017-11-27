@@ -9,34 +9,24 @@ if [ ! -d $SYSROOT ] ; then
   exit 1
 fi
 
-echo "Preparing the overlay $BUNDLE_NAME folder. This may take a while..."
-rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
-mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/lib
+mkdir -p "$WORK_DIR/overlay/$BUNDLE_NAME"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
-cd $SYSROOT/lib
+DESTDIR="$PWD/${BUNDLE_NAME}_installed"
 
-find . -name "libresolv*" -type l -exec cp {} $WORK_DIR/overlay/$BUNDLE_NAME/lib \;
-echo "All libraries have been copied."
+rm -rf $DESTDIR
 
-cd $WORK_DIR/overlay/$BUNDLE_NAME/lib
+mkdir -p $DESTDIR/lib
+cp $SYSROOT/lib/libresolv.so.2 $DESTDIR/lib/
+ln -s libresolv.so.2 $DESTDIR/lib/libresolv.so
 
-for FILE_DEL in `ls *.so`
-do
-  FILE_KEEP=`ls $FILE_DEL.*`
+echo "Reducing $BUNDLE_NAME size"
+strip -g $DESTDIR/lib/*
 
-  if [ ! "$FILE_KEEP" = "" ] ; then
-    # We remove the shorter file and replace it with symbolic link.
-    rm $FILE_DEL
-    ln -s $FILE_KEEP $FILE_DEL
-  fi
-done
-echo "Duplicate libraries have been replaced with soft links."
+ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
 
-strip -g *
-echo "All libraries have been optimized for size."
+cp -r $DESTDIR/* $ROOTFS
 
-cp -r $WORK_DIR/overlay/$BUNDLE_NAME/lib $WORK_DIR/src/minimal_overlay/rootfs
-
-echo "All $BUNDLE_NAME libraries have been installed."
+echo "$BUNDLE_NAME has been installed."
 
 cd $SRC_DIR

@@ -8,24 +8,28 @@
 
 all: clean
 	@echo "Launching the main build script..."
-	@time ./build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
+	@/usr/bin/time -f 'Elapsed time: %E' ./build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log
 
 clean:
 	@echo "Removing generated work artifacts..."
 	@rm -rf work
-	@echo "Removing generated ISO image..."
+	@rm -rf mll_image
+	@echo "Removing generated build artifacts..."
 	@rm -f minimal_linux_live.iso
+	@rm -f mll_image.tgz
 	@echo "Removing predefined configuration files..."
 	@rm -rf minimal_overlay/*.config
 	@echo "Removing source level overlay software..."
-	@cd minimal_overlay/rootfs && rm -rf $(shell ls -d */) && cd ..
+	@mv -f minimal_overlay/rootfs/README /tmp/mll_overlay_readme
+	@cd minimal_overlay/rootfs && rm -rf * && cd ../..
+	@mv -f /tmp/mll_overlay_readme minimal_overlay/rootfs/README
 	@echo "Removing build log file..."
 	@rm -f minimal_linux_live.log
 	@$(eval USE_LOCAL_SOURCE := $(shell grep -i ^USE_LOCAL_SOURCE .config | cut -f2 -d'='))
-	@if [ "$(USE_LOCAL_SOURCE)" = "false" ]; then echo "Removing source files..."; rm -rf source; fi
+	@if [ ! "$(USE_LOCAL_SOURCE)" = "true" ]; then echo "Removing source files..."; rm -rf source; fi
 
 qemu:
-	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image \"minimal_linux_live.iso\" not found."; exit 1; fi
+	@if [ ! -f ./minimal_linux_live.iso ]; then echo "ISO image 'minimal_linux_live.iso' not found."; exit 1; fi
 	@echo "Launching QEMU..."
 	@./qemu.sh
 
@@ -50,4 +54,3 @@ help:
 	@echo ""
 	@echo "    make help         this is the default target"
 	@echo ""
-

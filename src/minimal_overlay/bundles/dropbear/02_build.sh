@@ -28,14 +28,6 @@ make -j $NUM_JOBS
 echo "Installing Dropbear..."
 make -j $NUM_JOBS install DESTDIR="$DESTDIR"
 
-mkdir -p $DESTDIR/lib
-
-# Copy all dependent GLIBC libraries.
-cp $SYSROOT/lib/libnsl.so.1 $DESTDIR/lib
-cp $SYSROOT/lib/libnss_compat.so.2 $DESTDIR/lib
-cp $SYSROOT/lib/libutil.so.1 $DESTDIR/lib
-cp $SYSROOT/lib/libcrypt.so.1 $DESTDIR/lib
-
 mkdir -p $DESTDIR/etc/dropbear
 
 # Create Dropbear SSH configuration BEGIN

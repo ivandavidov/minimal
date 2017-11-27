@@ -82,6 +82,8 @@ Currently available overlay bundles:
                 space. Use the "lua" command to run an interactive lua
                 interpreter.
 
+* make        - GNU make utility
+
 * MLL Utils   - Set of experimental shell scripts (mll-*.sh) which provide
                 additional functionality, e.g. installer and useful tools.
 

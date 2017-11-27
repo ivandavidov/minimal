@@ -18,7 +18,7 @@ rm -rf $DESTDIR
 
 mkdir -p $DESTDIR/lib
 cp $SYSROOT/lib/libBrokenLocale.so.1 $DESTDIR/lib/
-ln -s libBrokenLocale.so.2 $DESTDIR/lib/libBrokenLocale.so
+ln -s libBrokenLocale.so.1 $DESTDIR/lib/libBrokenLocale.so
 
 echo "Reducing $BUNDLE_NAME size"
 strip -g $DESTDIR/lib/*

@@ -18,7 +18,6 @@ rm -rf $DESTDIR
 
 mkdir -p $DESTDIR/lib
 cp $SYSROOT/lib/libpthread.so.0 $DESTDIR/lib/
-ln -s libpthread.so.0 $DESTDIR/lib/libpthread.so
 
 echo "Reducing $BUNDLE_NAME size"
 strip -g $DESTDIR/lib/*

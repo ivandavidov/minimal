@@ -1,4 +1,3 @@
-glibc_full
 glibc_libnsl
 glibc_libnss_compat
 glibc_libutil

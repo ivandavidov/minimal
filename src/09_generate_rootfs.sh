@@ -27,18 +27,6 @@ cd rootfs
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode.
 rm -f linuxrc
 
-# Read the 'COPY_SOURCE_ROOTFS' property from '.config'
-COPY_SOURCE_ROOTFS="$(grep -i ^COPY_SOURCE_ROOTFS $SRC_ROOT/.config | cut -f2 -d'=')"
-
-if [ "$COPY_SOURCE_ROOTFS" = "true" ] ; then
-  # Copy all prepared source files and folders to '/src'. Note that the scripts
-  # will not work there because you also need proper toolchain.
-  cp -r ../src src
-  echo "Source files and folders have been copied to '/src'."
-else
-  echo "Source files and folders have been skipped."
-fi
-
 # This is for the dynamic loader. Note that the name and the location are both
 # specific for 32-bit and 64-bit machines. First we check the BusyBox executable
 # and then we copy the dynamic loader to its appropriate location.

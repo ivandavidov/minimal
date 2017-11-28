@@ -5,11 +5,10 @@ set -e
 # TODO - this shell script file needs serios refactoring since right now it does
 # too many things:
 #
-# 1) Deal with 'src' copy.
-# 2) Generate the 'overlay' software bundles.
-# 3) Create proper overlay structure.
-# 4) Prepare the actual ISO structure.
-# 5) Generate the actual ISO image.
+# 1) Generate the 'overlay' software bundles.
+# 2) Create proper overlay structure.
+# 3) Prepare the actual ISO structure.
+# 4) Generate the actual ISO image.
 #
 # Probably it's best to create separate shell scripts for each functionality.
 
@@ -37,18 +36,6 @@ rm -rf work/isoimage
 # This is the root folder of the ISO image.
 mkdir work/isoimage
 echo "Prepared new ISO image work area."
-
-# Read the 'COPY_SOURCE_ISO' property from '.config'
-COPY_SOURCE_ISO="$(grep -i ^COPY_SOURCE_ISO .config | cut -f2 -d'=')"
-
-if [ "$COPY_SOURCE_ISO" = "true" ] ; then
-  # Copy all prepared source files and folders to '/src'. Note that the scripts
-  # will not work there because you also need proper toolchain.
-  cp -r work/src work/isoimage
-  echo "Source files and folders have been copied to '/src'."
-else
-  echo "Source files and folders have been skipped."
-fi
 
 # Read the 'OVERLAY_BUNDLES' property from '.config'
 OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"

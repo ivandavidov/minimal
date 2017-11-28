@@ -102,6 +102,11 @@ Currently available overlay bundles:
                 '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
                 'cmd' in the qemu.sh file.
 
+* src         - A copy of all prepared MLL source files and folders at
+                /usr/src Note that the scripts will not work there because
+                you also need a proper toolchain.
+                This bundle was previously COPY_SOURCE_ISO
+
 * stress      - simple workload generator. Imposes a configurable amount of CPU,
                 memory, I/O, and disk stress on the system. stress is useful for
                 troubleshooting CPU and RAM.

@@ -1,0 +1,3 @@
+glibc_libresolv
+glibc_libnss_dns
+glibc_libnss_files

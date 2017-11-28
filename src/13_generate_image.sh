@@ -26,19 +26,19 @@ tar -zcf $SRC_DIR/mll_image.tgz *
 
 cat << CEOF
 
-  ################################################################
-  #                                                              #
-  # Minimal Linux Live image 'mll_image.tgz' has been generated. #
-  #                                                              #
-  # You can import the MLL image in Docker like this:            #
-  #                                                              #
-  #   docker import mll_image.tgz minimal-linux-live:latest      #
-  #                                                              #
-  # Then you can run MLL container in Docker like this:          #
-  #                                                              #
-  #   docker run -it minimal-linux-live /bin/sh                  #
-  #                                                              #
-  ################################################################
+  ##################################################################
+  #                                                                #
+  #  Minimal Linux Live image 'mll_image.tgz' has been generated.  #
+  #                                                                #
+  #  You can import the MLL image in Docker like this:             #
+  #                                                                #
+  #    docker import mll_image.tgz minimal-linux-live:latest       #
+  #                                                                #
+  #  Then you can run MLL container in Docker like this:           #
+  #                                                                #
+  #    docker run -it minimal-linux-live /bin/sh                   #
+  #                                                                #
+  ##################################################################
 
 CEOF
 

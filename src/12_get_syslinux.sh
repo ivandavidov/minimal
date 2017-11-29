@@ -30,7 +30,7 @@ else
 fi
 
 # Delete folder with previously extracted Syslinux.
-echo "Removing SYSLINUX work area. This may take a while..."
+echo "Removing SYSLINUX work area. This may take a while."
 rm -rf ../work/syslinux
 mkdir ../work/syslinux
 

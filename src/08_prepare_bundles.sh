@@ -6,6 +6,9 @@ SRC_DIR=$(pwd)
 
 echo "*** PREPARE OVERLAY BEGIN ***"
 
+echo "Preparing overlay work area."
+rm -rf $SRC_DIR/work/overlay*
+
 # Read the 'OVERLAY_BUNDLES' property from '.config'
 OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 

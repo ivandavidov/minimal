@@ -50,7 +50,14 @@ cp ../rootfs.cpio.xz ./rootfs.xz
 # Read the 'OVERLAY_TYPE' property from '.config'
 OVERLAY_TYPE="$(grep -i ^OVERLAY_TYPE $SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
+# Read the 'OVERLAY_LOCATION' property from '.config'
+OVERLAY_LOCATION="$(grep -i ^OVERLAY_LOCATION $SRC_DIR/.config | cut -f2 -d'=')"
+
+if [ "$OVERLAY_LOCATION" = "iso" \
+  -a "$OVERLAY_TYPE" = "sparse" \
+  -a -d $SRC_DIR/work/overlay_rootfs \
+  -a "$(id -u)" = "0" ] ; then
+
   # Use sparse file as storage place. The above check guarantees that the whole
   # script is executed with root permissions or otherwise this block is skipped.
   # All files and folders located in the folder 'minimal_overlay' will be merged
@@ -83,8 +90,8 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   mkdir -p sparse/work
 
   # Copy the overlay content.
-  cp -r $SRC_DIR/overlay_rootfs/* sparse/rootfs/
-  cp -r $SRC_DIR/minimal_overlay/rootfs/* sparse/rootfs/
+  cp -r $SRC_DIR/overlay_rootfs/* sparse/rootfs
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* sparse/rootfs
 
   # Unmount the sparse file and delete the temporary folder.
   $BUSYBOX umount sparse
@@ -92,7 +99,10 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
 
   # Detach the loop device since we no longer need it.
   $BUSYBOX losetup -d $LOOP_DEVICE
-elif [ "$OVERLAY_TYPE" = "folder" ] ; then
+elif [ "$OVERLAY_LOCATION" = "iso" \
+  -a "$OVERLAY_TYPE" = "folder" \
+  -a -d $SRC_DIR/work/overlay_rootfs ] ; then
+
   # Use normal folder structure for overlay. All files and folders located in
   # the folder 'minimal_overlay' will be merged with the root folder on boot.
 
@@ -103,10 +113,10 @@ elif [ "$OVERLAY_TYPE" = "folder" ] ; then
   mkdir -p minimal/work
 
   # Copy the overlay content.
-  cp -rf $SRC_DIR/work/overlay_rootfs/* minimal/rootfs/
-  cp -r $SRC_DIR/minimal_overlay/rootfs/* minimal/rootfs/
+  cp -rf $SRC_DIR/work/overlay_rootfs/* minimal/rootfs
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* minimal/rootfs
 else
-  echo "Generating ISO image with no overlay structure..."
+  echo "The ISO image will have no overlay structure."
 fi
 
 # Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image

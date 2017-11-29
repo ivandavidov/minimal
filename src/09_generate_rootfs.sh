@@ -3,7 +3,7 @@ set -e
 
 echo "*** GENERATE ROOTFS BEGIN ***"
 
-SRC_ROOT=$(pwd)
+SRC_DIR=$(pwd)
 
 # Remember the sysroot
 SYSROOT=$(pwd)/work/sysroot
@@ -13,13 +13,13 @@ BUSYBOX_INSTALLED=$(pwd)/work/busybox/busybox_installed
 
 cd work
 
-echo "Preparing initramfs work area..."
+echo "Preparing rootfsfs work area."
 rm -rf rootfs
 
-# Copy all BusyBox generated stuff to the location of our 'initramfs' folder.
+# Copy all BusyBox generated stuff to the location of our 'rootfs' folder.
 cp -r $BUSYBOX_INSTALLED rootfs
 
-# Copy all rootfs resources to the location of our 'initramfs' folder.
+# Copy all rootfs resources to the location of our 'rootfs' folder.
 cp -r ../minimal_rootfs/* rootfs
 
 cd rootfs
@@ -53,14 +53,24 @@ cp $SYSROOT/lib/libc.so.6 lib
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
 strip -g \
-  $SRC_ROOT/work/rootfs/bin/* \
-  $SRC_ROOT/work/rootfs/sbin/* \
-  $SRC_ROOT/work/rootfs/lib/* \
+  $SRC_DIR/work/rootfs/bin/* \
+  $SRC_DIR/work/rootfs/sbin/* \
+  $SRC_DIR/work/rootfs/lib/* \
   2>/dev/null
 echo "Reduced the size of libraries and executables."
 
-echo "The initramfs area has been generated."
+# Read the 'OVERLAY_LOCATION' property from '.config'
+OVERLAY_LOCATION="$(grep -i ^OVERLAY_LOCATION $SRC_DIR/.config | cut -f2 -d'=')"
 
-cd $SRC_ROOT
+if [ "$OVERLAY_LOCATION" = "rootfs" -a -d $SRC_DIR/work/overlay_rootfs ] ; then
+  echo "Merging overlay software in rootfs."
+
+  cp -r $SRC_DIR/work/overlay_rootfs/* .
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* .
+fi
+
+echo "The rootfs area has been generated."
+
+cd $SRC_DIR
 
 echo "*** GENERATE ROOTFS END ***"

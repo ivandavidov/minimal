@@ -11,13 +11,26 @@ rm -f mll_image.tgz
 rm -rf $SRC_DIR/work/mll_image
 mkdir -p $SRC_DIR/work/mll_image
 
-# Copy the rootfs.
-cp -r $SRC_DIR/work/rootfs/* \
-  $SRC_DIR/work/mll_image
+if [ -d $SRC_DIR/work/rootfs ] ; then
+  # Copy the rootfs.
+  cp -r $SRC_DIR/work/rootfs/* \
+    $SRC_DIR/work/mll_image
+else
+  echo "Cannot continue - rootfs is missing."
+  exit 1
+fi
 
-# Copy the overlay area.
-cp -r $SRC_DIR/work/src/minimal_overlay/rootfs/* \
-  $SRC_DIR/work/mll_image
+if [ -d $SRC_DIR/work/overlay_rootfs ] ; then
+  echo "Merging overlay software in image."
+
+  # Copy the overlay area.
+  cp -r $SRC_DIR/work/overlay_rootfs/* \
+    $SRC_DIR/work/mll_image
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* \
+    $SRC_DIR/work/mll_image
+else
+  echo "MLL image will have no overlay software."
+fi
 
 cd $SRC_DIR/work/mll_image
 

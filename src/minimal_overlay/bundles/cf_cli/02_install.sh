@@ -1,15 +1,15 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
 echo "Removing old cloud foundry artifacts. This may take a while..."
-rm -rf $WORK_DIR/overlay/clofo/clofo_installed
-mkdir -p $WORK_DIR/overlay/clofo/clofo_installed/opt/clofo
-mkdir -p $WORK_DIR/overlay/clofo/clofo_installed/bin
+rm -rf $DEST_DIR
+mkdir -p $DEST_DIR/opt/$BUNDLE_NAME
+mkdir -p $DEST_DIR/bin
 
-cd $WORK_DIR/overlay/clofo
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 cp $MAIN_SRC_DIR/source/overlay/cf-cli.tgz .
 
@@ -17,15 +17,14 @@ tar -xvf cf-cli.tgz
 rm -f LICENSE NOTICE cf-cli.tgz
 chmod +rx cf
 
-cp cf $WORK_DIR/overlay/clofo/clofo_installed/opt/clofo/cf
+cp cf $DEST_DIR/opt/$BUNDLE_NAME/cf
 
-cd $WORK_DIR/overlay/clofo/clofo_installed
+cd $DEST_DIR
 
-ln -s ../opt/clofo/cf bin/cf
+ln -s ../opt/$BUNDLE_NAME/cf bin/cf
 
-cp -r $WORK_DIR/overlay/clofo/clofo_installed/* $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
-echo "cloud foundry cli has been installed."
+echo "Cloud Foundry CLI has been installed."
 
 cd $SRC_DIR
-

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,11 +30,11 @@ fi
 
 # Delete folder with previously extracted dialog.
 echo "Removing dialog work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/dialog
-mkdir $WORK_DIR/overlay/dialog
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract dialog to folder 'work/overlay/dialog'.
 # Full path will be something like 'work/overlay/dialog/dialog-1.3-20170509'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/dialog
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR

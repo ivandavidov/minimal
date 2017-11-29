@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -29,11 +29,10 @@ fi
 
 # Delete folder with previously prepared cloud foundry cli.
 echo "Removing cloud foundry cli work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/clofo
-mkdir $WORK_DIR/overlay/clofo
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
-# Copy cf-cli.tgz to folder 'work/overlay/clofo'.
-cp cf-cli.tgz $WORK_DIR/overlay/clofo
+# Copy cf-cli.tgz to folder 'work/overlay/cf_cli'.
+cp cf-cli.tgz $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

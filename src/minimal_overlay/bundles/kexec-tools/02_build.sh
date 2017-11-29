@@ -1,19 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/kexec-tools
-
-DESTDIR="$PWD/kexec-tools_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the kexec-tools source directory which ls finds, e.g. 'kexec-tools-2.0.15'.
 cd $(ls -d kexec-tools-*)
 
 echo "Preparing kexec-tools work area. This may take a while..."
 make -j $NUM_JOBS clean
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Building kexec-tools..."
 CFLAGS="$CFLAGS" ./configure \
@@ -22,15 +20,14 @@ CFLAGS="$CFLAGS" ./configure \
 
 make -j $NUM_JOBS
 
-make -j $NUM_JOBS install DESTDIR="$DESTDIR"
+make -j $NUM_JOBS install DESTDIR="$DEST_DIR"
 
 echo "Reducing kexec-tools size..."
-strip -g $DESTDIR/usr/bin/* \
-  $DESTDIR/usr/lib/* 2>/dev/null
+strip -g $DEST_DIR/usr/bin/* \
+  $DEST_DIR/usr/lib/* 2>/dev/null
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-mkdir -p $ROOTFS/usr/
-cp -r $DESTDIR/usr/* $ROOTFS/usr/
+mkdir -p $OVERLAY_ROOTFS/usr/
+cp -r $DEST_DIR/usr/* $OVERLAY_ROOTFS/usr/
 
 echo "kexec-tools has been installed."
 

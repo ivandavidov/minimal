@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted util-linux.
 echo "Removing util-linux work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/util_linux
-mkdir $WORK_DIR/overlay/util_linux
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract util-linux to folder 'work/overlay/util_linux'.
 # Full path will be something like 'work/overlay/util_linux/util-linux-2.31'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/util_linux
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

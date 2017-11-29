@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted Links.
 echo "Removing Links work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/links
-mkdir $WORK_DIR/overlay/links
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract Links to folder 'work/overlay/links'.
 # Full path will be something like 'work/overlay/links/links-2.12'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/links
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

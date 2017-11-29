@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted ZLIB.
 echo "Removing ZLIB work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/zlib
-mkdir $WORK_DIR/overlay/zlib
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract ZLIB to folder 'work/overlay/zlib'.
 # Full path will be something like 'work/overlay/zlib/zlib-1.2.11'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/zlib
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/vim
-
-DESTDIR="$PWD/vim_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the vim source directory which ls finds, e.g. 'vim-8.0.1298'.
 cd $(ls -d vim-*)
@@ -14,7 +12,7 @@ cd $(ls -d vim-*)
 echo "Preparing vim work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Setting vimrc location..."
 echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
@@ -27,11 +25,11 @@ echo "Building vim..."
 make -j $NUM_JOBS
 
 echo "Installing vim..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Generating vimrc..."
-mkdir -p $DESTDIR/etc
-cat > $DESTDIR/etc/vimrc << "EOF"
+mkdir -p $DEST_DIR/etc
+cat > $DES_TDIR/etc/vimrc << "EOF"
 " Begin /etc/vimrc
 
 set nocompatible
@@ -44,18 +42,15 @@ set background=dark
 EOF
 
 echo "Symlinking vim to vi..."
-ln -sv vim $DESTDIR/usr/bin/vi
-mkdir -p $DESTDIR/bin
-ln -sv vim $DESTDIR/bin/vi
+ln -sv vim $DEST_DIR/usr/bin/vi
+mkdir -p $DEST_DIR/bin
+ln -sv vim $DEST_DIR/bin/vi
 
 echo "Reducing vim size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/* $ROOTFS
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "vim has been installed."
 
 cd $SRC_DIR
-

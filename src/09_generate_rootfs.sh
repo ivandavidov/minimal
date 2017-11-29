@@ -20,24 +20,16 @@ rm -rf rootfs
 cp -r $BUSYBOX_INSTALLED rootfs
 
 # Copy all rootfs resources to the location of our 'initramfs' folder.
-cp -r src/minimal_rootfs/* rootfs
+cp -r ../minimal_rootfs/* rootfs
 
 cd rootfs
 
+# Delete the '.gitignore' files which we use in order to keep track of otherwise
+# empty folders.
+find * -type f -name '.gitignore' -exec rm {} +
+
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode.
 rm -f linuxrc
-
-# Read the 'COPY_SOURCE_ROOTFS' property from '.config'
-COPY_SOURCE_ROOTFS="$(grep -i ^COPY_SOURCE_ROOTFS $SRC_ROOT/.config | cut -f2 -d'=')"
-
-if [ "$COPY_SOURCE_ROOTFS" = "true" ] ; then
-  # Copy all prepared source files and folders to '/src'. Note that the scripts
-  # will not work there because you also need proper toolchain.
-  cp -r ../src src
-  echo "Source files and folders have been copied to '/src'."
-else
-  echo "Source files and folders have been skipped."
-fi
 
 # This is for the dynamic loader. Note that the name and the location are both
 # specific for 32-bit and 64-bit machines. First we check the BusyBox executable
@@ -72,4 +64,3 @@ echo "The initramfs area has been generated."
 cd $SRC_ROOT
 
 echo "*** GENERATE ROOTFS END ***"
-

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted stress.
 echo "Removing stress work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/stress
-mkdir $WORK_DIR/overlay/stress
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract stress to folder 'work/overlay/stress'.
 # Full path will be something like 'work/overlay/stress/stress-1.0.4'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/stress
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

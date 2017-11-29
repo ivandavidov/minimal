@@ -1,12 +1,10 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/links
-
-DESTDIR="$PWD/links_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the Links source directory which ls finds, e.g. 'links-2.12'.
 cd $(ls -d links-*)
@@ -14,7 +12,7 @@ cd $(ls -d links-*)
 echo "Preparing Links work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring Links..."
 CFLAGS="$CFLAGS" ./configure \
@@ -30,17 +28,14 @@ echo "Building Links..."
 make -j $NUM_JOBS
 
 echo "Installing Links..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing Links size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-mkdir -p "$ROOTFS/usr/bin"
-cp -r $DESTDIR/usr/bin/* $ROOTFS/usr/bin/
+mkdir -p "$OVERLAY_ROOTFS/usr/bin"
+cp -r $DEST_DIR/usr/bin/* $OVERLAY_ROOTFS/usr/bin/
 
 echo "Links has been installed."
 
 cd $SRC_DIR
-

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted Felix.
 echo "Removing Apache Felix work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/felix
-mkdir $WORK_DIR/overlay/felix
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract Felix to folder 'work/overlay/felix'.
 # Full path will be something like 'work/overlay/felix/felix-framework-5.4.0'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/felix
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

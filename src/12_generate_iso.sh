@@ -5,11 +5,9 @@ set -e
 # TODO - this shell script file needs serios refactoring since right now it does
 # too many things:
 #
-# 1) Deal with 'src' copy.
-# 2) Generate the 'overlay' software bundles.
-# 3) Create proper overlay structure.
-# 4) Prepare the actual ISO structure.
-# 5) Generate the actual ISO image.
+# 1) Create proper overlay structure.
+# 2) Prepare the actual ISO structure.
+# 3) Generate the actual ISO image.
 #
 # Probably it's best to create separate shell scripts for each functionality.
 
@@ -40,27 +38,6 @@ echo "Prepared new ISO image work area."
 
 # Read the 'COPY_SOURCE_ISO' property from '.config'
 COPY_SOURCE_ISO="$(grep -i ^COPY_SOURCE_ISO .config | cut -f2 -d'=')"
-
-if [ "$COPY_SOURCE_ISO" = "true" ] ; then
-  # Copy all prepared source files and folders to '/src'. Note that the scripts
-  # will not work there because you also need proper toolchain.
-  cp -r work/src work/isoimage
-  echo "Source files and folders have been copied to '/src'."
-else
-  echo "Source files and folders have been skipped."
-fi
-
-# Read the 'OVERLAY_BUNDLES' property from '.config'
-OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
-
-if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
-  echo "Generating additional overlay bundles. This may take a while..."
-  cd minimal_overlay
-  ./overlay_build.sh
-  cd $SRC_DIR
-else
-  echo "Generation of additional overlay bundles has been skipped."
-fi
 
 cd work/isoimage
 
@@ -106,7 +83,8 @@ if [ "$OVERLAY_TYPE" = "sparse" -a "$(id -u)" = "0" ] ; then
   mkdir -p sparse/work
 
   # Copy the overlay content.
-  cp -r $SRC_DIR/work/src/minimal_overlay/rootfs/* sparse/rootfs/
+  cp -r $SRC_DIR/overlay_rootfs/* sparse/rootfs/
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* sparse/rootfs/
 
   # Unmount the sparse file and delete the temporary folder.
   $BUSYBOX umount sparse
@@ -120,11 +98,13 @@ elif [ "$OVERLAY_TYPE" = "folder" ] ; then
 
   echo "Using folder structure for overlay."
 
+  # Create the overlay folders.
   mkdir -p minimal/rootfs
   mkdir -p minimal/work
 
-  cp -rf $SRC_DIR/work/src/minimal_overlay/rootfs/* \
-    minimal/rootfs/
+  # Copy the overlay content.
+  cp -rf $SRC_DIR/work/overlay_rootfs/* minimal/rootfs/
+  cp -r $SRC_DIR/minimal_overlay/rootfs/* minimal/rootfs/
 else
   echo "Generating ISO image with no overlay structure..."
 fi
@@ -148,7 +128,7 @@ CEOF
 # Now we generate the ISO image file.
 xorriso \
   -as mkisofs \
-  -J \
+  -R \
   -r \
   -o ../minimal_linux_live.iso \
   -b isolinux.bin \
@@ -183,4 +163,3 @@ cat << CEOF
 CEOF
 
 echo "*** GENERATE ISO END ***"
-

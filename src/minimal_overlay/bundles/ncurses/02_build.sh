@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/ncurses
-
-DESTDIR="$PWD/ncurses_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the ncurses source directory which ls finds, e.g. 'ncurses-6.0'.
 cd $(ls -d ncurses-*)
@@ -14,7 +12,7 @@ cd $(ls -d ncurses-*)
 echo "Preparing ncurses work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 # Remove static library
 sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
@@ -48,23 +46,20 @@ echo "Building ncurses..."
 make -j $NUM_JOBS
 
 echo "Installing ncurses..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 # Symnlink wide character libraries
-cd $DESTDIR/usr/lib
+cd $DEST_DIR/usr/lib
 ln -s libncursesw.so.5 libncurses.so.5
 ln -s libncurses.so.5 libncurses.so
 ln -s libtinfow.so.5 libtinfo.so.5
 ln -s libtinfo.so.5 libtinfo.so
 
 echo "Reducing ncurses size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/usr/* $ROOTFS
+cp -r $DEST_DIR/usr/* $OVERLAY_ROOTFS
 
 echo "ncurses has been installed."
 
 cd $SRC_DIR
-

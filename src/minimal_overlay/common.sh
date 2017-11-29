@@ -1,14 +1,19 @@
 #!/bin/sh
+
+set -e
+
 # common code used by all bundles
 # should be included at the top of every *.sh file of each bundle
 
 export MAIN_SRC_DIR=`realpath --no-symlinks $PWD/../../../`
-export WORK_DIR="$MAIN_SRC_DIR/work"
+export WORK_DIR=$MAIN_SRC_DIR/work
 export SRC_DIR=`pwd`
+export OVERLAY_ROOTFS=$WORK_DIR/overlay_rootfs
 export BUNDLE_NAME=`basename $SRC_DIR`
-export CONFIG="$MAIN_SRC_DIR/.config"
-export SYSROOT="$WORK_DIR/sysroot"
-export SYSROOT_SPECS="$WORK_DIR/sysroot.specs"
+export DEST_DIR=$WORK_DIR/overlay/$BUNDLE_NAME/${BUNDLE_NAME}_installed
+export CONFIG=$MAIN_SRC_DIR/.config
+export SYSROOT=$WORK_DIR/sysroot
+#export SYSROOT_SPECS=$WORK_DIR/sysroot.specs
 
 # Read the 'JOB_FACTOR' property from $CONFIG
 export JOB_FACTOR="$(grep -i ^JOB_FACTOR $CONFIG | cut -f2 -d'=')"

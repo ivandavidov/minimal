@@ -1,15 +1,15 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-if [ ! -d "$WORK_DIR/overlay/mll_utils" ] ; then
-  echo "The directory $WORK_DIR/overlay/mll_utils does not exist. Cannot continue."
+if [ ! -d "$WORK_DIR/overlay/$BUNDLE_NAME" ] ; then
+  echo "The directory $WORK_DIR/overlay/$BUNDLE_NAME does not exist. Cannot continue."
   exit 1
 fi
 
-cd $WORK_DIR/overlay/mll_utils
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # 'mll-disk-erase' BEGIN
 
@@ -48,7 +48,7 @@ if [ "\$PRINT_HELP" = "true" ] ; then
   The above example wipes '/dev/sdb' 8 times in row.
 
 DEOF
-  
+
   exit 0
 fi
 
@@ -71,7 +71,7 @@ fi
 for n in \$(seq \$NUM_LOOPS) ; do
   echo "  Windows update \$n of \$NUM_LOOPS is being installed. Please wait..."
   dd if=/dev/urandom of=/dev/\$1 bs=1024b conv=notrunc > /dev/null 2>\&1
-done 
+done
 
 echo "  All updates have been installed."
 
@@ -84,4 +84,3 @@ chmod +rx sbin/mll-disk-erase
 echo "Utility script 'mll-disk-erase' has been generated."
 
 cd $SRC_DIR
-

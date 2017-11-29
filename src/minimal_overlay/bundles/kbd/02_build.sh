@@ -1,19 +1,17 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/kbd
-
-DESTDIR="$PWD/kbd_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the kbd source directory which ls finds, e.g. 'kbd-2.04'.
 cd $(ls -d kbd-*)
 
 echo "Preparing kbd work area. This may take a while..."
 make -j $NUM_JOBS clean
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring kbd..."
 CFLAGS="$CFLAGS" ./configure \
@@ -25,22 +23,19 @@ echo "Building kbd..."
 make -j $NUM_JOBS
 
 echo "Installing kbd..."
-make -j $NUM_JOBS install DESTDIR="$DESTDIR"
+make -j $NUM_JOBS install DESTDIR="$DEST_DIR"
 
 echo "Reducing kbd size..."
 strip -g \
-  $DESTDIR/usr/bin/* \
-  $DESTDIR/usr/sbin/* \
-  $DESTDIR/lib/*
+  $DEST_DIR/usr/bin/* \
+  $DEST_DIR/usr/sbin/* \
+  $DEST_DIR/lib/*
 
-ROOTFS=$WORK_DIR/src/minimal_overlay/rootfs
+mkdir -p $OVERLAY_ROOTFS/usr
+cp -r "$DEST_DIR/usr/bin" \
+  "$DEST_DIR/usr/share" \
+  "$OVERLAY_ROOTFS/usr/"
 
-mkdir -p $ROOTFS/usr
-cp -r "$DESTDIR/usr/bin" \
-  "$DESTDIR/usr/share" \
-  "$ROOTFS/usr/"
-
-echo "kbd has been installed."
+echo "Bundle 'kbd' has been installed."
 
 cd $SRC_DIR
-

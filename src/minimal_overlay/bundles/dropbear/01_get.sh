@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted Dropbear.
 echo "Removing Dropbear work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/dropbear
-mkdir $WORK_DIR/overlay/dropbear
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract Dropbear to folder 'work/overlay/dropbear'.
 # Full path will be something like 'work/overlay/dropbear/dropbear-2016.73'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/dropbear
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

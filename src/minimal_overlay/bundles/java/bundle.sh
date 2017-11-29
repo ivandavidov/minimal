@@ -16,7 +16,7 @@
 # 3) Run this script. Note that the script will fail with error message if the
 #    'JAVA_ARCHIVE' property is not set or if it points to invalid file.
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -31,27 +31,25 @@ elif [ ! -f "$JAVA_ARCHIVE" ] ; then
   exit 1
 fi
 
-rm -rf $WORK_DIR/overlay/java
-mkdir -p $WORK_DIR/overlay/java/opt
+rm -rf $DEST_DIR
+mkdir -p $DEST_DIR/opt
 
 tar -xvf \
   $JAVA_ARCHIVE \
-  -C $WORK_DIR/overlay/java/opt
+  -C $DEST_DIR/opt
 
-cd $WORK_DIR/overlay/java/opt
+cd $DEST_DIR/opt
 mv $(ls -d *) java
 
-mkdir $WORK_DIR/overlay/java/bin
+mkdir $DEST_DIR/bin
 
 for FILE in $(ls java/bin)
 do
-  ln -s ../opt/java/bin/$FILE ../bin/$FILE
+  ln -s ../opt/$BUNDLE_NAME/bin/$FILE ../bin/$FILE
 done
 
-cp -r $WORK_DIR/overlay/java/* \
-  $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "Java has been installed."
 
 cd $SRC_DIR
-

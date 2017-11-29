@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted libevent.
 echo "Removing libevent work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/libevent
-mkdir $WORK_DIR/overlay/libevent
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract libevent to folder 'work/overlay/libevent'.
 # Full path will be something like 'work/overlay/libevent/libevent-2.1.8-stable'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/libevent
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

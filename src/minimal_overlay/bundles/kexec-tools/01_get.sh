@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,11 +30,11 @@ fi
 
 # Delete folder with previously extracted kexec-tools.
 echo "Removing kexec-tools work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/kexec-tools
-mkdir $WORK_DIR/overlay/kexec-tools
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract kexec-tools to folder 'work/overlay/kexec-tools'.
 # Full path will be something like 'work/overlay/kexec-tools/kexec-tools-2.0.15'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/kexec-tools
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR

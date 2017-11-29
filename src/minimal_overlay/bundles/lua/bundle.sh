@@ -1,6 +1,8 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+. ../../common.sh
+
+set -e
 
 ./01_get.sh
 ./02_build.sh

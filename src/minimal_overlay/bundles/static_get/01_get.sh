@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -34,4 +34,3 @@ mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 cp static-get.sh $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

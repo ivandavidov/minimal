@@ -58,7 +58,7 @@ Currently available overlay bundles:
                 to the "JAVA_ARCHIVE" property in the ".config" file for more
                 detailed information.
 
-                This overlay bundle requires GLIBC. JDK 9 requires ZLIB. 
+                This overlay bundle requires GLIBC. JDK 9 requires ZLIB.
 
 * kbd         - Keyboard utilities and keymaps, you can for example load
                 a german keyboard layout:
@@ -89,6 +89,9 @@ Currently available overlay bundles:
 
                 This overlay bundle is currently experimental and its build
                 process depends on the host machine.
+
+* MLL Source  - This overlay bundle provides all MLL source code in the
+                directory 'usr/src'.
 
 * nano        - Simple command-line text editor with on-screen shortcuts.
 

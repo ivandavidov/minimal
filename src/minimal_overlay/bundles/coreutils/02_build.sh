@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/coreutils
-
-DESTDIR="$PWD/coreutils_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the coreutils source directory which ls finds, e.g. 'coreutils-8.28'.
 cd $(ls -d coreutils-*)
@@ -14,7 +12,7 @@ cd $(ls -d coreutils-*)
 echo "Preparing coreutils work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring coreutils..."
 CFLAGS="$CFLAGS" ./configure \
@@ -24,14 +22,12 @@ echo "Building coreutils..."
 make -j $NUM_JOBS
 
 echo "Installing coreutils..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing coreutils size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/* $ROOTFS
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "coreutils has been installed."
 

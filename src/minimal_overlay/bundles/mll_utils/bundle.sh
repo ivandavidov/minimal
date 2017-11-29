@@ -1,6 +1,8 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
+
+. ../../common.sh
 
 ./01_prepare.sh
 ./02_disk_erase.sh
@@ -8,4 +10,3 @@ SRC_DIR=$(pwd)
 ./04_install.sh
 
 cd $SRC_DIR
-

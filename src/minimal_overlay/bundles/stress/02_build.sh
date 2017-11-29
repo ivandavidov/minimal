@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/stress
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 DESTDIR="$PWD/stress_installed"
 
@@ -14,7 +14,7 @@ cd $(ls -d stress-*)
 echo "Preparing stress work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring stress..."
 CFLAGS="$CFLAGS" ./configure \
@@ -24,14 +24,12 @@ echo "Building stress..."
 make -j $NUM_JOBS
 
 echo "Installing stress..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing stress size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/* $ROOTFS
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "stress has been installed."
 

@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/libevent
-
-DESTDIR="$PWD/libevent_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the libevent source directory which ls finds, e.g. 'libevent-2.1.8-stable'.
 cd $(ls -d libevent-*)
@@ -14,7 +12,7 @@ cd $(ls -d libevent-*)
 echo "Preparing libevent work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring libevent..."
 CFLAGS="$CFLAGS" ./configure
@@ -23,14 +21,12 @@ echo "Building libevent..."
 make -j $NUM_JOBS
 
 echo "Installing libevent..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing libevent size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/usr/local/* $ROOTFS
+cp -r $DEST_DIR/usr/local/* $OVERLAY_ROOTFS
 
 echo "libevent has been installed."
 

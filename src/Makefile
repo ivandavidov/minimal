@@ -36,10 +36,9 @@ qemu:
 src:
 	@echo "Generating source archive..."
 	@rm -f minimal_linux_live_*_src.tar.xz
-	@mkdir -p work
-	@./08_prepare_src.sh 1>/dev/null
+	@cd minimal_overlay && ./overlay_build.sh mll_source 1>/dev/null && cd ..
 	@$(eval DATE_PARSED := $(shell LANG=en_US ; date +"%d-%b-%Y"))
-	@cd work/src && tar -cpf - `ls -A` | xz - > ../../minimal_linux_live_$(DATE_PARSED)_src.tar.xz && cd ../..
+	@cd work/overlay_rootfs/usr/src && tar -cpf - `ls -A` | xz - > ../../../../minimal_linux_live_$(DATE_PARSED)_src.tar.xz && cd ../../../..
 	@echo "Source archive: minimal_linux_live_$(DATE_PARSED)_src.tar.xz"
 
 help:

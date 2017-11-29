@@ -1,27 +1,26 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/openjdk
-mv `ls -d *` openjdk
+cd $WORK_DIR/overlay/$BUNDLE_NAME
+mv `ls -d *` $BUNDLE_NAME
 
 mkdir opt
 mv openjdk opt
 
-mkdir $WORK_DIR/overlay/openjdk/bin
-cd $WORK_DIR/overlay/openjdk/bin
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME/bin
+cd $WORK_DIR/overlay/$BUNDLE_NAME/bin
 
-for FILE in $(ls ../opt/openjdk/bin)
+for FILE in $(ls ../opt/$BUNDLE_NAME/bin)
 do
-  ln -s ../opt/openjdk/bin/$FILE $FILE
+  ln -s ../opt/$BUNDLE_NAME/bin/$FILE $FILE
 done
 
-cp -r $WORK_DIR/overlay/openjdk/* \
-  $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $WORK_DIR/overlay/$BUNDLE_NAME/* \
+  $OVERLAY_ROOTFS
 
 echo "Open JDK has been installed."
 
 cd $SRC_DIR
-

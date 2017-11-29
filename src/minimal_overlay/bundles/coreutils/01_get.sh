@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted coreutils.
 echo "Removing coreutils work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/coreutils
-mkdir $WORK_DIR/overlay/coreutils
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract coreutils to folder 'work/overlay/coreutils'.
 # Full path will be something like 'work/overlay/coreutils/coreutils-8.28'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/coreutils
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

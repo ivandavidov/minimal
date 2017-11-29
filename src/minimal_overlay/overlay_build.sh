@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 SRC_DIR=$(pwd)
 
 # Find the main source directory
@@ -40,9 +42,9 @@ do
   fi
 
   # Deal with dependencies BEGIN
-  if [ -f $BUNDLE_DIR/mll_deps ] ; then
+  if [ -f $BUNDLE_DIR/bundle_deps ] ; then
     echo "Overlay bundle '$BUNDLE' depends on the following overlay bundles:"
-    cat $BUNDLE_DIR/mll_deps
+    cat $BUNDLE_DIR/bundle_deps
 
     while read line; do
       # Trim all white spaces in bundle name
@@ -58,7 +60,7 @@ do
         ./overlay_build.sh --skip-clean $BUNDLE_DEP
         echo "Overlay bundle '$BUNDLE_DEP' has been prepared."
       fi
-    done < $BUNDLE_DIR/mll_deps
+    done < $BUNDLE_DIR/bundle_deps
   fi
   # Deal with dependencies END
 
@@ -78,4 +80,3 @@ do
 done
 
 cd $SRC_DIR
-

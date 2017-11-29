@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted make.
 echo "Removing make work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/make
-mkdir $WORK_DIR/overlay/make
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract make to folder 'work/overlay/make'.
 # Full path will be something like 'work/overlay/make/make-8.28'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/make
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

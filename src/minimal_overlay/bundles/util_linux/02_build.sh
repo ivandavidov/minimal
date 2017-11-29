@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/util_linux
-
-DESTDIR="$PWD/util_linux_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the util-linux source directory which ls finds, e.g. 'util-linux-2.31'.
 cd $(ls -d util-linux-*)
@@ -14,7 +12,7 @@ cd $(ls -d util-linux-*)
 echo "Preparing util-linux work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring util-linux..."
 CFLAGS="$CFLAGS" ./configure \
@@ -36,14 +34,12 @@ echo "Building util-linux..."
 make -j $NUM_JOBS
 
 echo "Installing util-linux..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing util-linux size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/* $ROOTFS
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "util-linux has been installed."
 

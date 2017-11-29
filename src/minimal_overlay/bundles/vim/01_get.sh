@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted vim.
 echo "Removing vim work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/vim
-mkdir $WORK_DIR/overlay/vim
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract vim to folder 'work/overlay/vim'.
 # Full path will be something like 'work/overlay/vim/vim-8.0.1298'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/vim
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

@@ -1,13 +1,13 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
 echo "Removing old static-get artifacts. This may take a while..."
-rm -rf $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed
-mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed/opt/$BUNDLE_NAME
-mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed/bin
+rm -rf $DEST_DIR
+mkdir -p $DEST_DIR/opt/$BUNDLE_NAME
+mkdir -p $DEST_DIR/bin
 
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
@@ -15,17 +15,16 @@ cp $MAIN_SRC_DIR/source/overlay/static-get.sh .
 
 chmod +rx static-get.sh
 
-cp static-get.sh $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed/opt/$BUNDLE_NAME
+cp static-get.sh $DEST_DIR/opt/$BUNDLE_NAME
 
-cd $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed
+cd $DEST_DIR
 
 ln -s ../opt/$BUNDLE_NAME/static-get.sh bin/static-get
 ln -s ../opt/$BUNDLE_NAME/static-get.sh bin/mll-get
 
-cp -r $WORK_DIR/overlay/$BUNDLE_NAME/$BUNDLE_NAME_installed/* \
-  $WORK_DIR/src/minimal_overlay/rootfs
+cp -r $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
 echo "static-get has been installed."
 
 cd $SRC_DIR
-

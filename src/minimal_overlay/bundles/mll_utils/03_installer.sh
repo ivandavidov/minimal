@@ -1,15 +1,15 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-if [ ! -d "$WORK_DIR/overlay/mll_utils" ] ; then
-  echo "The directory $WORK_DIR/overlay/mll_utils does not exist. Cannot continue."
+if [ ! -d "$WORK_DIR/overlay/$BUNDLE_NAME" ] ; then
+  echo "The directory $WORK_DIR/overlay/$BUNDLE_NAME does not exist. Cannot continue."
   exit 1
 fi
 
-cd $WORK_DIR/overlay/mll_utils
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # 'mll-install' BEGIN
 
@@ -43,7 +43,7 @@ if [ "\$PRINT_HELP" = "true" ] ; then
   The above example installs Minimal Linux Live  on '/dev/sdb'.
 
 DEOF
-  
+
   exit 0
 fi
 
@@ -59,10 +59,10 @@ fi
 
 cat << DEOF
 
-  Minimal Linux Live will be installed on device '/dev/\$1'. The device will be 
+  Minimal Linux Live will be installed on device '/dev/\$1'. The device will be
   formatted with Ext2 and all previous data will be lost. Press 'Ctrl + C' to
   exit or any other key to continue.
-    
+
 DEOF
 
 read -n1 -s
@@ -108,24 +108,23 @@ cd $WORK_DIR/syslinux
 cd $(ls -d syslinux-*)
 
 cp bios/extlinux/extlinux \
-  $WORK_DIR/overlay/mll_utils/sbin
-mkdir -p $WORK_DIR/overlay/mll_utils/opt/syslinux 
+  $WORK_DIR/overlay/$BUNDLE_NAME/sbin
+mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/opt/syslinux
 cp bios/mbr/mbr.bin \
-  $WORK_DIR/overlay/mll_utils/opt/syslinux
+  $WORK_DIR/overlay/$BUNDLE_NAME/opt/syslinux
 
 # Big mama hack - need to find proper workaround!!!
 # Both syslinux and extlinux are 32-bit executables which require 32-bit libs.
 # Possible solution 1 - build 32-bit GLIBC on demand.
 # Possible solution 2 - drop 32-bit MLL and provide 64-bit with multi-arch.
-mkdir -p $WORK_DIR/overlay/mll_utils/lib
-mkdir -p $WORK_DIR/overlay/mll_utils/usr/lib
+mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/lib
+mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME/usr/lib
 cp /lib/ld-linux.so.2 \
-  $WORK_DIR/overlay/mll_utils/lib
+  $WORK_DIR/overlay/$BUNDLE_NAME/lib
 cp /lib/i386-linux-gnu/libc.so.6 \
-  $WORK_DIR/overlay/mll_utils/usr/lib
+  $WORK_DIR/overlay/$BUNDLE_NAME/usr/lib
 # Big mama hack - end.
 
 echo "Minimal Linux Live installer has been generated."
 
 cd $SRC_DIR
-

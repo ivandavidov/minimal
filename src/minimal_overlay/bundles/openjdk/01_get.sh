@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted Felix.
 echo "Removing Open JDK work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/openjdk
-mkdir $WORK_DIR/overlay/openjdk
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract Open JDK to folder 'work/overlay/openjdk'.
 # Full path will be something like 'work/overlay/openjdk/jdk-9'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/openjdk
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

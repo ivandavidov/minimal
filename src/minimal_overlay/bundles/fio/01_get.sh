@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,12 +30,11 @@ fi
 
 # Delete folder with previously extracted fio.
 echo "Removing fio work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/fio
-mkdir $WORK_DIR/overlay/fio
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract fio to folder 'work/overlay/fio'.
 # Full path will be something like 'work/overlay/fio/fio-3.2'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/fio
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR
-

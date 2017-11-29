@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
-cd $WORK_DIR/overlay/fio
-
-DESTDIR="$PWD/fio_installed"
+cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the fio source directory which ls finds, e.g. 'fio-3.2'.
 cd $(ls -d fio-*)
@@ -14,7 +12,7 @@ cd $(ls -d fio-*)
 echo "Preparing fio work area. This may take a while..."
 make -j $NUM_JOBS clean
 
-rm -rf $DESTDIR
+rm -rf $DEST_DIR
 
 echo "Configuring fio..."
 CFLAGS="$CFLAGS" ./configure \
@@ -24,14 +22,12 @@ echo "Building fio..."
 make -j $NUM_JOBS
 
 echo "Installing fio..."
-make -j $NUM_JOBS install DESTDIR=$DESTDIR
+make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 echo "Reducing fio size..."
-strip -g $DESTDIR/usr/bin/*
+strip -g $DEST_DIR/usr/bin/*
 
-ROOTFS="$WORK_DIR/src/minimal_overlay/rootfs"
-
-cp -r $DESTDIR/* $ROOTFS
+cp -r $DEST_DIR/* $OVERLAY_ROOTFS
 
 echo "fio has been installed."
 

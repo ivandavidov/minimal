@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SRC_DIR=$(pwd)
+set -e
 
 . ../../common.sh
 
@@ -30,11 +30,11 @@ fi
 
 # Delete folder with previously extracted Lua.
 echo "Removing Lua work area. This may take a while..."
-rm -rf $WORK_DIR/overlay/lua
-mkdir $WORK_DIR/overlay/lua
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
+mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Extract lua to folder 'work/overlay/lua'.
 # Full path will be something like 'work/overlay/lua/lua-5.3.4'.
-tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/lua
+tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR

@@ -10,7 +10,7 @@ ver=2.1
 
 packcaps=${package^^}
 
-echo "Generating new overlay bundle template for $package..."
+echo "Generating new overlay bundle template for '$package'."
 
 cp -r minimal_overlay/bundles/coreutils minimal_overlay/bundles/$package
 

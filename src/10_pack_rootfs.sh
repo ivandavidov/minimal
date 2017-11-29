@@ -7,7 +7,7 @@ SRC_DIR=$(pwd)
 
 cd work
 
-echo "Packing initramfs. This may take a while..."
+echo "Packing initramfs. This may take a while."
 
 # Remove the old 'initramfs' archive if it exists.
 rm -f rootfs.cpio.xz

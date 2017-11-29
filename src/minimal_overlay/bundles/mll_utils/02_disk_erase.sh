@@ -69,7 +69,7 @@ if [ ! "\$2" = "" ] ; then
 fi
 
 for n in \$(seq \$NUM_LOOPS) ; do
-  echo "  Windows update \$n of \$NUM_LOOPS is being installed. Please wait..."
+  echo "  Windows update \$n of \$NUM_LOOPS is being installed. Please wait."
   dd if=/dev/urandom of=/dev/\$1 bs=1024b conv=notrunc > /dev/null 2>\&1
 done
 

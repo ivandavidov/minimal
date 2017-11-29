@@ -25,7 +25,7 @@ rm -rf busybox_installed
 cd $(ls -d busybox-*)
 
 # Remove previously generated artifacts.
-echo "Preparing BusyBox work area. This may take a while..."
+echo "Preparing BusyBox work area. This may take a while."
 make distclean -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
@@ -42,12 +42,12 @@ if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   cp -f $SRC_DIR/minimal_config/busybox.config .config
 else
   # Create default configuration file.
-  echo "Generating default BusyBox configuration..."
+  echo "Generating default BusyBox configuration."
   make defconfig -j $NUM_JOBS
 
   # The 'inetd' applet fails to compile because we use the glibc installation area as
   # main pointer to the kernel headers (see 05_prepare_glibc.sh) and some headers are
-  # not resolved. The easiest solution is to ignore this particular applet. 
+  # not resolved. The easiest solution is to ignore this particular applet.
   sed -i "s/.*CONFIG_INETD.*/CONFIG_INETD=n/" .config
 fi
 
@@ -62,13 +62,13 @@ sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$SYSROOT_ESCAPED/" .config
 CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
-echo "Building BusyBox..."
+echo "Building BusyBox."
 make \
   EXTRA_CFLAGS="$CFLAGS" \
   busybox -j $NUM_JOBS
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
-echo "Generating BusyBox based initramfs area..."
+echo "Generating BusyBox based initramfs area."
 make \
   CONFIG_PREFIX="../busybox_installed" \
   install -j $NUM_JOBS

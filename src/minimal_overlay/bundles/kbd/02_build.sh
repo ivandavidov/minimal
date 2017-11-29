@@ -9,23 +9,23 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # Change to the kbd source directory which ls finds, e.g. 'kbd-2.04'.
 cd $(ls -d kbd-*)
 
-echo "Preparing kbd work area. This may take a while..."
+echo "Preparing kbd work area. This may take a while."
 make -j $NUM_JOBS clean
 rm -rf $DEST_DIR
 
-echo "Configuring kbd..."
+echo "Configuring kbd."
 CFLAGS="$CFLAGS" ./configure \
   --prefix=/usr \
   --disable-vlock
 # vlock requires PAM
 
-echo "Building kbd..."
+echo "Building kbd."
 make -j $NUM_JOBS
 
-echo "Installing kbd..."
+echo "Installing kbd."
 make -j $NUM_JOBS install DESTDIR="$DEST_DIR"
 
-echo "Reducing kbd size..."
+echo "Reducing kbd size."
 strip -g \
   $DEST_DIR/usr/bin/* \
   $DEST_DIR/usr/sbin/* \

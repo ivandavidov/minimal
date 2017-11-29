@@ -4,7 +4,7 @@ set -e
 
 . ../../common.sh
 
-echo "Removing old Apache Felix artifacts. This may take a while..."
+echo "Removing old Apache Felix artifacts. This may take a while."
 rm -rf $DEST_DIR
 mkdir -p $DEST_DIR/opt/felix
 mkdir -p $DEST_DIR/bin

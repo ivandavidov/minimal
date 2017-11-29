@@ -27,12 +27,12 @@ GLIBC_SRC=$(pwd)
 cd ..
 
 # Prepare the work area, e.g. 'work/glibc/glibc_objects'.
-echo "Preparing glibc object area. This may take a while..."
+echo "Preparing glibc object area. This may take a while."
 rm -rf glibc_objects
 mkdir glibc_objects
 
 # Prepare the install area, e.g. 'work/glibc/glibc_installed'.
-echo "Preparing glibc install area. This may take a while..."
+echo "Preparing glibc install area. This may take a while."
 rm -rf glibc_installed
 mkdir glibc_installed
 GLIBC_INSTALLED=$(pwd)/glibc_installed
@@ -46,7 +46,7 @@ cd glibc_objects
 # to be in '/lib64'. Kernel headers are taken from our already prepared kernel
 # header area (see xx_build_kernel.sh). Packages 'gd' and 'selinux' are disabled
 # for better build compatibility with the host system.
-echo "Configuring glibc..."
+echo "Configuring glibc."
 $GLIBC_SRC/configure \
   --prefix= \
   --with-headers=$KERNEL_INSTALLED/include \
@@ -56,11 +56,11 @@ $GLIBC_SRC/configure \
   CFLAGS="$CFLAGS"
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".
-echo "Building glibc..."
+echo "Building glibc."
 make -j $NUM_JOBS
 
 # Install glibc in the installation area, e.g. 'work/glibc/glibc_installed'.
-echo "Installing glibc..."
+echo "Installing glibc."
 make install \
   DESTDIR=$GLIBC_INSTALLED \
   -j $NUM_JOBS

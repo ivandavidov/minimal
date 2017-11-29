@@ -9,21 +9,21 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # Change to the Dropbear source directory which ls finds, e.g. 'dropbear-2016.73'.
 cd $(ls -d dropbear-*)
 
-echo "Preparing Dropbear work area. This may take a while..."
+echo "Preparing Dropbear work area. This may take a while."
 make -j $NUM_JOBS clean
 rm -rf $DEST_DIR
 
-echo "Configuring Dropbear..."
+echo "Configuring Dropbear."
 ./configure \
   --prefix=/usr \
   --disable-zlib \
   --disable-loginfunc
   CFLAGS="$CFLAGS"
 
-echo "Building Dropbear..."
+echo "Building Dropbear."
 make -j $NUM_JOBS
 
-echo "Installing Dropbear..."
+echo "Installing Dropbear."
 make -j $NUM_JOBS install DESTDIR="$DEST_DIR"
 
 mkdir -p $DEST_DIR/etc/dropbear
@@ -54,7 +54,7 @@ mkdir -p $DEST_DIR/root
 
 # Create Dropbear SSH configuration END
 
-echo "Reducing Dropbear size..."
+echo "Reducing Dropbear size."
 strip -g \
   $DEST_DIR/usr/bin/* \
   $DEST_DIR/usr/sbin/* \

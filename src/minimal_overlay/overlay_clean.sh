@@ -4,7 +4,7 @@ set -e
 
 SRC_DIR=$(pwd)
 
-echo "Cleaning up the overlay work area. This may take a while..."
+echo "Cleaning up the overlay work area. This may take a while."
 rm -rf ../work/overlay
 rm -rf ../work/overlay_rootfs
 

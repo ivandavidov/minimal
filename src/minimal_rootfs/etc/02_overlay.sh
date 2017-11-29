@@ -169,7 +169,7 @@ echo -e "Mount locations \\e[94m/dev\\e[0m, \\e[94m/sys\\e[0m, \\e[94m/tmp\\e[0m
 echo "Switching from initramfs root area to overlayfs root area."
 exec switch_root /mnt /etc/03_init.sh
 
-echo "(/etc/02_overlay.sh) - there is a serious bug..."
+echo "(/etc/02_overlay.sh) - there is a serious bug."
 
 # Wait until any key has been pressed.
 read -n1 -s

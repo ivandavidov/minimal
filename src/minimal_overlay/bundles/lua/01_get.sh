@@ -29,7 +29,7 @@ else
 fi
 
 # Delete folder with previously extracted Lua.
-echo "Removing Lua work area. This may take a while..."
+echo "Removing Lua work area. This may take a while."
 rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
 mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 

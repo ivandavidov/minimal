@@ -29,7 +29,7 @@ else
 fi
 
 # Delete folder with previously extracted kbd.
-echo "Removing kbd work area. This may take a while..."
+echo "Removing kbd work area. This may take a while."
 rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
 mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 

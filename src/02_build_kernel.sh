@@ -26,7 +26,7 @@ mkdir kernel_installed
 cd $(ls -d linux-*)
 
 # Cleans up the kernel sources, including configuration files.
-echo "Preparing kernel work area..."
+echo "Preparing kernel work area."
 make mrproper -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
@@ -104,7 +104,7 @@ fi
 # Compile the kernel with optimization for 'parallel jobs' = 'number of processors'.
 # Good explanation of the different kernels:
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
-echo "Building kernel..."
+echo "Building kernel."
 make \
   CFLAGS="$CFLAGS" \
   bzImage -j $NUM_JOBS
@@ -115,7 +115,7 @@ cp arch/x86/boot/bzImage \
 
 # Install kernel headers which are used later when we build and configure the
 # GNU C library (glibc).
-echo "Generating kernel headers..."
+echo "Generating kernel headers."
 make \
   INSTALL_HDR_PATH=$SRC_DIR/work/kernel/kernel_installed \
   headers_install -j $NUM_JOBS

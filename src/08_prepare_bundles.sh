@@ -13,7 +13,7 @@ rm -rf $SRC_DIR/work/overlay*
 OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES .config | cut -f2 -d'=')"
 
 if [ ! "$OVERLAY_BUNDLES" = "" ] ; then
-  echo "Generating additional overlay bundles. This may take a while..."
+  echo "Generating additional overlay bundles. This may take a while."
   cd minimal_overlay
   ./overlay_build.sh
   cd $SRC_DIR

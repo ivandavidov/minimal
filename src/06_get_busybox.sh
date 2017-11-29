@@ -29,7 +29,7 @@ else
 fi
 
 # Delete folder with previously extracted busybox.
-echo "Removing BusyBox work area. This may take a while..."
+echo "Removing BusyBox work area. This may take a while."
 rm -rf ../work/busybox
 mkdir ../work/busybox
 

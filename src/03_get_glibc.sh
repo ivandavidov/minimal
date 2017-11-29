@@ -29,7 +29,7 @@ else
 fi
 
 # Delete folder with previously extracted glibc.
-echo "Removing glibc work area. This may take a while..."
+echo "Removing glibc work area. This may take a while."
 rm -rf ../work/glibc
 mkdir ../work/glibc
 

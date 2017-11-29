@@ -29,7 +29,7 @@ else
 fi
 
 # Delete folder with previously extracted kernel.
-echo "Removing kernel work area. This may take a while..."
+echo "Removing kernel work area. This may take a while."
 rm -rf ../work/kernel
 mkdir ../work/kernel
 

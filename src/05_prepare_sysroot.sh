@@ -6,11 +6,11 @@ SRC_DIR=$(pwd)
 
 cd work
 
-echo "Cleaning existing sysroot. This may take a while..."
+echo "Cleaning existing sysroot. This may take a while."
 rm -rf sysroot
 rm -rf sysroot.specs
 
-echo "Preparing glibc. This may take a while..."
+echo "Preparing glibc. This may take a while."
 cp -r glibc/glibc_installed sysroot
 cd sysroot
 

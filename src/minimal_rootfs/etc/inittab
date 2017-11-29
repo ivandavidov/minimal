@@ -1,8 +1,8 @@
 ::sysinit:/etc/04_bootscript.sh
 ::restart:/sbin/init
-::shutdown:echo -e "\nSync all file buffers..."
+::shutdown:echo -e "\nSyncing all file buffers."
 ::shutdown:sync
-::shutdown:echo "Unmount all filesystems..."
+::shutdown:echo "Unmounting all filesystems."
 ::shutdown:umount -a -r
 ::shutdown:echo -e "\n  \\e[1mSee you soon!\\e[0m\n"
 ::shutdown:sleep 1

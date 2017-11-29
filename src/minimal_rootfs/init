@@ -51,7 +51,7 @@ fi
 # the script '/etc/03_init.sh' as the new init process.
 exec /etc/02_overlay.sh
 
-echo "(/init) - you can never see this unless there is a serious bug..."
+echo "(/init) - you can never see this unless there is a serious bug."
 
 # Wait until any key has been pressed.
 read -n1 -s

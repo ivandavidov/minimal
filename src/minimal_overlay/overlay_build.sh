@@ -55,7 +55,7 @@ do
       elif [ -d $MAIN_SRC_DIR/work/overlay/$BUNDLE_DEP ] ; then
         echo "Overlay bundle '$BUNDLE_DEP' has already been prepared."
       else
-        echo "Preparing overlay bundle '$BUNDLE_DEP'..."
+        echo "Preparing overlay bundle '$BUNDLE_DEP'."
         cd $SRC_DIR
         ./overlay_build.sh --skip-clean $BUNDLE_DEP
         echo "Overlay bundle '$BUNDLE_DEP' has been prepared."
@@ -73,7 +73,7 @@ do
 
   cd $BUNDLE_DIR
 
-  echo "Building overlay bundle '$BUNDLE'..."
+  echo "Building overlay bundle '$BUNDLE'."
   $BUNDLE_SCRIPT
 
   cd $SRC_DIR

@@ -1,0 +1,7 @@
+# TODO - Many other bundles depend on 'curses header-files'
+# and their build will fail if these headers are missing.
+# However, these headers are not provided by the overlay
+# bundle 'ncurses'. On Ubuntu you can add the headers with
+# the following command:
+#
+# sudo apt install libncurses5-dev

@@ -16,15 +16,15 @@ fi
 cd $MAIN_SRC_DIR/source/overlay
 
 if [ ! "$USE_LOCAL_SOURCE" = "true" ] ; then
-  # Downloading cloud foundry compressed binary archive. The '-c' option allows the download to resume.
-  echo "Downloading cloud foundry compressed binary archive from $DOWNLOAD_URL"
+  # Downloading Cloud Foundry compressed binary archive. The '-c' option allows the download to resume.
+  echo "Downloading Cloud Foundry compressed binary archive from $DOWNLOAD_URL"
   wget -O cf-cli.tgz -c $DOWNLOAD_URL
 else
   echo "Using local cloud foundry compressed binary archive $MAIN_SRC_DIR/source/overlay/cf-cli.tgz"
 fi
 
 # Delete folder with previously prepared cloud foundry cli.
-echo "Removing cloud foundry cli work area. This may take a while."
+echo "Removing Cloud Foundry CLI work area. This may take a while."
 rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
 mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 

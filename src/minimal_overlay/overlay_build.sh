@@ -50,6 +50,13 @@ do
       # Trim all white spaces in bundle name
       BUNDLE_DEP=`echo $line | awk '{print $1}'`
 
+      case "$BUNDLE_DEP" in
+      \#*)
+        # This is comment line.
+        continue
+        ;;
+      esac
+
       if [ "$BUNDLE_DEP" = "" ] ; then
         continue
       elif [ -d $MAIN_SRC_DIR/work/overlay/$BUNDLE_DEP ] ; then

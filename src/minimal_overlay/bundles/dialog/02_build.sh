@@ -28,6 +28,8 @@ make -j $NUM_JOBS
 echo "Installing 'dialog'."
 make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
+rm -rf $DEST_DIR/usr/lib $DEST_DIR/usr/share
+
 echo "Reducing 'dialog' size."
 set +e
 strip -g $DEST_DIR/usr/bin/*
@@ -35,7 +37,7 @@ set -e
 
 # With '--remove-destination' all possibly existing soft links in
 # '$OVERLAY_ROOTFS' will be overwritten correctly.
-cp -r --remove-destination $DEST_DIR/usr/* \
+cp -r --remove-destination $DEST_DIR/usr \
   $OVERLAY_ROOTFS
 
 echo "Bundle 'dialog' has been installed."

@@ -52,11 +52,11 @@ The default build process uses some custom provided ``CFLAGS``. They can be foun
 
 ## Overlay bundles
 
-**Important note!** Most of the overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Some overlay bundles have no dependencies to the host machine, e.g. the DHCP functionality and the MLL source code generation which are enabled by default.
+**Important note!** Most of the overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Some overlay bundles have no dependencies to the host machine, e.g. the bundles which provide the DHCP functionality and the MLL source code. These bundles are enabled by default.
 
-The current development version introduces the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. Currently this is the mechanism which allows you to build additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependencies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem after you have produced the 'initramfs' area.
+Minimal Linux Live has the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. This is the mechanism which allows you to provide additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependencies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem after you have produced the 'initramfs' area.
 
-The overlay build system provides dependency management. If bundle 'b' depends on bundle 'a' you don't need to build bundle 'a' manually in advance. The bundle dependencies are described in special metadata file ``bundle_deps`` and all such dependencies are prepared automatically.
+The overlay bundle system provides dependency management. If bundle 'b' depends on bundle 'a' you don't need to build bundle 'a' manually in advance. The bundle dependencies are described in special metadata file ``bundle_deps`` and all such dependencies are prepared automatically.
 
 ```
 # How to build all overlay bundles.
@@ -68,7 +68,7 @@ cd minimal_overlay
 ```
 # How to build specific overlay bundle. The example is for 'Open JDK'
 # which depends on many GNU C libraries and on ZLIB. All dependencies
-# are handled automatically by the overlay build system.
+# are handled automatically by the overlay bundle system.
 
 cd minimal_overlay
 ./overlay_build.sh openjdk
@@ -97,7 +97,7 @@ isohybrid minimal_linux_live.iso
 dd if=minimal_linux_live.iso of=/dev/xxx
 ```
 
-The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the build process. You can import and use the image in Docker like this:
+The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the MLL build process. You can import and use the image in Docker like this:
 
 ```
 # Import the MLL image in Docker.

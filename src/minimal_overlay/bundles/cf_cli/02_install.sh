@@ -23,7 +23,10 @@ cd $DEST_DIR
 
 ln -s ../opt/$BUNDLE_NAME/cf bin/cf
 
-cp -r $DEST_DIR/* $OVERLAY_ROOTFS
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
 echo "Cloud Foundry CLI has been installed."
 

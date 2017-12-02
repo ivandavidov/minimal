@@ -18,7 +18,9 @@ do
   ln -s ../opt/$BUNDLE_NAME/bin/$FILE $FILE
 done
 
-cp -r $WORK_DIR/overlay/$BUNDLE_NAME/* \
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $WORK_DIR/overlay/$BUNDLE_NAME/* \
   $OVERLAY_ROOTFS
 
 echo "Open JDK has been installed."

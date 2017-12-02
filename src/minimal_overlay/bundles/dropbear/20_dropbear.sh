@@ -1,3 +1,9 @@
 #!/bin/sh
-echo "starting dropbear ssh server"
+
+cat << CEOF
+
+  Starting Dropbear SSH server.
+
+CEOF
+
 dropbear

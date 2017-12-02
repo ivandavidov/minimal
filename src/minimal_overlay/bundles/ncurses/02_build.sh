@@ -9,8 +9,12 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # Change to the ncurses source directory which ls finds, e.g. 'ncurses-6.0'.
 cd $(ls -d ncurses-*)
 
-echo "Preparing ncurses work area. This may take a while."
-make -j $NUM_JOBS clean
+if [ -f Makefile ] ; then
+  echo "Preparing '$BUNDLE_NAME' work area. This may take a while."
+  make -j $NUM_JOBS clean
+else
+  echo "The clean phase for '$BUNDLE_NAME' has been skipped."
+fi
 
 rm -rf $DEST_DIR
 
@@ -18,8 +22,7 @@ rm -rf $DEST_DIR
 sed -i '/LIBTOOL_INSTALL/d' c++/Makefile.in
 # http://www.linuxfromscratch.org/lfs/view/development/chapter06/ncurses.html
 
-# Configure Ncurses
-echo "Configuring ncurses."
+echo "Configuring '$BUNDLE_NAME'."
 CFLAGS="$CFLAGS" ./configure \
     --prefix=/usr \
     --with-termlib \
@@ -42,10 +45,10 @@ CFLAGS="$CFLAGS" ./configure \
 # CPPFLAGS fixes a bug with Ubuntu 16.04
 # https://trac.sagemath.org/ticket/19762
 
-echo "Building ncurses."
+echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS
 
-echo "Installing ncurses."
+echo "Installing '$BUNDLE_NAME'."
 make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
 # Symnlink wide character libraries
@@ -55,11 +58,16 @@ ln -s libncurses.so.5 libncurses.so
 ln -s libtinfow.so.5 libtinfo.so.5
 ln -s libtinfo.so.5 libtinfo.so
 
-echo "Reducing ncurses size."
+echo "Reducing '$BUNDLE_NAME' size."
+set +e
 strip -g $DEST_DIR/usr/bin/*
+set -e
 
-cp -r $DEST_DIR/usr/* $OVERLAY_ROOTFS
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/usr/* \
+  $OVERLAY_ROOTFS
 
-echo "ncurses has been installed."
+echo "Bundle '$BUNDLE_NAME' has been installed."
 
 cd $SRC_DIR

@@ -9,27 +9,36 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # Change to the nano source directory which ls finds, e.g. 'nano-2.8.7'.
 cd $(ls -d nano-*)
 
-echo "Preparing nano work area. This may take a while."
-make -j $NUM_JOBS clean
+if [ -f Makefile ] ; then
+  echo "Preparing '$BUNDLE_NAME' work area. This may take a while."
+  make -j $NUM_JOBS clean
+else
+  echo "The clean phase for '$BUNDLE_NAME' has been skipped."
+fi
 
 rm -rf $DEST_DIR
 
-echo "Configuring nano."
+echo "Configuring '$BUNDLE_NAME'."
 CFLAGS="$CFLAGS" ./configure \
     --prefix=/usr \
     LDFLAGS=-L$DEST_DIR/usr/include
 
-echo "Building nano."
+echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS
 
-echo "Installing nano."
+echo "Installing '$BUNDLE_NAME'."
 make -j $NUM_JOBS install DESTDIR=$DEST_DIR
 
-echo "Reducing nano size."
+echo "Reducing '$BUNDLE_NAME' size."
+set +e
 strip -g $DEST_DIR/usr/bin/*
+set -e
 
-cp -r $DEST_DIR/* $OVERLAY_ROOTFS
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
-echo "nano has been installed."
+echo "Bundle '$BUNDLE_NAME' has been installed."
 
 cd $SRC_DIR

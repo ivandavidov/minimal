@@ -4,7 +4,7 @@ set -e
 
 . ../../common.sh
 
-echo "Removing old Apache Felix artifacts. This may take a while."
+echo "Removing old 'Apache Felix' artifacts. This may take a while."
 rm -rf $DEST_DIR
 mkdir -p $DEST_DIR/opt/felix
 mkdir -p $DEST_DIR/bin
@@ -28,9 +28,12 @@ cd $DEST_DIR
 
 ln -s ../opt/felix/bin/felix-start.sh bin/felix-start
 
-cp -r $DEST_DIR/* $OVERLAYFS_ROOT
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
-echo "Apache Felix has been installed."
+echo "Bundle 'Apache Felix' has been installed."
 
 cd $SRC_DIR
 

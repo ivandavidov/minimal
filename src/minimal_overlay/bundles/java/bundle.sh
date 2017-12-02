@@ -48,7 +48,10 @@ do
   ln -s ../opt/$BUNDLE_NAME/bin/$FILE ../bin/$FILE
 done
 
-cp -r $DEST_DIR/* $OVERLAY_ROOTFS
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
 echo "Java has been installed."
 

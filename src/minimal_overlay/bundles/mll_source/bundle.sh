@@ -26,8 +26,11 @@ cd $DEST_DIR/usr/src
 # empty folders.
 find * -type f -name '.gitignore' -exec rm {} +
 
-cp -r $DEST_DIR/* $OVERLAY_ROOTFS
+# With '--remove-destination' all possibly existing soft links in
+# '$OVERLAY_ROOTFS' will be overwritten correctly.
+cp -r --remove-destination $DEST_DIR/* \
+  $OVERLAY_ROOTFS
 
-echo "$BUNDLE_NAME has been installed."
+echo "Bundle '$BUNDLE_NAME' has been installed."
 
 cd $SRC_DIR

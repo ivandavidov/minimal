@@ -4,7 +4,7 @@ set -e
 
 . ../../common.sh
 
-echo "removing previous work area"
+echo "Removing previous work area."
 rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
 mkdir -p $WORK_DIR/overlay/$BUNDLE_NAME
 cd $WORK_DIR/overlay/$BUNDLE_NAME
@@ -12,7 +12,7 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # nweb
 gcc $CFLAGS $SRC_DIR/nweb23.c -o nweb
 
-echo "nweb has been build."
+echo "'nweb' has been compiled."
 
 install -d -m755 "$OVERLAY_ROOTFS/usr"
 install -d -m755 "$OVERLAY_ROOTFS/usr/bin"
@@ -24,5 +24,5 @@ install -d -m755 "$OVERLAY_ROOTFS/etc"
 install -d -m755 "$OVERLAY_ROOTFS/etc/autorun"
 install -m755 "$SRC_DIR/90_nweb.sh" "$OVERLAY_ROOTFS/etc/autorun/90_nweb.sh"
 
-echo "nweb has been installed."
+echo "Bundle 'nweb' has been installed."
 echo "It will be autostarted on boot."

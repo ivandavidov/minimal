@@ -1,1 +1,11 @@
+# TODO - 'nano' seems to work fine but it prints the
+# following after file has been saved.
+#
+# nano: /lib/libncurses.so.5: no version information available (required by nano)
+# nano: /lib/libncurses.so.5: no version information available (required by nano)
+# nano: /lib/libtinfo.so.5: no version information available (required by nano)
+# nano: /lib/libtinfo.so.5: no version information available (required by nano)
+#
+# This needs further investigation.
+
 ncurses

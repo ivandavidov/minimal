@@ -2,17 +2,13 @@
 
 set -e
 
-. ../../common.sh
-
 # Grab everything after the '=' character.
-#DOWNLOAD_URL=$(grep -i CLOUD_FOUNDRY_CLI_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
-# TODO - hardcoding for now
-DOWNLOAD_URL="http://cli.run.pivotal.io/stable?release=linux64-binary&source=github"
+DOWNLOAD_URL=`grep -i ^CLOUD_FOUNDRY_CLI_URL= $CONFIG | cut -f2- -d'=' | xargs`
 
 # Read the 'USE_LOCAL_SOURCE' property from '.config'
 USE_LOCAL_SOURCE="$(grep -i USE_LOCAL_SOURCE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
 
-if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/cf-cli.tgz  ] ; then
+if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/cf-cli.tgz ] ; then
   echo "Shell script $MAIN_SRC_DIR/source/overlay/cf-cli.tgz is missing and will be downloaded."
   USE_LOCAL_SOURCE="false"
 fi

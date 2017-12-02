@@ -27,6 +27,20 @@ Currently available overlay bundles:
 
                 This overlay bundle depends on the GLIBC build process.
 
+* bosh_cli    - BOSH command line tool. It can be used as landscape manager for
+                virtual network and server infrastructures in cloud environment,
+                e.g. AWS, Google Cloud, etc. The most common use case for this
+                tool is to create and manage Cloud Foundry infrastructures.
+
+* cf_cli      - Cloud Foundry command line tool. It can be used to manage all
+                aspects of already existing Cloud Foundry installation, including
+                the full software development lifecycle in cloud environment.
+
+* cf_tools    - This is metapackage which installs all BOSH and Cloud Foundry
+                tools. Note that in MLL context these tools are mostly useful
+                as remote managers for already existing BOSH and Cloud Foundry
+                cloud infrastructures.
+
 * coreutils   - Set of commonly used GNU executable utilities.
 
 * dhcp        - DHCP and DNS functionality to connect to the Internet.

@@ -2,11 +2,11 @@
 
 set -e
 
-# Grab everything after the '=' character.
-DOWNLOAD_URL=`grep -i ^CLOUD_FOUNDRY_CLI_URL= $CONFIG | cut -f2- -d'=' | xargs`
+. ../../common.sh
 
-# Read the 'USE_LOCAL_SOURCE' property from '.config'
-USE_LOCAL_SOURCE="$(grep -i USE_LOCAL_SOURCE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+# Read the common configuration properties.
+DOWNLOAD_URL=`read_property CLOUD_FOUNDRY_CLI_URL`
+USE_LOCAL_SOURCE=`read_property USE_LOCAL_SOURCE`
 
 if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/cf-cli.tgz ] ; then
   echo "Shell script $MAIN_SRC_DIR/source/overlay/cf-cli.tgz is missing and will be downloaded."

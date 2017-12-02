@@ -2,6 +2,8 @@
 
 set -e
 
+. ../../common.sh
+
 echo "Removing old 'BOSH CLI' artifacts. This may take a while."
 rm -rf $DEST_DIR
 mkdir -p $DEST_DIR/opt/$BUNDLE_NAME

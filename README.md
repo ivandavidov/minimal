@@ -42,7 +42,7 @@ The section below is for Ubuntu and other Debian based distros.
 
 ```
 # Resove build dependencies
-sudo apt install wget make gawk gcc bc genisoimage
+sudo apt install wget make gawk gcc bc xorriso
 
 # Build everything and produce ISO image.
 ./build_minimal_linux_live.sh
@@ -52,22 +52,26 @@ The default build process uses some custom provided ``CFLAGS``. They can be foun
 
 ## Overlay bundles
 
-**Important note!** The overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Therefore the bundle build process is disabled by default.
+**Important note!** Most of the overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Some overlay bundles have no dependencies to the host machine, e.g. the DHCP functionality and the MLL source code generation which are enabled by default.
 
-The current development version introduces the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. Currently this is the mechanism which allows you to build additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependencies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem as last step before you produce the final ISO image.
+The current development version introduces the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. Currently this is the mechanism which allows you to build additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependencies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem after you have produced the 'initramfs' area.
+
+The overlay build system provides dependency management. If bundle 'b' depends on bundle 'a' you don't need to build bundle 'a' manually in advance. The bundle dependencies are described in special metadata file ``bundle_deps`` and all such dependencies are prepared automatically.
 
 ```
-# How to build all overlay bundles
+# How to build all overlay bundles.
 
 cd minimal_overlay
 ./overlay_build.sh
 ```
 
 ```
-# How to build specific overlay bundle (e.g. links)
+# How to build specific overlay bundle. The example is for 'Open JDK'
+# which depends on many GNU C libraries and on ZLIB. All dependencies
+# are handled automatically by the overlay build system.
 
 cd minimal_overlay
-./overlay_build.sh links
+./overlay_build.sh openjdk
 ```
 
 ## BIOS and UEFI
@@ -91,6 +95,16 @@ isohybrid minimal_linux_live.iso
 
 # Directly write the ISO image to your USB flash device (e.g. /dev/xxx)
 dd if=minimal_linux_live.iso of=/dev/xxx
+```
+
+The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the build process. You can import and use the image in Docker like this:
+
+```
+# Import the MLL image in Docker.
+docker import mll_image.tgz minimal-linux-live:latest
+
+# Run MLL shell in Docker:
+docker run -it minimal-linux-live /bin/sh
 ```
 
 ## Projects based on Minimal Linux Live:

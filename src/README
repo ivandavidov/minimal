@@ -27,11 +27,11 @@ Currently available overlay bundles:
 
                 This overlay bundle depends on the GLIBC build process.
 
-* coreutils   - set of commonly used GNU executable utilities.
+* coreutils   - Set of commonly used GNU executable utilities.
 
 * dhcp        - DHCP and DNS functionality to connect to the Internet.
 
-* dialog      - shell scripting library for ncurses
+* dialog      - Shell scripting library for ncurses
 
                 This overlay bundle requires ncurses
 
@@ -60,8 +60,8 @@ Currently available overlay bundles:
 
                 This overlay bundle requires GLIBC. JDK 9 requires ZLIB.
 
-* kbd         - Keyboard utilities and keymaps, you can for example load
-                a german keyboard layout:
+* kbd         - Keyboard utilities and keymaps. For example, you can load
+                German keyboard layout like this:
 
                   loadkeys de
 
@@ -69,7 +69,7 @@ Currently available overlay bundles:
                 callback function when a specific event occurs on a file
                 descriptor or after a timeout has been reached.
 
-* kexec-tools - Kexec tools, can be used to boot another kernel from userspace
+* kexec_tools - Kexec tools, can be used to boot another kernel from userspace
 
 * Links       - Text based browser. Requires ~1MB additional space. Use the
                 "links" command to activate the browser.
@@ -105,7 +105,7 @@ Currently available overlay bundles:
                 '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
                 'cmd' in the qemu.sh file.
 
-* stress      - simple workload generator. Imposes a configurable amount of CPU,
+* stress      - Simple workload generator. Imposes a configurable amount of CPU,
                 memory, I/O, and disk stress on the system. stress is useful for
                 troubleshooting CPU and RAM.
 
@@ -121,7 +121,6 @@ Currently available overlay bundles:
                 This package will create symlinks on top of vi.
 
 * ZLIB        - Software library used for data compression.
-
 
 ###   ###   ###
 

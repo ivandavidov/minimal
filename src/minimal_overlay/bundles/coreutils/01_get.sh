@@ -11,7 +11,7 @@ USE_LOCAL_SOURCE=`read_property USE_LOCAL_SOURCE`
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
-if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE  ] ; then
+if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE ] ; then
   echo "Source bundle $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE is missing and will be downloaded."
   USE_LOCAL_SOURCE="false"
 fi

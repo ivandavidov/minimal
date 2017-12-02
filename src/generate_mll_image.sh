@@ -8,17 +8,21 @@ TEMP_DIR=xxx
 MLL_ISO=xxx
 
 finalWords() {
-  cat << CEOF
+cat << CEOF
 
-  Minimal Linux Live image 'mll_image.tgz' has been generated.
-
-  You can import the MLL image in Docker like this:
-
-    docker import mll_image.tgz minimal-linux-live:latest
-
-  Then you can run MLL container in Docker like this:
-
-    docker run -it minimal-linux-live /bin/sh
+  ##################################################################
+  #                                                                #
+  #  Minimal Linux Live image 'mll_image.tgz' has been generated.  #
+  #                                                                #
+  #  You can import the MLL image in Docker like this:             #
+  #                                                                #
+  #    docker import mll_image.tgz minimal-linux-live:latest       #
+  #                                                                #
+  #  Then you can run MLL shell in Docker container like this:     #
+  #                                                                #
+  #    docker run -it minimal-linux-live /bin/sh                   #
+  #                                                                #
+  ##################################################################
 
 CEOF
 }
@@ -40,7 +44,11 @@ prepareImage() {
   cp -r $TEMP_DIR/rootfs_extracted/* $TEMP_DIR/image_root
 
   if [ -d $TEMP_DIR/iso_extracted/minimal/rootfs ] ; then
-    cp -r $TEMP_DIR/iso_extracted/minimal/rootfs/* $TEMP_DIR/image_root
+  # Copy the overlay content.
+  # With '--remove-destination' all possibly existing soft links in
+  # '$TEMP_DIR/image_root' will be overwritten correctly.
+    cp -r --remove-destination $TEMP_DIR/iso_extracted/minimal/rootfs/* \
+      $TEMP_DIR/image_root
   fi
 }
 

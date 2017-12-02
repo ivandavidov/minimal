@@ -23,10 +23,12 @@ fi
 if [ -d $SRC_DIR/work/overlay_rootfs ] ; then
   echo "Merging overlay software in image."
 
-  # Copy the overlay area.
-  cp -r $SRC_DIR/work/overlay_rootfs/* \
+  # Copy the overlay content.
+  # With '--remove-destination' all possibly existing soft links in
+  # '$SRC_DIR/work/mll_image' will be overwritten correctly.
+  cp -r --remove-destination $SRC_DIR/work/overlay_rootfs/* \
     $SRC_DIR/work/mll_image
-  cp -r $SRC_DIR/minimal_overlay/rootfs/* \
+  cp -r --remove-destination $SRC_DIR/minimal_overlay/rootfs/* \
     $SRC_DIR/work/mll_image
 else
   echo "MLL image will have no overlay software."
@@ -47,7 +49,7 @@ cat << CEOF
   #                                                                #
   #    docker import mll_image.tgz minimal-linux-live:latest       #
   #                                                                #
-  #  Then you can run MLL container in Docker like this:           #
+  #  Then you can run MLL shell in Docker container like this:     #
   #                                                                #
   #    docker run -it minimal-linux-live /bin/sh                   #
   #                                                                #

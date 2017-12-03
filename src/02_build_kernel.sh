@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** BUILD KERNEL BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -42,9 +44,18 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   echo "Using config file $SRC_DIR/minimal_config/kernel.config"
   cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
-  # Create default configuration file for the kernel.
-  make defconfig -j $NUM_JOBS
-  echo "Generated default kernel configuration."
+  # Read the 'FORCE_32_BIT_BINARIES' property from '.config'
+  FORCE_32_BIT_BINARIES="$(grep -i ^FORCE_32_BIT_BINARIES $SRC_DIR/.config | cut -f2 -d'=')"
+
+  if [ "$FORCE_32_BIT_BINARIES" = "true" ] ; then
+    # Create default configuration file for the kernel.
+    echo "Generating 32-bit kernel configuration."
+    make ARCH=i386 defconfig -j $NUM_JOBS
+  else
+    # Create default configuration file for the kernel.
+    echo "Generating default kernel configuration."
+    make defconfig -j $NUM_JOBS
+  fi
 
   # Changes the name of the system to 'minimal'.
   sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .config

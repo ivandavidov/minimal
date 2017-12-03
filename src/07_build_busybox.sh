@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 echo "*** BUILD BUSYBOX BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -59,13 +61,25 @@ SYSROOT_ESCAPED=$(echo \"$SYSROOT\" | sed 's|/|\\/|g')
 sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$SYSROOT_ESCAPED/" .config
 
 # Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+CFLAGS="$(grep -i ^CFLAGS $SRC_DIR/.config | cut -f2 -d'=')"
 
-# Compile busybox with optimization for "parallel jobs" = "number of processors".
-echo "Building BusyBox."
-make \
-  EXTRA_CFLAGS="$CFLAGS" \
-  busybox -j $NUM_JOBS
+# Read the 'FORCE_32_BIT_BINARIES' property from '.config'
+FORCE_32_BIT_BINARIES="$(grep -i ^FORCE_32_BIT_BINARIES $SRC_DIR/.config | cut -f2 -d'=')"
+
+if [ "$FORCE_32_BIT_BINARIES" = "true" ] ; then
+  # Compile BusyBox for 32-bit machines with optimization for
+  # "parallel jobs" = "number of processors".
+  echo "Building 32-bit BusyBox."
+  make \
+    EXTRA_CFLAGS="$CFLAGS" \
+    busybox -j $NUM_JOBS
+else
+  # Compile BusyBox with optimization for "parallel jobs" = "number of processors".
+  echo "Building BusyBox."
+  make \
+    EXTRA_CFLAGS="$CFLAGS" \
+    busybox -j $NUM_JOBS
+fi
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
 echo "Generating BusyBox based initramfs area."

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** BUILD GLIBC BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -68,4 +70,3 @@ make install \
 cd $SRC_DIR
 
 echo "*** BUILD GLIBC END ***"
-

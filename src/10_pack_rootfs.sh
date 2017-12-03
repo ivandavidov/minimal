@@ -1,4 +1,5 @@
 #!/bin/sh
+
 set -e
 
 echo "*** PACK ROOTFS BEGIN ***"
@@ -22,4 +23,3 @@ echo "Packing of initramfs has finished."
 cd $SRC_DIR
 
 echo "*** PACK ROOTFS END ***"
-

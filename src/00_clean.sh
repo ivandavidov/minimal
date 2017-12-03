@@ -1,4 +1,5 @@
 #!/bin/sh
+
 set -e
 
 echo "*** CLEAN BEGIN ***"
@@ -9,4 +10,3 @@ mkdir work
 mkdir -p source
 
 echo "*** CLEAN END ***"
-

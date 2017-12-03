@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** BUILD KERNEL BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -123,4 +125,3 @@ make \
 cd $SRC_DIR
 
 echo "*** BUILD KERNEL END ***"
-

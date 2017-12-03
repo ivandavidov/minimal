@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** GET KERNEL BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -40,4 +42,3 @@ tar -xvf $ARCHIVE_FILE -C ../work/kernel
 cd $SRC_DIR
 
 echo "*** GET KERNEL END ***"
-

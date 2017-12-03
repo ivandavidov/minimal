@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** GET BUSYBOX BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -40,4 +42,3 @@ tar -xvf $ARCHIVE_FILE -C ../work/busybox
 cd $SRC_DIR
 
 echo "*** GET BUSYBOX END ***"
-

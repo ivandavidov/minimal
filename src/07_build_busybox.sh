@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** BUILD BUSYBOX BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -76,4 +78,3 @@ make \
 cd $SRC_DIR
 
 echo "*** BUILD BUSYBOX END ***"
-

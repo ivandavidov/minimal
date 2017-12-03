@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "*** GET GLIBC BEGIN ***"
 
 SRC_DIR=$(pwd)
@@ -40,4 +42,3 @@ tar -xvf $ARCHIVE_FILE -C ../work/glibc
 cd $SRC_DIR
 
 echo "*** GET GLIBC END ***"
-

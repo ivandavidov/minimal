@@ -32,12 +32,32 @@ mkdir /mnt/dev
 mkdir /mnt/sys
 mkdir /mnt/proc
 mkdir /mnt/tmp
-mkdir /mnt/var
 echo "Created folders for all critical file systems."
 
 # Copy root folders in the new mountpoint.
 echo -e "Copying the root file system to \\e[94m/mnt\\e[0m."
-cp -a bin etc lib lib64 root sbin src usr var /mnt 2>/dev/null
+for dir in */ ; do
+  case $dir in
+    dev/)
+      # skip
+      ;;
+    proc/)
+      # skip
+      ;;
+    sys/)
+      # skip
+      ;;
+    mnt/)
+      # skip
+      ;;
+    tmp/)
+      # skip
+      ;;
+    *)
+      cp -a $dir /mnt
+      ;;
+  esac
+done
 
 DEFAULT_OVERLAY_DIR="/tmp/minimal/overlay"
 DEFAULT_UPPER_DIR="/tmp/minimal/rootfs"
@@ -173,4 +193,3 @@ echo "(/etc/02_overlay.sh) - there is a serious bug."
 
 # Wait until any key has been pressed.
 read -n1 -s
-

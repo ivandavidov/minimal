@@ -8,6 +8,7 @@ echo "Removing old 'Apache Felix' artifacts. This may take a while."
 rm -rf $DEST_DIR
 mkdir -p $DEST_DIR/opt/felix
 mkdir -p $DEST_DIR/bin
+mkdir -p $DEST_DIR/etc/autorun
 
 cd $WORK_DIR/overlay/felix
 cd $(ls -d felix-*)
@@ -23,6 +24,7 @@ CEOF
 chmod +rx bin/felix-start.sh
 
 cp -r * $DEST_DIR/opt/felix
+cp $SRC_DIR/90_felix.sh $DEST_DIR/etc/autorun
 
 cd $DEST_DIR
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # The default keyboard which is set on boot.
-loadkeys de
+loadkeys us
 
 cat << CEOF
 [1m  The default keyboard layout is English (US). You can change the keyboard

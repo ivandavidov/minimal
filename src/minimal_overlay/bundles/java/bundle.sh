@@ -14,14 +14,14 @@
 #      JAVA_ARCHIVE=/home/ivan/Downloads/jdk-8u102-linux-x64.tar.gz
 #
 # 3) Run this script. Note that the script will fail with error message if the
-#    'JAVA_ARCHIVE' property is not set or if it points to invalid file.
+#    JAVA_ARCHIVE property is not set or if it points to invalid file.
 
 set -e
 
 . ../../common.sh
 
 # Read the 'JAVA_ARCHIVE' property from '.config'
-JAVA_ARCHIVE="$(grep -i ^JAVA_ARCHIVE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+JAVA_ARCHIVE=`read_property JAVA_ARCHIVE`
 
 if [ "$JAVA_ARCHIVE" = "" ] ; then
   echo "ERROR: configuration property 'JAVA_ARCHIVE' is not set."

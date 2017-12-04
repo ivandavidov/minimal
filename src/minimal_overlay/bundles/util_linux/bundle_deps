@@ -1,5 +1,2 @@
-# Some of the functionality depends on third party
-# libraries, e.g. 'ncurses' and 'termcap'.
-
 ncurses
 #termcap

@@ -4,14 +4,12 @@ set -e
 
 . ../../common.sh
 
-# Grab everything after the '=' character.
-DOWNLOAD_URL=$(grep -i LINKS_SOURCE_URL $MAIN_SRC_DIR/.config | cut -f2 -d'=')
+# Read the common configuration properties.
+DOWNLOAD_URL=`read_property LINKS_SOURCE_URL`
+USE_LOCAL_SOURCE=`read_property USE_LOCAL_SOURCE`
 
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
-
-# Read the 'USE_LOCAL_SOURCE' property from '.config'
-USE_LOCAL_SOURCE="$(grep -i USE_LOCAL_SOURCE $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
 
 if [ "$USE_LOCAL_SOURCE" = "true" -a ! -f $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE  ] ; then
   echo "Source bundle $MAIN_SRC_DIR/source/overlay/$ARCHIVE_FILE is missing and will be downloaded."

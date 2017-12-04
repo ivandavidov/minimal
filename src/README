@@ -1,55 +1,54 @@
 
-The easiest way to build "Minimal Linux Live" is to run the following script:
+The easiest way to build 'Minimal Linux Live' is to run the following script:
 
 sh build_minimal_linux_live.sh
 
 Note that the build process requires proper toolchain already installed and
-configured. Check the project's website for more information:
+configured. Check the project website for more information:
 
-http://minimal.idzona.com
+  http://minimal.idzona.com
 
 For Ubuntu and other Debian based operating systems you can use the following
 command in order to resolve the required build dependencies:
 
-sudo apt install wget make gawk gcc bc xorriso
+  sudo apt install wget make gawk gcc bc xorriso
 
-Once you have your ISO image up and running perhaps you'd like to play with the
-configuration file ".config" and see what options you have there. For example
-you can enable the property "OVERLAY_BUNDLES". If you do that you will have
-additional software being downloaded, built and installed on the ISO image.
+Once you have your ISO image up and running perhaps you'd like to examine the
+configuration file '.config' and see what options you have there. For example,
+you can change the property 'OVERLAY_BUNDLES' and build your own flavor of MLL.
 
 Currently available overlay bundles:
 
-* GLIBC       - Set of all core GNU C libraries packaged together. Requires ~3MB
+  GLIBC       - Set of all core GNU C libraries packaged together. Requires ~3MB
                 additional space. This overlay bundle is not host specific and
                 can always be built. The libraries are useful if you plan to use
                 more software after boot.
 
                 This overlay bundle depends on the GLIBC build process.
 
-* bosh_cli    - BOSH command line tool. It can be used as landscape manager for
+  bosh_cli    - BOSH command line tool. It can be used as landscape manager for
                 virtual network and server infrastructures in cloud environment,
                 e.g. AWS, Google Cloud, etc. The most common use case for this
                 tool is to create and manage Cloud Foundry infrastructures.
 
-* cf_cli      - Cloud Foundry command line tool. It can be used to manage all
+  cf_cli      - Cloud Foundry command line tool. It can be used to manage all
                 aspects of already existing Cloud Foundry installation, including
                 the full software development lifecycle in cloud environment.
 
-* cf_tools    - This is metapackage which installs all BOSH and Cloud Foundry
+  cf_tools    - This is metapackage which installs all BOSH and Cloud Foundry
                 tools. Note that in MLL context these tools are mostly useful
                 as remote managers for already existing BOSH and Cloud Foundry
                 cloud infrastructures.
 
-* coreutils   - Set of commonly used GNU executable utilities.
+  coreutils   - Set of commonly used GNU executable utilities.
 
-* dhcp        - DHCP and DNS functionality to connect to the Internet.
+  dhcp        - DHCP and DNS functionality to connect to the Internet.
 
-* dialog      - Shell scripting library for ncurses
+  dialog      - Shell scripting library for ncurses
 
                 This overlay bundle requires ncurses
 
-* Dropbear    - SSH server/client. Requires ~1MB additional space. The build
+  Dropbear    - SSH server/client. Requires ~1MB additional space. The build
                 process creates user 'root' with password 'toor'. These are
                 sample commands which demonstrate how to use Dropbear:
 
@@ -58,83 +57,126 @@ Currently available overlay bundles:
 
                 This overlay bundle requires GLIBC.
 
-* Felix OSGi  - Apache Felix OSGi framework. Requires ~2MB additional space. Use
+  Felix OSGi  - Apache Felix OSGi framework. Requires ~2MB additional space. Use
                 the "felix-start" command to run the Apache Felix OSGi framework.
 
                 This overlay bundle requires JRE or JDK.
 
-* fio         - I/O load generator that can simulate a wide variety of workloads
+  fio         - I/O load generator that can simulate a wide variety of workloads
                 on RAM or disks.  fio is essential for troubleshooting data
                 bottlenecks.
 
-* JRE / JDK   - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
+  JRE / JDK   - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
                 This overlay bundle requires some manual preparation steps. Refer
                 to the "JAVA_ARCHIVE" property in the ".config" file for more
                 detailed information.
 
                 This overlay bundle requires GLIBC. JDK 9 requires ZLIB.
 
-* kbd         - Keyboard utilities and keymaps. For example, you can load
+  kbd         - Keyboard utilities and keymaps. For example, you can load
                 German keyboard layout like this:
 
                   loadkeys de
 
-* libevent    - event notification library API provides a mechanism to execute a
+  libevent    - event notification library API provides a mechanism to execute a
                 callback function when a specific event occurs on a file
                 descriptor or after a timeout has been reached.
 
-* kexec_tools - Kexec tools, can be used to boot another kernel from userspace
+  kexec_tools - Kexec tools, can be used to boot another kernel from userspace
 
-* Links       - Text based browser. Requires ~1MB additional space. Use the
+  Links       - Text based browser. Requires ~1MB additional space. Use the
                 "links" command to activate the browser.
 
-* Open JDK    - The open source JDK. No need for manual steps.
+  Open JDK    - The open source JDK. No need for manual steps.
 
                 This overlay bundle requires GLIBC and ZLIB.
 
-* Lua         - The Lua Scripting Language 5.3. Requires ~ 800kb additional
+  Lua         - The Lua Scripting Language 5.3. Requires ~ 800kb additional
                 space. Use the "lua" command to run an interactive lua
                 interpreter.
 
-* make        - GNU make utility
+  make        - GNU make utility
 
-* MLL Utils   - Set of experimental shell scripts (mll-*.sh) which provide
+  MLL Utils   - Set of experimental shell scripts (mll-*.sh) which provide
                 additional functionality, e.g. installer and useful tools.
 
                 This overlay bundle is currently experimental and its build
                 process depends on the host machine.
 
-* MLL Source  - This overlay bundle provides all MLL source code in the
+  MLL Source  - This overlay bundle provides all MLL source code in the
                 directory 'usr/src'.
 
-* nano        - Simple command-line text editor with on-screen shortcuts.
+  nano        - Simple command-line text editor with on-screen shortcuts.
 
                 This overlay bundle requires ncurses.
 
-* ncurses     - "GUI-like" API that runs within a terminal emulator.
+  ncurses     - "GUI-like" API that runs within a terminal emulator.
 
-* nweb        - nweb is a very small and easy to use webserver, it is run
+  nweb        - nweb is a very small and easy to use webserver, it is run
                 automatically on port 80. To portforward port 80 from the
                 guest (minimal) to port 8080 on the host add
                 '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
                 'cmd' in the qemu.sh file.
 
-* stress      - Simple workload generator. Imposes a configurable amount of CPU,
+  stress      - Simple workload generator. Imposes a configurable amount of CPU,
                 memory, I/O, and disk stress on the system. stress is useful for
                 troubleshooting CPU and RAM.
 
-* util_linux  - Set of executable utilities distributed by the Linux Kernel
+  util_linux  - Set of executable utilities distributed by the Linux Kernel
                 similar to busybox or GNU Core Utils.
 
                 Some packages in this overlay bundle require ncurses.
 
-* vim         - An advanced text editor that seeks to provide the power of
+  vim         - An advanced text editor that seeks to provide the power of
                 the de-facto Unix editor 'Vi', with a more complete feature
                 set.
 
                 This package will create symlinks on top of vi.
 
-* ZLIB        - Software library used for data compression.
+  ZLIB        - Software library used for data compression.
+
+The overlay bundles can be found in this directory:
+
+  minimal_overlay/bundles
+
+Each overlay bundle can have its own '.config' file. All properties in this
+configuration file will override the same properties in the main 'config'
+file. Also, each overlay bundle can declare list of bundle dependencies in
+the file 'bundle_deps'. The bundles in this file are built before the main
+bundle.
+
+The overlay build system is independent from the main build system. However,
+some bundles depend on build artifacts from the main build process, so it is
+highly recommended to build MLL before you use the overlay build system.
+
+You can build all bundles declared in the main '.config' file like this:
+
+  cd minimal_overlay
+  ./overlay_build
+
+You can build individual overlay bundle like this:
+
+  cd minimal_overlay
+  ./overlay_build bundle_name
+
+You can build more two or more bundles if you separate them with comma:
+
+  cd minimal_overlay
+  ./overlay_build bundle_name_a,bundle_name_b,bundle_name_c
+
+The simplest way to add something to MLL is to put whatever you want in
+the following folder:
+
+  minimal_overlay/rootfs
+
+The content of this folder becomes visible at runtime. You can add your
+own software or configurations. The content in this folder takes higher
+priority which means that you can override everything which is provided
+by Minimal Linux Live.
+
+As already mentioned, the main configuration file is '.config'. It is
+extensively documented and you can refer to it for detailed information
+regarding all configuration properties.
 
 ###   ###   ###
 
@@ -145,6 +187,6 @@ the time there is a single meta-package which installs most of the stuff that
 you need.
 
 The build proces is slow, so be prepared to wait. In the end you should have
-the ISO image file "minimal_linux_live.iso" in the same folder where you
+the ISO image file 'minimal_linux_live.iso' in the same folder where you
 started the build process. You can burn the ISO image on CD/DVD or (better) run
 it with PC emulator like QEMU or VirtualBox.

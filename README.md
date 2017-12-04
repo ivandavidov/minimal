@@ -6,9 +6,11 @@ You can find the main website here:
 
 If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
 
+The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
+
 [The DAO of Minimal Linux Live](http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt "The DAO of Minimal Linux Live") - this tutorial explains step by step what you need to do in order to create your own minimalistic live Linux OS. The tutorial is based on the first published version of Minimal Linux Live.
 
-[Component Architecture of Minimal Linux Live](http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html "Component Architecture of Minimal Linux Live") - this publication describes the high level components included in the "03-Apr-2016" version of Minimal Linux Live.
+[Component Architecture of Minimal Linux Live](http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html "Component Architecture of Minimal Linux Live") - this publication describes the high level components included in the '03-Apr-2016' version of Minimal Linux Live.
 
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
@@ -20,9 +22,9 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
 
-## Current development state (23-Sep-2017)
+## Current development state (04-Dec-2017)
 
-* Linux kernel 4.13.3 (stable)
+* Linux kernel 4.14.2 (stable)
 * GNU C Library 2.26 (stable)
 * BusyBox 1.27.2 (stable)
 * Stable on default Ubuntu 16.04 installation with applied system updates.
@@ -30,11 +32,11 @@ This is a screenshot of the current development version of Minimal Linux Live:
 ## Future improvements
 
 * Add kernel modules and firmware.
-* Reorganize and simplify the ISO image generation script.
 * Allow individual overlay bundles to be downloaded and installed.
 * Add more overlay bundles.
 
-The above list is not fixed it may be updated at any time.
+The above list is not fixed and it may be updated at any time. Refer to the [issues](https://github.com/ivandavidov/minimal/issues) page
+where most of the MLL feature development is tracked.
 
 ## How to build
 

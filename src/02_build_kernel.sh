@@ -92,12 +92,8 @@ else
   # Disable Apple Properties (Useful for Macs but useless in general)
   echo "CONFIG_APPLE_PROPERTIES=n" >> .config
 
-  # Check if we are building 32-bit kernel. The exit code is '1' when we are
-  # building 64-bit kernel, otherwise the exit code is '0'.
-  grep -q "CONFIG_X86_32=y" .config
-
-  # The '$?' variable holds the exit code of the last issued command.
-  if [ $? = 1 ] ; then
+  # Check if we are building 64-bit kernel.
+  if [ "`grep "CONFIG_X86_64=y" .config`" = "CONFIG_X86_64=y" ] ; then
     # Enable the mixed EFI mode when building 64-bit kernel.
     echo "CONFIG_EFI_MIXED=y" >> .config
   fi

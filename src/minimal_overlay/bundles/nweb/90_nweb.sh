@@ -1,9 +1,7 @@
 #!/bin/sh
 
-cat << CEOF
-
-  Starting 'nweb' on port 80. Serving '/srv/www'.
-
-CEOF
-
 nweb 80 /srv/www
+
+cat << CEOF
+[1m  'nweb' has been started on port 80, serving '/srv/www'.[0m
+CEOF

@@ -25,9 +25,9 @@ cp $SRC_DIR/90_src.sh $DEST_DIR/etc/autorun
 
 cd $DEST_DIR/usr/src
 
-# Delete the '.gitignore' files which we use in order to keep track of otherwise
+# Delete the '.keep' files which we use in order to keep track of otherwise
 # empty folders.
-find * -type f -name '.gitignore' -exec rm {} +
+find * -type f -name '.keep' -exec rm {} +
 
 # With '--remove-destination' all possibly existing soft links in
 # '$OVERLAY_ROOTFS' will be overwritten correctly.

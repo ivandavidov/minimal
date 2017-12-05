@@ -47,7 +47,24 @@ cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin .
 cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 .
 
 # Create the ISOLINUX configuration file.
-echo 'default kernel.xz  initrd=rootfs.xz vga=ask' > ./syslinux.cfg
+cat << CEOF > ./syslinux.cfg
+PROMPT 1
+TIMEOUT 50
+DEFAULT mll
+
+SAY Press enter to boot minimal linux or wait 5 seconds
+SAY Press tab to view available boot entries or enter syslinux commands directly
+
+LABEL mll
+        LINUX kernel.xz
+        APPEND vga=ask
+        INITRD rootfs.xz
+
+LABEL mll_nomodeset
+        LINUX kernel.xz
+        APPEND vga=ask nomodeset
+        INITRD rootfs.xz
+CEOF
 
 # Create UEFI start script.
 mkdir -p efi/boot

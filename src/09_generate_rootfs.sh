@@ -25,9 +25,9 @@ cp -r ../minimal_rootfs/* rootfs
 
 cd rootfs
 
-# Delete the '.gitignore' files which we use in order to keep track of otherwise
+# Delete the '.keep' files which we use in order to keep track of otherwise
 # empty folders.
-find * -type f -name '.gitignore' -exec rm {} +
+find * -type f -name '.keep' -exec rm {} +
 
 # Remove 'linuxrc' which is used when we boot in 'RAM disk' mode.
 rm -f linuxrc

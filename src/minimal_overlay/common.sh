@@ -13,7 +13,6 @@ export BUNDLE_NAME=`basename $SRC_DIR`
 export DEST_DIR=$WORK_DIR/overlay/$BUNDLE_NAME/${BUNDLE_NAME}_installed
 export CONFIG=$MAIN_SRC_DIR/.config
 export SYSROOT=$WORK_DIR/sysroot
-#export SYSROOT_SPECS=$WORK_DIR/sysroot.specs
 
 # This function reads property from the main '.config' file.
 # If there is local '.config' file in the current directory
@@ -64,16 +63,3 @@ export NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
 # Ideally we would export MAKE at this point with -j etc to allow programs to just run $(MAKE) and not worry about extra flags that need to be passed
 #  export MAKE="${MAKE-make} -j $NUM_JOBS"
-
-# sysroot flags for the compiler
-
-#-Wl,-nostdlib is required to make ld / gcc ignore the host's /usr/lib and /lib
-#ld_flags="-Wl,-nostdlib $(grep -- \"-L\" $SYSROOT_SPECS)"
-#-static-libgcc is neeeded since we don't have the gcc-libs in our sysroot
-#gcc_flags="-specs=$SYSROOT_SPECS -static-libgcc"
-
-# $ld_flags is passed 2 times because sometimes bundles ignore one of the variables
-#export CC="${CC-gcc} $gcc_flags $ld_flags"
-#export CFLAGS="$CFLAGS"
-#export LDFLAGS="$LDFLAGS $ld_flags"
-

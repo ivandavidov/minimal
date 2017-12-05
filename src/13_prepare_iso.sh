@@ -56,13 +56,11 @@ SAY Press enter to boot minimal linux or wait 5 seconds
 SAY Press tab to view available boot entries or enter syslinux commands directly
 
 LABEL mll
-	SAY Now booting minimal linux
         LINUX kernel.xz
         APPEND vga=ask
         INITRD rootfs.xz
 
 LABEL mll_nomodeset
-	SAY Now booting minimal linux with 'nomodeset'
         LINUX kernel.xz
         APPEND vga=ask nomodeset
         INITRD rootfs.xz

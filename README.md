@@ -78,7 +78,7 @@ cd minimal_overlay
 
 ## BIOS and UEFI
 
-Minimal Linux Live is UEFI compatible and now the same MLL ISO image can boot on both BIOS and EFI based systems. Go on, try it!
+Minimal Linux Live provides experimental UEFI support and the MLL ISO image can be used on both BIOS and EFI based systems.
 
 ## Installation
 

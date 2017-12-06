@@ -46,11 +46,6 @@ else
   # Create default configuration file.
   echo "Generating default BusyBox configuration."
   make defconfig -j $NUM_JOBS
-
-  # The 'inetd' applet fails to compile because we use the glibc installation area as
-  # main pointer to the kernel headers (see 05_prepare_glibc.sh) and some headers are
-  # not resolved. The easiest solution is to ignore this particular applet.
-  sed -i "s/.*CONFIG_INETD.*/CONFIG_INETD=n/" .config
 fi
 
 # This variable holds the full path to the glibc installation area as quoted string.

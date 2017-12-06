@@ -14,7 +14,7 @@ BUSYBOX_INSTALLED=$(pwd)/work/busybox/busybox_installed
 
 cd work
 
-echo "Preparing rootfsfs work area."
+echo "Preparing rootfs work area."
 rm -rf rootfs
 
 # Copy all BusyBox generated stuff to the location of our 'rootfs' folder.
@@ -53,12 +53,14 @@ cp $SYSROOT/lib/libc.so.6 lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 
+echo "Reducing the size of libraries and executables."
+set +e
 strip -g \
   $SRC_DIR/work/rootfs/bin/* \
   $SRC_DIR/work/rootfs/sbin/* \
   $SRC_DIR/work/rootfs/lib/* \
   2>/dev/null
-echo "Reduced the size of libraries and executables."
+set -e
 
 # Read the 'OVERLAY_LOCATION' property from '.config'
 OVERLAY_LOCATION="$(grep -i ^OVERLAY_LOCATION $SRC_DIR/.config | cut -f2 -d'=')"

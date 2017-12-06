@@ -52,8 +52,8 @@ PROMPT 1
 TIMEOUT 50
 DEFAULT mll
 
-SAY Press enter to boot minimal linux or wait 5 seconds
-SAY Press tab to view available boot entries or enter syslinux commands directly
+SAY Press enter to boot Minimal Linux Live or wait 5 seconds.
+SAY Press tab to view available boot entries or enter Syslinux commands directly.
 
 LABEL mll
         LINUX kernel.xz

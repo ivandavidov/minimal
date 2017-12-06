@@ -133,7 +133,7 @@ reduce_size() (
 
 install_to_overlay() (
   # With '--remove-destination' all possibly existing soft links in
-  # '$OVERLAY_ROOTFS' will be overwritten correctly.
+  # $OVERLAY_ROOTFS will be overwritten correctly.
 
   if [ "$#" = "2" ] ; then
     cp -r --remove-destination \

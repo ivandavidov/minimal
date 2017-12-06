@@ -6,8 +6,6 @@
 
 set -e
 
-SRC_DIR=`pwd`
-
 echo "*** CLEANUP BEGIN ***"
 
 if [ "$(id -u)" = "0" ] ; then

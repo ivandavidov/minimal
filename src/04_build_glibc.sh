@@ -2,47 +2,29 @@
 
 set -e
 
+# Load common properties and functions in the current script.
+. ./common.sh
+
 echo "*** BUILD GLIBC BEGIN ***"
-
-SRC_DIR=$(pwd)
-
-# Read the 'JOB_FACTOR' property from '.config'
-JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
-
-# Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
-
-# Find the number of available CPU cores.
-NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
-
-# Calculate the number of 'make' jobs to be used later.
-NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
-
-# Save the kernel installation directory.
-KERNEL_INSTALLED=$SRC_DIR/work/kernel/kernel_installed
-
-cd work/glibc
-
-# Find the glibc source directory, e.g. 'glibc-2.23' and remember it.
-cd $(ls -d glibc-*)
-GLIBC_SRC=$(pwd)
-cd ..
 
 # Prepare the work area, e.g. 'work/glibc/glibc_objects'.
 echo "Preparing glibc object area. This may take a while."
-rm -rf glibc_objects
-mkdir glibc_objects
+rm -rf $GLIBC_OBJECTS
+mkdir $GLIBC_OBJECTS
 
 # Prepare the install area, e.g. 'work/glibc/glibc_installed'.
 echo "Preparing glibc install area. This may take a while."
-rm -rf glibc_installed
-mkdir glibc_installed
-GLIBC_INSTALLED=$(pwd)/glibc_installed
+rm -rf $GLIBC_INSTALLED
+mkdir $GLIBC_INSTALLED
+
+# Find the glibc source directory, e.g. 'glibc-2.23' and remember it.
+cd $WORK_DIR/glibc
+GLIBC_SRC=$PWD/`ls -d glibc-*`
 
 # All glibc work is done from the working area.
-cd glibc_objects
+cd $GLIBC_OBJECTS
 
-# glibc is configured to use the root folder (--prefix=) and as result all
+# 'glibc' is configured to use the root folder (--prefix=) and as result all
 # libraries will be installed in '/lib'. Note that on 64-bit machines BusyBox
 # will be linked with the libraries in '/lib' while the Linux loader is expected
 # to be in '/lib64'. Kernel headers are taken from our already prepared kernel

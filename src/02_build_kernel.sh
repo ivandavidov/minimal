@@ -7,14 +7,13 @@ set -e
 
 echo "*** BUILD KERNEL BEGIN ***"
 
-cd work/kernel
-
 # Prepare the kernel install area.
-rm -rf kernel_installed
-mkdir kernel_installed
+echo "Removing old kernel artifacts. This may take a while."
+rm -rf $KERNEL_INSTALLED
+mkdir $KERNEL_INSTALLED
 
 # Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
-cd $(ls -d linux-*)
+cd `ls -d $WORK_DIR/kernel/linux-*`
 
 # Cleans up the kernel sources, including configuration files.
 echo "Preparing kernel work area."
@@ -98,13 +97,13 @@ make \
 
 # Install the kernel file.
 cp arch/x86/boot/bzImage \
-  $SRC_DIR/work/kernel/kernel_installed/kernel
+  $KERNEL_INSTALLED/kernel
 
 # Install kernel headers which are used later when we build and configure the
 # GNU C library (glibc).
 echo "Generating kernel headers."
 make \
-  INSTALL_HDR_PATH=$SRC_DIR/work/kernel/kernel_installed \
+  INSTALL_HDR_PATH=$KERNEL_INSTALLED \
   headers_install -j $NUM_JOBS
 
 cd $SRC_DIR

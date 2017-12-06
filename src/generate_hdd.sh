@@ -42,7 +42,10 @@ elif [ "$1" = "-f" -o "$1" = "--folder" ] ; then
   losetup -d $LOOP_DEVICE
   echo "Detached hard disk image file from loop device."
 
-  chown $(logname) hdd.img
+  # Find the original user. Note that this may not always be correct.
+  ORIG_USER=`who | awk '{print \$1}'`
+
+  chown $ORIG_USER hdd.img
   echo "Applied original ownership to hard disk image file."
 elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   if [ ! "$(id -u)" = "0" ] ; then
@@ -66,8 +69,8 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   echo "Mounted hard disk image file to temporary folder."
 
   rm -f sparse/minimal.img
-  truncate -s 1M sparse/minimal.img
-  echo "Created new overlay image file with 1MB size."
+  truncate -s 3M sparse/minimal.img
+  echo "Created new overlay image file with 3MB size."
 
   LOOP_DEVICE_OVL=$(losetup -f)
   losetup $LOOP_DEVICE_OVL sparse/minimal.img
@@ -121,7 +124,7 @@ elif [ "$1" = "-h" -o "$1" = "--help" ] ; then
                   contains compatible overlay folder structure.
   -h, --help      Prints this help information.
   -s, --sparse    Create sparse image file formatted with FAT filesystem which
-                  contains sparse image file 'minimal.img' (1MB) formatted with
+                  contains sparse image file 'minimal.img' (3MB) formatted with
                   Ext2 filesystem which contains the actual overlay structure.
 CEOF
 

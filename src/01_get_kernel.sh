@@ -19,7 +19,7 @@ download_source $DOWNLOAD_URL $SOURCE_DIR/$ARCHIVE_FILE
 # Extract the kernel sources in the 'work/kernel' directory.
 extract_source $SOURCE_DIR/$ARCHIVE_FILE kernel
 
-# Just in case we go back to the main MLL source folder.
+# We go back to the main MLL source folder.
 cd $SRC_DIR
 
 echo "*** GET KERNEL END ***"

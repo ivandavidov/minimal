@@ -2,29 +2,17 @@
 
 set -e
 
+# Load common properties and functions in the current script.
+. ./common.sh
+
 echo "*** BUILD BUSYBOX BEGIN ***"
 
-SRC_DIR=$(pwd)
-
-# Read the 'JOB_FACTOR' property from '.config'
-JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
-
-# Find the number of available CPU cores.
-NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
-
-# Calculate the number of 'make' jobs to be used later.
-NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
-
-# Remember the sysroot
-SYSROOT=$(pwd)/work/sysroot
-
-cd work/busybox
-
-# Remove the old BusyBox install area
-rm -rf busybox_installed
+# Remove the old BusyBox install area.
+echo "Removing old BusyBox artifacts. This may take a while."
+rm -rf $BUSYBOX_INSTALLED
 
 # Change to the source directory ls finds, e.g. 'busybox-1.24.2'.
-cd $(ls -d busybox-*)
+cd `ls -d $WORK_DIR/busybox/busybox-*`
 
 # Remove previously generated artifacts.
 echo "Preparing BusyBox work area. This may take a while."
@@ -67,7 +55,7 @@ make \
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.
 echo "Generating BusyBox based initramfs area."
 make \
-  CONFIG_PREFIX="../busybox_installed" \
+  CONFIG_PREFIX="$BUSYBOX_INSTALLED" \
   install -j $NUM_JOBS
 
 cd $SRC_DIR

@@ -3,9 +3,18 @@
 set -e
 
 SRC_DIR=`realpath --no-symlinks $PWD`
+CONFIG=$SRC_DIR/.config
 SOURCE_DIR=$SRC_DIR/source
 WORK_DIR=$SRC_DIR/work
-CONFIG=$SRC_DIR/.config
+KERNEL_INSTALLED=$WORK_DIR/kernel/kernel_installed
+GLIBC_OBJECTS=$WORK_DIR/glibc/glibc_objects
+GLIBC_INSTALLED=$WORK_DIR/glibc/glibc_installed
+BUSYBOX_INSTALLED=$WORK_DIR/busybox/busybox_installed
+SYSROOT=$WORK_DIR/sysroot
+ROOTFS=$WORK_DIR/rootfs
+OVERLAY_ROOTFS=$WORK_DIR/overlay_rootfs
+ISOIMAGE=$WORK_DIR/isoimage
+ISOIMAGE_OVERLAY=$WORK_DIR/isoimage_overlay
 
 # This function reads property from the main '.config' file.
 #

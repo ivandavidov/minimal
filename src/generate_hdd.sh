@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Create sparse file of 20MB which can be used by QEMU.
 
 if [ "$1" = "-e" -o "$1" = "--empty" ] ; then
@@ -35,7 +37,9 @@ elif [ "$1" = "-f" -o "$1" = "--folder" ] ; then
   echo "This file is on external hard disk." > folder/minimal/rootfs/overlay.txt
   echo "Created sample text file."
 
+  sync
   umount folder
+  sync
   rm -rf folder
   echo "Unmounted hard disk image file."
 
@@ -44,7 +48,6 @@ elif [ "$1" = "-f" -o "$1" = "--folder" ] ; then
 
   # Find the original user. Note that this may not always be correct.
   ORIG_USER=`who | awk '{print \$1}'`
-
   chown $ORIG_USER hdd.img
   echo "Applied original ownership to hard disk image file."
 elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
@@ -64,6 +67,7 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   mkfs.vfat $LOOP_DEVICE_HDD
   echo "Hard disk image file has been formatted with FAT filesystem."
 
+  rm -rf sparse
   mkdir sparse
   mount hdd.img sparse
   echo "Mounted hard disk image file to temporary folder."
@@ -93,7 +97,9 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   chown -R root:root ovl
   echo "Applied root ownership to overlay content."
 
+  sync
   umount ovl
+  sync
   sleep 1
   rm -rf ovl
   echo "Unmounted overlay image file."
@@ -102,7 +108,9 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   sleep 1
   echo "Overlay image file has been detached from loop device."
 
+  sync
   umount sparse
+  sync
   sleep 1
   rm -rf sparse
   echo "Unmounted hard disk image file."
@@ -110,8 +118,11 @@ elif [ "$1" = "-s" -o "$1" = "--sparse" ] ; then
   losetup -d $LOOP_DEVICE_HDD
   sleep 1
   echo "Hard disk image file has been detached from loop device."
+  # Find the original user. Note that this may not always be correct.
+  ORIG_USER=`who | awk '{print \$1}'`
 
-  chown $(logname) hdd.img
+  chown $ORIG_USER hdd.img
+
   echo "Applied original ownership to hard disk image file."
 elif [ "$1" = "-h" -o "$1" = "--help" ] ; then
   cat << CEOF

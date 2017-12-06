@@ -76,14 +76,9 @@ CEOF
 mkdir -p $ISOIMAGE/efi/boot
 cat << CEOF > $ISOIMAGE/efi/boot/startup.nsh
 echo -off
-echo.
-echo   ###################################
-echo   #                                 #
-echo   #  Welcome to Minimal Linux Live  #
-echo   #                                 #
-echo   ###################################
-echo.
+echo Minimal Linux Live is starting.
 \\kernel.xz initrd=\\rootfs.xz
+
 CEOF
 
 cd $SRC_DIR

@@ -2,21 +2,10 @@
 
 set -e
 
+# Load common properties and functions in the current script.
+. ./common.sh
+
 echo "*** BUILD KERNEL BEGIN ***"
-
-SRC_DIR=$(pwd)
-
-# Read the 'JOB_FACTOR' property from '.config'
-JOB_FACTOR="$(grep -i ^JOB_FACTOR .config | cut -f2 -d'=')"
-
-# Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
-
-# Find the number of available CPU cores.
-NUM_CORES=$(grep ^processor /proc/cpuinfo | wc -l)
-
-# Calculate the number of 'make' jobs to be used later.
-NUM_JOBS=$((NUM_CORES * JOB_FACTOR))
 
 cd work/kernel
 
@@ -32,16 +21,16 @@ echo "Preparing kernel work area."
 make mrproper -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
-USE_PREDEFINED_KERNEL_CONFIG="$(grep -i ^USE_PREDEFINED_KERNEL_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
+USE_PREDEFINED_KERNEL_CONFIG=`read_property USE_PREDEFINED_KERNEL_CONFIG`
 
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/kernel.config ] ; then
-  echo "Config file $SRC_DIR/minimal_config/kernel.config does not exist."
-  USE_PREDEFINED_KERNEL_CONFIG="false"
+  echo "Config file '$SRC_DIR/minimal_config/kernel.config' does not exist."
+  USE_PREDEFINED_KERNEL_CONFIG=false
 fi
 
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" ] ; then
   # Use predefined configuration file for the kernel.
-  echo "Using config file $SRC_DIR/minimal_config/kernel.config"
+  echo "Using config file '$SRC_DIR/minimal_config/kernel.config'."
   cp -f $SRC_DIR/minimal_config/kernel.config .config
 else
   # Create default configuration file for the kernel.
@@ -70,7 +59,7 @@ else
   sed -i "s/.*CONFIG_FB_VESA.*/CONFIG_FB_VESA=y/" .config
 
   # Read the 'USE_BOOT_LOGO' property from '.config'
-  USE_BOOT_LOGO="$(grep -i ^USE_BOOT_LOGO $SRC_DIR/.config | cut -f2 -d'=')"
+  USE_BOOT_LOGO=`read_property USE_BOOT_LOGO`
 
   if [ "$USE_BOOT_LOGO" = "true" ] ; then
     sed -i "s/.*CONFIG_LOGO_LINUX_CLUT224.*/CONFIG_LOGO_LINUX_CLUT224=y/" .config
@@ -86,7 +75,7 @@ else
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
 
-  # Request that the firmware clear the contents of RAM after a reboot (4.14+).
+  # Request that the firmware clear the contents of RAM after reboot (4.14+).
   echo "CONFIG_RESET_ATTACK_MITIGATION=y" >> .config
 
   # Disable Apple Properties (Useful for Macs but useless in general)

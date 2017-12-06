@@ -4,10 +4,8 @@ set -e
 
 . ../../common.sh
 
-cd $OVERLAY_WORK_DIR/$BUNDLE_NAME
-
 # Change to the coreutils source directory which ls finds, e.g. 'coreutils-8.28'.
-cd $(ls -d coreutils-*)
+cd `ls -d $OVERLAY_WORK_DIR/$BUNDLE_NAME/coreutils-*`
 
 make_clean
 

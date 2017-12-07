@@ -18,8 +18,7 @@ rm -rf $GLIBC_INSTALLED
 mkdir $GLIBC_INSTALLED
 
 # Find the glibc source directory, e.g. 'glibc-2.23' and remember it.
-cd $WORK_DIR/glibc
-GLIBC_SRC=$PWD/`ls -d glibc-*`
+GLIBC_SRC=`ls -d $WORK_DIR/glibc/glibc-*`
 
 # All glibc work is done from the working area.
 cd $GLIBC_OBJECTS

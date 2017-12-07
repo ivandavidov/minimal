@@ -8,7 +8,7 @@ set -e
 echo "*** PREPARE OVERLAY BEGIN ***"
 
 echo "Preparing overlay work area."
-rm -rf $SRC_DIR/work/overlay*
+rm -rf $WORK_DIR/overlay*
 
 # Read the 'OVERLAY_BUNDLES' property from '.config'
 OVERLAY_BUNDLES=`read_property OVERLAY_BUNDLES`

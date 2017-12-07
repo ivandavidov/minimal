@@ -8,8 +8,7 @@ set -e
 echo "*** PREPARE ISO BEGIN ***"
 
 # Find the Syslinux build directory.
-cd `ls -d $WORK_DIR/syslinux/*`
-WORK_SYSLINUX_DIR=$PWD
+WORK_SYSLINUX_DIR=`ls -d $WORK_DIR/syslinux/syslinux-*`
 
 # Remove the old ISO generation area if it exists.
 echo "Removing old ISO image work area. This may take a while."

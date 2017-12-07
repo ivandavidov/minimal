@@ -7,9 +7,11 @@ set -e
 
 echo "*** GENERATE OVERLAY BEGIN ***"
 
-# Remove the old ISO generation area if it exists.
+# Remove the old ISO image overlay area.
 echo "Removing old overlay area. This may take a while."
 rm -rf $ISOIMAGE_OVERLAY
+
+# Create the new ISO image overlay area.
 mkdir -p $ISOIMAGE_OVERLAY
 cd $ISOIMAGE_OVERLAY
 
@@ -62,7 +64,10 @@ if [ "$OVERLAY_LOCATION" = "iso" \
     $ISOIMAGE_OVERLAY/sparse/rootfs
 
   # Unmount the sparse file and delete the temporary folder.
+  sync
   $BUSYBOX umount $ISOIMAGE_OVERLAY/sparse
+  sync
+  sleep 1
   rm -rf $ISOIMAGE_OVERLAY/sparse
 
   # Detach the loop device since we no longer need it.

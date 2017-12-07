@@ -19,7 +19,7 @@ echo "Preparing BusyBox work area. This may take a while."
 make distclean -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_BUSYBOX_CONFIG' property from '.config'
-USE_PREDEFINED_BUSYBOX_CONFIG="$(grep -i ^USE_PREDEFINED_BUSYBOX_CONFIG $SRC_DIR/.config | cut -f2 -d'=')"
+USE_PREDEFINED_BUSYBOX_CONFIG=`read_property USE_PREDEFINED_BUSYBOX_CONFIG`
 
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/busybox.config ] ; then
   echo "Config file $SRC_DIR/minimal_config/busybox.config does not exist."
@@ -36,15 +36,8 @@ else
   make defconfig -j $NUM_JOBS
 fi
 
-# This variable holds the full path to the glibc installation area as quoted string.
-# All forward slashes are escaped (/ => \/) in order to keep the 'sed' command stable.
-SYSROOT_ESCAPED=$(echo \"$SYSROOT\" | sed 's|/|\\/|g')
-
-# Now we tell BusyBox to use the glibc prepared area.
-sed -i "s/.*CONFIG_SYSROOT.*/CONFIG_SYSROOT=$SYSROOT_ESCAPED/" .config
-
-# Read the 'CFLAGS' property from '.config'
-CFLAGS="$(grep -i ^CFLAGS .config | cut -f2 -d'=')"
+# Now we tell BusyBox to use the sysroot area.
+sed -i "s|.*CONFIG_SYSROOT.*|CONFIG_SYSROOT=\"$SYSROOT\"|" .config
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
 echo "Building BusyBox."

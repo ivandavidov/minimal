@@ -5,7 +5,14 @@ set -e
 # Load common properties and functions in the current script.
 . ./common.sh
 
-echo "*** PREPARE ISO BEGIN ***"
+echo "*** PREPARE ISO (BIOS) BEGIN ***"
+
+FORCE_UEFI=`read_property FORCE_UEFI`
+
+if [ "$FORCE_UEFI" = "true" ] ; then
+  echo "Skipping ISO image preparation for BIOS systems."
+  exit 0
+fi
 
 # Find the Syslinux build directory.
 WORK_SYSLINUX_DIR=`ls -d $WORK_DIR/syslinux/syslinux-*`
@@ -67,52 +74,6 @@ LABEL mll_nomodeset
         INITRD rootfs.xz
 CEOF
 
-# Create UEFI start script '/efi/boot/startup.nsh'. This script should be
-# executed by the firmware on boot if there is no UEFI compatible 'eltorito'
-# boot image in the ISO image *and* the UEFI boot shell is enabled.
-#
-# Currently MLL doesn't provide native UEFI stub for boot manager and this
-# script is the only UEFI compliant way to pass the execution from the
-# firmware to the kernel. All this script does is to execute the kernel
-# which is masquaraded as PE/COFF image and pass arguments to the kernel,
-# e.g. 'initrd=<initramfs_archive>' and 'nomodeset'.
-#
-# Currently the 'startup.nsh' approach is most likely not universally
-# compatible. For example, this approach most probably will fail on UEFI
-# systems where the boot shell is missing or it is disabled.
-mkdir -p $ISOIMAGE/EFI/boot
-cat << CEOF > $ISOIMAGE/EFI/boot/startup.nsh
-echo -off
-echo Minimal Linux Live is starting.
-\\kernel.xz initrd=\\rootfs.xz nomodeset
-
-CEOF
-
-# UEFI hacks BEGIN
-#
-# These files have no impact on the BIOS boot process. In
-# UEFI boot shell navigate to 'EFI/minimal' and try to
-# execute 'bootia32.efi' or 'bootx64.efi'.
-#
-# TODO - remove before next MLL release or fix the UEFI issue.
-#        The proper way to fix the UEFI issue is to provide
-#        secondary 'eltorito' boot image which is FAT32 and
-#        contains proper /EFI/boot/xxx files.
-
-mkdir -p $ISOIMAGE/EFI/minimal
-
-cp $WORK_SYSLINUX_DIR/efi32/efi/syslinux.efi \
-  $ISOIMAGE/EFI/minimal/bootia32.efi
-cp $WORK_SYSLINUX_DIR/efi32/com32/elflink/ldlinux/ldlinux.e32 \
-  $ISOIMAGE/EFI/minimal
-
-cp $WORK_SYSLINUX_DIR/efi64/efi/syslinux.efi \
-  $ISOIMAGE/EFI/minimal/bootx64.efi
-cp $WORK_SYSLINUX_DIR/efi64/com32/elflink/ldlinux/ldlinux.e64 \
-  $ISOIMAGE/EFI/minimal
-
-# UEFI hacks END
-
 cd $SRC_DIR
 
-echo "*** PREPARE ISO END ***"
+echo "*** PREPARE ISO (BIOS) END ***"

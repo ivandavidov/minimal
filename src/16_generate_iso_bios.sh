@@ -5,14 +5,19 @@ set -e
 # Load common properties and functions in the current script.
 . ./common.sh
 
-echo "*** GENERATE ISO BEGIN ***"
+echo "*** GENERATE ISO (BIOS) BEGIN ***"
 
-if [ ! -d $ISOIMAGE ] ; then
-  echo "Cannot locate ISO image work folder. Cannot continue."
-  exit 1
+FORCE_UEFI=`read_property FORCE_UEFI`
+
+if [ "$FORCE_UEFI" = "true" ] ; then
+  echo "Skipping ISO image preparation for BIOS systems."
+  exit 0
 fi
 
-cd $ISOIMAGE
+if [ ! -d $ISOIMAGE ] ; then
+  echo "ISO image work folder does not exist. Cannot continue."
+  exit 1
+fi
 
 # Now we generate the ISO image file.
 xorriso \
@@ -40,4 +45,4 @@ cat << CEOF
 
 CEOF
 
-echo "*** GENERATE ISO END ***"
+echo "*** GENERATE ISO (BIOS) END ***"

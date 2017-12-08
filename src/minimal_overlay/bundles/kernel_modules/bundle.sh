@@ -4,19 +4,11 @@ set -e
 
 . ../../common.sh
 
-
-if [ ! -d $WORK_DIR/kernel/linux-* ] ; then
-  echo "Kernel source directory is missing. Cannot continue."
+if [ ! -f `ls $WORK_DIR/kernel/linux-*/.config` ] ; then
+  echo "Kernel configuration does not exist. Cannot continue."
   exit 1
 else
-  echo "Kernel source directory exists."
-fi
-
-if [ ! -d $KERNEL_INSTALLED ] ; then
-  echo "Kernel is not built. Cannot continue."
-  exit 1
-else
-  echo "Kernel is built."
+  echo "Kernel configuration exists."
 fi
 
 rm -rf $DEST_DIR

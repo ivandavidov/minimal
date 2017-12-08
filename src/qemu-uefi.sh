@@ -10,8 +10,11 @@
 # If you get kernel panic with message "No working init found", then try to
 # increase the RAM from 128M to 256M.
 
-# Location to local file 'OVMF.fd'. You can download it from here:
-#  https://sourceforge.net/projects/edk2/files/OVMF/)
+# Location of the local file 'OVMF.fd' which is used as main firmware. You can
+# download it here:
+#
+#   https://sourceforge.net/projects/edk2/files/OVMF/
+#
 OVMF_LOCATION=~/Downloads/OVMF.fd
 
 cmd="qemu-system-$(uname -m) -pflash $OVMF_LOCATION -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"

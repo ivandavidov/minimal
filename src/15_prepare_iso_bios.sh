@@ -74,6 +74,18 @@ LABEL mll_nomodeset
         INITRD rootfs.xz
 CEOF
 
+# Create UEFI startup script. This does not guarantee that you can run
+# MLL on UEFI systems. This script is invoked right after the UEFI shell
+# has been initialized, and only if there are no other available UEFI
+# boot loaders in the NVRAM configuration. Some UEFI systems don't have
+# UEFI shell or it could be disabled. In these cases MLL will not boot
+# and you will end up with some kind of UEFI error message.
+mkdir -p $ISOIMAGE/efi/boot
+cat << CEOF > $ISOIMAGE/efi/boot/startup.nsh
+echo -off
+echo Minimal Linux Live is starting.
+\\kernel.xz initrd=\\rootfs.xz
+CEOF
 cd $SRC_DIR
 
 echo "*** PREPARE ISO (BIOS) END ***"

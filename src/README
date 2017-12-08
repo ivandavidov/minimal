@@ -19,121 +19,112 @@ you can change the property 'OVERLAY_BUNDLES' and build your own flavor of MLL.
 
 Currently available overlay bundles:
 
-  GLIBC       - Set of all core GNU C libraries packaged together. Requires ~3MB
-                additional space. This overlay bundle is not host specific and
-                can always be built. The libraries are useful if you plan to use
-                more software after boot.
+  GLIBC          - set of all core GNU C libraries packaged together. This
+                   overlay bundle is not host specific and can always be built.
+                   The libraries are useful if you plan to use more software in
+                   MLL. This overlay bundle depends on the GLIBC build process.
 
-                This overlay bundle depends on the GLIBC build process.
+  bosh_cli       - BOSH command line tool. It can be used as landscape manager
+                   for virtual network and server infrastructures in cloud
+                   environment, e.g. AWS, Google Cloud, etc. The most common use
+                   case for this tool is to create and manage Cloud Foundry
+                   infrastructures.
 
-  bosh_cli    - BOSH command line tool. It can be used as landscape manager for
-                virtual network and server infrastructures in cloud environment,
-                e.g. AWS, Google Cloud, etc. The most common use case for this
-                tool is to create and manage Cloud Foundry infrastructures.
+  cf_cli         - Cloud Foundry command line tool. It can be used to manage all
+                   aspects of already existing Cloud Foundry installation,
+                   including the full software development lifecycle in cloud
+                   environment.
 
-  cf_cli      - Cloud Foundry command line tool. It can be used to manage all
-                aspects of already existing Cloud Foundry installation, including
-                the full software development lifecycle in cloud environment.
+  cf_tools       - this is metapackage which installs all BOSH and Cloud Foundry
+                   tools. Note that in MLL context these tools are mostly useful
+                   as remote managers for existing BOSH and Cloud Foundry cloud
+                   infrastructures.
 
-  cf_tools    - This is metapackage which installs all BOSH and Cloud Foundry
-                tools. Note that in MLL context these tools are mostly useful
-                as remote managers for already existing BOSH and Cloud Foundry
-                cloud infrastructures.
+  coreutils      - set of commonly used GNU executable utilities.
 
-  coreutils   - Set of commonly used GNU executable utilities.
+  dhcp           - DHCP and DNS functionality to connect to the Internet.
 
-  dhcp        - DHCP and DNS functionality to connect to the Internet.
+  dialog         - shell scripting library for 'ncurses'. This overlay bundle
+                   requires 'ncurses'.
 
-  dialog      - Shell scripting library for ncurses
+  Dropbear       - SSH server/client. This overlay bundle requires some GLIBC
+                   libraries.The build process creates user 'root' with password
+                   'toor'. These are sample commands which demonstrate how to
+                   use Dropbear:
 
-                This overlay bundle requires ncurses
+                   SSH server (Alt + F1): dropbear -E -F
+                   SSH client (Alt + F2): dbclient 10.0.2.15 -l root
 
-  Dropbear    - SSH server/client. Requires ~1MB additional space. The build
-                process creates user 'root' with password 'toor'. These are
-                sample commands which demonstrate how to use Dropbear:
+  Felix OSGi     - Apache Felix OSGi framework. Use the 'felix-start' command to
+                   run the Apache Felix OSGi framework. This overlay bundle
+                   requires JRE or JDK.
 
-                SSH server (Alt + F1): dropbear -E -F
-                SSH client (Alt + F2): dbclient 10.0.2.15 -l root
+  fio            - I/O load generator that can simulate a wide variety of
+                   workloads on RAM or disks. 'fio' is essential for
+                   troubleshootingdata I/O bottlenecks.
 
-                This overlay bundle requires GLIBC.
+  JRE / JDK      - Oracle's JRE or JDK. This overlay bundle requires some manual
+                   preparation steps. Refer to the 'JAVA_ARCHIVE' property in
+                   the '.config' file for more information. This overlay bundle
+                   requires GLIBC and ZLIB.
 
-  Felix OSGi  - Apache Felix OSGi framework. Requires ~2MB additional space. Use
-                the "felix-start" command to run the Apache Felix OSGi framework.
+  kbd            - keyboard utilities and keymaps. For example, you can load
+                   German keyboard layout like this:
 
-                This overlay bundle requires JRE or JDK.
+                     loadkeys de
 
-  fio         - I/O load generator that can simulate a wide variety of workloads
-                on RAM or disks.  fio is essential for troubleshooting data
-                bottlenecks.
+  kernel_modules - kernel modules and 'mdev' hotplug manager. 
 
-  JRE / JDK   - Oracle's JRE or JDK. Requires ~366MB additional space for JDK.
-                This overlay bundle requires some manual preparation steps. Refer
-                to the "JAVA_ARCHIVE" property in the ".config" file for more
-                detailed information.
+  kexec_tools -    these tools can be used to boot another kernel and initramfs
+                   from userspace.
 
-                This overlay bundle requires GLIBC. JDK 9 requires ZLIB.
+  libevent       - event notification library API provides a mechanism to
+                   execute a callback function when a specific event occurs on
+                   a file descriptor or after a timeout has been reached.
 
-  kbd         - Keyboard utilities and keymaps. For example, you can load
-                German keyboard layout like this:
+  Links          - text based web browser. Use the 'links' command to activate
+                   the browser.
 
-                  loadkeys de
+  Open JDK       - the open source JDK. No need for manual steps. This overlay
+                   bundle requires GLIBC and ZLIB.
 
-  libevent    - event notification library API provides a mechanism to execute a
-                callback function when a specific event occurs on a file
-                descriptor or after a timeout has been reached.
+  Lua            - the Lua Scripting Language. Use the 'lua' command to run an
+                   interactive LUA interpreter.
 
-  kexec_tools - Kexec tools, can be used to boot another kernel from userspace
+  make           - GNU make utility.
 
-  Links       - Text based browser. Requires ~1MB additional space. Use the
-                "links" command to activate the browser.
+  MLL Utils      - set of experimental shell scripts (mll-*.sh) which provide
+                   additional functionality, e.g. installer and useful tools.
+                   This overlay bundle is currently experimental and its build
+                   process depends on the host machine.
 
-  Open JDK    - The open source JDK. No need for manual steps.
+  MLL Source     - this overlay bundle provides all MLL source code in the
+                   directory 'usr/src'.
 
-                This overlay bundle requires GLIBC and ZLIB.
+  nano           - simple command-line text editor with on-screen shortcuts.
+                   This overlay bundle requires 'ncurses'.
 
-  Lua         - The Lua Scripting Language 5.3. Requires ~ 800kb additional
-                space. Use the "lua" command to run an interactive lua
-                interpreter.
+  ncurses        - 'GUI-like' API that runs within a terminal emulator.
 
-  make        - GNU make utility
+  nweb           - 'nweb' is a very small and easy to use webserver, it runs
+                   automatically on port 80. To portforward port 80 from the
+                   QEMU guest (minimal) to port 8080 on the host, add
+                   '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
+                   'cmd' in the qemu.sh file.
 
-  MLL Utils   - Set of experimental shell scripts (mll-*.sh) which provide
-                additional functionality, e.g. installer and useful tools.
+  stress         - simple workload generator. Imposes a configurable amount of
+                   CPU, memory, I/O, and disk stress on the system. stress is
+                   useful for troubleshooting CPU and RAM issues.
 
-                This overlay bundle is currently experimental and its build
-                process depends on the host machine.
+  util_linux     - set of executable utilities distributed by the Linux Kernel,
+                   similar to busybox or GNU Core Utils. Some packages in this
+                   overlay bundle require 'ncurses'.
 
-  MLL Source  - This overlay bundle provides all MLL source code in the
-                directory 'usr/src'.
+  vim            - advanced text editor that seeks to provide the power of the
+                   de-facto Unix editor 'vi', with a more complete feature set.
+                   This package will create symlinks on top of 'vi'.
 
-  nano        - Simple command-line text editor with on-screen shortcuts.
-
-                This overlay bundle requires ncurses.
-
-  ncurses     - "GUI-like" API that runs within a terminal emulator.
-
-  nweb        - nweb is a very small and easy to use webserver, it is run
-                automatically on port 80. To portforward port 80 from the
-                guest (minimal) to port 8080 on the host add
-                '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
-                'cmd' in the qemu.sh file.
-
-  stress      - Simple workload generator. Imposes a configurable amount of CPU,
-                memory, I/O, and disk stress on the system. stress is useful for
-                troubleshooting CPU and RAM.
-
-  util_linux  - Set of executable utilities distributed by the Linux Kernel
-                similar to busybox or GNU Core Utils.
-
-                Some packages in this overlay bundle require ncurses.
-
-  vim         - An advanced text editor that seeks to provide the power of
-                the de-facto Unix editor 'Vi', with a more complete feature
-                set.
-
-                This package will create symlinks on top of vi.
-
-  ZLIB        - Software library used for data compression.
+  ZLIB           - software library used for data compression.
 
 The overlay bundles can be found in this directory:
 

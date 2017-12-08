@@ -123,7 +123,7 @@ reduce_size() (
       done
     elif [ -f $1 ] ; then
       set +e
-      strip -g $1
+      strip -g $1 2>/dev/null
       set -e
     fi
     

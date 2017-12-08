@@ -1,4 +1,3 @@
-
 The easiest way to build 'Minimal Linux Live' is to run the following script:
 
   sh build_minimal_linux_live.sh

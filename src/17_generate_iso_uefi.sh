@@ -22,17 +22,29 @@ fi
 cd $ISOIMAGE
 
 # Now we generate the ISO image file.
+
+# This generates ISO image with BIOS nad UEFI compatible structure.
+#xorriso -as mkisofs \
+#  -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
+#  -c boot.cat \
+#  -b isolinux.bin \
+#    -no-emul-boot \
+#    -boot-load-size 4 \
+#    -boot-info-table \
+#  -eltorito-alt-boot \
+#  -e uefi.img \
+#    -no-emul-boot \
+#    -isohybrid-gpt-basdat \
+#  -o $SRC_DIR/minimal_linux_live.iso \
+#  $ISOIMAGE
+
+# This generates ISO image with UEFI compatible structure.
 xorriso -as mkisofs \
   -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
   -c boot.cat \
-  -b isolinux.bin \
-  -no-emul-boot \
-  -boot-load-size 4 \
-  -boot-info-table \
-  -eltorito-alt-boot \
-  -e uefi_boot_image.img \
-  -no-emul-boot \
-  -isohybrid-gpt-basdat \
+  -e uefi.img \
+    -no-emul-boot \
+    -isohybrid-gpt-basdat \
   -o $SRC_DIR/minimal_linux_live.iso \
   $ISOIMAGE
 

@@ -10,9 +10,8 @@ echo "*** CONFIG KERNEL BEGIN ***"
 # Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
 cd `ls -d $WORK_DIR/kernel/linux-*`
 
-# Cleans up the kernel sources, including configuration files.
-echo "Preparing kernel work area."
-make mrproper -j $NUM_JOBS
+# Delete old kernel configuration file.
+rm -f .config
 
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
 USE_PREDEFINED_KERNEL_CONFIG=`read_property USE_PREDEFINED_KERNEL_CONFIG`

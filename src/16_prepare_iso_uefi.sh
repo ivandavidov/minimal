@@ -8,44 +8,47 @@ set -e
 echo "*** PREPARE ISO (UEFI) BEGIN ***"
 
 generate_uefi_boot_image() (
+  # Find the kernel size in bytes.
   kernel_size=`du -b $KERNEL_INSTALLED/kernel | awk '{print \$1}'`
-  echo "Kernel size: $kernel_size"
-  image_size=$((kernel_size + 65536))
-  echo "Image size:  $image_size"
   
-  echo "Creating new image file '$WORK_DIR/uefi_boot_image.img'"
-  rm -f $WORK_DIR/uefi_boot_image.img
-  truncate -s $image_size $WORK_DIR/uefi_boot_image.img
+  # The EFI boot image is 64KB bigger than the kernel size.
+  image_size=$((kernel_size + 65536))
+  
+  echo "Creating UEFI boot image file '$WORK_DIR/uefi.img'."
+  rm -f $WORK_DIR/uefi.img
+  truncate -s $image_size $WORK_DIR/uefi.img
 
+  echo "Attaching hard disk image file to loop device."
   LOOP_DEVICE_HDD=$(losetup -f)
-  losetup $LOOP_DEVICE_HDD $WORK_DIR/uefi_boot_image.img
-  echo "Attached hard disk image file to loop device."
+  losetup $LOOP_DEVICE_HDD $WORK_DIR/uefi.img
 
+  echo "Formatting hard disk image with FAT filesystem."
   mkfs.vfat $LOOP_DEVICE_HDD
-  echo "Hard disk image file has been formatted with FAT filesystem."
 
-  rm -rf $WORK_DIR/uefi_boot_image
-  mkdir -p $WORK_DIR/uefi_boot_image
-  mount $WORK_DIR/uefi_boot_image.img $WORK_DIR/uefi_boot_image
+  echo "Preparing 'uefi' work area."
+  rm -rf $WORK_DIR/uefi
+  mkdir -p $WORK_DIR/uefi
+  mount $WORK_DIR/uefi.img $WORK_DIR/uefi
 
-  mkdir -p $WORK_DIR/uefi_boot_image/efi/boot
+  mkdir -p $WORK_DIR/uefi/efi/boot
 
+  echo "Preparing EFI stub."
   BUSYBOX_ARCH=$(file $ROOTFS/bin/busybox | cut -d' ' -f3)
   if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
     cp $KERNEL_INSTALLED/kernel \
-      $WORK_DIR/uefi_boot_image/efi/boot/bootx64.efi
+      $WORK_DIR/uefi/efi/boot/bootx64.efi
   else
     cp $KERNEL_INSTALLED/kernel \
-      $WORK_DIR/uefi_boot_image/efi/boot/bootia32.efi  
+      $WORK_DIR/uefi/efi/boot/bootia32.efi  
   fi
   
   echo "Unmounting UEFI boot image file."
   sync
-  umount $WORK_DIR/uefi_boot_image
+  umount $WORK_DIR/uefi
   sync
   sleep 1
   
-  chmod ugo+r $WORK_DIR/uefi_boot_image.img
+  chmod ugo+r $WORK_DIR/uefi.img
 )
 
 FORCE_UEFI=`read_property FORCE_UEFI`
@@ -81,7 +84,7 @@ mkdir -p $ISOIMAGE
 # packed initramfs) as default EFI stub.
 generate_uefi_boot_image
 
-cp $WORK_DIR/uefi_boot_image.img $ISOIMAGE
+cp $WORK_DIR/uefi.img $ISOIMAGE
 
 # Now we copy the overlay content if it exists
 if [ -d $ISOIMAGE_OVERLAY \
@@ -92,11 +95,6 @@ if [ -d $ISOIMAGE_OVERLAY \
 else
   echo "The ISO image will have no overlay structure."
 fi
-
-# Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32' in the ISO image
-# root folder.
-cp $WORK_SYSLINUX_DIR/bios/core/isolinux.bin $ISOIMAGE
-cp $WORK_SYSLINUX_DIR/bios/com32/elflink/ldlinux/ldlinux.c32 $ISOIMAGE
 
 cd $SRC_DIR
 

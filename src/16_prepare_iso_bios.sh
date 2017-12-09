@@ -7,6 +7,7 @@ set -e
 
 echo "*** PREPARE ISO (BIOS) BEGIN ***"
 
+# Read the 'FORCE_UEFI' property from '.config'
 FORCE_UEFI=`read_property FORCE_UEFI`
 
 if [ "$FORCE_UEFI" = "true" ] ; then

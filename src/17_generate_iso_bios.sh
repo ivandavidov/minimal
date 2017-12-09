@@ -20,17 +20,13 @@ if [ ! -d $ISOIMAGE ] ; then
 fi
 
 # Now we generate the ISO image file.
-xorriso \
-  -as mkisofs \
-  -R \
-  -r \
-  -o $SRC_DIR/minimal_linux_live.iso \
-  -b isolinux.bin \
+xorriso -as mkisofs \
   -c boot.cat \
-  -input-charset UTF-8 \
-  -no-emul-boot \
-  -boot-load-size 4 \
-  -boot-info-table \
+  -b isolinux.bin \
+    -no-emul-boot \
+    -boot-load-size 4 \
+    -boot-info-table \
+  -o $SRC_DIR/minimal_linux_live.iso \
   $ISOIMAGE
 
 cd $SRC_DIR

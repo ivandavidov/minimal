@@ -21,6 +21,7 @@ fi
 
 # Now we generate the ISO image file.
 xorriso -as mkisofs \
+  -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
   -c boot.cat \
   -b isolinux.bin \
     -no-emul-boot \

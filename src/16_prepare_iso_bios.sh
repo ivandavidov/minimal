@@ -76,13 +76,14 @@ LABEL mll_nomodeset
 CEOF
 
 # Create UEFI startup script. This does not guarantee that you can run
-# MLL on UEFI systems. This script is invoked right after the UEFI shell
-# has been initialized, and only if there are no other available UEFI
-# boot loaders in the NVRAM configuration. Some UEFI systems don't have
-# UEFI shell or it could be disabled. In these cases MLL will not boot
-# and you will end up with some kind of UEFI error message.
-mkdir -p $ISOIMAGE/efi/boot
-cat << CEOF > $ISOIMAGE/efi/boot/startup.nsh
+# MLL on UEFI systems. This script is invoked only in case your system
+# drops you in UEFI shell with support level 1 or above. See UEFI shell
+# specification 2.2, section 3.1. Depending on your system configuration
+# you may not end up with UEFI shell even if your system supports it.
+# In this case MLL will not boot and you will end up with some kind of
+# UEFI error message.
+mkdir -p $ISOIMAGE/EFI/BOOT
+cat << CEOF > $ISOIMAGE/EFI/BOOT/startup.nsh
 echo -off
 echo Minimal Linux Live is starting.
 \\kernel.xz initrd=\\rootfs.xz

@@ -7,6 +7,8 @@ set -e
 
 echo "*** PREPARE ISO (UEFI) BEGIN ***"
 
+# Genrate 'El Torito' boot image as per UEFI sepcification 2.7,
+# sections 13.3.1.x and 13.3.2.x.
 generate_uefi_boot_image() (
   # Find the kernel size in bytes.
   kernel_size=`du -b $KERNEL_INSTALLED/kernel | awk '{print \$1}'`
@@ -30,24 +32,32 @@ generate_uefi_boot_image() (
   mkdir -p $WORK_DIR/uefi
   mount $WORK_DIR/uefi.img $WORK_DIR/uefi
 
-  mkdir -p $WORK_DIR/uefi/efi/boot
+  mkdir -p $WORK_DIR/uefi/EFI/BOOT
 
+  # The default image file names are described in UEFI
+  # specification 2.7, section 3.5.1.1. Note that the
+  # x86_64 UEFI image file name indeed contains small
+  # letter 'x'.
   echo "Preparing EFI stub."
   BUSYBOX_ARCH=$(file $ROOTFS/bin/busybox | cut -d' ' -f3)
   if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
     cp $KERNEL_INSTALLED/kernel \
-      $WORK_DIR/uefi/efi/boot/bootx64.efi
+      $WORK_DIR/uefi/EFI/BOOT/BOOTx64.EFI
   else
     cp $KERNEL_INSTALLED/kernel \
-      $WORK_DIR/uefi/efi/boot/bootia32.efi  
+      $WORK_DIR/uefi/EFI/BOOT/BOOTIA32.EFI
   fi
-  
+
   echo "Unmounting UEFI boot image file."
   sync
   umount $WORK_DIR/uefi
   sync
   sleep 1
-  
+
+  # The directory is now empty (mount point for loop device).
+  rm -rf $WORK_DIR/uefi
+
+  # Make sure the UEFI boot image is redable.
   chmod ugo+r $WORK_DIR/uefi.img
 )
 

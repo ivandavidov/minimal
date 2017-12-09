@@ -23,7 +23,7 @@ cd $ISOIMAGE
 
 # Now we generate the ISO image file.
 
-# This generates ISO image with BIOS nad UEFI compatible structure.
+# This generates ISO image with BIOS and UEFI compatible structure.
 #xorriso -as mkisofs \
 #  -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
 #  -c boot.cat \

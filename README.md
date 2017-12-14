@@ -20,7 +20,7 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 This is a screenshot of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live_2.jpg)
+![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live_3.jpg)
 
 ## Current development state (04-Dec-2017)
 
@@ -78,7 +78,9 @@ cd minimal_overlay
 
 ## BIOS and UEFI
 
-Minimal Linux Live provides experimental UEFI support and the MLL ISO image can be used on both BIOS and EFI based systems.
+The latest verson of Minimal Linux Live (20-Jan-2017) provides experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)).
+
+The current development version of Minimal Linux Live provides full UEFI support, thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project.
 
 ## Installation
 

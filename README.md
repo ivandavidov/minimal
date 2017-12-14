@@ -20,7 +20,7 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 This is a screenshot of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live.png)
+![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live_2.jpg)
 
 ## Current development state (04-Dec-2017)
 

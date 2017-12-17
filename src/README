@@ -1,7 +1,6 @@
-
 The easiest way to build 'Minimal Linux Live' is to run the following script:
 
-  sh build_minimal_linux_live.sh
+  ./build_minimal_linux_live.sh
 
 Note that the build process requires proper toolchain already installed and
 configured. Check the project website for more information:

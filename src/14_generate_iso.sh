@@ -14,18 +14,16 @@ fi
 
 cd $ISOIMAGE
 
-# Now we generate the ISO image file.
-xorriso \
-  -as mkisofs \
-  -R \
-  -r \
+# Now we generate 'hybrid' ISO image file which can also be used on
+# USB flash drive, e.g. 'dd if=minimal_linux_live.iso of=/dev/sdb'.
+xorriso -as mkisofs \
+  -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
+  -c boot/syslinux/boot.cat \
+  -b boot/syslinux/isolinux.bin \
+    -no-emul-boot \
+    -boot-load-size 4 \
+    -boot-info-table \
   -o $SRC_DIR/minimal_linux_live.iso \
-  -b isolinux.bin \
-  -c boot.cat \
-  -input-charset UTF-8 \
-  -no-emul-boot \
-  -boot-load-size 4 \
-  -boot-info-table \
   $ISOIMAGE
 
 cd $SRC_DIR

@@ -80,26 +80,28 @@ cd minimal_overlay
 
 The latest verson of Minimal Linux Live (20-Jan-2017) provides experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)).
 
-The current development version of Minimal Linux Live provides full UEFI support, thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project.
+The current development version of Minimal Linux Live provides full UEFI support, thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project. There are three build flavors that you can choose from:
+
+* ``bios`` - MLL will be bootbale only on legacy BIOS based systems. This is the default build flavor.
+* ``uefi`` - MLL will be bootable only on UEFI based systems.
+* ``both`` - MLL will be bootable on both legacy BIOS and modern UEFI based systems.
+
+The generated MLL iso image is 'hybrid' which means that if it is 'burned' on external hard drive, this external hard drive will be bootable. You can use this behavior to install MLL on your USB flash device (read the next section).
 
 ## Installation
 
-The build process produces ISO image which you can use in virtual machine or you can burn it on real CD/DVD. Installing MLL on USB flash drive currently is not supported but it can be easily achieved by using ``syslinux`` or  ``extlinux`` since MLL requires just two files (one kernel file and another initramfs file).
+The build process produces ISO image which you can use in virtual machine or you can burn it on real CD/DVD. Installing MLL on USB flash drive currently is not supported but it can be easily achieved by using ``syslinux`` or  ``extlinux`` since MLL requires just two files (one kernel file and another initramfs file). This applies for legacy BIOS based systems.
 
-Another way to install MLL on USB flash drive is by using [YUMI](http://pendrivelinux.com/yumi-multiboot-usb-creator) or other similar tools.
+Another way to install MLL on USB flash drive is by using [YUMI](http://pendrivelinux.com/yumi-multiboot-usb-creator) or other similar tools. This applies for legacy BIOS based systems.
 
-Yet another way to install MLL on USB flash drive is manually, like this:
+Yet another way to install MLL on USB flash drive is by using the ``dd`` tool:
 
 ```
-# Resolve the dependency for isohybrid
-sudo apt install syslinux-utils
-
-# Process the ISO image and prepare it for installation on USB flash drive
-isohybrid minimal_linux_live.iso
-
 # Directly write the ISO image to your USB flash device (e.g. /dev/xxx)
 dd if=minimal_linux_live.iso of=/dev/xxx
 ```
+
+The USB flash device will be recognezed as bootable device and you should be able to boot MLL successfully from it. If you have chosen the 'combined' build flavor (i.e. value ``both`` for the corresponding configuration property), then your USB flash device will be bootable on both legacy BIOS and modern UEFI based systems.
 
 The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the MLL build process. You can import and use the image in Docker like this:
 
@@ -114,6 +116,8 @@ docker run -it minimal-linux-live /bin/sh
 ## Projects based on Minimal Linux Live:
 
 * [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL. This project is recommended as a starting point for beginners.
+
+* [systemd-boot](https://github.com/ivandavidov/systemd-boot) - this project provides the UEFI boot loader images that MLL relies on. It also provides helper shell scripts which generate UEFI compatible MLL ISO images out of the already existing BIOS compatible MLL ISO images.
 
 * [RedoxOS Installer](https://github.com/RedoxOS/installer) - the original installer for [Redox OS](www.redox-os.org) is based on simplified version of Minimal Linux Live.
 

@@ -6,27 +6,27 @@ set -e
 . ./common.sh
 
 download() {
-  # Read the 'SYSLINUX_SOURCE_URL' property from '.config'.
-  DOWNLOAD_URL=`read_property SYSLINUX_SOURCE_URL`
+  # Read the 'SYSTEMD-BOOT_SOURCE_URL' property from '.config'.
+  DOWNLOAD_URL=`read_property SYSTEMD-BOOT_SOURCE_URL`
 
   # Grab everything after the last '/' character.
   ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
-  # Download Syslinux source archive in the 'source' directory.
+  # Download systemd-boot source archive in the 'source' directory.
   download_source $DOWNLOAD_URL $SOURCE_DIR/$ARCHIVE_FILE
 
-  # Extract the Syslinux sources in the 'work/syslinux' directory.
-  extract_source $SOURCE_DIR/$ARCHIVE_FILE syslinux
+  # Extract the 'systemd-boot' sources in the 'work/systemd-boot' directory.
+  extract_source $SOURCE_DIR/$ARCHIVE_FILE systemd-boot  
 }
 
-echo "*** GET SYSLINUX BEGIN ***"
+echo "*** GET SYSTEMD-BOOT BEGIN ***"
 
 # Read the 'FIRMWARE_TYPE' property from '.config'.
 FIRMWARE_TYPE=`read_property FIRMWARE_TYPE`
 echo "Firmware type is '$FIRMWARE_TYPE'."
 
 case $FIRMWARE_TYPE in
-  bios)
+  uefi)
     download
     ;;
 
@@ -34,8 +34,8 @@ case $FIRMWARE_TYPE in
     download
     ;;
 
-  uefi)
-    echo "Syslinux download has been skipped."
+  bios)
+    echo "'systemd-boot' download has been skipped."
     ;;
 
   *)
@@ -47,4 +47,4 @@ esac
 # We go back to the main MLL source folder.
 cd $SRC_DIR
 
-echo "*** GET SYSLINUX END ***"
+echo "*** GET SYSTEMD-BOOT END ***"

@@ -7,11 +7,6 @@ set -e
 
 echo "*** BUILD KERNEL BEGIN ***"
 
-# Prepare the kernel install area.
-echo "Removing old kernel artifacts. This may take a while."
-rm -rf $KERNEL_INSTALLED
-mkdir $KERNEL_INSTALLED
-
 # Change to the kernel source directory which ls finds, e.g. 'linux-4.4.6'.
 cd `ls -d $WORK_DIR/kernel/linux-*`
 
@@ -94,6 +89,11 @@ echo "Building kernel."
 make \
   CFLAGS="$CFLAGS" \
   bzImage -j $NUM_JOBS
+
+# Prepare the kernel install area.
+echo "Removing old kernel artifacts. This may take a while."
+rm -rf $KERNEL_INSTALLED
+mkdir $KERNEL_INSTALLED
 
 # Install the kernel file.
 cp arch/x86/boot/bzImage \

@@ -65,6 +65,8 @@ prepare_boot_bios() {
     $ISOIMAGE/boot/syslinux
 }
 
+# Genrate 'El Torito' boot image as per UEFI sepcification 2.7,
+# sections 13.3.1.x and 13.3.2.x.
 prepare_boot_uefi() {
   # Find the build architecture based on the BusyBox executable.
   BUSYBOX_ARCH=$(file $ROOTFS/bin/busybox | cut -d' ' -f3)

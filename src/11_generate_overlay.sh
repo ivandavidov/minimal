@@ -24,6 +24,7 @@ OVERLAY_LOCATION=`read_property OVERLAY_LOCATION`
 if [ "$OVERLAY_LOCATION" = "iso" \
   -a "$OVERLAY_TYPE" = "sparse" \
   -a -d $OVERLAY_ROOTFS \
+  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" \
   -a "$(id -u)" = "0" ] ; then
 
   # Use sparse file as storage place. The above check guarantees that the whole
@@ -74,7 +75,8 @@ if [ "$OVERLAY_LOCATION" = "iso" \
   $BUSYBOX losetup -d $LOOP_DEVICE
 elif [ "$OVERLAY_LOCATION" = "iso" \
   -a "$OVERLAY_TYPE" = "folder" \
-  -a -d $OVERLAY_ROOTFS ] ; then
+  -a -d $OVERLAY_ROOTFS \
+  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
 
   # Use normal folder structure for overlay. All files and folders located in
   # the folder 'minimal_overlay' will be merged with the root folder on boot.

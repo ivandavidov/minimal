@@ -56,7 +56,10 @@ set -e
 # Read the 'OVERLAY_LOCATION' property from '.config'
 OVERLAY_LOCATION=`read_property OVERLAY_LOCATION`
 
-if [ "$OVERLAY_LOCATION" = "rootfs" -a -d $OVERLAY_ROOTFS ] ; then
+if [ "$OVERLAY_LOCATION" = "rootfs" \
+  -a -d $OVERLAY_ROOTFS \
+  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
+
   echo "Merging overlay software in rootfs."
 
   # With '--remove-destination' all possibly existing soft links in

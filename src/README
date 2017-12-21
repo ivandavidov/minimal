@@ -88,9 +88,11 @@ Currently available overlay bundles:
                    bundle requires GLIBC and ZLIB.
 
   Lua            - the Lua Scripting Language. Use the 'lua' command to run an
-                   interactive LUA interpreter.
+                   interactive Lua interpreter.
 
   make           - GNU make utility.
+
+  MLL Logo       - custom MLL boot logo.
 
   MLL Utils      - set of experimental shell scripts (mll-*.sh) which provide
                    additional functionality, e.g. installer and useful tools.

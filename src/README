@@ -29,7 +29,7 @@ Currently available overlay bundles:
                    case for this tool is to create and manage Cloud Foundry
                    infrastructures.
 
-  c2048          - console version of the game 2048
+  c2048          - console version of the game 2048.
 
   cf_cli         - Cloud Foundry command line tool. It can be used to manage all
                    aspects of already existing Cloud Foundry installation,

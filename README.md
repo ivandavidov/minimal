@@ -22,9 +22,9 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live_3.jpg)
 
-## Current development state (04-Dec-2017)
+## Current development state (26-Dec-2017)
 
-* Linux kernel 4.14.2 (stable)
+* Linux kernel 4.14.8 (longterm)
 * GNU C Library 2.26 (stable)
 * BusyBox 1.27.2 (stable)
 * Stable on default Ubuntu 16.04 installation with applied system updates.

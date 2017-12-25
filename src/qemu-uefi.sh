@@ -17,7 +17,13 @@
 #
 OVMF_LOCATION=~/Downloads/OVMF.fd
 
-cmd="qemu-system-$(uname -m) -pflash $OVMF_LOCATION -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
+if [ "`uname -m`" = "x86_64" ] ; then
+  ARCH="x86_64"
+else
+  ARCH="i386"
+fi
+
+cmd="qemu-system-$ARCH -pflash $OVMF_LOCATION -m 128M -cdrom minimal_linux_live.iso -boot d -vga std"
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."

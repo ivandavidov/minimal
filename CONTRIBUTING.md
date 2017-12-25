@@ -2,7 +2,7 @@ All proposed improvements are welcome. Just make sure that you have tested your 
 
 Full test procedure:
 
-* Generate clean MLL source tree with ``make src``. This will produce compressed archive file, e.g. ``minimal_linux_live_26-Dec-2017_src.tar.xz`` which contains all MLL sources.
+* Generate clean MLL source tree with ``make src``. This will produce compressed archive file which contains the MLL source tree.
 * Copy or move the source archive file in empty folder and then extract the archive.
 * Build MLL with ``./build_minimal_linux_live.sh``. You should be able to run MLL (``./qemu-bios.sh`` and/or ``./qemu-uefi.sh``) with the changes you have made.
 * Repackage the MLL ISO image with ``./repackage.sh``. You should be able to run MLL (``./qemu-bios.sh`` and/or ``./qemu-uefi.sh``) with the changes you have made.

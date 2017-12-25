@@ -20,6 +20,7 @@ cp $MAIN_SRC_DIR/*.txt $DEST_DIR/usr/src
 cp -r $MAIN_SRC_DIR/minimal_rootfs $DEST_DIR/usr/src
 cp -r $MAIN_SRC_DIR/minimal_overlay $DEST_DIR/usr/src
 cp -r $MAIN_SRC_DIR/minimal_config $DEST_DIR/usr/src
+cp -r $MAIN_SRC_DIR/minimal_boot $DEST_DIR/usr/src
 
 cp $SRC_DIR/90_src.sh $DEST_DIR/etc/autorun
 

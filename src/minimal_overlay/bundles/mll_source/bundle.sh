@@ -42,6 +42,28 @@ cp -r --remove-destination $DEST_DIR/* \
 cp -r --remove-destination $DEST_DIR/* \
   $OVERLAY_ROOTFS
 
+# Prepare the 'tar.xz' source archive - BEGIN.
+
+# Generate helper variables.
+DATE_PARSED=`LANG=en_US ; date +"%d-%b-%Y"`
+ARCHIVE_PREFIX=minimal_linux_live_
+ARCHIVE_DIR=${ARCHIVE_PREFIX}${DATE_PARSED}
+ARCHIVE_FILE=${ARCHIVE_DIR}_src.tar.xz
+
+# Remove old source artifacts.
+rm -rf $WORK_DIR/overlay/$BUNDLE_NAME/${ARCHIVE_PREFIX}*
+
+# Copy all sources to the new temporary directory.
+cp -r $DEST_DIR/usr/src \
+  $WORK_DIR/overlay/$BUNDLE_NAME/$ARCHIVE_DIR
+
+cd $WORK_DIR/overlay/$BUNDLE_NAME
+
+# Generate the 'tar.xz' source archive.
+tar -cpf - $ARCHIVE_DIR | xz -9 - \
+  > $WORK_DIR/overlay/$BUNDLE_NAME/$ARCHIVE_FILE
+
+# Prepare the 'tar.xz' source archive - END.
 
 echo "Bundle '$BUNDLE_NAME' has been installed."
 

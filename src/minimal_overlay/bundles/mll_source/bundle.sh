@@ -4,24 +4,29 @@ set -e
 
 . ../../common.sh
 
+# Prepare the target work area.
 mkdir -p "$WORK_DIR/overlay/$BUNDLE_NAME"
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
+# Remove the old sources.
 rm -rf $DEST_DIR
 
+# Create the required overlay bundle directories.
 mkdir -p $DEST_DIR/usr/src
 mkdir -p $DEST_DIR/etc/autorun
 
-# Copy all source files and folders to 'work/src'.
+# Copy all source files to '/usr/src'.
 cp $MAIN_SRC_DIR/*.sh $DEST_DIR/usr/src
 cp $MAIN_SRC_DIR/.config $DEST_DIR/usr/src
 cp $MAIN_SRC_DIR/README $DEST_DIR/usr/src
 cp $MAIN_SRC_DIR/*.txt $DEST_DIR/usr/src
-cp -r $MAIN_SRC_DIR/minimal_rootfs $DEST_DIR/usr/src
-cp -r $MAIN_SRC_DIR/minimal_overlay $DEST_DIR/usr/src
-cp -r $MAIN_SRC_DIR/minimal_config $DEST_DIR/usr/src
-cp -r $MAIN_SRC_DIR/minimal_boot $DEST_DIR/usr/src
 
+# Copy all source directories to '/usr/src'.
+for MINIMAL_DIR in `ls -d $MAIN_SRC_DIR/minimal*/` ; do
+  cp -r $MINIMAL_DIR $DEST_DIR/usr/src
+done
+
+# Copy the helper 'autorun' script.
 cp $SRC_DIR/90_src.sh $DEST_DIR/etc/autorun
 
 cd $DEST_DIR/usr/src

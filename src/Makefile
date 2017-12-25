@@ -88,10 +88,13 @@ src:
 
 release: src
 	@{ \
+		echo "Removing old work artifacts." ; \
 		rm -rf /tmp/mll_release ; \
 		mkdir -p /tmp/mll_release ; \
+		echo "Preparing MLL source tree." ; \
 		cp minimal_linux_live_*_src.tar.xz /tmp/mll_release ; \
-		cd /tmp/mll_release && tar -xf minimal_linux_live_*_src.tar.xz ; \
+		cd /tmp/mll_release ; \
+		tar -xf minimal_linux_live_*_src.tar.xz ; \
 		cd /tmp/mll_release/minimal_linux_live_*/ ; \
 		echo "Launching the main build script." ; \
 		/usr/bin/time -f "\n  Elapsed time: %E" ./build_minimal_linux_live.sh 2>&1 | tee minimal_linux_live.log ; \

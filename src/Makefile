@@ -55,9 +55,9 @@ qemu-bios:
 	@{ \
 		if [ ! -f ./minimal_linux_live.iso ] ; then \
 			echo "" ; \
-		  echo "  ERROR: ISO image 'minimal_linux_live.iso' not found." ; \
-		  echo "" ; \
-		  exit 1 ; \
+			echo "  ERROR: ISO image 'minimal_linux_live.iso' not found." ; \
+			echo "" ; \
+			exit 1 ; \
 		fi ; \
 		echo "Launching QEMU in BIOS mode." ; \
 		./qemu-bios.sh ; \
@@ -67,9 +67,9 @@ qemu-uefi:
 	@{ \
 		if [ ! -f ./minimal_linux_live.iso ] ; then \
 			echo "" ; \
-		  echo "  ERROR: ISO image 'minimal_linux_live.iso' not found." ; \
-		  echo "" ; \
-		  exit 1 ; \
+			echo "  ERROR: ISO image 'minimal_linux_live.iso' not found." ; \
+			echo "" ; \
+			exit 1 ; \
 		fi ; \
 		echo "Launching QEMU in UEFI mode." ; \
 		./qemu-uefi.sh ; \

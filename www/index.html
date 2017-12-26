@@ -25,6 +25,7 @@
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(4); return false;">Tutorial</a>
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(5); return false;">Emulator</a>
         <a class="button button-primary" href="#" onclick="javascript:menuSwap(6); return false;">Download</a>
+        <a class="button" target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>
         <hr />
       </div>
     </div>
@@ -36,7 +37,7 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          Minimal Linux Live is a tiny Linux distribution which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the <a target="_blank" href="http://kernel.org">Linux kernel</a>, <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and <a target="_blank" href="http://busybox.net">BusyBox</a> userland utilities. Additional software can be included in the ISO image at build time by using a well documented configuration file. Minimal Linux Live can be downloaded as a pre-built image, built from scratch or run in a web browser by using a JavaScript PC emulator.
+          Minimal Linux Live is a tiny Linux distribution, which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the <a target="_blank" href="http://kernel.org">Linux kernel</a>, <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and <a target="_blank" href="http://busybox.net">BusyBox</a> userland utilities. Additional software can be included in the ISO image at build time by using a well-documented configuration file. Minimal Linux Live can be downloaded as a pre-built image, built from scratch or run in a web browser by using a JavaScript PC emulator.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
@@ -78,13 +79,13 @@
       </div>
       <div class="row">
         <div class="twelve columns">
-          The default build process for version <strong>xx-Jan-2018</strong> generates ~9MB ISO image but you can make the ISO image even smaller (~7MB) if you exclude the default <a target="_blank" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
+          The default build process for version <strong>xx-Jan-2018</strong> generates ~9MB ISO image, but you can make the ISO image even smaller (~7MB) if you exclude the default <a target="_blank" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
       <div class="row">
         <div class="twelve columns">
-          If your build fails for some reason, most probably there are unresolved build dependencies. Please have in mind that the build dependencies can vary a lot depending on the Linux OS that you use and the software which you have already installed. If you still have troubles, you should be able to identify the failing script from the console output. You may find it useful to enable "debug" logging in the failing shell script like this: <code>set -ex</code>. Manually run the failing script and identify the failing part. If you are unable to find solution to your problem, then you can ask someone more experienced Linux guy around you or as alternative you can <a href="http://github.com/ivandavidov/minimal/issues" target="_blank">submit an issue</a>.
+          If your build fails for some reason, most probably there are unresolved build dependencies. Please have in mind that the build dependencies can vary a lot depending on the Linux OS that you use and the software that you have already installed. If you still have troubles, you should be able to identify the failing script from the console output. You may find it useful to enable "debug" logging in the failing shell script like this: <code>set -ex</code>. Manually run the failing script and identify the failing part. If you are unable to find a solution to your problem, then you can ask someone more experienced Linux guy around you or as alternative you can <a href="http://github.com/ivandavidov/minimal/issues" target="_blank">submit an issue</a>.
         </div>
       </div>
       <div style="font-size: 10%;">&nbsp;</div>
@@ -213,7 +214,7 @@
               <strong>Autorun functionality in the initramfs</strong> - all scripts in <code>/etc/autorun</code> are automatically executed on boot. This feature is used by some overlay bundles which require some functionality to be triggered on boot (e.g. the DHCP overlay bundle).
             </li>
             <li>
-              <strong>DHCP functionality as separate overlay bundle</strong> - the DHCP client functionality is triggered automaticaly on boot. The default DNS resolver is changed to <a target="_blank" href="http://quad9.net">Quad 9</a>. The public Google DNS resolvers are still present and used as backup. This overlay bundle is enabled by default.
+              <strong>DHCP functionality as separate overlay bundle</strong> - the DHCP client functionality is triggered automatically on boot. The default DNS resolver is changed to <a target="_blank" href="http://quad9.net">Quad 9</a>. The public Google DNS resolvers are still present and used as backup. This overlay bundle is enabled by default.
             </li>
             <li>
               <strong>Source code as separate overlay bundle</strong> - previous MLL versions used to include the MLL source code both in the initramfs structure and in the ISO image structure. Now the same source code is included as overlay bundle and can be found either in <code>/minimal/rootfs/usr/src</code> (ISO image) or in <code>/usr/src</code> (initramfs). This overlay bundle is enabled by default.
@@ -225,16 +226,16 @@
               <strong>Overlay bundles can be merged in the initramfs</strong> - all overlay bundles can be "merged" with the initramfs structure. In this way all overlay bundle functionality is available on boot, ragrdless of the limited hardware detection support. This makes the initramfs structure significantly larger and as consequence you need more RAM since all overlay bundles are available as part of the initramfs.
             </li>
             <li>
-              <strong>Structural improvements</strong> - the overlay build system is completely separated from the main build system. The main shell scripts are more but each individual shell script has simpler structure. Both tha mian build process and the overlay build system rely on "common" logic from separate shell script which is included in all other relevant shell scripts. The "sparse" image file size has been increased to 3MB in order to handle the size of the default overlay bundles.
+              <strong>Structural improvements</strong> - the overlay build system is completely separated from the main build system. The main shell scripts are more, but each individual shell script has simpler structure. Both tha mian build process and the overlay build system rely on "common" logic from separate shell script, which is included in all other relevant shell scripts. The "sparse" image file size has been increased to 3MB in order to handle the size of the default overlay bundles.
             </li>
             <li>
-              <strong>UEFI and BIOS support</strong> - MLL provides different build flavors, depending on the targeted firmware compatibility. The "bios" build flavor targets legacy BIOS systems and uses precompiled boot loaders provided by the <a target="_blank" href="http://syslinux.org">syslinux</a> project. The "uefi" build flavor targets modern UEFI systems and uses precompiled boot loaders provided by the <a target="_blank" href="http://github.com/ivandavidov/systemd-boot">systemd-boot</a> project. You can also generate "mixed" ISO image which can boot on both legacy BIOS and moder UEFI systems. The default build flavor is "bios".
+              <strong>UEFI and BIOS support</strong> - MLL provides different build flavors, depending on the targeted firmware compatibility. The "bios" build flavor targets legacy BIOS systems and uses precompiled boot loaders provided by the <a target="_blank" href="http://syslinux.org">syslinux</a> project. The "uefi" build flavor targets modern UEFI systems and uses precompiled boot loaders provided by the <a target="_blank" href="http://github.com/ivandavidov/systemd-boot">systemd-boot</a> project. You can also generate "mixed" ISO image which can boot on both legacy BIOS and modern UEFI systems. The default build flavor is "bios".
             </li>
             <li>
               <strong>ISO image restructuring</strong> - the main ISO image directory no longer contains individual files. One exception is "minimal.img" if the "sparse" overlay location has been enabled in the main configuration file. This makes the ISO image structure easier for future maintenance.
             </li>
             <li>
-              <strong>Custom MLL boot logo</strong> - the MLL boot logo is provided as separate overlay bundle. However, it is different from the other overlay bundles bcause it doesn't add overlay functionality. Instead, this overlay bundle "injects" the custom MLL boot logo in the kernel source tree and triggers small kernel rebuild. This overlay bundle is enabled by default.
+              <strong>Custom MLL boot logo</strong> - the MLL boot logo is provided as separate overlay bundle. However, it is different from the other overlay bundles because it doesn't add overlay functionality. Instead, this overlay bundle "injects" the custom MLL boot logo in the kernel source tree and triggers small kernel rebuild. This overlay bundle is enabled by default.
             </li>
             <li>
               TODO...
@@ -260,13 +261,13 @@
               <strong>UEFI support</strong> - MLL provides experimental UEFI support and the live CD can boot on UEFI based systems which provide UEFI shell.
             </li>
             <li>
-              <strong>Additional software via overlay bundles</strong> - the MLL architecture has been significantly improved and you can add more software via the so called "overlay bindles". This feature has been documented in the ".config" file, as well as in the internal README documents. By default these overlay bundles are not part of the build process because they rely on the host machine environment and the may or may not be built correctly on your particular machine. Nevertheless, turning this feature on is very simple and I encourage you to experiment with it.
+              <strong>Additional software via overlay bundles</strong> - the MLL architecture has been significantly improved and you can add more software via the so-called "overlay bundles". This feature has been documented in the ".config" file, as well as in the internal README documents. By default these overlay bundles are not part of the build process because they rely on the host machine environment and they may or may not be built correctly on your particular machine. Nevertheless, turning this feature on is very simple and I encourage you to experiment with it.
             </li>
             <li>
               <strong>Persistence support</strong> - MLL has the ability to transparently persist the changes that have been made during the live session and these changes will be preserved between reboots. You can use this feature to add your own software in MLL, change the MLL file/directory structure or simply to persist whatever changes you've made during the live session. This feature has been documented in the ".config" file, the internal README documents and in the internal shell script comments.
             </li>
             <li>
-              <strong>Smaller ISO image size</strong> - one of the goals for this release was to minimize the ISO image size and make it as small as possible. The final result is ISO image which is now less than 7MB when MLL has been generated with the default configuration options. However, the smaller ISO image size comes at cost and you need more RAM (256MB) in order to boot MLL properly.
+              <strong>Smaller ISO image size</strong> - one of the goals for this release was to minimize the ISO image size and make it as small as possible. The final result is ISO image, which is now less than 7MB when MLL has been generated with the default configuration options. However, the smaller ISO image size comes at cost and you need more RAM (256MB) in order to boot MLL properly.
             </li>
             <li>
               <strong>GCC optimization flags</strong> - the MLL configuration allows you to provide your own GCC flags which are used when the software pieces are compiled. These GCC optimization flags are not magical and they may or may not work fine on your particular host machine. They work fine on Ubuntu/Mint host machines and should work fine on other Debian based host machines. You can disable this feature if you get weird compilation issues on your host machine during the build process.
@@ -275,10 +276,10 @@
               <strong>Syslinux as download dependency</strong> - the "Syslinux" build dependency is no longer mandatory prerequisite requirement because the Syslinux source package is downloaded automatically as part of the build process.
             </li>
             <li>
-              <strong>Graphical boot mode with configurable screen resolution</strong> - MLL can boot in graphical mode. At the begining of the boot process you are presented with option to choose the screen resolution. This feature currently works in BIOS boot mode only.
+              <strong>Graphical boot mode with configurable screen resolution</strong> - MLL can boot in graphical mode. At the beginning of the boot process you are presented with option to choose the screen resolution. This feature currently works only in BIOS boot mode.
             </li>
             <li>
-              <strong>Rescue shells during boot</strong> - the MLL boot process has been enhanced and you can temporarily "exit" the boot process in the so called "rescue shell". In fact this is normal shell which runs with PID 1. This is useful if you want to have interactive environment (i.e. shell) while you are still in early "pre-init" boot stage.
+              <strong>Rescue shells during boot</strong> - the MLL boot process has been enhanced and you can temporarily "exit" the boot process in the so-called "rescue shell". In fact, this is a normal shell which runs with PID 1. This is useful if you want to have interactive environment (i.e. shell) while you are still in early "pre-init" boot stage.
             </li>
             <li>
               <strong>Initial RAM filesystem in separate directory structure</strong> - the initramfs structure has been externalized in separate directory. This makes it easier to modify the initramfs environment.
@@ -307,21 +308,16 @@
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.4.6</strong>, <strong>GNU C library 2.23</strong>
-              and <strong>BusyBox 1.24.2</strong>. The generated ISO image file is ~4MB larger due to glibc overhead and requires more RAM
-              (64MB is enough).
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.4.6</strong>, <strong>GNU C library 2.23</strong> and <strong>BusyBox 1.24.2</strong>. The generated ISO image file is ~4MB larger due to glibc overhead and requires more RAM (64MB is enough).
             </li>
             <li>
-              The build architecture has been revised and now the only core dependency to the host OS is the actual C compiler along with
-              the related binary utils. Kernel headers and main C library (which used to be implicit dependencies) are now automatically
-              generated and used as part of the overall build process.
+              The build architecture has been revised and now the only core dependency to the host OS is the actual C compiler along with the related binary utils. Kernel headers and main C library (which used to be implicit dependencies) are now automatically generated and used as part of the overall build process.
             </li>
             <li>
               The DNS resolving issue has been fixed and the network/internet related BusyBox applets (ping, wget, etc.) now work fine.
             </li>
             <li>
-              The ISO image generation process is now in a separate script file, completely detached from the kernel build infrastructure.
-              This allows the Minimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
+              The ISO image generation process is now in a separate script file, completely detached from the kernel build infrastructure. This allows the Minimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
             </li>
             <li>
               The internal script comments have been revised and now they are more descriptive than before.
@@ -347,22 +343,16 @@
               <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.1.6</strong> and <strong>BusyBox 1.23.2</strong>.
             </li>
             <li>
-              The build process is now parallelized between all available CPU cores, therefore the overall build time is significantly
-              reduced.
+              The build process is now parallelized between all available CPU cores, therefore the overall build time is significantly reduced.
             </li>
             <li>
-              There is DHCP network support for all network devices detected by the kernel. Note that DNS is not working due to well
-              known static linking issues caused by glibc.
+              There is DHCP network support for all network devices detected by the kernel. Note that DNS is not working due to well-known static linking issues caused by glibc.
             </li>
             <li>
-              The ISO image is now generated by using <strong>genisoimage</strong>. This fixes some issues with Debian and Arch based
-              host operating systems.
+              The ISO image is now generated by using <strong>genisoimage</strong>. This fixes some issues with Debian and Arch based host operating systems.
             </li>
             <li>
-              In addition to the above changes, if you <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> the latest
-              stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting
-              scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of
-              BusyBox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
+              In addition to the above changes, if you <a href="#" onclick="javascript:menuSwap(5); return false;">download</a> the latest stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of BusyBox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
             </li>
           </ul>
         </div>
@@ -399,14 +389,10 @@
               <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.16.1</strong> and <strong>BusyBox 1.22.1</strong>.
             </li>
             <li>
-              The boot process is now based on <strong>/sbin/init</strong> and <strong>/etc/inittab</strong>. There are four
-              available consoles. You can switch between them with <strong>Alt + F1</strong> up to <strong>Alt + F4</strong>.
+              The boot process is now based on <strong>/sbin/init</strong> and <strong>/etc/inittab</strong>. There are four available consoles. You can switch between them with <strong>Alt + F1</strong> up to <strong>Alt + F4</strong>.
             </li>
             <li>
-              Shell scripts have been updated. Now the downloaded source bundles are stored in separate folder.
-              If the download process is interrupted, it will continue the next time the scripts are executed.
-              The most notable change is in <strong>5_generate_rootfs.sh</strong> which now generates root file system with
-              structure compatible with <strong>/sbin/init</strong> and <strong>/etc/inittab</strong>.
+              Shell scripts have been updated. Now the downloaded source bundles are stored in separate folder. If the download process is interrupted, it will continue the next time the scripts are executed. The most notable change is in <strong>5_generate_rootfs.sh</strong> which now generates root file system with structure compatible with <strong>/sbin/init</strong> and <strong>/etc/inittab</strong>.
             </li>
           </ul>
         </div>
@@ -447,19 +433,19 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        I am professional Java software engineer (surprisingly, Java developers tend to know some Linux stuff) and I have been trying to create my own Linux OS for a very long time. Over the years I found some good online tutorials but most of them are not simple to follow and pretty much none of them explain in details what has been done and why it's done in this particular way. In most cases the tutorials are outdated or incomplete and there is high chance that you will end up with something broken.
+        I am professional Java software engineer (surprisingly, Java developers tend to know some Linux stuff) and I have been trying to create my own Linux OS for a very long time. Over the years I found some good online tutorials, but most of them are not simple to follow and pretty much none of them explains in detail what has been done and why it's done in this particular way. In most cases the tutorials are outdated or incomplete and there is high chance that you will end up with something broken.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        You can learn a lot from these online tutorials, as I did. In fact the scripts which I created are based on the same information resources which you might have already found. The difference is that this project provides you with fully functional set of shell scripts which automatically build fully functional live Linux OS, detailed tutorial and probably the best internal documentation you will ever find in an open source project.
+        You can learn a lot from these online tutorials, as I did. In fact, the scripts that I created are based on the same information resources which you might have already found. The difference is that this project provides you with fully functional set of shell scripts which automatically build fully functional live Linux OS, detailed tutorial and probably the best internal documentation you will ever find in an open source project.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        You can follow Minimal Linux Live on <a href="http://facebook.com/MinimalLinuxLive" target="_blank">Facebook</a>. If you'd like to contact me, my e-mail is: <strong>davidov [dot] i (at) gmail {dot} com</strong>. Let me kow if you find this project useful. Thanks! :)
+        You can follow Minimal Linux Live on <a href="http://facebook.com/MinimalLinuxLive" target="_blank">Facebook</a>. If you'd like to contact me, my e-mail is: <strong>davidov [dot] i (at) gmail {dot} com</strong>. Let me know if you find this project useful. Thanks! :)
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -483,13 +469,13 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        <a target="_blank" href="./the_dao_of_minimal_linux_live.txt">The Dao of Minimal Linux Live</a> is a tutorial based on the first published version of Minimal Linux Live. The tutorial explains in details what steps are involved in the creation of simple live Linux OS entirely from scratch, the inner structure of the build scripts and provides you with more information on how to improve/upgrade the generated OS with other generic stuff (e.g. users &amp; groups, /etc/inittab).
+        <a target="_blank" href="./the_dao_of_minimal_linux_live.txt">The Dao of Minimal Linux Live</a> is a tutorial based on the first published version of Minimal Linux Live. The tutorial explains in detail what steps are involved in the creation of simple live Linux OS entirely from scratch, the inner structure of the build scripts and provides you with more information on how to improve/upgrade the generated OS with other generic stuff (e.g. users &amp; groups, /etc/inittab).
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        You can also refer to the <a href="http://github.com/ivandavidov/minimal-linux-script" target="_blank">Minimal Linux Script</a> project which provides you with the minimal set of shell scrip commands that you need in order to create simple, yet fully functional Linux based operating system.
+        You can also refer to the <a href="http://github.com/ivandavidov/minimal-linux-script" target="_blank">Minimal Linux Script</a> project which provides you with the minimal set of shell script commands that you need in order to create simple, yet fully functional Linux based operating system.
       </div>
     </div>
   </div>

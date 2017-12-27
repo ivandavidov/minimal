@@ -36,7 +36,7 @@
         var cdrom_full = '../download/' + image_name;
         var hostname = window.location.hostname;
         if(hostname = 'ivandavidov.github.io') {
-          hostname = 'https://github.com/ivandavidov/minimal/releases/download/20-Jan-2017/' + image_name
+          cdrom_full = 'https://github.com/ivandavidov/minimal/releases/download/20-Jan-2017/' + image_name
         }
         var emulator = window.emulator = new V86Starter({
             memory_size: 256 * 1024 * 1024,

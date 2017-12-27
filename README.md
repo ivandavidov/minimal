@@ -1,8 +1,6 @@
 ## Minimal Linux Live
 
-You can find the main website here:
-
-* [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") - hosted by the cool [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") guys.
+The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") is provided by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
 
 Website mirrors are available here:
 

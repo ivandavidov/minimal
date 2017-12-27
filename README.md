@@ -2,7 +2,7 @@
 
 You can find the main website here:
 
-[Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") - hosted by the cool [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") guys.
+* [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") - hosted by the cool [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") guys.
 
 Website mirrors are available here:
 

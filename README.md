@@ -4,7 +4,7 @@ You can find the main website here:
 
 [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
 
-If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live") and [here](http://minimal.linux-bg.org "Minimal Linux Live").
+If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live"), [here](http://minimal.linux-bg.org "Minimal Linux Live") and [here](http://ivandavidov.github.io/minimal "Minimal Linux Live").
 
 The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
 
@@ -14,13 +14,13 @@ The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) docu
 
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
-![Minimal Linux Live JavaScript Emulator](http://minimal.idzona.com/assets/img/emulator_01.jpg)
+![Minimal Linux Live JavaScript Emulator](http://ivandavidov.github.io/minimal/www/assets/img/emulator_01.jpg)
 
 Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
 
 This is a screenshot of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](http://minimal.idzona.com/assets/img/minimal_linux_live_3.jpg)
+![Minimal Linux Live](http://ivandavidov.github.io/minimal/www/assets/img/minimal_linux_live_3.jpg)
 
 ## Current development state (26-Dec-2017)
 

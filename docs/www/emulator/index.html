@@ -24,8 +24,7 @@
 </div>
 
 <div style="white-space: pre; font: 12px monospace;">
-    This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave
-    properly in it. All CPU instructions are emulated via JavaScript and the boot process may take 10-20 minutes.
+    This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave properly in it. All CPU instructions are emulated via JavaScript and the boot process may take 10-20 minutes.
 </div>
 
 <script src="libv86.min.js"></script>
@@ -34,10 +33,6 @@
     window.onload = function () {
         var image_name = 'minimal_linux_live_20-Jan-2017_32-bit.iso';
         var cdrom_full = '../download/' + image_name;
-        var hostname = window.location.hostname;
-        if(hostname = 'ivandavidov.github.io') {
-          cdrom_full = 'https://github.com/ivandavidov/minimal/releases/download/20-Jan-2017/' + image_name
-        }
         var emulator = window.emulator = new V86Starter({
             memory_size: 256 * 1024 * 1024,
             vga_memory_size: 16 * 1024 * 1024,

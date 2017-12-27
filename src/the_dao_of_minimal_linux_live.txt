@@ -1,11 +1,11 @@
 ﻿   
-   The Dao of Minimal Linux Live (02-Oct-2016)
+   The Dao of Minimal Linux Live (27-Dec-2017)
    
    Author:    Ivan Davidov
    
    Website:   http://minimal.idzona.com
               http://skamilinux.hu/minimal
-              http://linux.idzona.com
+              http://ivandavidov.github.io/minimal
               http://minimal.linux-bg.org
    
    GitHub:    http://github.com/ivandavidov/minimal

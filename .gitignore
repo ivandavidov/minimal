@@ -1,16 +1,11 @@
 !.gitignore
 
-/www/download/**
-/www/favicon.ico
-/www/images/**
+/docs/www/download/**
+/docs/www/favicon.ico
+/docs/www/images/**
 
 /src/source/**
 /src/work/**
 /src/minimal_linux_live*
 /src/*.img
 /src/*.tgz
-
-/docs/mdbook
-/docs/book/**
-/docs/src/theme/**
-

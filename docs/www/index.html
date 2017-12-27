@@ -19,13 +19,13 @@
     </div>
     <div class="row">
       <div class="twelve columns" style="text-align: center;">
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(1); return false;">Home</a>
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(2); return false;">Changes</a>
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(3); return false;">About</a>
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(4); return false;">Tutorial</a>
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(5); return false;">Emulator</a>
-        <a class="button button-primary" href="#" onclick="javascript:menuSwap(6); return false;">Download</a>
-        <a class="button" target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>
+        <a id="hm1" class="button button-primary" href="#" onclick="javascript:menuSwap(1); return false;">Home</a>
+        <a id="hm2" class="button button-primary" href="#" onclick="javascript:menuSwap(2); return false;">Changes</a>
+        <a id="hm3" class="button button-primary" href="#" onclick="javascript:menuSwap(3); return false;">About</a>
+        <a id="hm4" class="button button-primary" href="#" onclick="javascript:menuSwap(4); return false;">Tutorial</a>
+        <a id="hm5" class="button button-primary" href="#" onclick="javascript:menuSwap(5); return false;">Emulator</a>
+        <a id="hm6" class="button button-primary" href="#" onclick="javascript:menuSwap(6); return false;">Download</a>
+        <a id="hm7" class="button" target="_blank" href="http://github.com/ivandavidov/minimal">GitHub</a>
         <hr />
       </div>
     </div>
@@ -537,10 +537,10 @@
         The build scripts for version <code>20-Jan-2017</code> are available as <strong>tar.xz</strong> archive.
         <div style="font-size: 10%;">&nbsp;</div>
         <ul>
-          <li>
+          <li id="dl1">
             <a href="./download/minimal_linux_live_20-Jan-2017_src.tar.xz" title="Minimal Linux Live - shell scripts">minimal_linux_live_20-Jan-2017_src.tar.xz</a> - from GitHub.
           </li>
-          <li>
+          <li id="dl2">
             <a href="./download/minimal_linux_live_20-Jan-2017_src.tar.xz" title="Minimal Linux Live - shell scripts">minimal_linux_live_20-Jan-2017_src.tar.xz</a> - from this website.
           </li>
         </ul>
@@ -551,16 +551,16 @@
         Pre-built ISO image files generated with the latest stable scripts are available for <strong>64-bit</strong> and <strong>32-bit</strong> Intel CPUs.
         <div style="font-size: 10%;">&nbsp;</div>
         <ul>
-          <li>
+          <li id="dl3">
             <a href="./download/minimal_linux_live_20-Jan-2017_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">minimal_linux_live_20-Jan-2017_64-bit.iso</a> - 64-bit ISO image from GitHub.
           </li>
-          <li>
+          <li id="dl4">
             <a href="./download/minimal_linux_live_20-Jan-2017_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">minimal_linux_live_20-Jan-2017_32-bit.iso</a> - 32-bit ISO image from GitHub.
           </li>
-          <li>
+          <li id="dl5">
             <a href="./download/minimal_linux_live_20-Jan-2017_64-bit.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs">minimal_linux_live_20-Jan-2017_64-bit.iso</a> - 64-bit ISO image from this website.
           </li>
-          <li>
+          <li id="dl6">
             <a href="./download/minimal_linux_live_20-Jan-2017_32-bit.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs">minimal_linux_live_20-Jan-2017_32-bit.iso</a> - 32-bit ISO image from this website.
           </li>
         </ul>
@@ -568,7 +568,7 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        You can also browse the <a target="_blank" href="http://github.com/ivandavidov/minimal/releases">GitHub releases</a> or browse the <a target="_blank" href="./download">download directory</a> in this website.
+        You can also browse the <a target="_blank" href="http://github.com/ivandavidov/minimal/releases">GitHub releases</a><span id="gh1"> or browse the <a target="_blank" href="./download">download directory</a> in this website</span>.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -637,7 +637,7 @@
       var afterSepa = '<a target="_blank" href="http://{1}">{2}</a>'
 
       var hostname = window.location.hostname;
-
+      
       switch(hostname) {
         case 'minimal.idzona.com' : {
             html += sepa;
@@ -661,6 +661,22 @@
 
             footerDiv.innerHTML = html;
             
+            break;
+        }
+        case 'ivandavidov.github.io' : {
+            document.getElementById('hm5').style.display="none";
+            
+            document.getElementById('dl2').style.display="none";
+            document.getElementById('dl5').style.display="none";
+            document.getElementById('dl6').style.display="none";
+            
+            document.getElementById('gh1').style.display="none";
+
+            html += sepa;
+            html += 'Development website - may not be fully functional.';
+
+            footerDiv.innerHTML = html;
+
             break;
         }
         default: {

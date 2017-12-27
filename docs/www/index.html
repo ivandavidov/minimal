@@ -208,7 +208,7 @@
               <strong>Bundle dependency management</strong> - good example is the Open JDK overlay bundle which depends on GLIBC and ZLIB. From end user perspective all you need to do is to add Open JDK to the list of overlay bundles that you want to include in MLL and the overlay build system will automatically prepare the overlay bundles required by Open JDK.
             </li>
             <li>
-              <strong>Separate configuration file for overlay bundles</strong> - all bundle specific configuration can be externalized in separate configuration file. This makes the main configuration file much smaller and easier to maintain. The entries in the bundle configuration file takes precedence over the main configuration file.
+              <strong>Separate configuration file for overlay bundles</strong> - all bundle specific configuration can be externalized in separate configuration file. This makes the main configuration file much smaller and easier to maintain. The entries in the bundle configuration file take precedence over the entries in the main configuration file.
             </li>
             <li>
               <strong>Autorun functionality in the initramfs</strong> - all scripts in <code>/etc/autorun</code> are automatically executed on boot. This feature is used by some overlay bundles which require some functionality to be triggered on boot (e.g. the DHCP overlay bundle).

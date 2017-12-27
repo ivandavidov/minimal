@@ -2,9 +2,13 @@
 
 You can find the main website here:
 
-[Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live")
+[Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") - hosted by the cool [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") guys.
 
-If the above link doesn't work, website mirrors are available [here](http://skamilinux.hu/minimal "Minimal Linux Live"), [here](http://minimal.linux-bg.org "Minimal Linux Live") and [here](http://ivandavidov.github.io/minimal "Minimal Linux Live").
+Website mirrors are available here:
+
+* [skamilinux.hu/minimal](http://skamilinux.hu/minimal "Minimal Linux Live")
+* [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
+* [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
 
 The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
 

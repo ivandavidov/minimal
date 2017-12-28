@@ -21,8 +21,8 @@ else
   exit 1
 fi
 
-if [ -d $OVERLAY_ROOTFS \
-  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
+if [ -d $OVERLAY_ROOTFS ] && \
+   [ ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
 
   echo "Merging overlay software in image."
 

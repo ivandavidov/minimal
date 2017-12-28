@@ -21,11 +21,11 @@ OVERLAY_TYPE=`read_property OVERLAY_TYPE`
 # Read the 'OVERLAY_LOCATION' property from '.config'
 OVERLAY_LOCATION=`read_property OVERLAY_LOCATION`
 
-if [ "$OVERLAY_LOCATION" = "iso" \
-  -a "$OVERLAY_TYPE" = "sparse" \
-  -a -d $OVERLAY_ROOTFS \
-  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" \
-  -a "$(id -u)" = "0" ] ; then
+if [ "$OVERLAY_LOCATION" = "iso" ] && \
+   [ "$OVERLAY_TYPE" = "sparse" ] && \
+   [ -d $OVERLAY_ROOTFS ] && \
+   [ ! "`ls -A $OVERLAY_ROOTFS`" = "" ] && \
+   [ "$(id -u)" = "0" ] ; then
 
   # Use sparse file as storage place. The above check guarantees that the whole
   # script is executed with root permissions or otherwise this block is skipped.
@@ -73,10 +73,10 @@ if [ "$OVERLAY_LOCATION" = "iso" \
 
   # Detach the loop device since we no longer need it.
   $BUSYBOX losetup -d $LOOP_DEVICE
-elif [ "$OVERLAY_LOCATION" = "iso" \
-  -a "$OVERLAY_TYPE" = "folder" \
-  -a -d $OVERLAY_ROOTFS \
-  -a ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
+elif [ "$OVERLAY_LOCATION" = "iso" ] && \
+     [ "$OVERLAY_TYPE" = "folder" ] && \
+     [ -d $OVERLAY_ROOTFS ] && \
+     [ ! "`ls -A $OVERLAY_ROOTFS`" = "" ] ; then
 
   # Use normal folder structure for overlay. All files and folders located in
   # the folder 'minimal_overlay' will be merged with the root folder on boot.

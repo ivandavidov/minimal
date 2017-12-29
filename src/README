@@ -48,7 +48,7 @@ Currently available overlay bundles:
                    requires 'ncurses'.
 
   Dropbear       - SSH server/client. This overlay bundle requires some GLIBC
-                   libraries.The build process generates new 'root' user with
+                   libraries. The build process generates new 'root' user with
                    password 'toor'. These are sample commands which demonstrate
                    how to use Dropbear:
 
@@ -82,7 +82,7 @@ Currently available overlay bundles:
                    execute a callback function when a specific event occurs on
                    a file descriptor or after a timeout has been reached.
 
-  Links          - text based web browser. Use the 'links' command to activate
+  Links          - text-based web browser. Use the 'links' command to activate
                    the browser.
 
   Open JDK       - the open source JDK. No need for manual steps. This overlay

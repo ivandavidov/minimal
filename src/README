@@ -38,7 +38,7 @@ Currently available overlay bundles:
   cf_tools       - meta-package which installs all available BOSH and Cloud
                    Foundry tools. Note that in MLL context these tools are
                    mostly useful as remote managers for existing BOSH and
-                   Cloud Foundry cloud infrastructures.
+                   Cloud Foundry infrastructures.
 
   coreutils      - set of commonly used GNU executable utilities.
 

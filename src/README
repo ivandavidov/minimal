@@ -35,14 +35,14 @@ Currently available overlay bundles:
                    including the full software development lifecycle in cloud
                    based environment.
 
-  cf_tools       - metapackage which installs all BOSH and Cloud Foundry tools.
-                   Note that in MLL context these tools are mostly useful as
-                   remote managers for existing BOSH and Cloud Foundry cloud
-                   infrastructures.
+  cf_tools       - meta-package which installs all available BOSH and Cloud
+                   Foundry tools. Note that in MLL context these tools are
+                   mostly useful as remote managers for existing BOSH and
+                   Cloud Foundry cloud infrastructures.
 
   coreutils      - set of commonly used GNU executable utilities.
 
-  dhcp           - DHCP and DNS functionality.
+  dhcp           - DHCP (client) and DNS (resolver) functionality.
 
   dialog         - shell scripting library for 'ncurses'. This overlay bundle
                    requires 'ncurses'.

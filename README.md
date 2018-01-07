@@ -22,23 +22,18 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 This is a screenshot of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](http://ivandavidov.github.io/minimal/www/assets/img/minimal_linux_live_3.jpg)
+![Minimal Linux Live](http://ivandavidov.github.io/minimal/www/assets/img/minimal_linux_live.jpg)
 
-## Current development state (26-Dec-2017)
+## Current development state (07-Jan-2018)
 
-* Linux kernel 4.14.8 (longterm)
+* Linux kernel 4.14.12 (longterm)
 * GNU C Library 2.26 (stable)
 * BusyBox 1.27.2 (stable)
 * Stable on default Ubuntu 16.04 installation with applied system updates.
 
 ## Future improvements
 
-* Add kernel modules and firmware.
-* Allow individual overlay bundles to be downloaded and installed.
-* Add more overlay bundles.
-
-The above list is not fixed and it may be updated at any time. Refer to the [issues](https://github.com/ivandavidov/minimal/issues) page
-where most of the MLL feature development is tracked.
+Take a look at the [issues](http://github.com/ivandavidov/minimal/issues) page where all future MLL improvements are tracked.
 
 ## How to build
 

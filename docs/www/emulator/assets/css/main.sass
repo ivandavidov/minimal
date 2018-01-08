@@ -1,0 +1,109 @@
+html,
+body
+  margin: 0
+  padding: 0
+  transition: all 0.2s ease-in-out
+
+  &.dark
+    background-color: #000
+
+    .header
+      .heading
+        color: #fff
+
+// get rid of the input shadow
+*:focus
+  box-shadow: none
+  outline: none
+
+
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 10px 50px
+
+@media screen and (max-width: 768px)
+  .container
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 10px
+
+
+.header
+  max-width: 1200px
+  margin: 20px 0
+
+  .heading
+    font-family: monospace
+    font-size: 24px
+    line-height: 24px
+    font-weight: 200
+    text-align: center
+    margin: 0
+    transition: all 0.2s ease-in-out
+
+    &.mini
+      font-size: 14px
+      line-height: 14px
+      opacity: 0.6
+
+  .light-btn
+    position: fixed
+    top: 25px
+    right: 25px
+    width: 40px
+    height: 40px
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: #fff
+    border: 1px solid #f1c40f
+    border-radius: 50%
+    color: #f1c40f
+    cursor: pointer
+    transition: all 0.2s ease-in-out
+
+    &:hover
+      background-color: #f1c40f
+      color: #fff
+
+    &.dark
+      background-color: #000
+      color: #f1c40f
+
+      &:hover
+        background-color: #f1c40f
+        color: #fff
+
+
+.screen-container
+  max-width: 100%
+  background-color: #000
+  overflow-x: scroll
+  padding: 0 20px
+  border: 1px solid #111
+
+  .emulator-screen
+    margin: 10px 0
+
+    .console
+      font-family: monospace
+      font-size: 16px
+      line-height: 18px
+      white-space: pre
+      min-width: 770px
+
+  input
+    margin: 0 0 10px
+    width: 100%
+
+
+.footer
+  max-width: 1200px
+  margin: 20px 0
+
+  .info
+    font-family: monospace
+    font-size: 12px

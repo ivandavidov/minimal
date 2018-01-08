@@ -1,49 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="description" content="Minimal Linux Live" />
-  <meta name="keywords" content="minimal minimalistic tiny linux live tutorial howto kernel busybox cd usb iso image bios uefi" />
-  <meta name="author" content="Ivan Davidov - davidov (dot) i [at] gmail {dot} com" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico" />
-  <title>Minimal Linux Live in JavaScript PC emulator</title>
-</head>
-<body>
-<div id="title" style="white-space: pre; font: 20px monospace;">
-  Minimal Linux Live (version 28-Jan-2018)
-</div>
-<br/>
-<div id="screen_container">
-  <div style="white-space: pre; font: 20px monospace; line-height: 22px"></div>
-  <canvas style="display: none"></canvas>
-</div>
-<div style="white-space: pre; font: 12px monospace;">
-  This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave properly in it.
-  All CPU instructions are emulated via JavaScript and the boot process may take 10-20 minutes.
-</div>
-<script src="libv86.min.js"></script>
-<script>
-  "use strict";
-  window.onload = function () {
-    var image_name = 'minimal_linux_live_28-Jan-2018_32-bit_bios.iso';
-    var cdrom_full = '../download/2018/' + image_name;
-    var emulator = window.emulator = new V86Starter({
-      memory_size: 256 * 1024 * 1024,
-      vga_memory_size: 16 * 1024 * 1024,
-      screen_container: document.getElementById('screen_container'),
-      bios: {
-        url: 'seabios.bin'
-      },
-      vga_bios: {
-        url: 'vgabios.bin'
-      },
-      cdrom: {
-        url: cdrom_full
-      },
-      autostart: true
-    });
-  }
-</script>
-</body>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>JavaScript Emulator for MML - Minimal Linux Live</title>
+
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+  </head>
+
+  <body id="body">
+    <div class="container">
+      <div class="header">
+        <h1 class="heading">Minimal Linux Live</h1>
+        <h1 class="heading mini">ver: 28-Jan-2018</h1>
+
+        <div class="light-btn" id="light-button"><i class="fas fa-lightbulb"></i></div>
+      </div>
+
+      <div class="screen-container">
+        <div class="emulator-screen" id="screen_container" contenteditable="true">
+          <div class="console"></div>
+          <canvas style="display: none"></canvas>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="info">
+          This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave properly in it.
+          All CPU instructions are emulated via JavaScript and the boot process may take 10-20 minutes.
+        </div>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="assets/js/libv86.min.js"></script>
+    <script>
+      window.onload = function() {
+        var image_name = 'minimal_linux_live_20-Jan-2017_32-bit.iso';
+        var cdrom_url = '../download/2018/' + image_name;
+
+        var emulator = window.emulator = new V86Starter({
+          memory_size: 128 * 1024 * 1024,
+          vga_memory_size: 16 * 1024 * 1024,
+          screen_container: document.getElementById('screen_container'),
+
+          bios: {
+            url: './bios/seabios.bin'
+          },
+          vga_bios: {
+            url: './bios/vgabios.bin'
+          },
+
+          hda: { // start with empty hard drive
+            buffer: new ArrayBuffer(8 * 1024 * 1024)
+          },
+          cdrom: {
+            url: cdrom_url
+          },
+
+          autostart: true
+        });
+
+        // initialize light button
+        document.getElementById('light-button').addEventListener('click', function() {
+          document.getElementById('light-button').classList.toggle("dark");
+          document.getElementById('body').classList.toggle("dark");
+        });
+      }
+    </script>
+  </body>
 </html>

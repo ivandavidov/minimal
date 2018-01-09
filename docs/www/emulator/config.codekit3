@@ -32,67 +32,36 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"\/assets\/js\/libv86.js": {
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/assets\/js\/libv86.min.js",
-		"oF": 2,
-		"sC": 0,
-		"tS": 0
-		},
 	"\/assets\/js\/libv86.min.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 1,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/assets\/js\/libv86.min-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 1,
 		"tS": 0
-		},
-	"\/assets\/js\/libv86.min.js.map": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/assets\/js\/libv86.min.js.map",
-		"oF": 0
-		},
-	"\/bios\/bochs-bios.bin": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/bios\/bochs-bios.bin",
-		"oF": 0
-		},
-	"\/bios\/bochs-vgabios.bin": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/bios\/bochs-vgabios.bin",
-		"oF": 0
 		},
 	"\/bios\/seabios.bin": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/bios\/seabios.bin",
-		"oF": 0
+		"oF": 1
 		},
 	"\/bios\/vgabios.bin": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "\/bios\/vgabios.bin",
-		"oF": 0
+		"oF": 1
 		},
-	"\/download\/2018\/minimal_linux_live_20-Jan-2017_32-bit.iso": {
+	"\/download\/2018\/minimal_linux_live_28-Jan-2018_32-bit_bios.iso": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/download\/2018\/minimal_linux_live_20-Jan-2017_32-bit.iso",
-		"oF": 1
+		"oA": 0,
+		"oAP": "\/download\/2018\/minimal_linux_live_28-Jan-2018_32-bit_bios.iso",
+		"oF": 0
 		},
 	"\/index.html": {
 		"cB": 0,

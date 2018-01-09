@@ -77,19 +77,27 @@ body {
     background-color: #fff;
     border: 1px solid #f1c40f;
     border-radius: 50%;
-    color: #f1c40f;
     cursor: pointer;
     -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out; }
+    transition: all 0.2s ease-in-out;
+    overflow: hidden; }
+    .header .light-btn svg {
+      -webkit-transform: scale(0.65);
+              transform: scale(0.65); }
+    .header .light-btn polygon, .header .light-btn path {
+      fill: #f1c40f; }
     .header .light-btn:hover {
-      background-color: #f1c40f;
-      color: #fff; }
+      background-color: #f1c40f; }
+      .header .light-btn:hover polygon, .header .light-btn:hover path {
+        fill: #fff; }
     .header .light-btn.dark {
-      background-color: #000;
-      color: #f1c40f; }
+      background-color: #000; }
+      .header .light-btn.dark polygon, .header .light-btn.dark path {
+        fill: #f1c40f; }
       .header .light-btn.dark:hover {
-        background-color: #f1c40f;
-        color: #fff; }
+        background-color: #f1c40f; }
+        .header .light-btn.dark:hover polygon, .header .light-btn.dark:hover path {
+          fill: #fff; }
 
 .screen-container {
   max-width: 100%;

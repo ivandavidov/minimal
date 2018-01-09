@@ -61,21 +61,33 @@ body
     background-color: #fff
     border: 1px solid #f1c40f
     border-radius: 50%
-    color: #f1c40f
     cursor: pointer
     transition: all 0.2s ease-in-out
+    overflow: hidden
+
+    svg
+      transform: scale(0.65)
+
+    polygon, path
+      fill: #f1c40f
 
     &:hover
       background-color: #f1c40f
-      color: #fff
+
+      polygon, path
+        fill: #fff
 
     &.dark
       background-color: #000
-      color: #f1c40f
+
+      polygon, path
+        fill: #f1c40f
 
       &:hover
         background-color: #f1c40f
-        color: #fff
+
+        polygon, path
+          fill: #fff
 
 
 .screen-container

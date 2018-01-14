@@ -140,4 +140,10 @@ docker run -it minimal-linux-live /bin/sh
 
 ## Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive). Thank you!
+Do you like this project? Yes? Well, in that case I would very much appreciate it if you give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive).
+
+You can support the Minimal Linux Live project by donating **ETH** to this address:
+
+``0xe145aAC827a6B7D580c6ae75910fAe8F5D96822A``
+
+Thank you!

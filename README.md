@@ -75,15 +75,15 @@ cd minimal_overlay
 
 ## BIOS and UEFI
 
-The latest verson of Minimal Linux Live (20-Jan-2017) provides experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)).
-
-The current development version of Minimal Linux Live provides full UEFI support, thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project. There are three build flavors that you can choose from:
+Minimal Linux Live can be used on UEFI systems (as of version ``28-Jan-2018``) thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project. There are three build flavors that you can choose from:
 
 * ``bios`` - MLL will be bootbale only on legacy BIOS based systems. This is the default build flavor.
 * ``uefi`` - MLL will be bootable only on UEFI based systems.
 * ``both`` - MLL will be bootable on both legacy BIOS and modern UEFI based systems.
 
 The generated MLL iso image is 'hybrid' which means that if it is 'burned' on external hard drive, this external hard drive will be bootable. You can use this behavior to install MLL on your USB flash device (read the next section).
+
+Minimal Linux Live version ``20-Jan-2017`` provides experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)).
 
 ## Installation
 

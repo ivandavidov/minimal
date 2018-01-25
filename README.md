@@ -6,6 +6,7 @@ Website mirrors are available here:
 
 * [skamilinux.hu/minimal](http://skamilinux.hu/minimal "Minimal Linux Live")
 * [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
+* [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
 * [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
 
 The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.

@@ -32,7 +32,7 @@ function logSwap(itemIndex, show) {
 
 function defaultTab(item) {
   var hrefPart = document.location.href.split('#')[1];
-  
+
   if(hrefPart == undefined) {
     hrefPart = item;
   }
@@ -93,14 +93,14 @@ function thankYou() {
   var afterSepa = '<a target="_blank" href="http://{1}">{2}</a>'
 
   var hostname = window.location.hostname;
-  
+
   switch(hostname) {
     case 'minimal.idzona.com' : {
       html += sepa;
       html += afterSepa.replace("{1}", 'microweber.com').replace("{2}", 'Microweber CMS');
 
       footerDiv.innerHTML = html;
-        
+
       break;
     }
     case 'skamilinux.hu' : {
@@ -120,6 +120,22 @@ function thankYou() {
       break;
     }
     case 'ivandavidov.github.io' : {
+      document.getElementById('hm5').style.display="none";
+
+      document.getElementById('dl2').style.display="none";
+      document.getElementById('dl5').style.display="none";
+      document.getElementById('dl6').style.display="none";
+
+      document.getElementById('gh1').style.display="none";
+
+      html += sepa;
+      html += 'Development website - may not be fully functional.';
+
+      footerDiv.innerHTML = html;
+
+      break;
+    }
+    case 'linux.idzona.com' : {
       document.getElementById('hm5').style.display="none";
 
       document.getElementById('dl2').style.display="none";

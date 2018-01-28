@@ -46,7 +46,7 @@ The section below is for Ubuntu and other Debian based distros.
 
 ```
 # Resove build dependencies
-sudo apt install wget make gawk gcc bc xorriso
+sudo apt install wget make gawk gcc bc libelf-dev xorriso
 
 # Build everything and produce ISO image.
 ./build_minimal_linux_live.sh

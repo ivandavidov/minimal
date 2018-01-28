@@ -103,6 +103,19 @@ release: src
 		echo "" ; \
 	}
 
+release2:
+	@{ \
+		echo "Removing old work artifacts." ; \
+		rm -rf /tmp/mll_release2 ; \
+		mkdir -p /tmp/mll_release2 ; \
+		cd /tmp/mll_release2 ; \
+		echo "Cloning the project repository." ; \
+		git clone http://github.com/ivandavidov/minimal ; \
+		cd minimal/src ; \
+		echo "Ready to generate release." ; \
+		make release ; \
+	}
+
 test:
 	@{ \
 		echo "" ; \
@@ -120,6 +133,8 @@ help:
 		echo "  make help      - this is the default target." ; \
 		echo "" ; \
 		echo "  make release   - generate clean source tree in '/tmp/mll_release' and build MLL there." ; \
+		echo "" ; \
+		echo "  make release2  - clone the project repository and execute 'make release' from it." ; \
 		echo "" ; \
 		echo "  make src       - generate 'tar.xz' source archive." ; \
 		echo "" ; \

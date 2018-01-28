@@ -13,7 +13,7 @@ uefi() {
   # USB flash drive, e.g. 'dd if=minimal_linux_live.iso of=/dev/sdb'.
   xorriso -as mkisofs \
     -isohybrid-mbr $WORK_DIR/syslinux/syslinux-*/bios/mbr/isohdpfx.bin \
-    -c boot.cat \
+    -c boot/boot.cat \
     -e boot/uefi.img \
       -no-emul-boot \
       -isohybrid-gpt-basdat \

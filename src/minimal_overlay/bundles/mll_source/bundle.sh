@@ -39,8 +39,6 @@ find * -type f -name '.keep' -exec rm {} +
 # '$OVERLAY_ROOTFS' will be overwritten correctly.
 cp -r --remove-destination $DEST_DIR/* \
   $OVERLAY_ROOTFS
-cp -r --remove-destination $DEST_DIR/* \
-  $OVERLAY_ROOTFS
 
 # Prepare the 'tar.xz' source archive - BEGIN.
 

@@ -25,12 +25,12 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](http://ivandavidov.github.io/minimal/www/assets/img/minimal_linux_live.jpg)
 
-## Current development state (07-Jan-2018)
+## Current development state (27-Apr-2018)
 
-* Linux kernel 4.14.12 (longterm)
-* GNU C Library 2.26 (stable)
-* BusyBox 1.27.2 (stable)
-* Stable on default Ubuntu 16.04 installation with applied system updates.
+* Linux kernel 4.16.5 (stable)
+* GNU C Library 2.27 (stable)
+* BusyBox 1.28.3 (stable)
+* Stable on default Ubuntu 18.04 installation with applied system updates.
 
 ## Future improvements
 
@@ -42,7 +42,7 @@ The section below is for Ubuntu and other Debian based distros.
 
 ```
 # Resove build dependencies
-sudo apt install wget make gawk gcc bc libelf-dev xorriso
+sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
 # Build everything and produce ISO image.
 ./build_minimal_linux_live.sh

@@ -63,6 +63,11 @@ Currently available overlay bundles:
                    workloads on RAM or disks. 'fio' is essential for
                    troubleshooting data I/O bottlenecks.
 
+  GraalVM        - Universal virtual machine for running applications written
+                   in JavaScript, Python, Ruby, R, JVM-based languages like
+                   Java, Scala, Clojure, Kotlin, and LLVM-based languages such
+                   as C and C++.
+
   JRE / JDK      - Oracle JRE/JDK. This overlay bundle requires some manual
                    preparation steps. Refer to the 'JAVA_ARCHIVE' property in
                    the '.config' file for more information. This overlay bundle

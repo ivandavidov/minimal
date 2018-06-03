@@ -1,4 +1,16 @@
-## Minimal Linux Live
+### [Overview](#overview)
+### [Current development state](#current-development-state)
+### [Future improvements](#future-improvements)
+### [How to build](#how-to-build)
+### [Overlay bundles](#overlay-bundles)
+### [GraalVM](#graalvm)
+### [BIOS and UEFI](#bios-and-uefi)
+### [Installation](#installation)
+### [Projects based on MLL](#projects-based-on-minimal-linux-live)
+
+---
+
+### Overview
 
 The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") is provided by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
 
@@ -17,15 +29,17 @@ The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) docu
 
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
-![Minimal Linux Live JavaScript Emulator](http://ivandavidov.github.io/minimal/www/assets/img/emulator_01.jpg)
+![Minimal Linux Live JavaScript Emulator](docs/www/assets/img/emulator_01.jpg)
 
 Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
 
 This is a screenshot of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](http://ivandavidov.github.io/minimal/www/assets/img/minimal_linux_live.jpg)
+![Minimal Linux Live](docs/www/assets/img/minimal_linux_live.jpg)
 
-## Current development state (27-Apr-2018)
+## Current development state
+
+As of **03-Jun-2018**:
 
 * Linux kernel 4.16.5 (stable)
 * GNU C Library 2.27 (stable)
@@ -73,6 +87,22 @@ cd minimal_overlay
 cd minimal_overlay
 ./overlay_build.sh openjdk
 ```
+
+## GraalVM
+
+The current development version of MLL partially supports [GraalVM](http://graalvm.org). Note that GraalVM itself is _release candidate_, which means it's not that stable. Moreover, GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. ``gu`` and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Take a look:
+
+![GraalVM languages](docs/www/assets/img/graal/graal_1.jpg)
+
+![GraalVM - Java](docs/www/assets/img/graal/graal_2.jpg)
+
+![GraalVM - Python](docs/www/assets/img/graal/graal_3.jpg)
+
+![GraalVM - Ruby](docs/www/assets/img/graal/graal_4.jpg)
+
+![GraalVM - Node](docs/www/assets/img/graal/graal_5.jpg)
+
+![GraalVM - JS](docs/www/assets/img/graal/graal_6.jpg)
 
 ## BIOS and UEFI
 

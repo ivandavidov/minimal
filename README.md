@@ -91,7 +91,7 @@ cd minimal_overlay
 
 ### GraalVM
 
-The current development version of MLL partially supports [GraalVM](http://graalvm.org) (provided as overlay bundle). Note that the version of GraalVM in MLL is _release candidate_ which means it may not be very stable. Moreover, GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. the ``gu`` updater and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Java, Python, Ruby, Node and JS work in MLL/GraalVM environment. Take a look.
+The current development version of MLL partially supports [GraalVM](http://graalvm.org) (provided as overlay bundle). Note that the version of GraalVM in MLL is _release candidate_ which means it may not be very stable. Moreover, GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. the ``gu`` updater and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Java, Python, Ruby, Node and JavaScript work in MLL/GraalVM environment. Great, isn't it! :)
 
 ![GraalVM languages](docs/www/assets/img/graal/graal_1.jpg)
 

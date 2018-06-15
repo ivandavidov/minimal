@@ -109,7 +109,7 @@ The current development version of MLL partially supports [GraalVM](http://graal
 
 Minimal Linux Live can be used on UEFI systems (as of version ``28-Jan-2018``) thanks to the [systemd-boot](https://github.com/ivandavidov/systemd-boot) project. There are three build flavors that you can choose from:
 
-* ``bios`` - MLL will be bootbale only on legacy BIOS based systems. This is the default build flavor.
+* ``bios`` - MLL will be bootable only on legacy BIOS based systems. This is the default build flavor.
 * ``uefi`` - MLL will be bootable only on UEFI based systems.
 * ``both`` - MLL will be bootable on both legacy BIOS and modern UEFI based systems.
 
@@ -130,7 +130,7 @@ Yet another way to install MLL on USB flash drive is by using the ``dd`` tool:
 dd if=minimal_linux_live.iso of=/dev/xxx
 ```
 
-The USB flash device will be recognezed as bootable device and you should be able to boot MLL successfully from it. If you have chosen the 'combined' build flavor (i.e. value ``both`` for the corresponding configuration property), then your USB flash device will be bootable on both legacy BIOS and modern UEFI based systems.
+The USB flash device will be recognized as bootable device and you should be able to boot MLL successfully from it. If you have chosen the 'combined' build flavor (i.e. value ``both`` for the corresponding configuration property), then your USB flash device will be bootable on both legacy BIOS and modern UEFI based systems.
 
 The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the MLL build process. You can import and use the image in Docker like this:
 

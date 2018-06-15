@@ -133,6 +133,11 @@ Currently available overlay bundles:
 
   ZLIB           - software library used for data compression.
 
+  Zulu JDK       - Zulu is an enterprise quality, certified build of OpenJDK
+                   that can be deployed on multiple platforms. Zulu is free to
+                   download, use and redistribute. This overlay bundle requires
+                   GLIBC and ZLIB.
+
 The overlay bundles can be found in this directory:
 
   minimal_overlay/bundles

@@ -63,6 +63,9 @@ Currently available overlay bundles:
                    workloads on RAM or disks. 'fio' is essential for
                    troubleshooting data I/O bottlenecks.
 
+  Golang         - Go is an open source programming language that makes it easy
+                   to build simple, reliable, and efficient software.
+
   GraalVM        - Universal virtual machine for running applications written
                    in JavaScript, Python, Ruby, R, JVM-based languages like
                    Java, Scala, Clojure, Kotlin, and LLVM-based languages such

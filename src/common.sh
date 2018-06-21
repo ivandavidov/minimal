@@ -2,7 +2,7 @@
 
 set -e
 
-SRC_DIR=`realpath --no-symlinks $PWD`
+SRC_DIR=$PWD
 CONFIG=$SRC_DIR/.config
 SOURCE_DIR=$SRC_DIR/source
 WORK_DIR=$SRC_DIR/work

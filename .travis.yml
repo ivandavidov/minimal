@@ -8,7 +8,4 @@ services:
 - docker
 
 script:
-- sudo apt-get install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
-- cd src
-- ./build_minimal_linux_live.sh
-- ./test_docker_image.sh
+- docker run --privileged -v $PWD:/minimal -it ubuntu:18.04 /bin/bash -c 'cd /minimal/travis && ./travis-ci.sh'

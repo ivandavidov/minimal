@@ -1,0 +1,14 @@
+---
+
+language: generic
+dist: trusty
+sudo: required
+
+services:
+- docker
+
+script:
+- sudo apt-get install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
+- cd src
+- ./build_minimal_linux_live.sh
+- ./test_docker_image.sh

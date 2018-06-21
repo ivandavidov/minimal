@@ -1,4 +1,4 @@
-* [Overview](#overview)
+* [Overview](#overview) [<img align="right" src="https://travis-ci.org/ivandavidov/minimal.svg?branch=master">](https://travis-ci.org/ivandavidov/minimal)
 * [Current development state](#current-development-state)
 * [Future improvements](#future-improvements)
 * [How to build](#how-to-build)
@@ -63,7 +63,7 @@ sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 ./build_minimal_linux_live.sh
 ```
 
-The default build process uses some custom provided ``CFLAGS``. They can be found in the ``.config`` file. Some of these additional flags were introduced in order to fix different issues which were reported during the development phase. However, there is no guarantee that the build process will run smoothly on your system with these particular flags. If you get compilation issues (please note that I'm talking about compilation issues, not about general shell script issues), you can try to disable these flags and then start the build process again. It may turn out that on your particular host system you don't need these flags. 
+The default build process uses some custom provided ``CFLAGS``. They can be found in the ``.config`` file. Some of these additional flags were introduced in order to fix different issues which were reported during the development phase. However, there is no guarantee that the build process will run smoothly on your system with these particular flags. If you get compilation issues (please note that I'm talking about compilation issues, not about general shell script issues), you can try to disable these flags and then start the build process again. It may turn out that on your particular host system you don't need these flags.
 
 ### Overlay bundles
 

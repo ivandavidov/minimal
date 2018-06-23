@@ -40,12 +40,12 @@ This is a screenshot of the current development version of Minimal Linux Live:
 
 ### Current development state
 
-As of **03-Jun-2018**:
+As of **23-Jun-2018**:
 
-* Linux kernel 4.16.5 (stable)
+* Linux kernel 4.17.2 (stable)
 * GNU C Library 2.27 (stable)
-* BusyBox 1.28.3 (stable)
-* Stable on default Ubuntu 18.04 installation with applied system updates.
+* BusyBox 1.28.4 (stable)
+* Stable build on default Ubuntu 18.04 installation with applied system updates.
 
 ### Future improvements
 

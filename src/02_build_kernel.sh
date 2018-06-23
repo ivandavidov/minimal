@@ -49,6 +49,9 @@ else
   # Turn on NFS export feature by default (4.16+).
   echo "# CONFIG_OVERLAY_FS_NFS_EXPORT is not set" >> .config
 
+  # Auto enable inode number mapping (4.17+).
+  echo "CONFIG_OVERLAY_FS_XINO_AUTO=y" >> .config
+
   # Step 1 - disable all active kernel compression options (should be only one).
   sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config
 

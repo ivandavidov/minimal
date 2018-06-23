@@ -27,8 +27,8 @@ cmd="qemu-system-$ARCH -pflash $OVMF_LOCATION -m 128M -cdrom minimal_linux_live.
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."
-  $cmd -hda hdd.img > /dev/null 2>&1 &
+  $cmd -hda hdd.img
 else
   echo "Starting QEMU with attached ISO image."
-  $cmd > /dev/null 2>&1 &
+  $cmd
 fi

@@ -5,9 +5,6 @@ set -e
 # Load common properties and functions in the current script.
 . ./common.sh
 
-# Find the Syslinux build directory.
-WORK_SYSLINUX_DIR=`ls -d $WORK_DIR/syslinux/syslinux-*`
-
 init() {
   # Remove the old ISO generation area if it exists.
   echo "Removing old ISO image work area. This may take a while."
@@ -55,6 +52,9 @@ prepare_boot_bios() {
   # UEFI error message.
   cp -r $SRC_DIR/minimal_boot/bios/* \
     $ISOIMAGE
+
+  # Find the Syslinux build directory.
+  WORK_SYSLINUX_DIR=`ls -d $WORK_DIR/syslinux/syslinux-*`
 
   # Copy the precompiled files 'isolinux.bin' and 'ldlinux.c32'. These files
   # are used by Syslinux during the legacy BIOS boot process.

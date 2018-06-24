@@ -10,7 +10,8 @@ apt-get -qq -y install qemu
 
 echo "`date` | *** MLL QEMU test - BEGIN ***"
 
-qemu-system-x86_64 -m 1024M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
+#qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
+qemu-system-x86_64 -m 256M -kernel work/kernel/kernel_installed/kernel -initrd work/rootfs.cpio.xz -append "console=ttyS0 console=tty0" -localtime -console
 
 sleep 5
 

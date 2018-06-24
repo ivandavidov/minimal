@@ -1,6 +1,7 @@
 ---
 
 language: generic
+os: linux
 dist: trusty
 sudo: required
 
@@ -8,4 +9,8 @@ services:
 - docker
 
 script:
+#- sudo apt-get update
 - docker run --privileged -v $PWD:/minimal -it ubuntu:18.04 /bin/bash -c 'cd /minimal/travis && ./travis-ci.sh'
+#- sudo chown -R $USER:$USER *
+#- cd travis && ./test_qemu.sh
+

@@ -35,7 +35,7 @@ case $FIRMWARE_TYPE in
     ;;
 
   uefi)
-    echo "Syslinux download has been skipped."
+    download
     ;;
 
   *)

@@ -8,7 +8,7 @@
 * [GraalVM](#graalvm)
 * [BIOS and UEFI](#bios-and-uefi)
 * [Installation](#installation)
-* [Projects based on MLL](#other-projects)
+* [Other projects](#other-projects)
 * [Thank you!](#thank-you)
 
 ---

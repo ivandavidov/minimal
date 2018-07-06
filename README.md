@@ -1,4 +1,6 @@
-* [Overview](#overview) [<img align="right" src="https://travis-ci.org/ivandavidov/minimal.svg?branch=master">](https://travis-ci.org/ivandavidov/minimal)
+# Minimal Linux Live [<img align="right" src="https://travis-ci.org/ivandavidov/minimal.svg?branch=master">](https://travis-ci.org/ivandavidov/minimal)
+
+* [Overview](#overview)
 * [Current development state](#current-development-state)
 * [Future improvements](#future-improvements)
 * [How to build](#how-to-build)
@@ -6,7 +8,7 @@
 * [GraalVM](#graalvm)
 * [BIOS and UEFI](#bios-and-uefi)
 * [Installation](#installation)
-* [Projects based on MLL](#projects-based-on-minimal-linux-live)
+* [Projects based on MLL](#other-projects)
 * [Thank you!](#thank-you)
 
 ---
@@ -142,11 +144,13 @@ docker import mll_image.tgz minimal-linux-live:latest
 docker run -it minimal-linux-live /bin/sh
 ```
 
-### Projects based on Minimal Linux Live:
+### Other projects
 
 * [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL. This project is recommended as a starting point for beginners.
 
 * [systemd-boot](https://github.com/ivandavidov/systemd-boot) - this project provides the UEFI boot loader images that MLL relies on. It also provides helper shell scripts which generate UEFI compatible MLL ISO images out of the already existing BIOS compatible MLL ISO images.
+
+* [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - minimal live Linux environment with support for Docker.
 
 * [RedoxOS Installer](https://github.com/RedoxOS/installer) - the original installer for [Redox OS](www.redox-os.org) is based on simplified version of Minimal Linux Live.
 
@@ -162,7 +166,7 @@ docker run -it minimal-linux-live /bin/sh
 
 * [prologic's MLL](https://github.com/prologic/minimal) - this fork adds Python support to the MLL runtime environment.
 
-* [KernelISO](https://github.com/rleon/kerneliso) - extended version of MLL.
+* [KernelISO](https://github.com/rleon/kerneliso) - extended version of MLL, based on older version of MLL.
 
 * [diaob's MLL](https://github.com/Diaob/minimal) - MLL translation to Simplified Chinese.
 

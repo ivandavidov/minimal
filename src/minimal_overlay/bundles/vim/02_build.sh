@@ -42,7 +42,6 @@ export CONF_OPT_CSCOPE='--enable-cscope'
 export CONF_OPT_MULTIBYTE='--enable-multibyte'
 export CONF_OPT_FEAT='--with-features=huge'
 
-
 echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS
 

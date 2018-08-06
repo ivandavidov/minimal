@@ -23,7 +23,24 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 
 echo "Configuring '$BUNDLE_NAME'."
 CFLAGS="$CFLAGS" ./configure \
-  --prefix=/usr
+  --prefix=/usr \
+  --enable-gui=no \
+  --without-x \
+  --with-tlib=ncurses \
+  --disable-xsmp \
+  --disable-gpm \
+  --disable-selinux
+
+export CONF_OPT_GUI='--enable-gui=no'
+export CONF_OPT_PERL='--enable-perlinterp'
+export CONF_OPT_PYTHON='--enable-pythoninterp'
+export CONF_OPT_TCL='--enable-tclinterp'
+export CONF_OPT_RUBY='--enable-rubyinterp'
+export CONF_OPT_LUA='--enable-luainterp'
+export CONF_OPT_X='--without-x'
+export CONF_OPT_CSCOPE='--enable-cscope'
+export CONF_OPT_MULTIBYTE='--enable-multibyte'
+export CONF_OPT_FEAT='--with-features=huge'
 
 echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS

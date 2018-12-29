@@ -6,17 +6,16 @@ set -e
 
 cd ../src
 
-apt-get -qq -y install qemu
+sudo apt-get -qq -y install qemu
 
 echo "`date` | *** MLL QEMU test - BEGIN ***"
 
-#qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
-qemu-system-x86_64 -m 256M -kernel work/kernel/kernel_installed/kernel -initrd work/rootfs.cpio.xz -append "console=ttyS0 console=tty0" -localtime -console
+qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
+#qemu-system-x86_64 -m 256M -kernel work/kernel/kernel_installed/kernel -initrd work/rootfs.cpio.xz -append "console=ttyS0 console=tty0" -localtime -nographic &
 
 sleep 5
 
-MLL=`ps -ef | grep -i [q]emu`
-if [ "$MLL" = "" ] ; then
+if [ "`ps -ef | grep -i [q]emu-system-x86_64`" = "" ] ; then
   echo "`date` | !!! FAILURE !!! Minimal Linux Live is not running in QEMU."
   exit 1
 else
@@ -25,11 +24,11 @@ fi
 
 sleep 120
 
-MLL=`ps -ef | grep -i [q]emu`
-if [ "$MLL" = "" ] ; then
+if [ "`ps -ef | grep -i [q]emu-system-x86_64`" = "" ] ; then
   echo "`date` | Minimal Linux Live is not running in QEMU."
 else
   echo "`date` | !!! FAILURE !!! Minimal Linux Live is still running in QEMU."
+  ps -ef | grep -i [q]emu-system-x86_64
   exit 1
 fi
 

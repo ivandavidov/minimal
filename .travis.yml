@@ -2,8 +2,15 @@
 
 language: generic
 os: linux
-dist: trusty
+dist: xenial
 sudo: required
+
+addons:
+  apt:
+    sources:
+      - docker-xenial
+    packages:
+    - docker
 
 services:
 - docker

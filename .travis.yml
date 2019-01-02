@@ -16,5 +16,5 @@ services:
 - docker
 
 script:
-- sudo apt-get -qq -y update
 - cd travis && ./travis-ci.sh
+

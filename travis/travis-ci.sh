@@ -12,10 +12,12 @@ sed -i "s|OVERLAY_LOCATION.*|OVERLAY_LOCATION=rootfs|" ../src/.config
 
 while true; do sleep 300; echo "`date` | >>> Heartbeat <<<"; done &
 
-sudo apt-get -qq update
+sudo apt-get -qq -y update
+sudo apt-get -qq -y upgrade
 
 ./build_mll.sh
 ./test_docker.sh
 ./test_qemu.sh
 
 set +e
+

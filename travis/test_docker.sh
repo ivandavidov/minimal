@@ -24,3 +24,4 @@ cat << CEOF
 CEOF
 
 set +e
+

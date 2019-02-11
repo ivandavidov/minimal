@@ -24,7 +24,7 @@
 #                    |
 #                    +--(2) /bin/sh (Alt + F4)
 
-echo -e "Welcome to \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/sbin/init)"
+echo -e "Welcome to \\e[32mBare \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/sbin/init)"
 
 # Autorun functionality
 if [ -d /etc/autorun ] ; then

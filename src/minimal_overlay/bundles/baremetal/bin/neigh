@@ -68,9 +68,13 @@ while true; do
     print_lldp_neighbors
 
 	if [ -n "$sleep" ]; then
-		echo Sleeping for $sleep seconds..
-		sleep $sleep
+		echo -n Sleeping for $sleep seconds
+        for i in $(seq $sleep); do
+            echo -n .
+            sleep 1
+        done
 		echo
+        echo
 	else
 		break
 	fi

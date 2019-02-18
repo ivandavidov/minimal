@@ -9,7 +9,6 @@ while [ -n "$1" ]; do
 		;;
 		-a)
 			is_autostart=1
-
 		;;
 		*)
 			echo "Unknown option! I only support -c (continuous) and -a for autostart messages"
@@ -24,7 +23,8 @@ print_lldp_neighbors() {
     neighbors_found=
     iface=
 
-    lldpcli show neighbor | while read line; do
+    # lldpcli is called at the end to avoid an extra subshell
+    while read line; do
         if echo $line|grep -q ^Interface; then
             iface=$(echo $line|cut -d ' ' -f 2|sed 's/,//')
         elif echo $line|grep -q ^ChassisID:; then
@@ -50,9 +50,11 @@ print_lldp_neighbors() {
             fi
             iface=
         fi
-    done
+    done <<EOF
+        $(lldpcli show neighbor)
+EOF
 
-    if [ -z "$neighbors" ]; then
+    if [ -z "$neighbors_found" ]; then
 		echo "No neighbors found (yet!)"
     fi
 }

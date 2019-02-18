@@ -19,9 +19,43 @@ while [ -n "$1" ]; do
 
 	shift
 done
-#if [ "$1" = "-c" ]; then
-#	sleep=5
-#fi
+
+print_lldp_neighbors() {
+    neighbors_found=
+    iface=
+
+    lldpcli show neighbor | while read line; do
+        if echo $line|grep -q ^Interface; then
+            iface=$(echo $line|cut -d ' ' -f 2|sed 's/,//')
+        elif echo $line|grep -q ^ChassisID:; then
+            chassis=$(echo $line|cut -d' ' -f3)
+        elif echo $line|grep -q ^SysName:; then
+            sysname=$(echo $line|cut -d' ' -f2)
+        elif echo $line|grep -q ^MgmtIP:; then
+            mgmtip=$(echo $line|cut -d' ' -f2)
+        elif echo $line|grep -q ^PortID:; then
+            port=$(echo $line|cut -d' ' -f2-)
+        elif echo $line|grep -q ^PortDescr:; then
+            portdescr=$(echo $line|cut -d' ' -f2-)
+        elif echo $line|grep -q ^--------------; then
+            if [ -n "$iface" ]; then
+                # we have an interface, flush!
+                neighbors_found=1
+
+                iface_mac=$(cat /sys/class/net/$iface/address)
+                echo "Interface $iface (local mac $iface_mac)"
+                echo "   Mgmt / Chassis: $mgmtip mac $chassis"
+                echo "   SysName:        $sysname"
+                echo "   Port:           $port ($portdescr)"
+            fi
+            iface=
+        fi
+    done
+
+    if [ -z "$neighbors" ]; then
+		echo "No neighbors found (yet!)"
+    fi
+}
 
 while true; do
 	# autostart warning (aka autodoc!)
@@ -29,22 +63,7 @@ while true; do
 		echo "Auto-showing lldp neighbors, press alt+f2 or 'killall neigh' for console"
 	fi
 
-	# print interfaces
-	#for iface in $(ip link|egrep -o -e '^[0-9]+: [^:]+'|awk '{ print $2 }'|grep -v -e ^lo$ -e ^sit0@); do
-	for iface in /sys/class/net/*; do
-		if echo $iface | grep -q -e /lo$ -e /sit0; then
-			continue
-		fi
-		echo -n ${iface##*/} $(cat $iface/address) ''
-	done
-	echo
-
-	# print lldp neighbors
-	lldpcli show neighbor | grep -e Interface -e ChassisID -e SysName -e Mgmt -e PortID -e PortDescr
-
-	if ! lldpcli show neighbor | grep -q -e Interface; then
-		echo "No neighbors found (yet!)"
-	fi
+    print_lldp_neighbors
 
 	if [ -n "$sleep" ]; then
 		echo Sleeping for $sleep seconds..

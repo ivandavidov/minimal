@@ -15,6 +15,7 @@ found in `README.orig` or in the upstream repository.
 ```
 apt install automake libtool pkg-config # lldpd
 apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev xz-utils cpio file build-essential # minimal linux
+apt install pkg-config upx-ucl # lshw
 cd src
 ./build_minimal_linux_live.sh
 ```

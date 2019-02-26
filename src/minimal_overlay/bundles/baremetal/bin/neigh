@@ -59,11 +59,34 @@ EOF
     fi
 }
 
+print_iface_summary() {
+    local count=0
+    local ifaces=""
+
+    # beware! we assume a nic's name starts with e... (ethX, enp0s..)
+    if ls /sys/class/net/|grep -q ^e; then
+        for ifacepath in /sys/class/net/e*; do
+            iface=${ifacepath##*/}
+            if [ "$(cat ${ifacepath}/carrier 2>/dev/null)" = "1" ]; then
+                iface="${iface}(!)"
+            fi
+            count=$((count + 1))
+            ifaces="$ifaces $iface"
+        done
+
+        echo "Found $count NICs:$ifaces (!=carrier)"
+    else
+        echo "No NICs found on system (at least none starting with e...)"
+    fi
+}
+
 while true; do
 	# autostart warning (aka autodoc!)
 	if [ -n "$is_autostart" ]; then
 		echo "Auto-showing lldp neighbors, press alt+f2 or 'killall neigh' for console"
 	fi
+
+    print_iface_summary
 
     print_lldp_neighbors
 

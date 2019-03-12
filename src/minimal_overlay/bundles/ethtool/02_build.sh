@@ -18,9 +18,6 @@ fi
 
 rm -rf $DEST_DIR
 
-#echo "Setting 'vimrc' location."
-#echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
-
 echo "Configuring '$BUNDLE_NAME'."
 CFLAGS="$CFLAGS" ./configure \
   --prefix=/usr --libdir=/lib \
@@ -30,27 +27,6 @@ make -j $NUM_JOBS
 
 echo "Installing '$BUNDLE_NAME'."
 make -j $NUM_JOBS install DESTDIR=$DEST_DIR
-
-#echo "Generating '$BUNDLE_NAME'."
-#mkdir -p $DEST_DIR/etc
-#cat > $DEST_DIR/etc/vimrc << "EOF"
-#" Begin /etc/vimrc
-#
-#set nocompatible
-#set backspace=2
-#set mouse=r
-#syntax on
-#set background=dark
-#
-#" End /etc/vimrc
-#EOF
-
-#echo "Symlinking 'vim' to 'vi'."
-#ln -sv vim $DEST_DIR/usr/bin/vi
-#mkdir -p $DEST_DIR/bin
-#ln -sv vim $DEST_DIR/bin/vi
-
-#mkdir -p $DESTDIR/var/run/
 
 echo "Reducing '$BUNDLE_NAME' size."
 set +e

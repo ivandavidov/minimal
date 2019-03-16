@@ -117,7 +117,7 @@ Minimal Linux Live can be used on UEFI systems (as of version ``28-Jan-2018``) t
 
 The generated MLL iso image is 'hybrid' which means that if it is 'burned' on external hard drive, this external hard drive will be bootable. You can use this behavior to install MLL on your USB flash device (read the next section).
 
-Minimal Linux Live version ``20-Jan-2017`` provides experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)).
+The older version of Minimal Linux Live ``20-Jan-2017`` has experimental UEFI support and the MLL ISO image can be used on legacy BIOS based systems and on UEFI based systems with enabled UEFI shell (level support 1 or higher, see section ``3.1 - Levels Of Support`` of the [UEFI Shell specification](http://www.uefi.org/sites/default/files/resources/UEFI_Shell_2_2.pdf)). All newer versions of Minimal Linux Live have full UEFI support.
 
 ### Installation
 
@@ -150,7 +150,9 @@ docker run -it minimal-linux-live /bin/sh
 
 * [systemd-boot](https://github.com/ivandavidov/systemd-boot) - this project provides the UEFI boot loader images that MLL relies on. It also provides helper shell scripts which generate UEFI compatible MLL ISO images out of the already existing BIOS compatible MLL ISO images.
 
-* [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - minimal live Linux environment with support for Docker.
+* [Bare Minimal Linux](https://github.com/gagcc/bare-minimal-linux) - fork of minimal linux for baremetal debugging. This project is part of the [SAP Converged Cloud](https://en.wikipedia.org/wiki/SAP_Converged_Cloud) ecosystem.
+
+* [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - a Linux host OS designed to run Containers with a minimalist design and small footprint.
 
 * [RedoxOS Installer](https://github.com/RedoxOS/installer) - the original installer for [Redox OS](www.redox-os.org) is based on simplified version of Minimal Linux Live.
 

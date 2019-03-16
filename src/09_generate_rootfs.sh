@@ -41,6 +41,7 @@ fi
 # BusyBox has direct dependencies on these libraries.
 cp $SYSROOT/lib/libm.so.6 $ROOTFS/lib
 cp $SYSROOT/lib/libc.so.6 $ROOTFS/lib
+cp $SYSROOT/lib/libresolv.so.2 $ROOTFS/lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 

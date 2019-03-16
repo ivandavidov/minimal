@@ -10,7 +10,7 @@ configured. Check the project website for more information:
 For Ubuntu and other Debian based operating systems you can use the following
 command in order to resolve the required build dependencies:
 
-  sudo apt install wget make gawk gcc bc libelf-dev xorriso
+  sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
 Once you have your ISO image up and running perhaps you'd like to examine the
 configuration file '.config' and see what options you have there. For example,

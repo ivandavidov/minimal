@@ -29,10 +29,10 @@ clean:
 		fi ; \
 		USE_PREDEFINED_BUSYBOX_CONFIG=`grep -i ^USE_PREDEFINED_BUSYBOX_CONFIG= .config | cut -f2- -d'=' | xargs` ; \
 		if [ ! "$$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then \
-			echo "Removing predefined BusyBox config file." ; \
+			echo "Removing predefined Busybox config file." ; \
 			rm -rf minimal_overlay/busybox.config ; \
 		else \
-			echo "Local BusyBox config file is preserved." ; \
+			echo "Local Busybox config file is preserved." ; \
 		fi ; \
 		echo "Removing source level overlay software." ; \
 		mv -f minimal_overlay/rootfs/README /tmp/mll_overlay_readme ; \

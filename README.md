@@ -46,7 +46,7 @@ As of **25-Mar-2019**:
 
 * Linux kernel 5.0.4 (stable)
 * GNU C Library 2.27 (stable)
-* BusyBox 1.30.1 (stable)
+* Busybox 1.30.1 (stable)
 * Stable build on default Ubuntu 18.04.2 installation with applied system updates.
 
 ### Future improvements
@@ -160,7 +160,7 @@ docker run -it minimal-linux-live /bin/sh
 
 * [K1773R's MLL](https://github.com/K1773R/minimal) - PowerPC version of Minimal Linux Live with [memtester](http://pyropus.ca/software/memtester) as additional software. Impressive work!
 
-* [Ladiko's MLL](https://github.com/ladiko/minimal) - this fork automatically downloads and uses the latest available Kernel and BusyBox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
+* [Ladiko's MLL](https://github.com/ladiko/minimal) - this fork automatically downloads and uses the latest available Kernel and Busybox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
 
 * [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux) - MLL fork which provides additional overlay bundles (ncurses and Nano).
 

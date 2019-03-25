@@ -199,12 +199,12 @@
    command line tools like ls, cat, mkdir, etc. This environment is called "initramfs" which
    stands for "initial RAM file system". This is what we are going to do:
    
-      1) We are going to download & compile BusyBox. This will give us the basic command line
+      1) We are going to download & compile Busybox. This will give us the basic command line
          tools that we need for normal work in console mode.
-      2) We will use BusyBox to provide us with some default directory/file structure, which
+      2) We will use Busybox to provide us with some default directory/file structure, which
          we are going to modify into our own initramfs file.
    
-   One by one - we need to download and unpack the BusyBox sources. Let's take a look at the
+   One by one - we need to download and unpack the Busybox sources. Let's take a look at the
    script file "3_get_busybox.sh":
    
       #/bin/sh
@@ -224,7 +224,7 @@
    explained earlier. Long story short - we get the source archive with "wget" and then we
    unpack the sources with "tar". That's it. Nothing complex at all.
    
-   Now that we have BusyBox sources, we need to compile them. Let's take a look at the next
+   Now that we have Busybox sources, we need to compile them. Let's take a look at the next
    script "4_build_busybox.sh" which we need to execute:
    
       #/bin/sh
@@ -245,32 +245,32 @@
       make clean
    
    The command above ensures that we will get rid of all build artefacts, assuming this
-   is not the first time we go through the BusyBox build process.
+   is not the first time we go through the Busybox build process.
    
       make defconfig
    
    This command creates new ".config" file, which contains the defaults for proper
-   BusyBox build process. Again, nothing extraordinary here.
+   Busybox build process. Again, nothing extraordinary here.
    
       sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
    
    The command above is very important, because we inform the build process to build
-   a static version of BusyBox, meaning that the BusyBox executable file will not
+   a static version of Busybox, meaning that the Busybox executable file will not
    be dependent on any external library. We cannot skip this step, otherwise our OS will
    fail with "kernel panic" when we try to boot.
    
       make busybox
    
-   The command above compiles BusyBox. Nothing interesting here. The build should be
+   The command above compiles Busybox. Nothing interesting here. The build should be
    significantly faster compared to the kernel build.
    
       make install
    
-   The command above creates new "_install" folder and installs BusyBox in it. We
+   The command above creates new "_install" folder and installs Busybox in it. We
    will use this folder as a base for our new initramfs file.
    
    At this point, we should have kernel compiled with default settings (yes, we changed
-   one of them, but it's no big deal) and we should also have BusyBox compiled with
+   one of them, but it's no big deal) and we should also have Busybox compiled with
    static option enabled and all other default settings.
    
    Now we come to the part where we create our own initramfs folder, which later on we
@@ -336,7 +336,7 @@
       cd ../../rootfs
    
    The code snippet above removes the old initramfs folder called "rootfs", then
-   copies the "_install" folder (the one created by BusyBox) with a new name - "rootfs".
+   copies the "_install" folder (the one created by Busybox) with a new name - "rootfs".
    This folder is going to be our new initramfs focal point.
    
       rm -f linuxrc
@@ -434,7 +434,7 @@
    "rootfs" folder.
    
    We are almost finished. At this point, we have already compiled the Linux kernel and we
-   have also created initramfs file based on BusyBox and our own set of configurations.
+   have also created initramfs file based on Busybox and our own set of configurations.
    The last thing to do is to generate a bootable ISO file. Let's take a look at the last
    script "7_generate_iso.sh":
    
@@ -569,8 +569,8 @@
    
    Even though we haven't discussed this topic, you might have already noticed that the
    file ".config", which comes along with the other build scripts, contains the URL
-   locations for the kernel sources and the BusyBox sources. You can easily build live
-   Linux OS based on different kernel/BusyBox versions if you provide different
+   locations for the kernel sources and the Busybox sources. You can easily build live
+   Linux OS based on different kernel/Busybox versions if you provide different
    URLs in the ".config" file. Here is the content of the default ".config" file:
    
       # You can find the latest Linux kernel source bundles here:
@@ -579,7 +579,7 @@
       #
       KERNEL_SOURCE_URL=https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.15.6.tar.xz
    
-      # You can find the latest BusyBox source bundles here:
+      # You can find the latest Busybox source bundles here:
       #
       # http://busybox.net
       #
@@ -660,7 +660,7 @@
    
       http://git.busybox.net/busybox/tree/examples/inittab
    
-   Note that the details above are specific to BusyBox. Usually, the "init" process
+   Note that the details above are specific to Busybox. Usually, the "init" process
    supports runlevels, but that's not the case here.
    
    ---   ---   ---
@@ -704,7 +704,7 @@
       2) GNU Coreutils - these are the real shell command line utilities (ls, cd, etc.).
          You need them as later on, we would "escape" from "initramfs" and use the
          actual file system available in the compressed file. Alternatively, you can
-         overlay the whole "BusyBox" environment on top of the compressed file system but
+         overlay the whole "Busybox" environment on top of the compressed file system but
          that's not really a professional approach.
    
       3) You need to "switch_root" to the actual file system (the compressed one) which

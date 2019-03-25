@@ -34,7 +34,7 @@ if [ "$OVERLAY_LOCATION" = "iso" ] && \
 
   echo "Using sparse file for overlay."
 
-  # This is the BusyBox executable that we have already generated.
+  # This is the Busybox executable that we have already generated.
   BUSYBOX=$ROOTFS/bin/busybox
 
   # Create sparse image file with 3MB size. Note that this increases the ISO

@@ -39,7 +39,7 @@
     </div>
     <div class="row">
       <div class="twelve columns">
-        Minimal Linux Live is a tiny educational Linux distribution, which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the <a target="_blank" href="http://kernel.org">Linux kernel</a>, <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and <a target="_blank" href="http://busybox.net">BusyBox</a> userland utilities. Additional software can be included in the ISO image at build time by using a well-documented configuration file. Minimal Linux Live can be downloaded as a pre-built image, built from scratch or run in a web browser by using a JavaScript PC emulator.
+        Minimal Linux Live is a tiny educational Linux distribution, which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the <a target="_blank" href="http://kernel.org">Linux kernel</a>, <a target="_blank" href="http://gnu.org/software/libc">GNU C library</a> and <a target="_blank" href="http://busybox.net">Busybox</a> userland utilities. Additional software can be included in the ISO image at build time by using a well-documented configuration file. Minimal Linux Live can be downloaded as a pre-built image, built from scratch or run in a web browser by using a JavaScript PC emulator.
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -99,7 +99,7 @@
     <div style="font-size: 10%;">&nbsp;</div>
     <div class="row">
       <div class="twelve columns">
-        The generated ISO image file contains Linux kernel, GNU C library compiled with default options, BusyBox compiled with default options, quite simple initramfs structure and some "overlay bundles" (the default build process provides few overlay bundles). You don't get Windows support out of the box, nor you get any fancy desktop environment. All you get is a simple shell console with default BusyBox applets, network support via DHCP and... well, that's all. This is why it's called "minimal".
+        The generated ISO image file contains Linux kernel, GNU C library compiled with default options, Busybox compiled with default options, quite simple initramfs structure and some "overlay bundles" (the default build process provides few overlay bundles). You don't get Windows support out of the box, nor you get any fancy desktop environment. All you get is a simple shell console with default Busybox applets, network support via DHCP and... well, that's all. This is why it's called "minimal".
       </div>
     </div>
     <div style="font-size: 10%;">&nbsp;</div>
@@ -184,7 +184,7 @@
           <div style="font-size: 10%;">&nbsp;</div>
           <ul>
             <li>
-              <strong>Updated software base</strong> - Minimal Linux Live (MLL) is based on Linux kernel 4.14.12, GNU C library 2.26 and BusyBox 1.27.2. The generated ISO image file is 9MB and requires 256MB RAM in order to run properly.
+              <strong>Updated software base</strong> - Minimal Linux Live (MLL) is based on Linux kernel 4.14.12, GNU C library 2.26 and Busybox 1.27.2. The generated ISO image file is 9MB and requires 256MB RAM in order to run properly.
             </li>
             <li>
               30+ available <a target="_blank" href="https://github.com/ivandavidov/minimal/blob/master/src/README#L19">overlay bundles</a> with new additions like nano, vim, Cloud Foundry and BOSH clients, Open JDK, keyboard layouts, the game 2048 and many more. 
@@ -237,7 +237,7 @@
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
-              <strong>Updated software base</strong> - Minimal Linux Live (MLL) is based on Linux kernel 4.4.44, GNU C library 2.24 and BusyBox 1.26.2. The generated ISO image file is 7MB and requires 256MB RAM in order to run properly.
+              <strong>Updated software base</strong> - Minimal Linux Live (MLL) is based on Linux kernel 4.4.44, GNU C library 2.24 and Busybox 1.26.2. The generated ISO image file is 7MB and requires 256MB RAM in order to run properly.
             </li>
             <li>
               <strong>UEFI support</strong> - MLL provides experimental UEFI support and the live CD can boot on UEFI based systems which provide UEFI shell.
@@ -267,7 +267,7 @@
               <strong>Initial RAM filesystem in separate directory structure</strong> - the initramfs structure has been externalized in separate directory. This makes it easier to modify the initramfs environment.
             </li>
             <li>
-              <strong>Optional use of preconfigured Linux kernel and BusyBox</strong> - you can provide custom Linux kernel and BusyBox configurations. This is useful if you want to build MLL with many non-default options or if you want to distribute your own version of MLL.
+              <strong>Optional use of preconfigured Linux kernel and Busybox</strong> - you can provide custom Linux kernel and Busybox configurations. This is useful if you want to build MLL with many non-default options or if you want to distribute your own version of MLL.
             </li>
             <li>
               <strong>Optional use of already downloaded sources</strong> - this feature does what it says: if you turn it on, you don't need internet connection and you will be using already downloaded sources. This is useful if you don't want to use internet connection or if you want to distribute your own version of MLL which includes specific sources.
@@ -290,13 +290,13 @@
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.4.6</strong>, <strong>GNU C library 2.23</strong> and <strong>BusyBox 1.24.2</strong>. The generated ISO image file is ~4MB larger due to glibc overhead and requires more RAM (64MB is enough).
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.4.6</strong>, <strong>GNU C library 2.23</strong> and <strong>Busybox 1.24.2</strong>. The generated ISO image file is ~4MB larger due to glibc overhead and requires more RAM (64MB is enough).
             </li>
             <li>
               The build architecture has been revised and now the only core dependency to the host OS is the actual C compiler along with the related binary utils. Kernel headers and main C library (which used to be implicit dependencies) are now automatically generated and used as part of the overall build process.
             </li>
             <li>
-              The DNS resolving issue has been fixed and the network/internet related BusyBox applets (ping, wget, etc.) now work fine.
+              The DNS resolving issue has been fixed and the network/internet related Busybox applets (ping, wget, etc.) now work fine.
             </li>
             <li>
               The ISO image generation process is now in a separate script file, completely detached from the kernel build infrastructure. This allows the Minimal Linux Live users to modify the ISO image file/directory structure before the actual ISO generation.
@@ -322,7 +322,7 @@
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.1.6</strong> and <strong>BusyBox 1.23.2</strong>.
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 4.1.6</strong> and <strong>Busybox 1.23.2</strong>.
             </li>
             <li>
               The build process is now parallelized between all available CPU cores, therefore the overall build time is significantly reduced.
@@ -334,7 +334,7 @@
               The ISO image is now generated by using <strong>genisoimage</strong>. This fixes some issues with Debian and Arch based host operating systems.
             </li>
             <li>
-              In addition to the above changes, if you <a href="#download" onclick="javascript:loadTab(this.href); return false;">download</a> the current stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of BusyBox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
+              In addition to the above changes, if you <a href="#download" onclick="javascript:loadTab(this.href); return false;">download</a> the current stable build scripts, you will notice a folder named <strong>experimental</strong>. This folder contains some interesting scripts which produce ISO based on Linux kernel and <a href="http://landley.net/toybox" target="_blank">ToyBox</a> instead of Busybox. Please have in mind that this is work in progress and these scripts may not work on your host OS.
             </li>
           </ul>
         </div>
@@ -351,7 +351,7 @@
           <ul>
             <div style="font-size: 10%;">&nbsp;</div>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.18.6</strong> and <strong>BusyBox 1.23.1</strong>.
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.18.6</strong> and <strong>Busybox 1.23.1</strong>.
             </li>
           </ul>
         </div>
@@ -368,7 +368,7 @@
           <div style="font-size: 10%;">&nbsp;</div>
           <ul>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.16.1</strong> and <strong>BusyBox 1.22.1</strong>.
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.16.1</strong> and <strong>Busybox 1.22.1</strong>.
             </li>
             <li>
               The boot process is now based on <strong>/sbin/init</strong> and <strong>/etc/inittab</strong>. There are four available consoles. You can switch between them with <strong>Alt + F1</strong> up to <strong>Alt + F4</strong>.
@@ -391,7 +391,7 @@
           <div style="font-size: 10%;">&nbsp;</div>
           <ul>
             <li>
-              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.15.6</strong> and <strong>BusyBox 1.22.1</strong>.
+              <strong>Minimal Linux Live</strong> is now based on <strong>Linux kernel 3.15.6</strong> and <strong>Busybox 1.22.1</strong>.
             </li>
             <li>
               The boot process is based on simple <strong>/init</strong> script.

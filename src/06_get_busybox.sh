@@ -13,10 +13,10 @@ DOWNLOAD_URL=`read_property BUSYBOX_SOURCE_URL`
 # Grab everything after the last '/' character.
 ARCHIVE_FILE=${DOWNLOAD_URL##*/}
 
-# Download BusyBox source archive in the 'source' directory.
+# Download Busybox source archive in the 'source' directory.
 download_source $DOWNLOAD_URL $SOURCE_DIR/$ARCHIVE_FILE
 
-# Extract the BusyBox sources in the 'work/busybox' directory.
+# Extract the Busybox sources in the 'work/busybox' directory.
 extract_source $SOURCE_DIR/$ARCHIVE_FILE busybox
 
 # We go back to the main MLL source folder.

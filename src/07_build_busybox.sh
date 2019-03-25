@@ -39,10 +39,12 @@ fi
 # Now we tell BusyBox to use the sysroot area.
 sed -i "s|.*CONFIG_SYSROOT.*|CONFIG_SYSROOT=\"$SYSROOT\"|" .config
 
+# Configure the compiler flags and explicitly link Busybox with GLIBC from sysroot.
+sed -i "s|.*CONFIG_EXTRA_CFLAGS.*|CONFIG_EXTRA_CFLAGS=\"$CFLAGS -L$SYSROOT/lib\"|" .config
+
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
 echo "Building BusyBox."
 make \
-  EXTRA_CFLAGS="$CFLAGS" \
   busybox -j $NUM_JOBS
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.

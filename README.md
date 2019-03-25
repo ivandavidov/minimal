@@ -45,7 +45,7 @@ This is a screenshot of the current development version of Minimal Linux Live:
 As of **25-Mar-2019**:
 
 * Linux kernel 5.0.4 (stable)
-* GNU C Library 2.27 (stable)
+* GNU C Library 2.29 (stable)
 * Busybox 1.30.1 (stable)
 * Stable build on default Ubuntu 18.04.2 installation with applied system updates.
 

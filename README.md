@@ -1,4 +1,4 @@
-# Minimal Linux Live [<img align="right" src="https://travis-ci.org/ivandavidov/minimal.svg?branch=master">](https://travis-ci.org/ivandavidov/minimal)
+# Minimal Linux Live
 
 * [Overview](#overview)
 * [Current development state](#current-development-state)
@@ -58,7 +58,7 @@ Take a look at the [issues](http://github.com/ivandavidov/minimal/issues) page w
 The section below is for Ubuntu and other Debian based distros.
 
 ```
-# Resove build dependencies
+# Resolve build dependencies
 sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
 # Build everything and produce ISO image.

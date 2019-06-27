@@ -11,6 +11,10 @@
 * [Other projects](#other-projects)
 * [Thank you!](#thank-you)
 
+### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/ivandavidov/minimal.svg)](https://starchart.cc/ivandavidov/minimal)
+
 ---
 
 ### Overview

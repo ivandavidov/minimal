@@ -2,7 +2,6 @@ glibc_ld-linux
 glibc_libBrokenLocale
 glibc_libanl
 glibc_libc
-glibc_libcidn
 glibc_libcrypt
 glibc_libdl
 glibc_libm

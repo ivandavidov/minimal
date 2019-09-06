@@ -134,6 +134,10 @@ Currently available overlay bundles:
                    de-facto Unix editor 'vi', with a more complete feature set.
                    This package will create symlinks on top of 'vi'.
 
+  vitetris       - console mode tetris game with lots of options. These options
+                   are disabled in order to make the game as small as possible.
+                   Type 'tetris' in order to start the game.
+
   ZLIB           - software library used for data compression.
 
   Zulu JDK       - Zulu is an enterprise quality, certified build of OpenJDK

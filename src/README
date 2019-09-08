@@ -162,6 +162,10 @@ The overlay build system is independent from the main build system. However,
 some bundles depend on build artifacts from the main build process, so it is
 highly recommended to build MLL before you use the overlay build system.
 
+Take a look at the 'hello_mll' overlay bundle for detailed explanation of the
+internal overlay system build process and the corresponding directories that
+are involved in the process.
+
 You can build all bundles declared in the main '.config' file like this:
 
   cd minimal_overlay
@@ -170,12 +174,12 @@ You can build all bundles declared in the main '.config' file like this:
 You can build individual overlay bundle like this:
 
   cd minimal_overlay
-  ./overlay_build.sh bundle_name
+  ./overlay_build.sh hello_mll
 
 You can build more two or more bundles if you separate them with comma:
 
   cd minimal_overlay
-  ./overlay_build.sh bundle_name_a,bundle_name_b,bundle_name_c
+  ./overlay_build.sh hello_mll,dhcp,mll_source
 
 The simplest way to add something to MLL is to put whatever you want in
 the following folder:

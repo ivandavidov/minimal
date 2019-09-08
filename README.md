@@ -5,6 +5,7 @@
 * [Future improvements](#future-improvements)
 * [How to build](#how-to-build)
 * [Overlay bundles](#overlay-bundles)
+* [Runtime software](#runtime-software)
 * [GraalVM](#graalvm)
 * [BIOS and UEFI](#bios-and-uefi)
 * [Installation](#installation)
@@ -40,18 +41,20 @@ You can experiment with Minimal Linux Live directly in your browser by using [Ja
 
 Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
 
-This is a screenshot of the current development version of Minimal Linux Live:
+### Current development state
+
+As of **08-Sep-2019**:
+
+* Linux kernel 5.2.12 (stable)
+* GNU C Library 2.30 (stable)
+* Busybox 1.30.1 (stable)
+* Stable build on default Ubuntu 18.04.3 installation with applied system updates.
+
+Here are some screenshots of the current development version of Minimal Linux Live:
 
 ![Minimal Linux Live](docs/www/assets/img/minimal_linux_live.jpg)
 
-### Current development state
-
-As of **25-Mar-2019**:
-
-* Linux kernel 5.0.4 (stable)
-* GNU C Library 2.29 (stable)
-* Busybox 1.30.1 (stable)
-* Stable build on default Ubuntu 18.04.2 installation with applied system updates.
+![Minimal Linux Live Readme](docs/www/assets/img/readme_in_mll.png)
 
 ### Future improvements
 
@@ -73,7 +76,7 @@ The default build process uses some custom provided ``CFLAGS``. They can be foun
 
 ### Overlay bundles
 
-**Important note!** Most of the overlay bundles come without support since the build process for almost all of them is host specific and can vary significantly between different machines. Some overlay bundles have no dependencies to the host machine, e.g. the bundles which provide the DHCP functionality and the MLL source code. These bundles are enabled by default.
+**Important note!** Most of the overlay bundles come with no support since the build process for almost all of them is host specific and can vary significantly between different machines. Some overlay bundles have no dependencies to the host machine, e.g. the bundles which provide the DHCP functionality and the MLL source code. These bundles are enabled by default.
 
 Minimal Linux Live has the concept of ``overlay bundles``. During the boot process the ``OverlayFS`` driver merges the initramfs with the content of these bundles. This is the mechanism which allows you to provide additional software on top of MLL without touching the core build process. In fact the overlay bundle system has been designed to be completely independent from the MLL build process. You can build one or more overlay bundles without building MLL at all. However, some of the overlay bundles have dependencies on the software pieces provided by the MLL build process, so it is recommended to use the overlay build subsystem after you have produced the 'initramfs' area.
 
@@ -95,9 +98,29 @@ cd minimal_overlay
 ./overlay_build.sh openjdk
 ```
 
+Take a look at the [hello_mll](src/minimal_overlay/bundles/hello_mll/bundle.sh) overlay bundle which compiles simple C program (it prints one line in the console) and installs it properly in the MLL overlay structure.
+
+### Runtime software
+
+Another way to add software in MLL is at runtime by using slightly modified version of [static-get](http://s.minos.io) which is provided as additional overlay bundle. The ``static_get`` overlay bundle is not enabled by default. You can enable it in the main ``.config`` file. Here are some examples with static-get:
+
+```
+# Search for 'vim'
+static-get -s vim
+
+# Install the 'vim' package. Run 'vim' after that
+static-get -i vim
+
+# Search for 'tetris'
+static-get -s tetris
+
+# Install the 'vitetris' package. Run 'vitetris' after that
+static-get -i vitetris
+```
+
 ### GraalVM
 
-The current development version of MLL partially supports [GraalVM](http://graalvm.org) (provided as overlay bundle). Note that the version of GraalVM in MLL is _release candidate_ which means it may not be very stable. Moreover, GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. the ``gu`` updater and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Java, Python, Ruby, Node and JavaScript work in MLL/GraalVM environment. Great, isn't it! :)
+The current development version of MLL partially supports [GraalVM](http://graalvm.org) (provided as overlay bundle). Note that GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. the ``gu`` updater and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Java, Python, Ruby, Node and JavaScript work in MLL/GraalVM environment. Great, isn't it! :)
 
 ![GraalVM languages](docs/www/assets/img/graal/graal_1.jpg)
 

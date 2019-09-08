@@ -71,6 +71,9 @@ Currently available overlay bundles:
                    Java, Scala, Clojure, Kotlin, and LLVM-based languages such
                    as C and C++.
 
+  Hello MLL      - Simple educational overlay bundle with detailed comments
+                   for each build step.
+
   JRE / JDK      - Oracle JRE/JDK. This overlay bundle requires some manual
                    preparation steps. Refer to the 'JAVA_ARCHIVE' property in
                    the '.config' file for more information. This overlay bundle

@@ -17,7 +17,7 @@
  the 'static_get' overlay bundle. Use 'static-get -s <package>' to search for
  packages and 'static-get -i <package>' to install the package.
 
- Check the '.config' file in the source folder for more details regarding the\
+ Check the '.config' file in the source folder for more details regarding the
  overlay system and how to use it.
 
    Have fun with 'Minimal Linux Live'! :)

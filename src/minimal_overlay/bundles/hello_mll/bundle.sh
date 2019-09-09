@@ -75,8 +75,8 @@ reduce_size $DEST_DIR/bin/hello
 #
 #  install_to_overlay bin bin
 #
-# All of the above examples have the same final. In our simple use case we use
-# the first mode (i.e. we provide no arguments).
+# All of the above examples have the same final effect. In our simple use case
+# we use the first mode (i.e. we provide no arguments).
 install_to_overlay
 
 # In the end we print message that our bundle has been installed and we return

@@ -35,10 +35,6 @@ The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) docu
 
 [Component Architecture of Minimal Linux Live](http://blog.idzona.com/2016/04/component-architecture-of-minimal-linux-live.html "Component Architecture of Minimal Linux Live") - this publication describes the high level components included in the '03-Apr-2016' version of Minimal Linux Live.
 
-You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
-
-![Minimal Linux Live JavaScript Emulator](docs/www/assets/img/emulator_01.jpg)
-
 Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDbUAiN9E9lvYFLIFFqAjjZS9xS "Minimal Linux Live - YouTube channel") where you can watch some of the cool Minimal Linux Live features? No? Well, now you know about it! :)
 
 ### Current development state
@@ -55,6 +51,10 @@ Here are some screenshots of the current development version of Minimal Linux Li
 ![Minimal Linux Live](docs/www/assets/img/minimal_linux_live.jpg)
 
 ![Minimal Linux Live Readme](docs/www/assets/img/readme_in_mll.png)
+
+You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
+
+![Minimal Linux Live JavaScript Emulator](docs/www/assets/img/emulator_01.jpg)
 
 ### Future improvements
 

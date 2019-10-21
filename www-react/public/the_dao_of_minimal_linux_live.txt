@@ -1,0 +1,754 @@
+﻿   
+   The Dao of Minimal Linux Live (27-Dec-2017)
+   
+   Author:    Ivan Davidov
+   
+   Website:   http://minimal.idzona.com
+              http://skamilinux.hu/minimal
+              http://ivandavidov.github.io/minimal
+              http://minimal.linux-bg.org
+   
+   GitHub:    http://github.com/ivandavidov/minimal
+              http://github.com/ivandavidov/minimal-linux-script
+
+   Email:     davidov (dot) i {at} gmail [dot] com
+   
+   Redistributed by: <put your name and contact details somewhere here>
+   
+   ###   ###   ###
+   
+   Contents
+   
+   1. Preface
+   2. Boot Process
+   3. Inside The Shell Scripts
+   4. Possible Improvements
+   5. Next Steps
+   6. Epilogue
+   
+   ###   ###   ###
+   
+   1. Preface
+   
+   Please feel free to redistribute this document in any form you see fit. However, I'd like to
+   ask of you to respect my efforts and mention me as the original author - that's my only demand.
+   
+   Note that the explanations regarding the script details are based on the "28-Jul-2014"
+   version of "Minimal Linux Live". Future versions of the scripts may already include some
+   of the stuff discussed in the section "Possible Improvements".
+   
+   ###   ###   ###
+   
+   2. Boot Process
+   
+   The overall boot process is quite complex, but we need to know these details as we are 
+   talking about operating systems and, precisely, Linux based operating systems.
+   
+   You can find some general information here:
+   
+      http://en.wikipedia.org/wiki/Linux_startup_process
+   
+   When it comes to live Linux OS, the overall boot process is the following:
+   
+      1) BIOS gives the execution control to the boot loader present on the boot media such
+         as CD, DVD, USB flash or something else.
+      2) In most cases, the boot loader is based on Syslinux. On our boot media, we should have
+         two special files - the kernel file and the initramfs file.
+      3) The boot media also contains a special configuration file, which points to the location
+         of the kernel/initramfs files.
+      4) Now that Syslinux knows where the kernel file is, it loads it in the RAM and passes
+         the execution control to it.
+      5) The kernel detects the available hardware, loads necessary drivers and then it passes
+         the execution control to the initramfs.
+      6) The initramfs file is an archive, automatically unpacked by the kernel in the
+         RAM. The actual execution control is passed to the shell script file /init, which must
+         be present in the initramfs file.
+      7) Since we are talking about minimal live CD, in theory, /init is not supposed to do much.
+         All we need from /init is to prepare the environment and provide the user with shell.
+         In most live Linux distributions, the /init script is supposed to do much more than
+         this, but for the time being, it's enough to know that the point at which we take 
+         control is exactly the /init script.
+     
+   ###   ###   ###
+   
+   3. Inside The Shell Scripts
+   
+   So far, we have learnt that we need several pieces in order to build a live Linux OS:
+   
+      1) boot loader - to make our media bootable.
+      2) kernel file - to take care of the initial system bootstrap process.
+      3) initramfs file - to prepare the necessary environment for the user.
+   
+   This document focuses on parts (2) and (3). The reason why we won't discuss (1) in details is
+   because the build process that we are going to rely on later, takes care of the boot loader
+   part automatically.
+   
+   The ZIP, which you have downloaded, contains the following files:
+   
+      .config
+      0_prepare.sh
+      1_get_kernel.sh
+      2_build_kernel.sh
+      3_get_busybox.sh
+      4_build_busybox.sh
+      5_generate_rootfs.sh
+      6_pack_rootfs.sh
+      7_generate_iso.sh
+      build_minimal_linux_live.sh
+      
+   If you have followed the explanation posted on http://minimal.idzona.com , then you should already
+   know you need to execute the script "build_minimal_linux_live.sh". If you open this script
+   with a text editor, you will find out that everything it does is to execute all other
+   scripts one by one.
+   
+   From this point onwards, I encourage you to execute the script files one by one. We will
+   start with "0_prepare.sh". If you take a look at the script's contents, you will find out that
+   it only creates an empty folder named "work". We will store our temporary
+   work files there.
+   
+   OK, let's continue with the kernel. Somehow, we need to end up with a fully functional kernel, which
+   is able to perform the system initialization for us. We need to download the kernel sources, 
+   compile them and finally pack the kernel.
+   
+   The script "1_get_kernel.sh" downloads the kernel sources and unpacks them. Here is the full
+   source code of the script:
+   
+      #/bin/sh
+      
+      DOWNLOAD_URL=$(grep -i KERNEL_SOURCE_URL .config | cut -f2 -d'=')
+      ARCHIVE_FILE=${DOWNLOAD_URL##*/}
+      
+      cd work
+      rm -f $ARCHIVE_FILE
+      wget $DOWNLOAD_URL
+      rm -rf kernel
+      mkdir kernel
+      tar -xvf $ARCHIVE_FILE -C kernel
+      cd ..   
+   
+   Firstly, we have to read the ".config" file in order to find the URL for the kernel sources,
+   which is stored in the "DOWNLOAD_URL" variable. Then, we get the actual name of the archive 
+   file and we store it in the variable "ARCHIVE_FILE".
+   
+   The important part of the script is the line where we get the kernel sources:
+   
+      wget $DOWNLOAD_URL
+   
+   The next important part of the script is the line where we unpack the kernel sources:
+   
+      tar -xvf $ARCHIVE_FILE -C kernel
+   
+   At this point, we have downloaded and unpacked the kernel sources. So far so good. Now, we need
+   to compile them. We move to the next script in the chain called "2_build_kernel.sh". Here is
+   the full source code that we are going to analyse:
+   
+      #/bin/sh
+      
+      cd work/kernel
+      cd $(ls -d *)
+      make clean
+      make defconfig
+      sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal-linux-live\"/" .config
+      make vmlinux
+      cd ../../..   
+   
+   First we navigate to the kernel source folder. Then, we execute the following commands:
+   
+      make clean
+     
+   The above command cleans the output from our previous kernel builds. Obviously, if this is the
+   first time we go through the build process, we have nothing to clean.
+   
+      make defconfig
+   
+   The abovementioned command creates new ".config" file in the current folder, which contains all
+   default configuration parameters needed to build our new kernel. Note that the defaults
+   will be either 32 or 64 bit specific, depending on your Linux environment.
+   
+      sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal-linux-live\"/" .config
+   
+   The command searches for a specific line in the ".config" file, containing the string
+   "CONFIG_DEFAULT_HOSTNAME" and replaces this whole line with the following text:
+   
+      CONFIG_DEFAULT_HOSTNAME="minimal-linux-live"
+   
+   Later, when you boot up your live Linux OS, you can execute the command "uname -a" and you will
+   see the string "minimal-linux-live" in the output. All we did was to replace the default value
+   "(none)" with our custom value.
+   
+   Now you have a sample command, which you can use to search for specific configurations in the
+   file ".config" and replace these configurations with ones of your own. Obviously, you can skip
+   this replacement - and everything will work just fine. Like I said, the only difference will be
+   that the default host name will be set to "minimal-linux-live" instead of "(none)".
+   
+   Now we come to the most important and also slowest part in the whole process: we need to
+   actually create the kernel.
+   
+      make vmlinux
+   
+   The abovementioned command will compile the Linux kernel. This usually takes quite a while, so I 
+   guess it's high time for a short break. The final kernel file is located here:
+   
+      arch/x86/boot/bzImage
+   
+   OK, at this point we should have a kernel file compiled with default options, where we have
+   changed the default host name with some other value of our own. Now, we move to the next
+   part.
+   
+   The kernel itself is far from enough - we also need some kind of environment with basic
+   command line tools like ls, cat, mkdir, etc. This environment is called "initramfs" which
+   stands for "initial RAM file system". This is what we are going to do:
+   
+      1) We are going to download & compile Busybox. This will give us the basic command line
+         tools that we need for normal work in console mode.
+      2) We will use Busybox to provide us with some default directory/file structure, which
+         we are going to modify into our own initramfs file.
+   
+   One by one - we need to download and unpack the Busybox sources. Let's take a look at the
+   script file "3_get_busybox.sh":
+   
+      #/bin/sh
+   
+      DOWNLOAD_URL=$(grep -i BUSYBOX_SOURCE_URL .config | cut -f2 -d'=')
+      ARCHIVE_FILE=${DOWNLOAD_URL##*/}
+   
+      cd work
+      rm -f $ARCHIVE_FILE
+      wget $DOWNLOAD_URL
+      rm -rf busybox
+      mkdir busybox
+      tar -xvf $ARCHIVE_FILE -C busybox
+      cd ..   
+     
+   The contents are almost identical to the one in "1_get_kernel.sh", which we already
+   explained earlier. Long story short - we get the source archive with "wget" and then we
+   unpack the sources with "tar". That's it. Nothing complex at all.
+   
+   Now that we have Busybox sources, we need to compile them. Let's take a look at the next
+   script "4_build_busybox.sh" which we need to execute:
+   
+      #/bin/sh
+   
+      cd work/busybox
+      cd $(ls -d *)
+      make clean
+      make defconfig
+      sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
+      make busybox
+      make install
+      cd ../../..
+   
+   You have probably already noticed it - we are going to execute several "make" commands
+   and meanwhile, we will change one property in the ".config" file. Let's go
+   through all of these commands:
+   
+      make clean
+   
+   The command above ensures that we will get rid of all build artefacts, assuming this
+   is not the first time we go through the Busybox build process.
+   
+      make defconfig
+   
+   This command creates new ".config" file, which contains the defaults for proper
+   Busybox build process. Again, nothing extraordinary here.
+   
+      sed -i "s/.*CONFIG_STATIC.*/CONFIG_STATIC=y/" .config
+   
+   The command above is very important, because we inform the build process to build
+   a static version of Busybox, meaning that the Busybox executable file will not
+   be dependent on any external library. We cannot skip this step, otherwise our OS will
+   fail with "kernel panic" when we try to boot.
+   
+      make busybox
+   
+   The command above compiles Busybox. Nothing interesting here. The build should be
+   significantly faster compared to the kernel build.
+   
+      make install
+   
+   The command above creates new "_install" folder and installs Busybox in it. We
+   will use this folder as a base for our new initramfs file.
+   
+   At this point, we should have kernel compiled with default settings (yes, we changed
+   one of them, but it's no big deal) and we should also have Busybox compiled with
+   static option enabled and all other default settings.
+   
+   Now we come to the part where we create our own initramfs folder, which later on we
+   will pack into a file. The steps that we are going to follow are these:
+   
+      1) Use the already created "_install" folder as base for initramfs.
+      2) Create some new folders in the initramfs folder.
+      3) Create some configuration files in the initramfs folder.
+   
+   Now we come to the script "5_generate_rootfs.sh" which is responsible for generating
+   proper initramfs folder with all necessary files and sub-folders in it.
+   
+      #/bin/sh
+   
+      cd work
+      rm -rf rootfs
+      cd busybox
+      cd $(ls -d *)
+      cp -R _install ../../rootfs
+      cd ../../rootfs
+      rm -f linuxrc
+      mkdir dev
+      mkdir etc
+      mkdir proc
+      mkdir src
+      mkdir sys
+      mkdir tmp
+      cd etc
+      touch welcome.txt
+      echo >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #  Welcome to "Minimal Linux Live"  #' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo >> welcome.txt
+      cd ..
+      touch init
+      echo '#!/bin/sh' >> init
+      echo 'dmesg -n 1' >> init
+      echo 'mount -t devtmpfs none /dev' >> init
+      echo 'mount -t proc none /proc' >> init
+      echo 'mount -t sysfs none /sys' >> init
+      echo 'cat /etc/welcome.txt' >> init
+      echo 'while true' >> init
+      echo 'do' >> init
+      echo '  setsid cttyhack /bin/sh' >> init
+      echo 'done' >> init
+      echo >> init
+      chmod +x init
+      cp ../../*.sh src
+      cp ../../.config src
+      cd ../..
+   
+   As you can see, this script is much longer than the others. Let's take a look at the
+   important parts one by one.
+   
+      cd work
+      rm -rf rootfs
+      cd busybox
+      cd $(ls -d *)
+      cp -R _install ../../rootfs
+      cd ../../rootfs
+   
+   The code snippet above removes the old initramfs folder called "rootfs", then
+   copies the "_install" folder (the one created by Busybox) with a new name - "rootfs".
+   This folder is going to be our new initramfs focal point.
+   
+      rm -f linuxrc
+   
+   The folder "rootfs" contains file "linuxrc" which we don't need since we are going
+   to use initramfs boot scheme. Take a look at the following Wikipedia article for
+   more details:
+   
+      http://en.wikipedia.org/wiki/Initrd
+   
+   OK, lets go on.
+   
+      mkdir dev
+      mkdir etc
+      mkdir proc
+      mkdir src
+      mkdir sys
+      mkdir tmp
+   
+   The code snippet above creates some basic folders which we are going to use later.
+   
+      cd etc
+      touch welcome.txt
+      echo >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #  Welcome to "Minimal Linux Live"  #' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo >> welcome.txt
+      cd ..
+   
+   The code snippet above creates the file "/etc/welcome.txt" and fills it with the message
+   which will be displayed every time we boot up the system.
+   
+      touch init
+      echo '#!/bin/sh' >> init
+      echo 'dmesg -n 1' >> init
+      echo 'mount -t devtmpfs none /dev' >> init
+      echo 'mount -t proc none /proc' >> init
+      echo 'mount -t sysfs none /sys' >> init
+      echo 'cat /etc/welcome.txt' >> init
+      echo 'while true' >> init
+      echo 'do' >> init
+      echo '  setsid cttyhack /bin/sh' >> init
+      echo 'done' >> init
+      echo >> init
+   
+   The code snippet above creates the file "/init", which is going to be invoked by our kernel
+   when we boot up the system. In fact, we create new shell script file. This is what our new
+   "/init" script does:
+   
+      dmesg -n 1                     - We hide all kernel messages. We don't want them in our
+                                       console. Only kernel panic messages will be displayed.
+      mount -t devtmpfs none /dev    - With this command, we politely ask the kernel to
+                                       populate the /dev folder with all necessary system
+                                       devices like "console", "tty", etc. We also have nice
+                                       names for the hardware devices like "sr0", "sda", etc.
+      mount -t proc none /proc       - The kernel populates the /proc folder.
+      mount -t sysfs none /sys       - The kernel populates the /sys folder.
+      cat /etc/welcome.txt           - Now we display the welcome message.
+      while true                     - This code snippet starts shell on "tty" device and
+        setsid cttyhack /bin/sh        we rest assured that when we execute the "exit"
+      done                             command new shell will be started automatically.
+   
+   As you can see, what the "/init" script file does isn't too much, however, it's really essential.
+   We have only one more bit of code relevant to the "/init" file:
+   
+      chmod +x init
+   
+   The command above ensures that our "/init" script is executable.
+   
+      cp ../../*.sh src
+      cp ../../.config src
+   
+   The last thing we do is to copy all "Minimal Linux Live" shell scripts (including the
+   configuration file) in the "/src" folder. The scripts won't do anything there. This step
+   simply ensures that the live Linux ISO file, which we are going to create later, contains
+   the build sources, just for reference.
+   
+   At this point we have "rootfs" folder which contains all necessary files and
+   configurations for our initramfs file. The next step is to pack the "rootfs" folder
+   into an actual initramfs file. Let's take a look at "6_pack_rootfs.sh":
+   
+      #!/bin/sh
+   
+      cd work
+      rm -f rootfs.cpio.gz
+      cd rootfs
+      find . | cpio -H newc -o | gzip > ../rootfs.cpio.gz
+      cd ../..
+   
+   The abovementioned script removes the already existing initramfs file called "rootfs.cpio.gz",
+   then creates a new file called "rootfs.cpio.gz" based on the contents of the
+   "rootfs" folder.
+   
+   We are almost finished. At this point, we have already compiled the Linux kernel and we
+   have also created initramfs file based on Busybox and our own set of configurations.
+   The last thing to do is to generate a bootable ISO file. Let's take a look at the last
+   script "7_generate_iso.sh":
+   
+      #/bin/sh
+   
+      rm -f minimal_linux_live.iso
+      cd work/kernel
+      cd $(ls -d *)
+      make isoimage FDINITRD=../../rootfs.cpio.gz
+      cp arch/x86/boot/image.iso ../../../minimal_linux_live.iso
+      cd ../../..
+   
+   As usual, firstly we remove the already generated ISO file, assuming this is not the first
+   time we go through this process. Then we navigate to the kernel's source folder and
+   we execute the following command:
+   
+      make isoimage FDINITRD=../../rootfs.cpio.gz
+   
+   This command generates bootable ISO based on the already compiled Linux kernel and
+   it uses the initramfs file which we pass to the "make" command as additional parameter.
+   The generated ISO file is then copied to the folder where we are executing our scripts.
+   
+   UPDATE (02-Oct-2016): The "make isoimage" command relies on Syslinux older than 5.0.
+   The issue: Syslinux versions after 5.0 require ldlinux.c32 which is not handled
+   correctly by the kernel's Makefile. You need to appply a patch to the Makefile in order
+   to make it work correctly. I find it easier to edit the Makefile and apply the patch
+   changes manually:
+   
+   https://github.com/ivandavidov/minimal/issues/10
+   
+   http://github.com/mhiramat/boot2minc/blob/master/src/patches/kernel/x86-copy-linux-c32-for-newer.patch
+   
+   if [ -f /usr/$$i/syslinux/isolinux.bin ] ; then \                 # old line
+     cp /usr/$$i/syslinux/isolinux.bin $(obj)/isoimage ; \           # old line
+     if [ -f /usr/$$i/syslinux/ldlinux.c32 ] ; then \                # new line (patch)
+       cp /usr/$$i/syslinux/ldlinux.c32 $(obj)/isoimage ; \          # new line (patch)
+     fi ; \                                                          # new line (patch)
+     break ; \                                                       # old line
+   fi ; \                                                            # old line
+   
+   Another possible solution is to manually generate the ISO image by executing the
+   command "genisoimage" with the appropriate arguments. You can take a look at the
+   project "Minimal Linux Script" which follows the "genisoimage" approach:
+   
+   http://github.com/ivandavidov/minimal-linux-script
+   
+   ###   ###   ###
+   
+   4. Possible Improvements   
+   
+   Now that you have played around with your shiny new live Linux OS, you have probably
+   noticed that you are logged in automatically and you have no restrictions. However,
+   it only looks like you are automatically logged in. Yes, you get shell console and
+   this console allows you to perform "root" operations, but this doesn't mean that you
+   are logged in as "root" or any other user. In fact there are no users and groups in
+   the system.
+   
+   I'll show you the proper way to add some users and groups from within your system
+   while it is still running. You can examine the final result for yourself and modify
+   the "5_generate_rootfs.sh" script according to your needs.
+   
+   OK, let's try with the "root" account!
+   
+      touch /etc/group
+   
+   The command above will create empty file "/etc/group" where we store the information
+   for all groups.
+   
+      addgroup -g 0 root
+   
+   This one will create a group "root" with group identification number "0".
+   It is important to provide 0 (zero) as group identifier (gid) because this is the
+   expected gid for "root".
+   
+      touch /etc/passwd
+   
+   This command will create empty file "/etc/passwd" where we store the login
+   information for our users.
+   
+      adduser -h /root -G root -u 0 root
+   
+   This command will create user "root" with home folder "/root", assign the new
+   user to the "root" group and set user identifier (uid) "0". It is important to
+   provide 0 (zero) as uid because this is the expected uid for the "root" user. Add
+   whatever password you want when asked. Try to remember it.
+   
+      login
+   
+   The above command will initiate the login process. Now you should be able to log in
+   as "root" with the password which you have provided.
+   
+   ---   ---   ---
+   
+   Another possible improvement is to set appropriate "global" rights (including the 't'
+   sticky flag) for the /tmp folder. You can do that by executing the following command:
+   
+      chmod 1777 /tmp
+   
+   I haven't included this in the /init script, as in this particular situation
+   it doesn't really matter. By default, we get uid=0 shell console and we have
+   full and unrestricted access to the /tmp folder. However, if you decide to add more
+   users to the system (not just the "root" user), you may also include the above command
+   in the /init script file.
+   
+   ---   ---   ---
+   
+   Probably the easiest update you can do is to re-compile the kernel with other options 
+   instead of the default ones. This is how we do it for the kernel. First of all we need 
+   to know what possible options we have. Navigate to the kernel's source folder and execute
+   the following command:
+   
+      make help
+   
+   We have several options for interactive ".config" generation. Let's go with this one:
+   
+      make menuconfig
+   
+   You might need to resolve one more dependency ("ncurses") if you want the above command
+   to work. Once this is done, you can choose any kernel configuration options you like. The
+   provided menu is quite complex, but we are not in a hurry. Take your time and enable or
+   disable any options you want. Don't forget to save your configuration. Now all we need
+   is to compile the new kernel.
+   
+      make vmlinux
+   
+   Depending on your configuration, this time the build might take longer. Obviously, if
+   you decide to go through manual kernel ".config" configuration, you can no longer use
+   the script "2_build_kernel.sh" because it will override your new configuration with
+   the default one.
+   
+   ---   ---   ---
+   
+   Even though we haven't discussed this topic, you might have already noticed that the
+   file ".config", which comes along with the other build scripts, contains the URL
+   locations for the kernel sources and the Busybox sources. You can easily build live
+   Linux OS based on different kernel/Busybox versions if you provide different
+   URLs in the ".config" file. Here is the content of the default ".config" file:
+   
+      # You can find the latest Linux kernel source bundles here:
+      #
+      # http://kernel.org
+      #
+      KERNEL_SOURCE_URL=https://www.kernel.org/pub/linux/kernel/v3.x/linux-3.15.6.tar.xz
+   
+      # You can find the latest Busybox source bundles here:
+      #
+      # http://busybox.net
+      #
+      BUSYBOX_SOURCE_URL=http://busybox.net/downloads/busybox-1.22.1.tar.bz2
+   
+   Of course, once you do that, you also need to go through the scripts  "1_get_kernel.sh"
+   and "3_get_busybox.sh" or execute the relevant commands from these scripts manually.
+   
+   ---   ---   ---
+   
+   Another very interesting improvement is to execute /sbin/init and rely on further
+   configuration provided in /etc/inittab. Here is the modified version of the shell
+   script "5_generate_rootfs.sh":
+   
+      #/bin/sh
+   
+      cd work
+      rm -rf rootfs
+      cd busybox
+      cd $(ls -d *)
+      cp -R _install ../../rootfs
+      cd ../../rootfs
+      rm -f linuxrc
+      mkdir dev
+      mkdir etc
+      mkdir proc
+      mkdir src
+      mkdir sys
+      mkdir tmp
+      cd etc
+      touch bootscript.sh
+      echo '#!/bin/sh' >> bootscript.sh
+      echo 'dmesg -n 1' >> bootscript.sh
+      echo 'mount -t devtmpfs none /dev' >> bootscript.sh
+      echo 'mount -t proc none /proc' >> bootscript.sh
+      echo 'mount -t sysfs none /sys' >> bootscript.sh
+      echo >> bootscript.sh
+      chmod +x bootscript.sh
+      touch welcome.txt
+      echo >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #  Welcome to "Minimal Linux Live"  #' >> welcome.txt
+      echo '  #                                   #' >> welcome.txt
+      echo '  #####################################' >> welcome.txt
+      echo >> welcome.txt
+      touch inittab
+      echo '::sysinit:/etc/bootscript.sh' >> inittab
+      echo '::restart:/sbin/init' >> inittab
+      echo '::ctrlaltdel:/sbin/reboot' >> inittab
+      echo '::once:cat /etc/welcome.txt' >> inittab
+      echo '::respawn:/bin/cttyhack /bin/sh' >> inittab
+      echo 'tty2::once:cat /etc/welcome.txt' >> inittab
+      echo 'tty2::respawn:/bin/sh' >> inittab
+      echo 'tty3::once:cat /etc/welcome.txt' >> inittab
+      echo 'tty3::respawn:/bin/sh' >> inittab
+      echo 'tty4::once:cat /etc/welcome.txt' >> inittab
+      echo 'tty4::respawn:/bin/sh' >> inittab
+      echo >> inittab
+      cd ..
+      touch init
+      echo '#!/bin/sh' >> init
+      echo 'exec /sbin/init' >> init
+      echo >> init
+      chmod +x init
+      cp ../../*.sh src
+      cp ../../.config src
+      cd ../..
+   
+   This script creates very minimal /init which executes /sbin/init. Then, the
+   new init process (that is /sbin/init with PID 1) reads the file /etc/inittab and
+   executes all commands provided there. The script /etc/bootscript.sh takes care of
+   the initial "mount" stuff. We also have 4 terminals (that you can switch between
+   with "Alt + F1" to "Alt + F4") and the contents of the file /etc/welcome.txt are
+   displayed before we access the shell for each of these terminals.
+   
+   You can find more information about the supported /etc/inittab commands here:
+   
+      http://git.busybox.net/busybox/tree/examples/inittab
+   
+   Note that the details above are specific to Busybox. Usually, the "init" process
+   supports runlevels, but that's not the case here.
+   
+   ---   ---   ---
+   
+   You are most probably using a normal user (i.e. not "root") when you execute the 
+   scripts. One side effect of this is, the generated initrtamfs will keep the original 
+   ownership of all files and folders. However, this leads to some interesting 
+   discrepancies when you run the system. Some of the files/folders will have "root" 
+   ownership (uid=0, gid=0), but most of the files/folders will have the same uid/gid
+   as the user which you used in order to build the system. This has no implications
+   at all since we have unrestricted shell console but if you'd like to "fix" this,
+   you will have to either execute "5_generate_rootfs.sh" as "root" or manually
+   change the ownership of the initramfs folder (i.e. "work/rootfs") before you
+   execute the script "6_pack_rootfs.sh" with this command:
+   
+      chown -R root:root work/rootfs
+   
+   Note that the above command requires "root" permissions, so there is no way to
+   escape from the abovementioned discrepancies unless you have "root" access.
+   
+   Also note that you may need to take care of the permissions for the script files
+   in the "work/rootfs/src" folder. To do so, either delete the "src" folder before you
+   run "6_pack_rootfs.sh" or make sure that all files have global "read" permissions.
+   
+   ###   ###   ###
+   
+   5. Next Steps
+   
+   OK, now we know how to build and run a basic Linux system. But that's not enough.
+   Now we would like to build a more complex system, probably one which supports "pacman",
+   "apt-get", or any other package manager.
+   
+   Building such a system requires a lot more work. A lot more! I mean it!
+   
+   For starters, "Minimal Linux Live" lives entirely in the "initramfs" space. Simply
+   said - this is the RAM space. We never really get out of there. Basically this is
+   what you need if you want a more functional live Linux system:
+   
+      1) Compressed file system (SquashFS)- where all the real stuff would be.
+   
+      2) GNU Coreutils - these are the real shell command line utilities (ls, cd, etc.).
+         You need them as later on, we would "escape" from "initramfs" and use the
+         actual file system available in the compressed file. Alternatively, you can
+         overlay the whole "Busybox" environment on top of the compressed file system but
+         that's not really a professional approach.
+   
+      3) You need to "switch_root" to the actual file system (the compressed one) which
+         you first need to locate, then mount and finally make it "writable" by overlaying
+         virtual RAM files/folders via UnionFS/AuFS (or something similar) in case the bootable
+         media is not already writable. Remember that you are mounting compressed FS, which
+         means that if you make any changes on files located in the original FS, they will
+         not be persisted between reboots. Probably, you would like to handle this edge case.
+      
+      4) You need to prepare the stuff that you want to be present in the compressed file
+         system in advance. Assuming that we are building a useful live Linux OS, the
+         absolute minimum is "GNU Coreutils", network management utilities and probably
+         some kind of package manager, e.g. "pacman" or "apt-get". Don't forget that most
+         of this additional stuff very likely relies on different kernel options that
+         also need to be enabled/configured beforehand.
+      
+      5) You need to rewrite /init and make it execute all necessary steps to fulfil point 3
+         from the above. Different live Linux systems use different approaches here.
+      
+   All of the above is definitely *not* minimal but it's definitely doable if you put some
+   additional effort. It will take time, but as a result you would have a fully functional live
+   Linux OS, which you would have created entirely by yourself.
+   
+   ###   ###   ###
+   
+   6. Epilogue
+   
+   That's all folks! I hope you find this tutorial useful. And remember, we are talking
+   about very minimal live Linux OS here. If you want to create something bigger, I
+   suggest you take a look at "Linux From Scratch" (google it, you'll find it).
+   
+   At some point, you may also find it useful to play around with other live Linux
+   distributions. Don't forget that the initramfs file is compressed and in order to
+   get to the actual /init script you will need to uncompress it. Then you can see
+   the actual file structure of the initial root file system and examine the /init
+   script file. This will give you more insight on the boot process for the
+   particular live Linux distributions that you are learning from.
+   
+   One interesting live Linux distribution is "Slax". Just download it and take a
+   look at the /init script file (remember, you can uncompress the initramfs file).
+   There is also a very good document which explains the internal root file system
+   and the OS boot process for Slax:
+   
+      http://slax.org/en/documentation.php#internals
+   
+   The above URL may have changed but it is valid at the time I write this document.
+   

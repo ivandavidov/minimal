@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content="Minimal Linux Live"/>
+    <meta name="keywords" content="minimal minimalistic tiny linux live tutorial howto kernel busybox cd usb iso image bios uefi"/>
+    <meta name="author" content="Ivan Davidov - davidov (dot) i [at] gmail {dot} com"/>
+
+    <title>Minimal Linux Live in JavaScript PC emulator</title>
+
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+  </head>
+
+  <body id="body">
+    <div class="container">
+      <div class="header">
+        <h1 class="heading">Minimal Linux Live</h1>
+        <h1 class="heading mini">ver: 28-Jan-2018</h1>
+
+        <div class="light-btn" id="light-button">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="474.3px" height="474.3px" viewBox="0 0 474.3 474.3" style="enable-background:new 0 0 474.3 474.3;" xml:space="preserve">
+            <g>
+                <polygon points="266.076,0 213.961,0 202.008,31.557 278.03,31.557"/>
+                <polygon points="239.779,330.385 255.559,316.041 255.559,123.834 224.48,123.834 224.48,316.041"/>
+                <path d="M297.155,201.769v-77.935h-31.079v187.903l24.385,21.994c1.913,1.912,1.913,5.26,0.479,7.172
+                    c-1.913,1.912-5.26,1.912-7.172,0.479l-18.646-16.734c-0.957,0.956-24.863,19.125-24.863,19.125s-23.906-18.169-24.862-19.125
+                    l-18.647,16.734c-1.913,1.912-5.259,1.434-7.172-0.479s-1.434-5.26,0.478-7.172l24.384-21.516V123.834h-31.078V198.9
+                    c-52.115,21.516-88.931,72.196-88.931,132.44c0,78.891,64.069,142.959,142.959,142.959c78.891,0,142.481-64.068,142.481-142.959
+                    C379.87,273.487,345.924,224.719,297.155,201.769z"/>
+                <path d="M172.842,113.794h128.137c7.65,0.478,13.866-5.737,13.866-13.388v-3.825c0-7.65-6.216-13.866-13.866-13.866H172.842
+                    c-7.65-0.478-13.866,5.737-13.866,13.388v3.825C158.977,107.578,165.192,113.794,172.842,113.794z"/>
+                <path d="M172.842,72.197h128.137c7.65,0.478,13.866-5.738,13.866-13.388v-3.825c0-7.65-6.216-13.865-13.866-13.865H172.842
+                    c-7.65-0.479-13.866,5.737-13.866,13.387v3.825C158.977,65.981,165.192,72.197,172.842,72.197z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="screen-container">
+        <div class="emulator-screen" id="screen_container" contenteditable="true">
+          <div class="console"></div>
+          <canvas style="display: none"></canvas>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="info">
+          This is JavaScript based PC emulator which works entirely in your browser and some OS features may not behave properly in it.
+          All CPU instructions are emulated via JavaScript and the boot process may take 10-20 minutes.
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./assets/js/libv86.min.js"></script>
+    <script>
+      window.onload = function() {
+        var image_name = 'minimal_linux_live_28-Jan-2018_32-bit_bios.iso';
+        var cdrom_url = '../download/2018/' + image_name;
+
+        var emulator = window.emulator = new V86Starter({
+          memory_size: 256 * 1024 * 1024,
+          vga_memory_size: 16 * 1024 * 1024,
+          screen_container: document.getElementById('screen_container'),
+
+          bios: {
+            url: './bios/seabios.bin'
+          },
+          vga_bios: {
+            url: './bios/vgabios.bin'
+          },
+
+          cdrom: {
+            url: cdrom_url
+          },
+
+          autostart: true
+        });
+
+        // initialize light button
+        document.getElementById('light-button').addEventListener('click', function() {
+          document.getElementById('light-button').classList.toggle("dark");
+          document.getElementById('body').classList.toggle("dark");
+        });
+      }
+    </script>
+  </body>
+</html>

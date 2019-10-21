@@ -1,19 +1,20 @@
-function menuSwap(itemIndex) {
-  for(var i = 1; i <= 6; i++) {
-    var strItem = "item" + i;
-    var objItem = document.getElementById(strItem);
-    objItem.style.display = (i == itemIndex) ? "block" : "none";
+export function menuSwap(itemIndex) {
+  for(let i = 1; i <= 6; i++) {
+    let strItem = "item" + i;
+    let objItem = document.getElementById(strItem);
+    let display = (i === itemIndex) ? "block" : "none";
+    objItem.style.display = display;
   }
 }
 
-function logSwap(itemIndex, show) {
-  for(var i = 1; i <= 7; i++) {
-    var showObj = document.getElementById("show" + i);
-    var hideObj = document.getElementById("hide" + i);
-    var textObj = document.getElementById("text" + i);
+export function logSwap(itemIndex, show) {
+  for(let i = 1; i <= 7; i++) {
+    let showObj = document.getElementById("show" + i);
+    let hideObj = document.getElementById("hide" + i);
+    let textObj = document.getElementById("text" + i);
 
-    if(i == itemIndex) {
-      if(show == true) {
+    if(i === itemIndex) {
+      if(show === true) {
         showObj.style.display = "none";
         hideObj.style.display = "block";
         textObj.style.display = "block";
@@ -22,7 +23,7 @@ function logSwap(itemIndex, show) {
         hideObj.style.display = "none";
         textObj.style.display = "none";
       }
-    } else if(show == true) {
+    } else if(show === true) {
       showObj.style.display = "block";
       hideObj.style.display = "none";
       textObj.style.display = "none";
@@ -30,23 +31,23 @@ function logSwap(itemIndex, show) {
   }
 }
 
-function defaultTab(item) {
-  var hrefPart = document.location.href.split('#')[1];
+export function defaultTab(item) {
+  let hrefPart = document.location.href.split('#')[1];
 
-  if(hrefPart == undefined) {
+  if(hrefPart === undefined) {
     hrefPart = item;
   }
 
   loadTab('#' + hrefPart);
 }
 
-function loadTab(hrefPart) {
+export function loadTab(hrefPart) {
   document.location.href=hrefPart;
   loadUrl();
 }
 
-function loadUrl() {
-  var hrefPart = document.location.href.split('#')[1];
+export function loadUrl() {
+  let hrefPart = document.location.href.split('#')[1];
   switch(hrefPart) {
     case 'home' : {
       menuSwap(1);
@@ -79,20 +80,20 @@ function loadUrl() {
   }
 }
 
-function pageLoaded() {
+export function pageLoaded() {
   defaultTab('home');
   thankYou();
 }
 
-function thankYou() {
-  var footer = document.getElementById("footer");
-  var footerDiv = footer.getElementsByTagName("div")[0];
-  var html = footerDiv.innerHTML;
+export function thankYou() {
+  let footer = document.getElementById("footer");
+  let footerDiv = footer.getElementsByTagName("div")[0];
+  let html = footerDiv.innerHTML;
 
-  var sepa = ' <span class="separator">|</span> ';
-  var afterSepa = '<a target="_blank" href="http://{1}">{2}</a>'
+  let sepa = ' <span class="separator">|</span> ';
+  let afterSepa = '<a target="_blank" href="http://{1}">{2}</a>'
 
-  var hostname = window.location.hostname;
+  let hostname = window.location.hostname;
 
   switch(hostname) {
     case 'minimal.idzona.com' : {
@@ -152,7 +153,7 @@ function thankYou() {
       break;
     }
     default: {
-      if(hostname != "") {
+      if(hostname !== "") {
         html += sepa;
         html += afterSepa.replace("{1}", hostname).replace("{2}", hostname);
 

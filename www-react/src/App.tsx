@@ -1,11 +1,8 @@
-import React from 'react';
-import {Component} from 'react';
-
+import React, {Component} from 'react';
 import Header from './Header';
 import Menu from './Menu';
 import Sections from './Sections';
 import Footer from './Footer';
-
 import {pageLoaded} from './ts/main';
 
 class App extends Component {

@@ -1,12 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
 
-import Home from "./sections/Home.js";
-import ChangeLog from "./sections/ChangeLog.js";
-import About from "./sections/About.js";
-import Tutorial from "./sections/Tutorial.js";
-import Emulator from "./sections/Emulator.js";
-import Download from "./sections/Download.js";
+import Home from "./sections/Home";
+import ChangeLog from "./sections/ChangeLog";
+import About from "./sections/About";
+import Tutorial from "./sections/Tutorial";
+import Emulator from "./sections/Emulator";
+import Download from "./sections/Download";
 
 class Sections extends Component {
   render() {

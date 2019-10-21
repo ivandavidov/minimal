@@ -32,22 +32,22 @@ class Emulator extends Component {
         <div className="row">
           <div className="three columns">
             <a href="assets/img/emulator_01.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 1">
-              <img alt="Minimal Linux Live" id="emulator1" width="100%" height="100%" border="0" src="assets/img/emulator_01.jpg" />
+              <img alt="Minimal Linux Live" id="emulator1" width="100%" height="100%" src="assets/img/emulator_01.jpg" />
             </a>
           </div>
           <div className="three columns">
             <a href="assets/img/emulator_02.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 2">
-              <img alt="Minimal Linux Live" id="emulator2" width="100%" height="100%" border="0" src="assets/img/emulator_02.jpg" />
+              <img alt="Minimal Linux Live" id="emulator2" width="100%" height="100%" src="assets/img/emulator_02.jpg" />
             </a>
           </div>
           <div className="three columns">
             <a href="assets/img/emulator_03.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 3">
-              <img alt="Minimal Linux Live" id="emulator3" width="100%" height="100%" border="0" src="assets/img/emulator_03.jpg" />
+              <img alt="Minimal Linux Live" id="emulator3" width="100%" height="100%" src="assets/img/emulator_03.jpg" />
             </a>
           </div>
           <div className="three columns">
             <a href="assets/img/emulator_04.jpg" target="_blank" title="Minimal Linux Live in JavaScript PC emulator- screenshot 4">
-              <img alt="Minimal Linux Live" id="emulator4" width="100%" height="100%" border="0" src="assets/img/emulator_04.jpg" />
+              <img alt="Minimal Linux Live" id="emulator4" width="100%" height="100%" src="assets/img/emulator_04.jpg" />
             </a>
           </div>
         </div>

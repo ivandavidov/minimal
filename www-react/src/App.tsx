@@ -1,12 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
 
-import Header from './Header.js';
-import Menu from './Menu.js';
-import Sections from './Sections.js';
-import Footer from './Footer.js';
+import Header from './Header';
+import Menu from './Menu';
+import Sections from './Sections';
+import Footer from './Footer';
 
-import {pageLoaded} from './js/main.js';
+import {pageLoaded} from './ts/main';
 
 class App extends Component {
   render() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 
-import {loadTab} from '../js/main.js';
+import {loadTab} from '../ts/main';
 
 class Home extends Component {
   render() {
@@ -106,17 +106,17 @@ class Home extends Component {
         <div className="row">
           <div className="four columns">
             <a href="assets/img/mll_01.png" target="_blank" title="Minimal Linux Live - screenshot 1">
-              <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" border="0" src="assets/img/mll_01.png" />
+              <img alt="Minimal Linux Live" id="screenshot1" width="100%" height="100%" src="assets/img/mll_01.png" />
             </a>
           </div>
           <div className="four columns">
             <a href="assets/img/mll_02.png" target="_blank" title="Minimal Linux Live - screenshot 2">
-              <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" border="0" src="assets/img/mll_02.png" />
+              <img alt="Minimal Linux Live" id="screenshot2" width="100%" height="100%" src="assets/img/mll_02.png" />
             </a>
           </div>
           <div className="four columns">
             <a href="assets/img/mll_03.png" target="_blank" title="Minimal Linux Live - screenshot 3">
-              <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" border="0" src="assets/img/mll_03.png" />
+              <img alt="Minimal Linux Live" id="screenshot3" width="100%" height="100%" src="assets/img/mll_03.png" />
             </a>
           </div>
         </div>
@@ -124,17 +124,17 @@ class Home extends Component {
         <div className="row">
           <div className="four columns">
             <a href="assets/img/mll_04.png" target="_blank" title="Minimal Linux Live - screenshot 4">
-              <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" border="0" src="assets/img/mll_04.png" />
+              <img alt="Minimal Linux Live" id="screenshot4" width="100%" height="100%" src="assets/img/mll_04.png" />
             </a>
           </div>
           <div className="four columns">
             <a href="assets/img/mll_05.png" target="_blank" title="Minimal Linux Live - screenshot 5">
-              <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" border="0" src="assets/img/mll_05.png" />
+              <img alt="Minimal Linux Live" id="screenshot5" width="100%" height="100%" src="assets/img/mll_05.png" />
             </a>
           </div>
           <div className="four columns">
             <a href="assets/img/mll_06.png" target="_blank" title="Minimal Linux Live - screenshot 6">
-              <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" border="0" src="assets/img/mll_06.png" />
+              <img alt="Minimal Linux Live" id="screenshot6" width="100%" height="100%" src="assets/img/mll_06.png" />
             </a>
           </div>
         </div>

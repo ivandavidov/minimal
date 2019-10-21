@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
 
-import {loadTab} from './js/main.js';
+import {loadTab} from './ts/main';
 
 class Menu extends Component {
   render() {

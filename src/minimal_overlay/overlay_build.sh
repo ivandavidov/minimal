@@ -30,7 +30,11 @@ if [ ! "$SKIP_CLEAN" = "true" ] ; then
   ./overlay_clean.sh
 fi
 
-BUNDLES_LIST="$(echo $OVERLAY_BUNDLES | tr ',' ' ')"
+if [ "$OVERLAY_BUNDLES" = "all" ] ; then
+  BUNDLES_LIST=`ls $SRC_DIR/bundles`
+else
+  BUNDLES_LIST="$(echo $OVERLAY_BUNDLES | tr ',' ' ')"
+fi
 
 for BUNDLE in $BUNDLES_LIST
 do

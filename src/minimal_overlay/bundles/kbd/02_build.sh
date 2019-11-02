@@ -9,6 +9,26 @@ cd $WORK_DIR/overlay/$BUNDLE_NAME
 # Change to the kbd source directory which ls finds, e.g. 'kbd-2.04'.
 cd $(ls -d kbd-*)
 
+# Rename keymaps with the same name BEGIN
+
+mv data/keymaps/i386/qwertz/cz.map \
+  data/keymaps/i386/qwertz/cz-qwertz.map
+
+mv data/keymaps/i386/olpc/es.map \
+  data/keymaps/i386/olpc/es-olpc.map
+
+mv data/keymaps/i386/olpc/pt.map \
+  data/keymaps/i386/olpc/pt-olpc.map
+
+mv data/keymaps/i386/fgGIod/trf.map \
+  data/keymaps/i386/fgGIod/trf-fgGIod.map
+
+mv data/keymaps/i386/colemak/en-latin9.map \
+  data/keymaps/i386/colemak/colemak.map
+
+# Rename keymaps with the same name END
+
+
 if [ -f Makefile ] ; then
   echo "Preparing '$BUNDLE_NAME' work area. This may take a while."
   make -j $NUM_JOBS clean

@@ -1,0 +1,10 @@
+# Each overlay bundle may have dependencies on third party artifacts. This
+# particular overlay bundle depends on 'libc.so.6' which is provided by the
+# 'glibg_libc' overlay bundle, so we put it as dependency. All dependency
+# bundles are processed before the main bundle.
+
+# Note that in this particular case we can skip this dependency, because 'libc'
+# is provided as core dependency of 'Busybox'.
+
+glibc_libc
+

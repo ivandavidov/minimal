@@ -23,6 +23,6 @@ done
 cp -r --remove-destination $WORK_DIR/overlay/$BUNDLE_NAME/* \
   $OVERLAY_ROOTFS
 
-echo "Open JDK has been installed."
+echo "OpenJDK has been installed."
 
 cd $SRC_DIR

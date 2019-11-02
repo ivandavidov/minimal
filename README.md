@@ -48,7 +48,7 @@ As of **02-Nov-2019**:
 
 Here are some screenshots of the current development version of Minimal Linux Live:
 
-![Minimal Linux Live](docs/www/assets/img/minimal_linux_live.jpg)
+![Minimal Linux Live](docs/www/assets/img/nikola.png)
 
 ![Minimal Linux Live Readme](docs/www/assets/img/readme_in_mll.png)
 

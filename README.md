@@ -39,11 +39,11 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **08-Sep-2019**:
+As of **02-Nov-2019**:
 
-* Linux kernel 5.2.12 (stable)
+* Linux kernel 5.3.8 (stable)
 * GNU C Library 2.30 (stable)
-* Busybox 1.30.1 (stable)
+* Busybox 1.31.1 (stable)
 * Stable build on default Ubuntu 18.04.3 installation with applied system updates.
 
 Here are some screenshots of the current development version of Minimal Linux Live:
@@ -98,7 +98,7 @@ cd minimal_overlay
 ./overlay_build.sh openjdk
 ```
 
-Take a look at the [hello_mll](src/minimal_overlay/bundles/hello_mll/bundle.sh) overlay bundle which compiles simple C program (it prints one line in the console) and installs it properly in the MLL overlay structure.
+Take a look at the [mll_hello](src/minimal_overlay/bundles/mll_hello/bundle.sh) overlay bundle which compiles simple C program (it prints one line in the console) and installs it properly in the MLL overlay structure.
 
 ### Runtime software
 

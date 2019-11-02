@@ -11,7 +11,7 @@
 
  Another way to add software in 'Minimal Linux Live' is by using the overlay
  bundles which add the software while the OS is being built. Check the
- 'hello_mll' overlay bundle in folder 'minimal/src/minimal_overlay/bundles'.
+ 'mll_hello' overlay bundle in folder 'minimal/src/minimal_overlay/bundles'.
 
  You can also add software in 'Minimal Linux Live' while the OS is running with
  the 'static_get' overlay bundle. Use 'static-get -s <package>' to search for

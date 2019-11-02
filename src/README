@@ -18,10 +18,16 @@ you can change the property 'OVERLAY_BUNDLES' and build your own flavor of MLL.
 
 Currently available overlay bundles:
 
+  all            - this indicates to build all available overlay bundles. This
+                   is useful mostly for testing purposes. You are encouraged to
+                   use only the overlay bundles that you actually want. 
+
   GLIBC          - set of all core GNU C libraries packaged together. This
                    overlay bundle is not host specific and can always be built.
                    The libraries are useful if you plan to use more software in
                    MLL. This overlay bundle depends on the GLIBC build process.
+
+  adopt_openjdk  - JDK from AdoptOpenJDK with VM from either HotSpot or OpenJ9. 
 
   bosh_cli       - BOSH command line tool. It can be used as landscape manager
                    for virtual network and server infrastructures in cloud
@@ -71,14 +77,6 @@ Currently available overlay bundles:
                    Java, Scala, Clojure, Kotlin, and LLVM-based languages such
                    as C and C++.
 
-  Hello MLL      - Simple educational overlay bundle with detailed comments
-                   for each build step.
-
-  JRE / JDK      - Oracle JRE/JDK. This overlay bundle requires some manual
-                   preparation steps. Refer to the 'JAVA_ARCHIVE' property in
-                   the '.config' file for more information. This overlay bundle
-                   requires GLIBC and ZLIB.
-
   kbd            - keyboard utilities and keymaps. For example, you can load
                    German keyboard layout like this:
 
@@ -96,13 +94,16 @@ Currently available overlay bundles:
   Links          - text-based web browser. Use the 'links' command to activate
                    the browser.
 
-  Open JDK       - the open source JDK. No need for manual steps. This overlay
+  OpenJDK        - the open source JDK. No need for manual steps. This overlay
                    bundle requires GLIBC and ZLIB.
 
   Lua            - the Lua Scripting Language. Use the 'lua' command to run an
                    interactive Lua interpreter.
 
   make           - GNU make utility.
+
+  MLL Hello      - Simple educational overlay bundle with detailed comments
+                   for each build step.
 
   MLL Logo       - custom MLL boot logo.
 
@@ -124,6 +125,10 @@ Currently available overlay bundles:
                    QEMU guest (minimal) to port 8080 on the host, add
                    '-net nic,model=e1000 -net user,hostfwd=tcp::8080-:80' to
                    'cmd' in the qemu.sh file.
+
+  openjdk        - Free and open-source JDK from OpenJDK.
+
+  static_get     - portable binaries for Linux (http://s.minos.io).
 
   stress         - simple workload generator. Imposes a configurable amount of
                    CPU, memory, I/O, and disk stress on the system. stress is
@@ -162,7 +167,7 @@ The overlay build system is independent from the main build system. However,
 some bundles depend on build artifacts from the main build process, so it is
 highly recommended to build MLL before you use the overlay build system.
 
-Take a look at the 'hello_mll' overlay bundle for detailed explanation of the
+Take a look at the 'mll_hello' overlay bundle for detailed explanation of the
 internal overlay system build process and the corresponding directories that
 are involved in the process.
 
@@ -174,12 +179,12 @@ You can build all bundles declared in the main '.config' file like this:
 You can build individual overlay bundle like this:
 
   cd minimal_overlay
-  ./overlay_build.sh hello_mll
+  ./overlay_build.sh mll_hello
 
 You can build more two or more bundles if you separate them with comma:
 
   cd minimal_overlay
-  ./overlay_build.sh hello_mll,dhcp,mll_source
+  ./overlay_build.sh mll_hello,dhcp,mll_source
 
 The simplest way to add something to MLL is to put whatever you want in
 the following folder:

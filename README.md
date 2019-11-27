@@ -66,9 +66,11 @@ The section below is for Ubuntu and other Debian based distros.
 
 ```
 # Resolve build dependencies
+sudo apt-get update
 sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
 # Build everything and produce ISO image.
+cd src
 ./build_minimal_linux_live.sh
 ```
 

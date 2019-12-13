@@ -9,6 +9,7 @@
 * [GraalVM](#graalvm)
 * [BIOS and UEFI](#bios-and-uefi)
 * [Installation](#installation)
+* [Publications](#publications)
 * [Other projects](#other-projects)
 * [Thank you!](#thank-you)
 
@@ -171,6 +172,14 @@ docker import mll_image.tgz minimal-linux-live:latest
 docker run -it minimal-linux-live /bin/sh
 ```
 
+### Publications
+
+Case studues, research papers, publications, presentations, etc. regarding [Minimal Linux Live](https://github.com/ivandavidov/minimal) and [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
+
+* [Software and Hardware Test - Minimal Linux](https://www.dotsource.de/labs/wp-content/uploads/sites/4/2019/06/Software-und-Hardwaretest-Minimal-Linux.pdf) (PDF, German language, [dotSource Labs](https://www.dotsource.de/labs/2019/06/17/software-und-hardwaretest-minimal-linux/))
+* [The Evolution of Minimal Linux Live](https://softuni.bg/downloads/svn/seminars/Minimal-Linux-Live-25-June-2016/Minimal-Linux-Live.pptx) (Power Point, Bulgarian language, [SoftUni seminar](https://softuni.bg/trainings/1409/minimal-linux-live-the-easy-way-to-create-a-minimal-linux-based-operating-system))
+* [Considerations for the SDP Operating System](http://ska-sdp.org/sites/default/files/attachments/sdp_memo_063_os_signed_21.10.18.pdf) (PDF, English language, mentions Minimal Linux Live)
+
 ### Other projects
 
 * [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL. This project is recommended as a starting point for beginners.
@@ -189,9 +198,7 @@ docker run -it minimal-linux-live /bin/sh
 
 * [Ladiko's MLL](https://github.com/ladiko/minimal) - this fork automatically downloads and uses the latest available Kernel and Busybox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
 
-* [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux) - MLL fork which provides additional overlay bundles (ncurses and Nano).
-
-* [StarLinux](https://github.com/AwlsomeAlex/StarLinux) - the successor of [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux). StarLinux aims at making the build process user friendly.
+* [StelaLinux] - the successor of [StarLinux](https://github.com/AwlsomeAlex/StarLinux) and [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux). These projects are spin-offs of MLL that take different build approach.
 
 * [prologic's MLL](https://github.com/prologic/minimal) - this fork adds Python support to the MLL runtime environment.
 

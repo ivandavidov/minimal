@@ -198,7 +198,7 @@ Case studues, research papers, publications, presentations, etc. regarding [Mini
 
 * [Ladiko's MLL](https://github.com/ladiko/minimal) - this fork automatically downloads and uses the latest available Kernel and Busybox sources. By default there is NTFS and SquashFS support. The fork also provides an installer which can be used to put MLL on USB flash device.
 
-* [StelaLinux] - the successor of [StarLinux](https://github.com/AwlsomeAlex/StarLinux) and [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux). These projects are spin-offs of MLL that take different build approach.
+* [StelaLinux](https://github.com/AwlsomeAlex/stelalinux) - the successor of [StarLinux](https://github.com/AwlsomeAlex/StarLinux) and [AwlsomeLinux](https://github.com/AwlsomeAlex/AwlsomeLinux). These projects are spin-offs of MLL that take different build approach.
 
 * [prologic's MLL](https://github.com/prologic/minimal) - this fork adds Python support to the MLL runtime environment.
 

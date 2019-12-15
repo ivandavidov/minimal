@@ -174,7 +174,7 @@ docker run -it minimal-linux-live /bin/sh
 
 ### Publications
 
-Case studues, research papers, publications, presentations, etc. regarding [Minimal Linux Live](https://github.com/ivandavidov/minimal) and [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
+Case studies, research papers, publications, presentations, etc. regarding [Minimal Linux Live](https://github.com/ivandavidov/minimal) and [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
 
 * [Software and Hardware Test - Minimal Linux](https://www.dotsource.de/labs/wp-content/uploads/sites/4/2019/06/Software-und-Hardwaretest-Minimal-Linux.pdf) (PDF, German language, [dotSource Labs](https://www.dotsource.de/labs/2019/06/17/software-und-hardwaretest-minimal-linux/))
 * [The Evolution of Minimal Linux Live](https://softuni.bg/downloads/svn/seminars/Minimal-Linux-Live-25-June-2016/Minimal-Linux-Live.pptx) (Power Point, Bulgarian language, [SoftUni seminar](https://softuni.bg/trainings/1409/minimal-linux-live-the-easy-way-to-create-a-minimal-linux-based-operating-system))

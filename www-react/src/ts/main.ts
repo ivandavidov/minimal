@@ -2,7 +2,6 @@ const logs: number = 8
 const menus: number = 6;
 
 export const MLL_VERSION: string = '15-Dec-2019';
-export const MLL_VERSION_YEAR: string = MLL_VERSION.split('-')[2];
 export const COPYRIGHT: string = '2014 - 2020';
 
 export function menuSwap(itemIndex: number): void {

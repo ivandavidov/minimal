@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {MLL_VERSION, MLL_VERSION_YEAR} from '../ts/main';
+import {MLL_VERSION} from '../ts/main';
 
 class Download extends Component {
   render() {
@@ -27,7 +27,7 @@ class Download extends Component {
             <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
             <ul>
               <li>
-                <a href={"http://github.com/ivandavidov/minimal/releases/download/" + MLL_VERSION_YEAR + "/minimal_linux_live_" + MLL_VERSION + "_64-bit_bios.iso"} title="Minimal Linux Live - ISO image file for 64-bit CPUs (legacy BIOS)">minimal_linux_live_{MLL_VERSION}_64-bit_bios.iso</a> - 64-bit ISO image from GitHub.
+                <a href={"http://github.com/ivandavidov/minimal/releases/download/" + MLL_VERSION + "/minimal_linux_live_" + MLL_VERSION + "_64-bit_bios.iso"} title="Minimal Linux Live - ISO image file for 64-bit CPUs (legacy BIOS)">minimal_linux_live_{MLL_VERSION}_64-bit_bios.iso</a> - 64-bit ISO image from GitHub.
               </li>
             </ul>
           </div>

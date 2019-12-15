@@ -5,15 +5,15 @@ class ChangeLog7 extends Component {
   render() {
     return (
       <div>
-        <div id="show7" style={{display: "none"}}>
+        <div id="show7" style={{display: "block"}}>
           <strong>28-Jan-2018</strong>&nbsp;
           <a href="#changes" onClick={() => {logSwap(7, true); return false;}}>show</a>
         </div>
-        <div id="hide7" style={{display: "block"}}>
+        <div id="hide7" style={{display: "none"}}>
           <strong>28-Jan-2018</strong>&nbsp;
           <a href="#changes" onClick={() => {logSwap(7, false); return false;}}>hide</a>
         </div>
-        <div id="text7" style={{display: "block"}}>
+        <div id="text7" style={{display: "none"}}>
           <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
           <ul>
             <li>

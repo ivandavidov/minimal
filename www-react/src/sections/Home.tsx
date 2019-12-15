@@ -41,7 +41,7 @@ class Home extends Component {
                 Resolve the build dependencies (e.g. GCC, make, etc.). On <a target="_blank" rel="noopener noreferrer" href="http://www.ubuntu.com/">Ubuntu</a> you can use the following command:
                 <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <code>sudo apt install wget make gawk gcc bc libelf-dev xorriso</code>
+                <code>sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev</code>
               </li>
               <li>
                 Execute the script <strong>build_minimal_linux_live.sh</strong> and get some coffee. The whole build process should take less than 30 minutes on a modern computer.
@@ -54,7 +54,7 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="twelve columns">
-            The default build process for version <strong>28-Jan-2018</strong> generates ~9MB ISO image on 64-bit host machines, but you can make the ISO image even smaller (~8MB) if you exclude the default <a target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
+            The default build process for version <strong>04-Nov-2019</strong> generates ~10MB ISO image on 64-bit host machines, but you can make the ISO image even smaller if you exclude the default <a target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
@@ -67,6 +67,12 @@ class Home extends Component {
         <div className="row">
           <div className="twelve columns">
             You can run the ISO image in virtual machine, e.g. <a target="_blank" rel="noopener noreferrer" href="http://www.qemu.org">QEMU</a>, <a target="_blank" rel="noopener noreferrer" href="http://www.virtualbox.org">VirtualBox</a> or <a target="_blank" rel="noopener noreferrer" href="http://www.vmware.com/products/workstation-player.html">VMware Workstation Player</a> (free for non-commercial use). You can also burn the ISO image file on CD/DVD or on USB flash device by issuing <code>dd if=minimal_linux_live.iso of=/dev/xxx</code> where <code>/dev/xxx</code> is your USB flash device.
+          </div>
+        </div>
+        <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
+        <div className="row">
+          <div className="twelve columns">
+            You can also use Minimal Linux Live as Docker container. The build process generates very small Docker compatible container image which you can import and use.
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>

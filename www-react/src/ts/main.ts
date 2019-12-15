@@ -13,7 +13,7 @@ export function menuSwap(itemIndex: number) {
 }
 
 export function logSwap(itemIndex: number, show: boolean) {
-  for(let i: number = 1; i <= 7; i++) {
+  for(let i: number = 1; i <= 8; i++) {
     let showObj: HTMLElement | null = document.getElementById("show" + i);
     if(!showObj) {
       throw new Error("logSwap: showObj is null");

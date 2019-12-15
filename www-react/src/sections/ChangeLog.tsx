@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ChangeLog8 from './changelogs/ChangeLog8';
 import ChangeLog7 from './changelogs/ChangeLog7';
 import ChangeLog6 from './changelogs/ChangeLog6';
 import ChangeLog5 from './changelogs/ChangeLog5';
@@ -18,6 +19,7 @@ class ChangeLog extends Component {
         </div>
         <div className="row">
           <div className="twelve columns">
+            <ChangeLog8 />
             <ChangeLog7 />
             <ChangeLog6 />
             <ChangeLog5 />

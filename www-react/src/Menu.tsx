@@ -13,7 +13,6 @@ class Menu extends Component {
           <a id="hm5" className="button button-primary" href="#emulator" onClick={() => {loadTab("#emulator"); return false;}}>Emulator</a>&nbsp;
           <a id="hm6" className="button button-primary" href="#download" onClick={() => {loadTab("#download"); return false;}}>Download</a>&nbsp;
           <a id="hm7" className="button" target="_blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal">GitHub</a>
-          <hr />
         </div>
       </div>
     );

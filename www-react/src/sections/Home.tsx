@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {loadTab} from '../ts/main';
+import {loadTab, MLL_VERSION} from '../ts/main';
 
 class Home extends Component {
   render() {
@@ -54,7 +54,7 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="twelve columns">
-            The default build process for version <strong>04-Nov-2019</strong> generates ~10MB ISO image on 64-bit host machines, but you can make the ISO image even smaller if you exclude the default <a target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
+            The default build process for version <strong>{MLL_VERSION}</strong> generates ~10MB ISO image on 64-bit host machines, but you can make the ISO image even smaller if you exclude the default <a target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal#overlay-bundles">overlay bundles</a> from the main <a target="blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/blob/master/src/.config">.config</a> file.
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>

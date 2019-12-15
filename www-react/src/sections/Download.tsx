@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {MLL_VERSION, MLL_VERSION_YEAR} from '../ts/main';
 
 class Download extends Component {
   render() {
@@ -11,41 +12,29 @@ class Download extends Component {
         </div>
         <div className="row">
           <div className="twelve columns">
-            The build scripts for version <code>28-Jan-2018</code> are available as <strong>tar.xz</strong> archive.
+            The build scripts for version <code>{MLL_VERSION}</code> are available as <strong>tar.xz</strong> archive.
             <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
             <ul>
-              <li id="dl1">
-                <a href="http://github.com/ivandavidov/minimal/releases/download/28-Jan-2018/minimal_linux_live_28-Jan-2018_src.tar.xz" title="Minimal Linux Live - shell scripts">minimal_linux_live_28-Jan-2018_src.tar.xz</a> - from GitHub.
-              </li>
-              <li id="dl2">
-                <a href="./download/2018/minimal_linux_live_28-Jan-2018_src.tar.xz" title="Minimal Linux Live - shell scripts">minimal_linux_live_28-Jan-2018_src.tar.xz</a> - from this website.
+              <li>
+                <a href={"http://github.com/ivandavidov/minimal/releases/download/" + MLL_VERSION + "/minimal_linux_live_" + MLL_VERSION + "_src.tar.xz"} title="Minimal Linux Live - shell scripts">minimal_linux_live_{MLL_VERSION}_src.tar.xz</a> - from GitHub.
               </li>
             </ul>
           </div>
         </div>
         <div className="row">
           <div className="twelve columns">
-            The list below provides pre-built ISO images with support for legacy BIOS for <strong>64-bit</strong> and <strong>32-bit</strong> Intel CPUs.
+            The link below provides pre-built ISO image with support for legacy BIOS (64-bit, Intel CPUs).
             <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
             <ul>
-              <li id="dl3">
-                <a href="http://github.com/ivandavidov/minimal/releases/download/28-Jan-2018/minimal_linux_live_28-Jan-2018_64-bit_bios.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs (legacy BIOS)">minimal_linux_live_28-Jan-2018_64-bit_bios.iso</a> - 64-bit ISO image from GitHub.
-              </li>
-              <li id="dl4">
-                <a href="http://github.com/ivandavidov/minimal/releases/download/28-Jan-2018/minimal_linux_live_28-Jan-2018_32-bit_bios.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs (legacy BIOS)">minimal_linux_live_28-Jan-2018_32-bit_bios.iso</a> - 32-bit ISO image from GitHub.
-              </li>
-              <li id="dl5">
-                <a href="./download/2018/minimal_linux_live_28-Jan-2018_64-bit_bios.iso" title="Minimal Linux Live - ISO image file for 64-bit CPUs (legacy BIOS)">minimal_linux_live_28-Jan-2018_64-bit_bios.iso</a> - 64-bit ISO image from this website.
-              </li>
-              <li id="dl6">
-                <a href="./download/2018/minimal_linux_live_28-Jan-2018_32-bit_bios.iso" title="Minimal Linux Live - ISO image file for 32-bit CPUs (legacy BIOS)">minimal_linux_live_28-Jan-2018_32-bit_bios.iso</a> - 32-bit ISO image from this website.
+              <li>
+                <a href={"http://github.com/ivandavidov/minimal/releases/download/" + MLL_VERSION_YEAR + "/minimal_linux_live_" + MLL_VERSION + "_64-bit_bios.iso"} title="Minimal Linux Live - ISO image file for 64-bit CPUs (legacy BIOS)">minimal_linux_live_{MLL_VERSION}_64-bit_bios.iso</a> - 64-bit ISO image from GitHub.
               </li>
             </ul>
           </div>
         </div>
         <div className="row">
           <div className="twelve columns">
-            You can browse the <a target="_blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/releases">GitHub releases</a><span id="gh1"> or browse the <a target="_blank" href="./download">download directory</a> in this website</span> where you will find all source archives and pre-built ISO images with support for BIOS, UEFI and mixed BIOS/UEFI.
+            You can browse the <a target="_blank" rel="noopener noreferrer" href="http://github.com/ivandavidov/minimal/releases">GitHub releases</a> where you will find all source archives, as well as pre-built ISO images with support for BIOS, UEFI and mixed BIOS/UEFI mode.
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {COPYRIGHT} from './ts/main';
 
 class Footer extends Component {
   render() {
@@ -15,7 +16,7 @@ class Footer extends Component {
         <div id="footer" className="row" style={{textAlign: "center"}}>
           <div className="twelve columns">
             <a href="." title="Minimal Linux Live">Minimal Linux Live</a>&nbsp;
-            <span className="separator">|</span>&nbsp;Copyright &copy; 2014 - 2020
+            <span className="separator">|</span>&nbsp;Copyright &copy; {COPYRIGHT}
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>

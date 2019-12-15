@@ -1,5 +1,12 @@
-export function menuSwap(itemIndex: number) {
-  for(let i: number = 1; i <= 6; i++) {
+const logs: number = 8
+const menus: number = 6;
+
+export const MLL_VERSION: string = '15-Dec-2019';
+export const MLL_VERSION_YEAR: string = MLL_VERSION.split('-')[2];
+export const COPYRIGHT: string = '2014 - 2020';
+
+export function menuSwap(itemIndex: number): void {
+  for(let i: number = 1; i <= menus; i++) {
     let strItem: string = "item" + i;
     let objItem: HTMLElement | null = document.getElementById(strItem);
     let display: string = (i === itemIndex) ? "block" : "none";
@@ -12,8 +19,8 @@ export function menuSwap(itemIndex: number) {
   }
 }
 
-export function logSwap(itemIndex: number, show: boolean) {
-  for(let i: number = 1; i <= 8; i++) {
+export function logSwap(itemIndex: number, show: boolean): void {
+  for(let i: number = 1; i <= logs; i++) {
     let showObj: HTMLElement | null = document.getElementById("show" + i);
     if(!showObj) {
       throw new Error("logSwap: showObj is null");
@@ -47,7 +54,7 @@ export function logSwap(itemIndex: number, show: boolean) {
   }
 }
 
-export function defaultTab(item: string) {
+export function defaultTab(item: string): void {
   let hrefPart: string = document.location.href.split('#')[1];
 
   if(hrefPart === undefined) {
@@ -57,12 +64,12 @@ export function defaultTab(item: string) {
   loadTab('#' + hrefPart);
 }
 
-export function loadTab(hrefPart: string) {
+export function loadTab(hrefPart: string): void {
   document.location.href = hrefPart;
   loadUrl();
 }
 
-export function loadUrl() {
+export function loadUrl(): void {
   let hrefPart: string = document.location.href.split('#')[1];
   switch(hrefPart) {
     case 'home' : {
@@ -96,12 +103,24 @@ export function loadUrl() {
   }
 }
 
-export function pageLoaded() {
+export function pageLoaded(): void {
   defaultTab('home');
   thankYou();
 }
 
-export function thankYou() {
+export function hideEmulatorMenu(): void {
+  if(!document) {
+    throw new Error("thankYou: document is null.");
+  }
+  
+  let hm5: HTMLElement | null = document.getElementById('hm5');
+  if(!hm5) {
+    throw new Error("thankYou: hm5 is null.");
+  }
+  hm5.style.display="none";
+}
+
+export function thankYou(): void {
   let footer: HTMLElement | null = document.getElementById("footer");
   if(!footer) {
       throw new Error("thankYou: footer is null.");
@@ -145,39 +164,7 @@ export function thankYou() {
       break;
     }
     case 'ivandavidov.github.io' : {
-      if(!document) {
-        throw new Error("thankYou: document is null.");
-      }
-      
-      let hm5: HTMLElement | null = document.getElementById('hm5');
-      if(!hm5) {
-        throw new Error("thankYou: hm5 is null.");
-      }
-      hm5.style.display="none";
-
-      let d12: HTMLElement | null = document.getElementById('dl2');
-      if(!d12) {
-        throw new Error("thankYou: d12 is null.");
-      }
-      d12.style.display="none";
-      
-      let d15: HTMLElement | null = document.getElementById('dl5');
-      if(!d15) {
-        throw new Error("thankYou: d15 is null.");
-      }
-      d15.style.display="none";
-      
-      let d16: HTMLElement | null = document.getElementById('dl6');
-      if(!d16) {
-        throw new Error("thankYou: d16 is null.");
-      }
-      d16.style.display="none";
-
-      let gh1: HTMLElement | null = document.getElementById('gh1');
-      if(!gh1) {
-        throw new Error("thankYou: gh1 is null.");
-      }
-      gh1.style.display="none";
+      hideEmulatorMenu();
 
       html += sepa;
       html += 'Development website - may not be fully functional.';
@@ -187,39 +174,7 @@ export function thankYou() {
       break;
     }
     case 'linux.idzona.com' : {
-      if(!document) {
-        throw new Error("thankYou: document is null.");
-      }
-
-      let hm5: HTMLElement | null = document.getElementById('hm5');
-      if(!hm5) {
-        throw new Error("thankYou: hm5 is null.");
-      }
-      hm5.style.display="none";
-
-      let d12: HTMLElement | null = document.getElementById('dl2');
-      if(!d12) {
-        throw new Error("thankYou: d12 is null.");
-      }
-      d12.style.display="none";
-      
-      let d15: HTMLElement | null = document.getElementById('dl5');
-      if(!d15) {
-        throw new Error("thankYou: d15 is null.");
-      }
-      d15.style.display="none";
-      
-      let d16: HTMLElement | null = document.getElementById('dl6');
-      if(!d16) {
-        throw new Error("thankYou: d16 is null.");
-      }
-      d16.style.display="none";
-
-      let gh1: HTMLElement | null = document.getElementById('gh1');
-      if(!gh1) {
-        throw new Error("thankYou: gh1 is null.");
-      }
-      gh1.style.display="none";
+      hideEmulatorMenu();
 
       html += sepa;
       html += 'Development website - may not be fully functional.';
@@ -231,7 +186,7 @@ export function thankYou() {
     default: {
       if(hostname !== "") {
         html += sepa;
-        html += afterSepa.replace("{1}", hostname).replace("{2}", hostname);
+        html += afterSepa.replace("{1}", hostname + ":"+ window.location.port + window.location.pathname).replace("{2}", hostname);
 
         footerDiv.innerHTML = html;
       }

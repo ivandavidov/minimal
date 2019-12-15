@@ -40,9 +40,9 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **02-Nov-2019**:
+As of **15-Dec-2019**:
 
-* Linux kernel 5.3.8 (stable)
+* Linux kernel 5.4.3 (stable)
 * GNU C Library 2.30 (stable)
 * Busybox 1.31.1 (stable)
 * Stable build on default Ubuntu 18.04.3 installation with applied system updates.

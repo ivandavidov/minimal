@@ -4,8 +4,8 @@ import LogAction from './LogAction';
 class ChangeLog8 extends Component {
   render() {
     return (
-      <div>
-        <LogAction entry={8} version="15-Dec-2019" />
+      <React.Fragment>
+        <LogAction entry={8} version="15-Dec-2019" expanded={true} />
         <div id="text8" style={{display: "block"}}>
           <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
           <ul>
@@ -45,7 +45,7 @@ class ChangeLog8 extends Component {
           </ul>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
-      </div>
+      </React.Fragment>
     );
   }
 }

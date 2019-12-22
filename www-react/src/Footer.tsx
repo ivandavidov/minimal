@@ -4,7 +4,7 @@ import {COPYRIGHT} from './ts/main';
 class Footer extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
         <div className="row">
@@ -20,7 +20,7 @@ class Footer extends Component {
           </div>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -4,21 +4,31 @@ import {logSwap} from '../../ts/main';
 type LogActionProps = {
   entry: number,
   version: string;
+  expanded: boolean;
 }
 
+type LogActionState = {
+  show: boolean;
+}
 
-class LogAction extends Component<LogActionProps> {
+class LogAction extends Component<LogActionProps, LogActionState> {
+  constructor(props: LogActionProps) {
+    super(props);
+    this.state = {show: props.expanded};
+  }
+  
+  handleLogEntryChange(e: React.MouseEvent) {
+    let newState: boolean = !this.state.show;
+    this.setState({show: newState});
+    logSwap(this.props.entry, newState);
+    e.preventDefault();
+  }
+    
   render() {
     return (
       <React.Fragment>
-        <div id={"show" + this.props.entry} style={{display: "none"}}>
-          <strong>{this.props.version}</strong>&nbsp;
-          <a href="#changes" onClick={() => {logSwap(this.props.entry, true); return false;}}>show</a>
-        </div>
-        <div id={"hide" + this.props.entry} style={{display: "block"}}>
-          <strong>{this.props.version}</strong>&nbsp;
-          <a href="#changes" onClick={() => {logSwap(this.props.entry, false); return false;}}>hide</a>
-        </div>
+        <strong>{this.props.version}</strong>&nbsp;
+        <a href="# " onClick={(e) => {this.handleLogEntryChange(e);}}>{this.state.show ? "hide" : "show"}</a>
       </React.Fragment>
     )
   }

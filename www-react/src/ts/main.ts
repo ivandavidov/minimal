@@ -20,16 +20,6 @@ export function menuSwap(itemIndex: number): void {
 
 export function logSwap(itemIndex: number, show: boolean): void {
   for(let i: number = 1; i <= logs; i++) {
-    let showObj: HTMLElement | null = document.getElementById("show" + i);
-    if(!showObj) {
-      throw new Error("logSwap: showObj is null");
-    }
-    
-    let hideObj: HTMLElement | null = document.getElementById("hide" + i);
-    if(!hideObj) {
-      throw new Error("logSwap: hideObj is null");
-    }
-
     let textObj: HTMLElement | null = document.getElementById("text" + i);
     if(!textObj) {
       throw new Error("logSwap: textObj is null");
@@ -37,18 +27,10 @@ export function logSwap(itemIndex: number, show: boolean): void {
 
     if(i === itemIndex) {
       if(show === true) {
-        showObj.style.display = "none";
-        hideObj.style.display = "block";
         textObj.style.display = "block";
       } else {
-        showObj.style.display = "block";
-        hideObj.style.display = "none";
         textObj.style.display = "none";
       }
-    } else if(show === true) {
-      showObj.style.display = "block";
-      hideObj.style.display = "none";
-      textObj.style.display = "none";
     }
   }
 }

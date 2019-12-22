@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
-import {logSwap} from '../../ts/main';
+import LogAction from './LogAction';
 
 class ChangeLog2 extends Component {
   render() {
     return (
-      <div>
-        <div id="show2" style={{display: "block"}}>
-          <strong>25-Aug-2014</strong>&nbsp;
-          <a href="#changes" onClick={() => {logSwap(2, true); return false;}}>show</a>
-        </div>
-        <div id="hide2" style={{display: "none"}}>
-          <strong>25-Aug-2014</strong>&nbsp;
-          <a href="#changes" onClick={() => {logSwap(2, false); return false;}}>hide</a>
-        </div>
+      <React.Fragment>
+        <LogAction entry={2} version="25-Aug-2014" expanded={false} />
         <div id="text2" style={{display: "none"}}>
           <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
           <ul>
@@ -28,7 +21,7 @@ class ChangeLog2 extends Component {
           </ul>
         </div>
         <div style={{fontSize: 10 + "%"}}>&nbsp;</div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -10,7 +10,7 @@
 * [BIOS and UEFI](#bios-and-uefi)
 * [Installation](#installation)
 * [Publications](#publications)
-* [Other projects](#other-projects)
+* [Related projects](#related-projects)
 * [Thank you!](#thank-you)
 
 ### Stargazers over time
@@ -21,6 +21,16 @@
 
 ### Overview
 
+Minimal Linux Live (MLL) is a tiny educational Linux distribution, which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the Linux kernel, GNU C library, and Busybox userland utilities. Additional software can be included in the ISO image at build time by using a well-documented [configuration file](src/.config).
+
+The generated ISO image file contains Linux kernel, GNU C library compiled with default options, Busybox compiled with default options, quite simple initramfs structure and some "overlay bundles" (the default build process provides few overlay bundles). You don't get Windows support out of the box, nor you get any fancy desktop environment (refer to the [Debootstrap Live](https://github.com/zac87/debootstrap_live) project if you need minimal system with network and UI). All you get is a simple shell console with default Busybox applets, network support via DHCP and... well, that's all. This is why it's called "minimal".
+ 
+Note that by default Minimal Linux Live provides support for legacy BIOS systems. You can change the build configuration settings in the [.config](src/.config) file and rebuild MLL with support for modern UEFI systems.
+ 
+All build scripts are well organized and quite small in size. You can easily learn from the scripts, reverse engineer the build process and later modify them to include more stuff (I encourage you to do so). After you learn the basics, you will have all the necessary tools and skills to create your own fully functional Linux based operating system which you have built entirely from scratch.
+ 
+You are encouraged to read the [tutorial](src/the_dao_of_minimal_linux_live.txt) which explains the MLL build process. The same tutorial, along with all MLL source code, can be found in the ISO image structure in the ``/minimal/rootfs/usr/src directory``.
+
 The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") is provided by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
 
 Website mirrors are available here:
@@ -29,6 +39,8 @@ Website mirrors are available here:
 * [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
 * [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
 * [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
+
+List of [related projects]((#related-projects)) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
 
 The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
 
@@ -180,7 +192,9 @@ Case studies, research papers, publications, presentations, etc. regarding [Mini
 * [The Evolution of Minimal Linux Live](https://softuni.bg/downloads/svn/seminars/Minimal-Linux-Live-25-June-2016/Minimal-Linux-Live.pptx) (Power Point, Bulgarian language, [SoftUni seminar](https://softuni.bg/trainings/1409/minimal-linux-live-the-easy-way-to-create-a-minimal-linux-based-operating-system))
 * [Considerations for the SDP Operating System](http://ska-sdp.org/sites/default/files/attachments/sdp_memo_063_os_signed_21.10.18.pdf) (PDF, English language, mentions Minimal Linux Live)
 
-### Other projects
+### Related projects
+
+List of cool forks, spin-offs and other related projects inspired by Minimal Linux Live.
 
 * [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script) - very simplified and minimalistic version of MLL. This project is recommended as a starting point for beginners.
 
@@ -189,6 +203,8 @@ Case studies, research papers, publications, presentations, etc. regarding [Mini
 * [Bare Minimal Linux](https://github.com/sapcc/bare-minimal-linux) - fork of minimal linux for baremetal debugging. This project is part of the [SAP Converged Cloud](https://en.wikipedia.org/wiki/SAP_Converged_Cloud) ecosystem.
 
 * [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - a Linux host OS designed to run Containers with a minimalist design and small footprint.
+
+* [Debootstrap Live](https://github.com/zac87/debootstrap_live) - this spin-off of MLL generates bootable ISO with current kernel and [debootstrap](https://wiki.debian.org/Debootstrap) base system.
 
 * [RedoxOS Installer](https://github.com/RedoxOS/installer) - the original installer for [Redox OS](www.redox-os.org) is based on simplified version of Minimal Linux Live.
 

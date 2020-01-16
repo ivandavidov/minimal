@@ -174,10 +174,10 @@ dd if=minimal_linux_live.iso of=/dev/xxx
 
 The USB flash device will be recognized as bootable device and you should be able to boot MLL successfully from it. If you have chosen the 'combined' build flavor (i.e. value ``both`` for the corresponding configuration property), then your USB flash device will be bootable on both legacy BIOS and modern UEFI based systems.
 
-The build process also generates image the file ``mll_image.tgz``. This image contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the MLL build process. You can import and use the image in Docker like this:
+The build process also generates a compressed filesystem image file ``mll_image.tgz`` which contains everything from the initramfs area and everything from the overlay area, i.e. all overlay bundles that have been installed during the MLL build process. You can import and use the filesystem image in Docker like this:
 
 ```
-# Import the MLL image in Docker.
+# Import the MLL filesystem image in Docker.
 docker import mll_image.tgz minimal-linux-live:latest
 
 # Run MLL shell in Docker:
@@ -205,8 +205,6 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 * [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - a Linux host OS designed to run Containers with a minimalist design and small footprint.
 
 * [Debootstrap Live](https://github.com/zac87/debootstrap_live) - this spin-off of MLL generates bootable ISO with current kernel and [debootstrap](https://wiki.debian.org/Debootstrap) base system.
-
-* [RedoxOS Installer](https://github.com/RedoxOS/installer) - the original installer for [Redox OS](www.redox-os.org) is based on simplified version of Minimal Linux Live.
 
 * [Boot2Minc](https://github.com/mhiramat/boot2minc) - this fork adds [Mincs](https://github.com/mhiramat/mincs) and as result you can run Linux containers inside MLL. One interesting Mincs feature - it provides tools which allow you to reuse alredy existing Docker containers.
 

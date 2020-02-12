@@ -40,7 +40,7 @@ Website mirrors are available here:
 * [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
 * [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
 
-List of [related projects]((#related-projects)) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
+List of [related projects](#related-projects) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
 
 The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
 

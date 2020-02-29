@@ -31,7 +31,7 @@ CFLAGS="$CFLAGS" ./configure \
     --without-normal \
     --without-debug \
     --without-cxx-binding \
-    --with-abi-version=5 \
+    --with-abi-version=6 \
     --enable-widec \
     --enable-pc-files \
     --with-shared \

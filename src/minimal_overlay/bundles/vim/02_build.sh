@@ -29,7 +29,9 @@ CFLAGS="$CFLAGS" ./configure \
   --with-tlib=ncurses \
   --disable-xsmp \
   --disable-gpm \
-  --disable-selinux
+  --disable-selinux \
+  --disable-canberra \
+  --disable-acl
 
 export CONF_OPT_GUI='--enable-gui=no'
 export CONF_OPT_PERL='--enable-perlinterp'

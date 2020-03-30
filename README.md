@@ -227,9 +227,9 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 
 ### Donations
 
-* If you find MLL or its related projects useful, you can express your positive attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food.
+If you find MLL or its related projects useful, you can express your positive attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food.
 
-* If you don't like MLL (or me in particular), you can express your _not-so-positive_ attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food for thought.
+If you don't like MLL (or me in particular), you can express your _not-so-positive_ attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food for thought.
 
 ### Thank you!
 

@@ -1,4 +1,4 @@
-# Minimal Linux Live
+# Minimal Linux Live [<img align="right" src="https://img.shields.io/badge/Donate-PayPal-green.svg">](https://www.paypal.me/MinimalLinuxLive)
 
 * [Overview](#overview)
 * [Current development state](#current-development-state)
@@ -11,6 +11,7 @@
 * [Installation](#installation)
 * [Publications](#publications)
 * [Related projects](#related-projects)
+* [Donations](#donations)
 * [Thank you!](#thank-you)
 
 ### Stargazers over time
@@ -224,8 +225,14 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 
 * [Runlinux](https://github.com/cirosantilli/runlinux) - environment to build and test Linux kernels.
 
+### Donations
+
+* If you find MLL or its related projects useful, you can express your positive attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food.
+
+* If you don't like MLL (or me in particular), you can express your _not-so-positive_ attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food for thought.
+
 ### Thank you!
 
-Do you like this project? Yes? Well, in that case I would very much appreciate it if you give your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive).
+Don't miss the chance to share your honest opinion about MLL in [DistroWatch](http://distrowatch.com/dwres.php?resource=ratings&distro=mll). And don't forget to check the Minimal Linux Live page on [Facebook](http://facebook.com/MinimalLinuxLive).
 
-Thank you!
+Thank you for your support!

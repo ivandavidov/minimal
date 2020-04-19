@@ -36,6 +36,7 @@ $GLIBC_SRC/configure \
   --without-gd \
   --without-selinux \
   --disable-werror \
+  --enable-cet \
   CFLAGS="$CFLAGS"
 
 # Compile glibc with optimization for "parallel jobs" = "number of processors".

@@ -203,6 +203,8 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 
 * [Bare Minimal Linux](https://github.com/sapcc/bare-minimal-linux) - fork of minimal linux for baremetal debugging. This project is part of the [SAP Converged Cloud](https://en.wikipedia.org/wiki/SAP_Converged_Cloud) ecosystem.
 
+* [Minimal Linux FIRESTARTER](https://github.com/tud-zih-energy/minimal-linux-FIRESTARTER) - minimal Linux distribution with integrated [FIRESTARTER](https://tu-dresden.de/zih/forschung/projekte/firestarter) processor stress test utility. This project is developed at [TU Dresden - Centre for Information Services and High Performance Computing](https://tu-dresden.de/zih).
+
 * [Minimal Container Linux](https://github.com/prologic/minimal-container-linux) - a Linux host OS designed to run Containers with a minimalist design and small footprint.
 
 * [Debootstrap Live](https://github.com/zac87/debootstrap_live) - this spin-off of MLL generates bootable ISO with current kernel and [debootstrap](https://wiki.debian.org/Debootstrap) base system.

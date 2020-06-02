@@ -190,7 +190,7 @@ docker run -it minimal-linux-live /bin/sh
 Case studies, research papers, publications, presentations, etc. regarding [Minimal Linux Live](https://github.com/ivandavidov/minimal) and [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).
 
 * [Software and Hardware Test - Minimal Linux](https://www.dotsource.de/labs/wp-content/uploads/sites/4/2019/06/Software-und-Hardwaretest-Minimal-Linux.pdf) (PDF, German language, [dotSource Labs](https://www.dotsource.de/labs/2019/06/17/software-und-hardwaretest-minimal-linux/))
-* [MINCS - Containers in the Shell Script](https://www.slideshare.net/mhiramat/mincs-containers-in-the-shell-script-54420001)(presentation, English language, reference to Minimal Linux Live)
+* [MINCS - Containers in the Shell Script](https://www.slideshare.net/mhiramat/mincs-containers-in-the-shell-script-54420001) (presentation, English language, reference to Minimal Linux Live)
 * [The Evolution of Minimal Linux Live](https://softuni.bg/downloads/svn/seminars/Minimal-Linux-Live-25-June-2016/Minimal-Linux-Live.pptx) (Power Point, Bulgarian language, [SoftUni seminar](https://softuni.bg/trainings/1409/minimal-linux-live-the-easy-way-to-create-a-minimal-linux-based-operating-system))
 * [Considerations for the SDP Operating System](http://ska-sdp.org/sites/default/files/attachments/sdp_memo_063_os_signed_21.10.18.pdf) (PDF, English language, reference to Minimal Linux Live)
 

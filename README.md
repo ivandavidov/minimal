@@ -53,14 +53,15 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **15-Dec-2019**:
+As of **05-Sep-2020**:
 
-* Linux kernel 5.4.3 (stable)
-* GNU C Library 2.30 (stable)
-* Busybox 1.31.1 (stable)
-* Stable build on default Ubuntu 18.04.3 installation with applied system updates.
+* Linux kernel 5.8.7
+* GNU C Library 2.32
+* Busybox 1.32.0
 
-Here are some screenshots of the current development version of Minimal Linux Live:
+Stable build on default Ubuntu 20.04.1 installation with applied system updates.
+
+Here are some screenshots of the latest published version of Minimal Linux Live:
 
 ![Minimal Linux Live](docs/www/assets/img/nikola.png)
 
@@ -79,6 +80,10 @@ Take a look at the [issues](http://github.com/ivandavidov/minimal/issues) page w
 The section below is for Ubuntu and other Debian based distros.
 
 ```
+# Update/upgrade the host machine
+sudo apt update
+sudo apt upgrade -y
+
 # Resolve build dependencies
 sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 

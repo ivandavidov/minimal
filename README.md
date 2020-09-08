@@ -29,8 +29,10 @@ The generated ISO image file contains Linux kernel, GNU C library compiled with 
 Note that by default Minimal Linux Live provides support for legacy BIOS systems. You can change the build configuration settings in the [.config](src/.config) file and rebuild MLL with support for modern UEFI systems.
  
 All build scripts are well organized and quite small in size. You can easily learn from the scripts, reverse engineer the build process and later modify them to include more stuff (I encourage you to do so). After you learn the basics, you will have all the necessary tools and skills to create your own fully functional Linux based operating system which you have built entirely from scratch.
- 
-You are encouraged to read the [tutorial](src/the_dao_of_minimal_linux_live.txt) which explains the MLL build process. The same tutorial, along with all MLL source code, can be found in the ISO image structure in the ``/minimal/rootfs/usr/src directory``.
+
+The [guidebook](https://ivandavidov.github.io/minimal/book) explains in details the MLL architecture and the build process. This is the recommended documentation resource if you want to have complete understanding of the MLL ecosystem.
+
+You are encouraged to read the [tutorial](src/the_dao_of_minimal_linux_live.txt) which explains the minimalistic MLL build process. The same tutorial, along with all MLL source code, can be found in the ISO image structure in the ``/minimal/rootfs/usr/src directory``.
 
 The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") is provided by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
 
@@ -43,7 +45,7 @@ Website mirrors are available here:
 
 List of [related projects](#related-projects) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
 
-The [README](https://github.com/ivandavidov/minimal/blob/master/src/README) document and the main [.config](https://github.com/ivandavidov/minimal/blob/master/src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
+The [README](src/README) document and the main [.config](src/.config) file provide extensive documentation regarding the Minimal Linux Live features.
 
 [The DAO of Minimal Linux Live](http://minimal.idzona.com/the_dao_of_minimal_linux_live.txt "The DAO of Minimal Linux Live") - this tutorial explains step by step what you need to do in order to create your own minimalistic live Linux OS. The tutorial is based on the first published version of Minimal Linux Live.
 
@@ -63,13 +65,13 @@ Stable build on default Ubuntu 20.04.1 installation with applied system updates.
 
 Here are some screenshots of the latest published version of Minimal Linux Live:
 
-![Minimal Linux Live](docs/www/assets/img/nikola.png)
+![Minimal Linux Live](docs/assets/img/nikola.png)
 
-![Minimal Linux Live Readme](docs/www/assets/img/readme_in_mll.png)
+![Minimal Linux Live Readme](docs/assets/img/readme_in_mll.png)
 
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
-![Minimal Linux Live JavaScript Emulator](docs/www/assets/img/emulator_01.jpg)
+![Minimal Linux Live JavaScript Emulator](docs/assets/img/emulator_01.jpg)
 
 ### Future improvements
 
@@ -141,17 +143,17 @@ static-get -i vitetris
 
 The current development version of MLL partially supports [GraalVM](http://graalvm.org) (provided as overlay bundle). Note that GraalVM has runtime dependencies on ``GCC`` and ``Bash`` and therefore some GraalVM feature are not supported in MLL, e.g. the ``gu`` updater and almost all GVM language wrapper scripts, including the ``R`` wrappers. Nevertheless, the core GVM features work fine. Java, Python, Ruby, Node and JavaScript work in MLL/GraalVM environment. Great, isn't it! :)
 
-![GraalVM languages](docs/www/assets/img/graal/graal_1.jpg)
+![GraalVM languages](docs/assets/img/graal/graal_1.jpg)
 
-![GraalVM - Java](docs/www/assets/img/graal/graal_2.jpg)
+![GraalVM - Java](docs/assets/img/graal/graal_2.jpg)
 
-![GraalVM - Python](docs/www/assets/img/graal/graal_3.jpg)
+![GraalVM - Python](docs/assets/img/graal/graal_3.jpg)
 
-![GraalVM - Ruby](docs/www/assets/img/graal/graal_4.jpg)
+![GraalVM - Ruby](docs/assets/img/graal/graal_4.jpg)
 
-![GraalVM - Node](docs/www/assets/img/graal/graal_5.jpg)
+![GraalVM - Node](docs/assets/img/graal/graal_5.jpg)
 
-![GraalVM - JS](docs/www/assets/img/graal/graal_6.jpg)
+![GraalVM - JS](docs/assets/img/graal/graal_6.jpg)
 
 ### BIOS and UEFI
 

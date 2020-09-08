@@ -15,9 +15,10 @@ class Menu extends Component {
           <a id="hm2" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#changes');}}>Changes</a>&nbsp;
           <a id="hm3" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#about');}}>About</a>&nbsp;
           <a id="hm4" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#tutorial');}}>Tutorial</a>&nbsp;
-          <a id="hm5" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#emulator');}}>Emulator</a>&nbsp;
-          <a id="hm6" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#download');}}>Download</a>&nbsp;
-          <a id="hm7" className="button" target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal">GitHub</a>
+          <a id="hm5" className="button button-primary" target="_blank" rel="noopener noreferrer" href="./book ">Book</a>&nbsp;
+          <a id="hm6" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#emulator');}}>Emulator</a>&nbsp;
+          <a id="hm7" className="button button-primary" href="# " onClick={(e) => {this.handleMenu(e, '#download');}}>Download</a>&nbsp;
+          <a id="hm8" className="button" target="_blank" rel="noopener noreferrer" href="https://github.com/ivandavidov/minimal">GitHub</a>
         </div>
       </div>
     );

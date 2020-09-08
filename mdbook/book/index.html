@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="sidebar-visible no-js rust">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="Minimal Linux Live - guidebook">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -48,7 +48,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -74,7 +74,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">1.</strong> Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="boot_process.html"><strong aria-hidden="true">1.1.</strong> Boot Process</a></li><li class="chapter-item expanded "><a href="filesystem_layout.html"><strong aria-hidden="true">1.2.</strong> Filesystem Layout</a></li></ol></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">2.</strong> Initial Workspace</a></li><li class="chapter-item expanded "><a href="build_scripts.html"><strong aria-hidden="true">3.</strong> Build Process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="common.html"><strong aria-hidden="true">3.1.</strong> Common Properties And Functions</a></li><li class="chapter-item expanded "><a href="00_clean.html"><strong aria-hidden="true">3.2.</strong> Step 00 - Clean Workspace</a></li><li class="chapter-item expanded "><a href="01_get_kernel.html"><strong aria-hidden="true">3.3.</strong> Step 01 - Get Kernel</a></li><li class="chapter-item expanded "><a href="02_build_kernel.html"><strong aria-hidden="true">3.4.</strong> Step 02 - Build Kernel</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">1.</strong> Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="boot_process.html"><strong aria-hidden="true">1.1.</strong> Boot Process</a></li><li class="chapter-item expanded "><a href="filesystem_layout.html"><strong aria-hidden="true">1.2.</strong> MLL ISO Image Structure</a></li></ol></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">2.</strong> Shell Scripts &amp; Folders</a></li><li class="chapter-item expanded "><a href="build_scripts.html"><strong aria-hidden="true">3.</strong> Build Process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config_file.html"><strong aria-hidden="true">3.1.</strong> Configuration File</a></li><li class="chapter-item expanded "><a href="common.html"><strong aria-hidden="true">3.2.</strong> Common Properties &amp; Functions</a></li><li class="chapter-item expanded "><a href="00_clean.html"><strong aria-hidden="true">3.3.</strong> Step 00 - Clean Workspace</a></li><li class="chapter-item expanded "><a href="01_get_kernel.html"><strong aria-hidden="true">3.4.</strong> Step 01 - Get Kernel</a></li><li class="chapter-item expanded "><a href="02_build_kernel.html"><strong aria-hidden="true">3.5.</strong> Step 02 - Build Kernel</a></li><li class="chapter-item expanded "><a href="03_get_glibc.html"><strong aria-hidden="true">3.6.</strong> Step 03 - Get GLIBC</a></li><li class="chapter-item expanded "><a href="04_build_glibc.html"><strong aria-hidden="true">3.7.</strong> Step 04 - Build GLIBC</a></li><li class="chapter-item expanded "><a href="05_prepare_sysroot.html"><strong aria-hidden="true">3.8.</strong> Step 05 - Prepare Sysroot</a></li><li class="chapter-item expanded "><a href="06_get_busybox.html"><strong aria-hidden="true">3.9.</strong> Step 06 - Get Busybox</a></li><li class="chapter-item expanded "><a href="07_build_busybox.html"><strong aria-hidden="true">3.10.</strong> Step 07 - Build Busybox</a></li><li class="chapter-item expanded "><a href="08_prepare_bundles.html"><strong aria-hidden="true">3.11.</strong> Step 08 - Prepare Bundles</a></li><li class="chapter-item expanded "><a href="09_generate_rootfs.html"><strong aria-hidden="true">3.12.</strong> Step 09 - Generate Rootfs</a></li><li class="chapter-item expanded "><a href="10_pack_rootfs.html"><strong aria-hidden="true">3.13.</strong> Step 10 - Pack Rootfs</a></li><li class="chapter-item expanded "><a href="11_generate_overlay.html"><strong aria-hidden="true">3.14.</strong> Step 11 - Generate Overlay Structure</a></li><li class="chapter-item expanded "><a href="12_get_syslinux.html"><strong aria-hidden="true">3.15.</strong> Step 12 - Get Syslinux</a></li><li class="chapter-item expanded "><a href="12_get_systemd-boot.html"><strong aria-hidden="true">3.16.</strong> Step 12 - Get systemd-boot</a></li><li class="chapter-item expanded "><a href="13_prepare_iso.html"><strong aria-hidden="true">3.17.</strong> Step 13 - Prepare ISO Structure</a></li><li class="chapter-item expanded "><a href="14_generate_iso.html"><strong aria-hidden="true">3.18.</strong> Step 14 - Generate ISO Image</a></li><li class="chapter-item expanded "><a href="15_generate_image.html"><strong aria-hidden="true">3.19.</strong> Step 15 - Generate Filesystem Image</a></li><li class="chapter-item expanded "><a href="16_cleanup.html"><strong aria-hidden="true">3.20.</strong> Step 16 - Final Cleanup</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -112,8 +112,8 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>

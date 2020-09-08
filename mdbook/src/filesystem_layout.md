@@ -1,4 +1,4 @@
-# Filesystem Layout of MLL's ISO image
+# MLL ISO Image Structure
 
 * [BIOS](#bios)
 * [UEFI](#uefi)

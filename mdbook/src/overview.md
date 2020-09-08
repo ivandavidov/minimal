@@ -1,6 +1,6 @@
 # Initial workspace
 
-These are the files and folders that you need in order to build Minimal Linux Live.
+These are the shell scripts and folders that you need in order to build Minimal Linux Live.
 
 ```
 src/

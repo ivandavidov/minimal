@@ -94,9 +94,9 @@ export function hideEmulatorMenu(): void {
     throw new Error("thankYou: document is null.");
   }
   
-  let hm5: HTMLElement | null = document.getElementById('hm5');
+  let hm5: HTMLElement | null = document.getElementById('hm6');
   if(!hm5) {
-    throw new Error("thankYou: hm5 is null.");
+    throw new Error("thankYou: hm6 is null.");
   }
   hm5.style.display="none";
 }

@@ -195,7 +195,7 @@ docker run -it minimal-linux-live /bin/sh
 It is also possible to start MLL over network, using PXE mechanism (often called PXE diskless boot). To achieve that, before building MLL, edit src/.config and set ``OVERLAY_LOCATION`` to ``rootfs`` instead of default ``iso``. Then follow build process, which will build the minimal_linux_live.iso. Extract kernel and rootfs from this iso, and assuming webserver is using ``/var/www/html/`` folder as index, copy files here:
 
 ```
-mount minimal_linux_live.iso
+mount minimal_linux_live.iso /mnt
 cp -a /mnt/boot/kernel.xz /var/www/html/
 cp -a /mnt/boot/rootfs.xz /var/www/html/
 ```

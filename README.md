@@ -192,6 +192,33 @@ docker import mll_image.tgz minimal-linux-live:latest
 docker run -it minimal-linux-live /bin/sh
 ```
 
+It is also possible to start MLL over network, using PXE mechanism (often called PXE diskless boot). To achieve that, before building MLL, edit src/.config and set ``OVERLAY_LOCATION`` to ``rootfs`` instead of default ``iso``. Then follow build process, which will build the minimal_linux_live.iso. Extract kernel and rootfs from this iso, and assuming webserver is using ``/var/www/html/`` folder as index, copy files here:
+
+```
+mount minimal_linux_live.iso
+cp -a /mnt/boot/kernel.xz /var/www/html/
+cp -a /mnt/boot/rootfs.xz /var/www/html/
+```
+
+Note: on RHEL systems, remember to restore SELinux contexts using ``restorecon -Rv /var/www/html/``.
+
+Then assuming you are using iPXE as a PXE rom, and that your webserver ip is 10.0.0.1, create file ``/var/www/html/MLL.ipxe`` with the following content:
+
+```
+#!ipxe
+echo Booting MLL
+kernel http://10.0.0.1/kernel.xz initrd=rootfs.xz
+initrd http://10.0.0.1/rootfs.xz
+imgstat
+echo All files downloaded, booting in 2s...
+sleep 2
+boot
+```
+
+Note: append your console parameter on the kernel line if using a remote IPMI console.
+
+And chainload your mail iPXE to this file.
+
 ### Publications
 
 Case studies, research papers, publications, presentations, etc. regarding [Minimal Linux Live](https://github.com/ivandavidov/minimal) and [Minimal Linux Script](https://github.com/ivandavidov/minimal-linux-script).

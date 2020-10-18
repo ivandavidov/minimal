@@ -34,26 +34,30 @@ else
   # Changes the name of the system to 'minimal'.
   sed -i "s/.*CONFIG_DEFAULT_HOSTNAME.*/CONFIG_DEFAULT_HOSTNAME=\"minimal\"/" .config
 
+  # OVERLAYFS - BEGIN - most features are disabled (you don't really need them)
+
   # Enable overlay support, e.g. merge ro and rw directories (3.18+).
   sed -i "s/.*CONFIG_OVERLAY_FS.*/CONFIG_OVERLAY_FS=y/" .config
 
-  # Enable overlayfs redirection (4.10+).
-  echo "CONFIG_OVERLAY_FS_REDIRECT_DIR=y" >> .config
+  # Turn on redirect dir feature by default (4.10+).
+  echo "# CONFIG_OVERLAY_FS_REDIRECT_DIR is not set" >> .config
 
   # Turn on inodes index feature by default (4.13+).
-  echo "CONFIG_OVERLAY_FS_INDEX=y" >> .config
+  echo "# CONFIG_OVERLAY_FS_INDEX is not set" >> .config
 
   # Follow redirects even if redirects are turned off (4.15+).
   echo "CONFIG_OVERLAY_FS_REDIRECT_ALWAYS_FOLLOW=y" >> .config
 
   # Turn on NFS export feature by default (4.16+).
-  echo "CONFIG_OVERLAY_FS_NFS_EXPORT=y" >> .config
+  echo "# CONFIG_OVERLAY_FS_NFS_EXPORT is not set" >> .config
 
   # Auto enable inode number mapping (4.17+).
-  echo "CONFIG_OVERLAY_FS_XINO_AUTO=y" >> .config
+  echo "# CONFIG_OVERLAY_FS_XINO_AUTO is not set" >> .config
 
   # Тurn on metadata only copy up feature by default (4.19+).
-  echo "CONFIG_OVERLAY_FS_METACOPY=y" >> .config
+  echo "# CONFIG_OVERLAY_FS_METACOPY is not set" >> .config
+
+  # OVERLAYFS - END
 
   # Step 1 - disable all active kernel compression options (should be only one).
   sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config

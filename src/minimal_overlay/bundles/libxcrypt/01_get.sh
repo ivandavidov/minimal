@@ -31,8 +31,8 @@ echo "Removing LIBXCRYPT work area. This may take a while."
 rm -rf $WORK_DIR/overlay/$BUNDLE_NAME
 mkdir $WORK_DIR/overlay/$BUNDLE_NAME
 
-# Extract LIBXCRYPT to folder 'work/overlay/glibc_libcrypt'.
-# Full path will be something like 'work/overlay/glibc_libcrypt/glibc_libcrypt-4.4.17'.
+# Extract LIBXCRYPT to folder 'work/overlay/libxcrypt'.
+# Full path will be something like 'work/overlay/libxcrypt/libxcrypt-4.4.17'.
 tar -xvf $ARCHIVE_FILE -C $WORK_DIR/overlay/$BUNDLE_NAME
 
 cd $SRC_DIR

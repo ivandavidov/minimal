@@ -82,16 +82,31 @@ Take a look at the [issues](http://github.com/ivandavidov/minimal/issues) page w
 The section below is for Ubuntu and other Debian based distros.
 
 ```
-# Update/upgrade the host machine
+# Update all repositories and upgrade all packages
 sudo apt update
 sudo apt upgrade -y
 
 # Resolve build dependencies
-sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
+sudo apt install -y wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
 
 # Build everything and produce ISO image.
 ./build_minimal_linux_live.sh
 ```
+
+The section below is for SUSE.
+
+```
+# Refresh all repositeries and update all packages
+sudo zypper refresh
+sudo zypper update -y
+
+# Resolve build dependencies
+sudo zypper install -y make gcc flex bison libelf-devel libopenssl-devel bc xorriso
+
+# Build everything and produce ISO image.
+./build_minimal_linux_live.sh
+```
+
 
 The default build process uses some custom provided ``CFLAGS``. They can be found in the ``.config`` file. Some of these additional flags were introduced in order to fix different issues which were reported during the development phase. However, there is no guarantee that the build process will run smoothly on your system with these particular flags. If you get compilation issues (please note that I'm talking about compilation issues, not about general shell script issues), you can try to disable these flags and then start the build process again. It may turn out that on your particular host system you don't need these flags.
 

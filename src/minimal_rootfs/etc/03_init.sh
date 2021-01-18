@@ -38,7 +38,7 @@
 # Print first message on screen.
 cat /etc/msg/03_init_01.txt
 
-# Wait 5 second or until any keybord key is pressed.
+# Wait 5 second or until any ~keyboard key is pressed.
 read -t 5 -n1 -s key
 
 if [ "$key" = "" ] ; then

@@ -261,7 +261,7 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 
 * [Debootstrap Live](https://github.com/zac87/debootstrap_live) - this spin-off of MLL generates bootable ISO with current kernel and [debootstrap](https://wiki.debian.org/Debootstrap) base system.
 
-* [Boot2Minc](https://github.com/mhiramat/boot2minc) - this fork adds [Mincs](https://github.com/mhiramat/mincs) and as result you can run Linux containers inside MLL. One interesting Mincs feature - it provides tools which allow you to reuse alredy existing Docker containers.
+* [Boot2Minc](https://github.com/mhiramat/boot2minc) - this fork adds [Mincs](https://github.com/mhiramat/mincs) and as result you can run Linux containers inside MLL. One interesting Mincs feature - it provides tools which allow you to reuse already existing Docker containers.
 
 * [K1773R's MLL](https://github.com/K1773R/minimal) - PowerPC version of Minimal Linux Live with [memtester](http://pyropus.ca/software/memtester) as additional software. Impressive work!
 

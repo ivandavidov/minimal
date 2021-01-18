@@ -208,7 +208,7 @@ editions. Your distribution might have different build dependencies but most of
 the time there is a single meta-package which installs most of the stuff that
 you need.
 
-The build proces is slow, so be prepared to wait. In the end you should have
+The build process is slow, so be prepared to wait. In the end you should have
 the ISO image file 'minimal_linux_live.iso' in the same folder where you
 started the build process. You can burn the ISO image on CD/DVD or (better) run
 it with PC emulator like QEMU, VirtualBox or VMware Workstation Player.

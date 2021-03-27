@@ -38,10 +38,10 @@ The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Li
 
 Website mirrors are available here:
 
-* [skamilinux.hu/minimal](http://skamilinux.hu/minimal "Minimal Linux Live")
-* [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
-* [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
 * [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
+* [skamilinux.hu/minimal](http://skamilinux.hu/minimal "Minimal Linux Live")
+* [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
+* [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
 
 List of [related projects](#related-projects) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
 
@@ -55,17 +55,17 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **05-Sep-2020**:
+As of **27-Mar-2021**:
 
-* Linux kernel 5.8.7
-* GNU C Library 2.32
-* Busybox 1.32.0
+* Linux kernel 5.11.10
+* GNU C Library 2.33
+* Busybox 1.32.1
 
-Stable build on default Ubuntu 20.04.1 installation with applied system updates.
+Stable build on default Ubuntu 20.04 installation with applied system updates.
 
 Here are some screenshots of the latest published version of Minimal Linux Live:
 
-![Minimal Linux Live](docs/assets/img/nikola.png)
+![Minimal Linux Live](docs/assets/img/minimal_linux_live.png)
 
 ![Minimal Linux Live Readme](docs/assets/img/readme_in_mll.png)
 

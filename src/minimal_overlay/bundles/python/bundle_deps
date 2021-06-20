@@ -1,2 +1,3 @@
 glibc_libpthread
 glibc_libutil
+libxcrypt

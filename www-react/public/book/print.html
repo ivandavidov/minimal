@@ -1,0 +1,551 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Minimal Linux Live</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Minimal Linux Live - guidebook">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">1.</strong> Architecture</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="boot_process.html"><strong aria-hidden="true">1.1.</strong> Boot Process</a></li><li class="chapter-item expanded "><a href="filesystem_layout.html"><strong aria-hidden="true">1.2.</strong> MLL ISO Image Structure</a></li></ol></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">2.</strong> Shell Scripts &amp; Folders</a></li><li class="chapter-item expanded "><a href="build_scripts.html"><strong aria-hidden="true">3.</strong> Build Process</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="config_file.html"><strong aria-hidden="true">3.1.</strong> Configuration File</a></li><li class="chapter-item expanded "><a href="common.html"><strong aria-hidden="true">3.2.</strong> Common Properties &amp; Functions</a></li><li class="chapter-item expanded "><a href="00_clean.html"><strong aria-hidden="true">3.3.</strong> Step 00 - Clean Workspace</a></li><li class="chapter-item expanded "><a href="01_get_kernel.html"><strong aria-hidden="true">3.4.</strong> Step 01 - Get Kernel</a></li><li class="chapter-item expanded "><a href="02_build_kernel.html"><strong aria-hidden="true">3.5.</strong> Step 02 - Build Kernel</a></li><li class="chapter-item expanded "><a href="03_get_glibc.html"><strong aria-hidden="true">3.6.</strong> Step 03 - Get GLIBC</a></li><li class="chapter-item expanded "><a href="04_build_glibc.html"><strong aria-hidden="true">3.7.</strong> Step 04 - Build GLIBC</a></li><li class="chapter-item expanded "><a href="05_prepare_sysroot.html"><strong aria-hidden="true">3.8.</strong> Step 05 - Prepare Sysroot</a></li><li class="chapter-item expanded "><a href="06_get_busybox.html"><strong aria-hidden="true">3.9.</strong> Step 06 - Get Busybox</a></li><li class="chapter-item expanded "><a href="07_build_busybox.html"><strong aria-hidden="true">3.10.</strong> Step 07 - Build Busybox</a></li><li class="chapter-item expanded "><a href="08_prepare_bundles.html"><strong aria-hidden="true">3.11.</strong> Step 08 - Prepare Bundles</a></li><li class="chapter-item expanded "><a href="09_generate_rootfs.html"><strong aria-hidden="true">3.12.</strong> Step 09 - Generate Rootfs</a></li><li class="chapter-item expanded "><a href="10_pack_rootfs.html"><strong aria-hidden="true">3.13.</strong> Step 10 - Pack Rootfs</a></li><li class="chapter-item expanded "><a href="11_generate_overlay.html"><strong aria-hidden="true">3.14.</strong> Step 11 - Generate Overlay Structure</a></li><li class="chapter-item expanded "><a href="12_get_syslinux.html"><strong aria-hidden="true">3.15.</strong> Step 12 - Get Syslinux</a></li><li class="chapter-item expanded "><a href="12_get_systemd-boot.html"><strong aria-hidden="true">3.16.</strong> Step 12 - Get systemd-boot</a></li><li class="chapter-item expanded "><a href="13_prepare_iso.html"><strong aria-hidden="true">3.17.</strong> Step 13 - Prepare ISO Structure</a></li><li class="chapter-item expanded "><a href="14_generate_iso.html"><strong aria-hidden="true">3.18.</strong> Step 14 - Generate ISO Image</a></li><li class="chapter-item expanded "><a href="15_generate_image.html"><strong aria-hidden="true">3.19.</strong> Step 15 - Generate Filesystem Image</a></li><li class="chapter-item expanded "><a href="16_cleanup.html"><strong aria-hidden="true">3.20.</strong> Step 16 - Final Cleanup</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Minimal Linux Live</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#the-architecture-of-minimal-linux-live" id="the-architecture-of-minimal-linux-live">The Architecture of Minimal Linux Live</a></h1>
+<p>Welcome to the wonderful world of <a href="https://github.com/ivandavidov/minimal">Minimal Linux Live</a>! :)</p>
+<p>Minimal Linux Live (MLL) is a tiny educational Linux distribution, which is designed to be built from scratch by using a collection of automated shell scripts. Minimal Linux Live offers a core environment with just the Linux kernel, GNU C library, and Busybox userland utilities. Additional software can be included in the ISO image at build time by using a well-documented <a href="TODO.html">configuration file</a>.</p>
+<p>The generated ISO image file contains Linux kernel, GNU C library compiled with default options, Busybox compiled with default options, quite simple initramfs structure and some &quot;overlay bundles&quot; (the default build process provides few overlay bundles). You don't get Windows support out of the box, nor you get any fancy desktop environment. All you get is a simple shell console with default Busybox applets, network support via DHCP and... well, that's all. This is why it's called &quot;minimal&quot;.</p>
+<p>Note that by default Minimal Linux Live provides support for legacy BIOS systems. You can change the build configuration settings in the <a href="TODO.html">.config</a> file and rebuild MLL with support for modern UEFI systems.</p>
+<p>All build scripts are well organized and quite small in size. You can easily learn from the scripts, reverse engineer the build process and later modify them to include more stuff (I encourage you to do so). After you learn the basics, you will have all the necessary tools and skills to create your own fully functional Linux based operating system which you have built entirely from scratch.</p>
+<h1><a class="header" href="#boot-process" id="boot-process">Boot Process</a></h1>
+<ul>
+<li><a href="boot_process.html#bios">BIOS</a></li>
+<li><a href="boot_process.html#uefi">UEFI</a></li>
+<li><a href="boot_process.html#init">init</a></li>
+</ul>
+<hr />
+<h3><a class="header" href="#bios" id="bios">BIOS</a></h3>
+<ol start="0">
+<li>The machine passes the execution control to the BIOS firmware.</li>
+<li>BIOS passes the execution control to the Syslinux boot loader, which is present in the MLL ISO image.</li>
+<li>The Syslinux boot loader has special configuration file <code>syslinux.cfg</code> which describes where the Linux kernel (kernel.xz) and the initramfs (rootfs.xz) files are located in the ISO image.</li>
+<li>Syslinux loads both the kernel and the initramfs files in the RAM and then passes the execution control to the kernel.</li>
+<li>The kernel detects the available hardware and loads the corresponding necessary drivers.</li>
+<li>The kernel unpacks the initramfs archive (already loaded in the RAM by Syslinux) and then passes the execution control to the initramfs.</li>
+<li>At this point the actual execution control is passed to the shell script file <code>/init</code>, which is present in the initramfs file.</li>
+</ol>
+<p>Refer to the <a href="boot_process.html#init">init</a> section below for more details on how <code>/init</code> handles the OS preparation.</p>
+<h3><a class="header" href="#uefi" id="uefi">UEFI</a></h3>
+<ol start="0">
+<li>The machine passes the execution control to the UEFI firmware.</li>
+<li>UEFI detects properly configured EFI boot image that is present in the MLL ISO image.</li>
+<li>UEFI loads the EFI boot image from the MLL ISO image in the RAM.</li>
+<li>UEFI passes the execution control to the special EFI file <code>EFI/BOOT/BOOTx64.EFI</code> (for 64-bit machines) from the previously described EFI boot image. This special file is the entry point of the <a href="https://github.com/ivandavidov/systemd-boot">systemd-boot</a> UEFI boot manager.</li>
+<li>The <code>systemd-boot</code> UEFI boot manager has special configuration files (loader.conf and all files in the entries/ folder) which describe where the Linux kernel (kernel.xz) and the initramfs (rootfs.xz) files are located in the EFI boot image.</li>
+<li><code>systemd-boot</code> loads the kernel in the RAM.</li>
+<li>The kernel detects the available hardware and loads the corresponding necessary drivers.</li>
+<li>The kernel loads the initramfs file in the RAM. Refer to the <a href="https://www.kernel.org/doc/Documentation/efi-stub.txt">kernel EFI stub documentation</a> for more details.</li>
+<li>The kernel unpacks the initramfs archive (already loaded in the RAM by the kernel) and then passes the execution control to the initramfs.</li>
+<li>At this point the actual execution control is passed to the shell script file <code>/init</code>, which is present in the initramfs file.</li>
+</ol>
+<p>Refer to the <a href="boot_process.html#init">init</a> section below for more details on how <code>/init</code> handles the OS preparation.</p>
+<h3><a class="header" href="#init" id="init">INIT</a></h3>
+<p>The <code>/init</code> shell script is responsible to prepare the actual OS environment and to present the user with functional shell prompt.</p>
+<p>The base initramfs structure is located here:</p>
+<p><a href="https://github.com/ivandavidov/minimal/tree/master/src/minimal_rootfs">https://github.com/ivandavidov/minimal/tree/master/src/minimal_rootfs</a></p>
+<p>The actual <code>/init</code> script is located here:</p>
+<p><a href="https://github.com/ivandavidov/minimal/blob/master/src/minimal_rootfs/init">https://github.com/ivandavidov/minimal/blob/master/src/minimal_rootfs/init</a></p>
+<p>This is what happens when <code>/init</code> is executed:</p>
+<ol>
+<li>All core filesystems (i.e. /dev, /sys, /proc) are mounted.</li>
+<li>The overlay system is prepared. At this point the initramfs structure and the overlay bundles are merged.</li>
+<li>The execution control is passed to <code>/sbin/init</code> which is located in the initramfs.</li>
+<li><code>/sbin/init</code> uses the special configuration file <a href="https://github.com/ivandavidov/minimal/blob/master/src/minimal_rootfs/etc/inittab">/etc/inittab</a> which describes the system initialization actions.</li>
+<li>All autorun scripts are executed one by one.</li>
+<li>Welcome message is displayed and the user is presented with functional shell prompt.</li>
+</ol>
+<h1><a class="header" href="#mll-iso-image-structure" id="mll-iso-image-structure">MLL ISO Image Structure</a></h1>
+<ul>
+<li><a href="filesystem_layout.html#bios">BIOS</a></li>
+<li><a href="filesystem_layout.html#uefi">UEFI</a></li>
+</ul>
+<hr />
+<p>The default build process generates a bootable ISO image file named <code>minimal_linux_live.iso</code>.</p>
+<h3><a class="header" href="#bios-1" id="bios-1">BIOS</a></h3>
+<p>When the property <code>FIRMWARE_TYPE</code> in the configuration file <code>.config</code> is set to <code>bios</code>, the generated ISO image has the following structure.</p>
+<pre><code># FIRMWARE_TYPE=bios
+
+minimal_linux_live.iso
+├── boot/
+│   ├── kernel.xz
+│   ├── rootfs.xz
+│   └── syslinux/
+├── EFI/
+└── minimal/
+</code></pre>
+<h4><a class="header" href="#boot" id="boot">boot/</a></h4>
+<p>This folder contains all files that are necessary for the proper BIOS boot process. More precisely, you can find the Linux kernel, the initial RAM filesystem (initramfs) and the boot loader.</p>
+<h4><a class="header" href="#bootkernelxz" id="bootkernelxz">boot/kernel.xz</a></h4>
+<p>This is the Linux kernel. The kernel detects the available hardware, loads necessary drivers and then it passes the execution control to the initramfs.</p>
+<h4><a class="header" href="#bootrootfsxz" id="bootrootfsxz">boot/rootfs.xz</a></h4>
+<p>This is the initial RAM filesystem. The initramfs file is an archive, automatically unpacked by the kernel in the RAM. The actual execution control is passed to the shell script file <code>/init</code>, which must be present in the initramfs file.</p>
+<h4><a class="header" href="#bootsyslinux" id="bootsyslinux">boot/syslinux/</a></h4>
+<p>This folder contains the <a href="https://wiki.syslinux.org/wiki/index.php?title=ISOLINUX">ISOLINUX</a> boot loader (binaries and configuration files), part of the <a href="https://syslinux.org">Syslinux</a> project.</p>
+<h4><a class="header" href="#efi" id="efi">EFI/</a></h4>
+<p>This folder contains a simple <code>.nsh</code> script which allows MLL to boot on EFI based machines, provided that these machines support UEFI shell.</p>
+<h4><a class="header" href="#minimal" id="minimal">minimal/</a></h4>
+<p>This folder contains all MLL overlay bundles (i.e. additional software prepared during the build process).</p>
+<h3><a class="header" href="#uefi-1" id="uefi-1">UEFI</a></h3>
+<p>When the property <code>FIRMWARE_TYPE</code> in the configuration file <code>.config</code> is set to <code>uefi</code>, the generated ISO image has the following structure.</p>
+<pre><code># FIRMWARE_TYPE=uefi
+
+minimal_linux_live.iso
+├── boot/
+│   └── uefi.img
+└── minimal/
+</code></pre>
+<h4><a class="header" href="#boot-1" id="boot-1">boot/</a></h4>
+<p>This folder contains all files that are necessary for the proper UEFI boot process. More precisely, you can find the EFI boot image.</p>
+<h4><a class="header" href="#bootuefiimg" id="bootuefiimg">boot/uefi.img</a></h4>
+<p>This is the EFI boot image. It contains the <a href="https://github.com/ivandavidov/systemd-boot">systemd-boot</a> UEFI boot manager, corresponding boot configurations, the Linux kernel and the initramfs.</p>
+<h4><a class="header" href="#minimal-1" id="minimal-1">minimal/</a></h4>
+<p>This folder contains all MLL overlay bundles (i.e. additional software prepared during the build process).</p>
+<h1><a class="header" href="#initial-workspace" id="initial-workspace">Initial workspace</a></h1>
+<p>These are the shell scripts and folders that you need in order to build Minimal Linux Live.</p>
+<pre><code>src/
+├── .config
+├── common.sh
+├── 00_clean.sh
+├── 01_get_kernel.sh
+├── 02_build_kernel.sh
+├── 03_get_glibc.sh
+├── 04_build_glibc.sh
+├── 05_prepare_sysroot.sh
+├── 06_get_busybox.sh
+├── 07_build_busybox.sh
+├── 08_prepare_bundles.sh
+├── 09_generate_rootfs.sh
+├── 10_pack_rootfs.sh
+├── 11_generate_overlay.sh
+├── 12_get_syslinux.sh
+├── 12_get_systemd-boot.sh
+├── 13_prepare_iso.sh
+├── 14_generate_iso.sh
+├── 15_generate_image.sh
+├── 16_cleanup.sh
+├── minimal_boot/
+├── minimal_config/
+├── minimal_overlay/
+└── minimal_rootfs/
+</code></pre>
+<h1><a class="header" href="#build-process" id="build-process">Build Process</a></h1>
+<p>The MLL build process can be divided in several major phases. Refer to the <a href="./common.html#properties">common properties</a> for more details on the folders that are referenced below.</p>
+<ul>
+<li><a href="build_scripts.html#preparations">Preparations</a></li>
+<li><a href="build_scripts.html#kernel">Kernel</a></li>
+<li><a href="build_scripts.html#gnu-c-library">GNU C Library</a></li>
+<li><a href="build_scripts.html#busybox">Busybox</a></li>
+<li><a href="build_scripts.html#overlay-bundles">Overlay bundles</a></li>
+<li><a href="build_scripts.html#initramfs">Initramfs</a></li>
+<li><a href="build_scripts.html#boot-loader">Boot loader</a></li>
+<li><a href="build_scripts.html#iso-image">ISO image</a></li>
+</ul>
+<hr />
+<h2><a class="header" href="#preparations" id="preparations">Preparations</a></h2>
+<ul>
+<li><a href="./00_clean.html">00_clean.sh</a></li>
+</ul>
+<p>Everything from <code>WORK_DIR</code> is removed. All previous MLL build artifacts are lost and the MLL build process can start from scratch. The previously downloaded sources are preserved in order to speed up the process.</p>
+<h2><a class="header" href="#kernel" id="kernel">Kernel</a></h2>
+<ul>
+<li><a href="./01_get_kernel.html">01_get_kernel.sh</a></li>
+<li><a href="./02_build_kernel.html">02_build_kernel.sh</a></li>
+</ul>
+<p>Linux kernel source code is downloaded. <a href="https://www.kernel.org/doc/Documentation/filesystems/overlayfs.txt">OverlayFS</a> and <a href="https://www.kernel.org/doc/Documentation/efi-stub.txt">EFI stub</a> are configured. Kernel is built and the kernel binary, along with the kernel header files are placed in <code>KERNEL_INSTALLED</code>.</p>
+<h2><a class="header" href="#gnu-c-library" id="gnu-c-library">GNU C Library</a></h2>
+<ul>
+<li><a href="./03_get_glibc.html">03_get_glibc.sh</a></li>
+<li><a href="./04_build_glibc.html">04_build_glibc.sh</a></li>
+<li><a href="./05_prepare_sysroot.html">05_prepare_sysroot.sh</a></li>
+</ul>
+<p>GNU C Library source code is downloaded. Build preparations are made in the <code>GLIBC_OBJECTS</code>. GLIBC is built and the final artifacts are placed in <code>GLIBC_INSTALLED</code>. The <code>.so</code> files, along with all GLIBC headers and all kernel headers are placed in <code>SYSROOT</code>.</p>
+<h2><a class="header" href="#busybox" id="busybox">Busybox</a></h2>
+<ul>
+<li><a href="./06_get_busybox.html">06_get_busybox.sh</a></li>
+<li><a href="./07_build_busybox.html">07_build_busybox.sh</a></li>
+</ul>
+<p>Busybox source code is downloaded. The build configuration is tweaked to reference <code>SYSROOT</code>. The final build artifacts are placed in <code>BUSYBOX_INSTALLED</code>.</p>
+<h2><a class="header" href="#overlay-bundles" id="overlay-bundles">Overlay bundles</a></h2>
+<ul>
+<li><a href="./08_prepare_bundles.html">08_prepare_bundles.sh</a></li>
+</ul>
+<p>All overlay bundles that have been enabled in <code>.config</code> are built. The final overlay structure is generated in <code>OVERLAY_ROOTFS</code>.</p>
+<h2><a class="header" href="#initramfs" id="initramfs">Initramfs</a></h2>
+<ul>
+<li><a href="./09_generate_rootfs.html">09_generate_rootfs.sh</a></li>
+<li><a href="./10_pack_rootfs.html">10_pack_rootfs.sh</a></li>
+<li><a href="./11_generate_overlay.html">11_generate_overlay.sh</a></li>
+</ul>
+<p>The installed Busybox artifacts and <code>src/minimal_rootfs/</code> are merged in <code>ROOTFS</code>. The initramfs file <code>WORK_DIR/rootfs.cpio.xz</code> is generated from <code>ROOTFS</code>. The final initramfs ISO image structure for the overlay bundles is generated in <code>ISOIMAGE_OVERLAY</code>.</p>
+<h2><a class="header" href="#boot-loader" id="boot-loader">Boot loader</a></h2>
+<ul>
+<li><a href="./12_get_syslinux.html">12_get_syslinux.sh</a></li>
+<li><a href="./12_get_systemd-boot.html">12_get_systemd-boot.sh</a></li>
+</ul>
+<p>Syslinux and/or systemd-boot are downloaded.</p>
+<h2><a class="header" href="#iso-image" id="iso-image">ISO image</a></h2>
+<ul>
+<li><a href="./13_prepare_iso.html">13_prepare_iso.sh</a></li>
+<li><a href="./14_generate_iso.html">14_generate_iso.sh</a></li>
+<li><a href="./15_generate_image.html">15_generate_image.sh</a></li>
+<li><a href="./16_cleanup.html">16_cleanup.sh</a></li>
+</ul>
+<p>The boot loader for BIOS/UEFI is prepared and the boot configuration artifacts from <code>src/minimal_boot/</code> are properly placed. The final ISO image layout structure is prepared in <code>ISOIMAGE</code>. This directory contains the BIOS/UEFI boot loader, Linux kernel and initramfs, along with all MLL overlay bundles (i.e. additional software and/or configurations) that have been enabled. The ISO image file <code>src/minimal_linux_live.iso</code> is generated. The MLL filesystem image (e.g. use in Docker) <code>src/mll_image.tgz</code> is generated. Final cleanup is performed.</p>
+<h1><a class="header" href="#configuration-file-srcconfig" id="configuration-file-srcconfig">Configuration File (src/.config)</a></h1>
+<h1><a class="header" href="#common-properties-and-functions" id="common-properties-and-functions">Common Properties And Functions</a></h1>
+<ul>
+<li><a href="common.html#properties">Properties</a></li>
+<li><a href="common.html#functions">Functions</a></li>
+</ul>
+<hr />
+<p>The shell script file <a href="https://github.com/ivandavidov/minimal/blob/master/src/common.sh">common.sh</a> is sourced in all MLL scripts. It provides common properties and functions.</p>
+<h2><a class="header" href="#properties" id="properties">Properties</a></h2>
+<h4><a class="header" href="#src_dir" id="src_dir">SRC_DIR</a></h4>
+<p><code>SRC_DIR=src/</code></p>
+<p>This is the main source directory, i.e. the property references the main project directory <code>src/</code>.</p>
+<h4><a class="header" href="#config" id="config">CONFIG</a></h4>
+<p><code>CONFIG=src/.config</code></p>
+<p>This is the main configuration file. The configuration properties are described <a href="TODO...">here</a>. </p>
+<h4><a class="header" href="#source_dir" id="source_dir">SOURCE_DIR</a></h4>
+<p><code>SOURCE_DIR=src/source/</code></p>
+<p>This is the directory where all source archives are downloaded. </p>
+<h4><a class="header" href="#work_dir" id="work_dir">WORK_DIR</a></h4>
+<p><code>WORK_DIR=src/work/</code></p>
+<p>This is the directory where all MLL artifacts are processed. All build actions happen in this directory. </p>
+<h4><a class="header" href="#kernel_installed" id="kernel_installed">KERNEL_INSTALLED</a></h4>
+<p><code>KERNEL_INSTALLED=src/work/kernel/kernel_installed/</code></p>
+<p>This is the directory where the kernel and its corresponding header files are placed after the kernel build phase has been completed. </p>
+<h4><a class="header" href="#glibc_objects" id="glibc_objects">GLIBC_OBJECTS</a></h4>
+<p><code>GLIBC_OBJECTS=src/work/glibc/glibc_objects/</code></p>
+<p>This is the directory where the GNU C Library is going to be built.</p>
+<h4><a class="header" href="#glibc_installed" id="glibc_installed">GLIBC_INSTALLED</a></h4>
+<p><code>GLIBC_INSTALLED=src/work/glibc/glibc_installed/</code></p>
+<p>This is the directory where the GNU C Library shared objects (.so files) are placed after the build phase has been completed.</p>
+<h4><a class="header" href="#busybox_installed" id="busybox_installed">BUSYBOX_INSTALLED</a></h4>
+<p><code>BUSYBOX_INSTALLED=src/work/busybox/busybox_installed/</code></p>
+<p>This is the directory where Busybox is placed after the build phase has been completed.</p>
+<h4><a class="header" href="#sysroot" id="sysroot">SYSROOT</a></h4>
+<p><code>SYSROOT=src/work/sysroot/</code></p>
+<p>The system root folder for MLL. This folder contains GLIBC, and kernel header files. MLL uses the sysroot folder in order to properly link Busybox with the custom built kernel and GLIBC. </p>
+<h4><a class="header" href="#rootfs" id="rootfs">ROOTFS</a></h4>
+<p><code>ROOTFS=src/work/rootfs/</code></p>
+<p>This folder contains the rootfs/initramfs structure which is generated by the core MLL build process.</p>
+<h4><a class="header" href="#overlay_rootfs" id="overlay_rootfs">OVERLAY_ROOTFS</a></h4>
+<p><code>OVERLAY_ROOTFS=src/work/overlay_rootfs/</code></p>
+<p>This folder contains the rootfs/initramfs structure which is generated by the overlay subsystem build process.</p>
+<h4><a class="header" href="#isoimage" id="isoimage">ISOIMAGE</a></h4>
+<p><code>OVERLAY_ROOTFS=src/work/isoimage/</code></p>
+<p>This folder contains the final ISO image structure.</p>
+<h4><a class="header" href="#isoimage_overlay" id="isoimage_overlay">ISOIMAGE_OVERLAY</a></h4>
+<p><code>OVERLAY_ROOTFS=src/work/isoimage_overlay/</code></p>
+<p>This folder contains the final overlay subsystem ISO structure.</p>
+<h2><a class="header" href="#functions" id="functions">Functions</a></h2>
+<h4><a class="header" href="#read_propertyprop_name" id="read_propertyprop_name">read_property(prop_name)</a></h4>
+<p>This function reads properties from the main <code>.config</code> file.</p>
+<pre><code class="language-bash"># Example
+
+JOB_FACTOR=`read_property JOB_FACTOR`
+</code></pre>
+<h4><a class="header" href="#download_sourceurl-file_to_save" id="download_sourceurl-file_to_save">download_source(url, file_to_save)</a></h4>
+<p>This function downloads the <code>url</code> resource and saves it as <code>$file_to_save</code>.</p>
+<pre><code class="language-bash"># Example
+#
+# This is the filesystem structure before the execution
+# of the function.
+#
+# src/
+# └── source/
+#     └── (no files/folders)
+
+download_source \
+  'https://busybox.net/downloads/busybox-1.32.0.tar.bz2' \
+  $SOURCE_DIR/busybox-1.32.0.tar.bz2
+  
+# This is the filesystem structure after the execution
+# of the function.
+#
+# src/
+# └── source/
+#     └── busybox-1.32.0.tar.bz2
+</code></pre>
+<h4><a class="header" href="#extract_sourcearchive_file-dest_dir" id="extract_sourcearchive_file-dest_dir">extract_source(archive_file, dest_dir)</a></h4>
+<p>This function extracts the archive <code>archive_file</code> in the directory <code>src/work/$dest_dir/</code>.</p>
+<pre><code class="language-bash"># Example
+#
+# This is the filesystem structure before the execution
+# of the function.
+#
+# src/
+# ├── source/
+# │   └── busybox-1.32.0.tar.bz2
+# └── work/
+#     └── (no files/folders)
+
+extract_source \
+  $SOURCE_DIR/busybox-1.32.0.tar.bz2 \
+  busybox
+  
+# This is the filesystem structure after the execution
+# of the function.
+#
+# src/
+# ├── source/
+# │   └── busybox-1.32.0.tar.bz2
+# └── work/
+#     └── busybox
+#         └── busybox-1.32.0/
+</code></pre>
+<h1><a class="header" href="#clean" id="clean">Clean</a></h1>
+<h1><a class="header" href="#get-kernel" id="get-kernel">Get kernel</a></h1>
+<h1><a class="header" href="#build-kernel" id="build-kernel">Build kernel</a></h1>
+<h1><a class="header" href="#step-03---get-glibc" id="step-03---get-glibc">Step 03 - Get GLIBC</a></h1>
+<h1><a class="header" href="#step-04---build-glibc" id="step-04---build-glibc">Step 04 - Build GLIBC</a></h1>
+<h1><a class="header" href="#step-05---prepare-sysroot" id="step-05---prepare-sysroot">Step 05 - Prepare Sysroot</a></h1>
+<h1><a class="header" href="#step-06---get-busybox" id="step-06---get-busybox">Step 06 - Get Busybox</a></h1>
+<h1><a class="header" href="#step-07---build-busybox" id="step-07---build-busybox">Step 07 - Build Busybox</a></h1>
+<h1><a class="header" href="#step-08---prepare-bundles" id="step-08---prepare-bundles">Step 08 - Prepare Bundles</a></h1>
+<h1><a class="header" href="#step-09---generate-rootfs" id="step-09---generate-rootfs">Step 09 - Generate Rootfs</a></h1>
+<h1><a class="header" href="#step-10---pack-rootfs" id="step-10---pack-rootfs">Step 10 - Pack Rootfs</a></h1>
+<h1><a class="header" href="#step-11---generate-overlay" id="step-11---generate-overlay">Step 11 - Generate Overlay</a></h1>
+<h1><a class="header" href="#step-12---get-syslinux" id="step-12---get-syslinux">Step 12 - Get Syslinux</a></h1>
+<h1><a class="header" href="#step-12---get-systemd-boot" id="step-12---get-systemd-boot">Step 12 - Get systemd-boot</a></h1>
+<h1><a class="header" href="#step-13---prepare-iso" id="step-13---prepare-iso">Step 13 - Prepare ISO</a></h1>
+<h1><a class="header" href="#step-14---generate-iso" id="step-14---generate-iso">Step 14 - Generate ISO</a></h1>
+<h1><a class="header" href="#step-15---generate-image" id="step-15---generate-image">Step 15 - Generate Image</a></h1>
+<h1><a class="header" href="#step-16---final-cleanup" id="step-16---final-cleanup">Step 16 - Final Cleanup</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>

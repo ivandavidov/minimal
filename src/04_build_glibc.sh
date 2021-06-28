@@ -24,7 +24,7 @@ GLIBC_SRC=`ls -d $WORK_DIR/glibc/glibc-*`
 cd $GLIBC_OBJECTS
 
 # 'glibc' is configured to use the root folder (--prefix=) and as result all
-# libraries will be installed in '/lib'. Note that on 64-bit machines BusyBox
+# libraries will be installed in '/lib'. Note that on 64-bit machines Busybox
 # will be linked with the libraries in '/lib' while the Linux loader is expected
 # to be in '/lib64'. Kernel headers are taken from our already prepared kernel
 # header area (see xx_build_kernel.sh). Packages 'gd' and 'selinux' are disabled

@@ -6,8 +6,14 @@ set -e
 
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
-# Change to the make source directory which ls finds, e.g. 'make-8.28'.
+# Change to the make source directory which ls finds, e.g. 'make-4.2.1'.
 cd $(ls -d make-*)
+
+if [ "${PWD##*/}" = "make-4.2.1" ] ; then
+  # TODO - remove this when it's no longer necessary.
+  # Apply the patch for version "4.2.1".
+  patch glob/glob.c $SRC_DIR/make-4.2.1.patch
+fi
 
 if [ -f Makefile ] ; then
   echo "Preparing '$BUNDLE_NAME' work area. This may take a while."

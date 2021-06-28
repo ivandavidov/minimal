@@ -1,14 +1,24 @@
 
-This file can be found in the folder 'minimal_overlay/rootfs'.
+   This file can be found in the folder 'minimal/src/minimal_overlay/rootfs'
 
-You can use this folder to put your own content (files and folders) which will
-be visible in the root folder of your 'Minimal Linux Live' system, just like
-this file is visible. The files/folders will override the content in the root
-folder, so be careful what you put there because you may end up with broken
-system. If the boot media is writeable, then all changes on the root file system
-are persisted automatically, so be very careful what you do when you use the
-overlay support.
+ You can use the above folder to put your own content (files and folders) which
+ will be visible in the root folder of your 'Minimal Linux Live' system, just
+ like this file is visible. The files/folders will override the content in the
+ root folder, so be careful what you put there because you may break your OS.
+ If the boot media is writable, then all changes on the root file system are
+ persisted automatically, so be very careful what you do when you use the
+ overlay system.
 
-Check the '.config' file in the source folder for more details on the overlay
-options and how to use them.
+ Another way to add software in 'Minimal Linux Live' is by using the overlay
+ bundles which add the software while the OS is being built. Check the
+ 'mll_hello' overlay bundle in folder 'minimal/src/minimal_overlay/bundles'.
+
+ You can also add software in 'Minimal Linux Live' while the OS is running with
+ the 'static_get' overlay bundle. Use 'static-get -s <package>' to search for
+ packages and 'static-get -i <package>' to install the package.
+
+ Check the '.config' file in the source folder for more details regarding the
+ overlay system and how to use it.
+
+   Have fun with 'Minimal Linux Live'! :)
 

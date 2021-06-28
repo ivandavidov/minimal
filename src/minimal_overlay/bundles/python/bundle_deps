@@ -1,2 +1,4 @@
 glibc_libpthread
 glibc_libutil
+glibc_libdl
+libxcrypt

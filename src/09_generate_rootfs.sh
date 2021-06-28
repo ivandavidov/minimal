@@ -10,7 +10,7 @@ echo "*** GENERATE ROOTFS BEGIN ***"
 echo "Preparing rootfs work area. This may take a while."
 rm -rf $ROOTFS
 
-# Copy all BusyBox generated stuff to the location of our 'rootfs' folder.
+# Copy all Busybox generated stuff to the location of our 'rootfs' folder.
 cp -r $BUSYBOX_INSTALLED $ROOTFS
 
 # Copy all rootfs resources to the location of our 'rootfs' folder.
@@ -24,7 +24,7 @@ find $ROOTFS/* -type f -name '.keep' -exec rm {} +
 rm -f $ROOTFS/linuxrc
 
 # This is for the dynamic loader. Note that the name and the location are both
-# specific for 32-bit and 64-bit machines. First we check the BusyBox executable
+# specific for 32-bit and 64-bit machines. First we check the Busybox executable
 # and then we copy the dynamic loader to its appropriate location.
 BUSYBOX_ARCH=$(file $ROOTFS/bin/busybox | cut -d' ' -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
@@ -38,9 +38,10 @@ fi
 
 # Copy all necessary 'glibc' libraries to '/lib' BEGIN.
 
-# BusyBox has direct dependencies on these libraries.
+# Busybox has direct dependencies on these libraries.
 cp $SYSROOT/lib/libm.so.6 $ROOTFS/lib
 cp $SYSROOT/lib/libc.so.6 $ROOTFS/lib
+cp $SYSROOT/lib/libresolv.so.2 $ROOTFS/lib
 
 # Copy all necessary 'glibc' libraries to '/lib' END.
 

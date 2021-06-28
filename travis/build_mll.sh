@@ -22,6 +22,8 @@ do
 
     if [ "$?" = "0" ] ; then
       echo "`date` | Success."
+      tail -n 40 /tmp/mll.log
+      echo "***   ***   ***"
     else
       echo "`date` | !!! FAILURE !!!"
       tail -n 1000 /tmp/mll.log

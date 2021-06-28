@@ -21,7 +21,7 @@ cp -r $KERNEL_INSTALLED/include $SYSROOT
 
 # 3) Hack for the missing '/work/sysroot/usr' folder. We link
 #    the existing libraries and the kernel headers. Without
-#    this hack the BusyBox compilation process fails. The proper
+#    this hack the Busybox compilation process fails. The proper
 #    way to handle this is to use '--prefix=/usr' in the glibc
 #    build process but then we have to deal with other issues.
 #    For now this hack is the easiest and the simplest solution.

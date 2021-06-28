@@ -1,0 +1,11 @@
+[book]
+authors = ["John Davidson"]
+description = "Minimal Linux Live - guidebook"
+language = "en"
+multilingual = false
+src = "src"
+title = "Minimal Linux Live"
+
+[output.html]
+default-theme = "rust"
+

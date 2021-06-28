@@ -6,19 +6,7 @@ set -e
 
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
-if [ ! "$(id -u)" = "0" ] ; then
-  cat << CEOF
-
-  The build process for bundle '$BUNDLE_NAME' requires root
-  permissions. Restart the build process as 'root' in order
-  to build '$BUNDLE_NAME'.
-  
-CEOF
-
-  exit 1
-fi
-
-# Change to the util-linux source directory which ls finds, e.g. 'util-linux-2.31'.
+# Change to the util-linux source directory which ls finds, e.g. 'util-linux-2.34'.
 cd $(ls -d util-linux-*)
 
 if [ -f Makefile ] ; then
@@ -29,11 +17,14 @@ else
 fi
 
 rm -rf $DEST_DIR
+mkdir -p $DEST_DIR/usr/share/doc/util-linux
+mkdir -p $DEST_DIR/bin
 
 echo "Configuring '$BUNDLE_NAME'."
 CFLAGS="$CFLAGS" ./configure \
   ADJTIME_PATH=/var/lib/hwclock/adjtime   \
-  --docdir=/usr/share/doc/util-linux-2.31 \
+  --prefix=$DEST_DIR \
+  --docdir=$DEST_DIR/usr/share/doc/util-linux \
   --disable-chfn-chsh  \
   --disable-login      \
   --disable-nologin    \
@@ -42,6 +33,7 @@ CFLAGS="$CFLAGS" ./configure \
   --disable-runuser    \
   --disable-pylibmount \
   --disable-static     \
+  --disable-makeinstall-chown \
   --without-python     \
   --without-systemd    \
   --without-systemdsystemunitdir
@@ -50,18 +42,14 @@ echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS
 
 echo "Installing '$BUNDLE_NAME'."
-make -j $NUM_JOBS install DESTDIR=$DEST_DIR
+make -j $NUM_JOBS install
 
 echo "Reducing '$BUNDLE_NAME' size."
-set +e
-strip -g $DEST_DIR/usr/bin/*
-set -e
+reduce_size $DEST_DIR/bin
 
-# With '--remove-destination' all possibly existing soft links in
-# '$OVERLAY_ROOTFS' will be overwritten correctly.
-cp -r --remove-destination $DEST_DIR/* \
-  $OVERLAY_ROOTFS
+install_to_overlay bin
 
 echo "Bundle '$BUNDLE_NAME' has been installed."
 
 cd $SRC_DIR
+

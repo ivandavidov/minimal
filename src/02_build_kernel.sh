@@ -16,6 +16,7 @@ make mrproper -j $NUM_JOBS
 
 # Read the 'USE_PREDEFINED_KERNEL_CONFIG' property from '.config'
 USE_PREDEFINED_KERNEL_CONFIG=`read_property USE_PREDEFINED_KERNEL_CONFIG`
+BUILD_KERNEL_MODULES=`read_property BUILD_KERNEL_MODULES`
 
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/kernel.config ] ; then
   echo "Config file '$SRC_DIR/minimal_config/kernel.config' does not exist."
@@ -106,14 +107,27 @@ make \
   CFLAGS="$CFLAGS" \
   bzImage -j $NUM_JOBS
 
+if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
+  echo "Building kernel modules."
+  make \
+    CFLAGS="$CFLAGS" \
+    modules -j $NUM_JOBS
+fi
+
 # Prepare the kernel install area.
 echo "Removing old kernel artifacts. This may take a while."
 rm -rf $KERNEL_INSTALLED
 mkdir $KERNEL_INSTALLED
 
+echo "Installing the kernel."
 # Install the kernel file.
 cp arch/x86/boot/bzImage \
   $KERNEL_INSTALLED/kernel
+
+if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
+  make INSTALL_MOD_PATH=$KERNEL_INSTALLED \
+    modules_install -j $NUM_JOBS
+fi
 
 # Install kernel headers which are used later when we build and configure the
 # GNU C library (glibc).

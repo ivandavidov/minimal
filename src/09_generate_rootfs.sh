@@ -5,6 +5,8 @@ set -e
 # Load common properties and functions in the current script.
 . ./common.sh
 
+BUILD_KERNEL_MODULES=`read_property BUILD_KERNEL_MODULES`
+
 echo "*** GENERATE ROOTFS BEGIN ***"
 
 echo "Preparing rootfs work area. This may take a while."
@@ -69,6 +71,12 @@ if [ "$OVERLAY_LOCATION" = "rootfs" ] && \
     $OVERLAY_ROOTFS/* $ROOTFS
   cp -r --remove-destination \
     $SRC_DIR/minimal_overlay/rootfs/* $ROOTFS
+
+  # Copy all modules to the sysroot folder.
+  if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
+    echo "Copying modules. This may take a while."
+    cp -r --remove-destination $KERNEL_INSTALLED/lib $ROOTFS
+  fi
 fi
 
 echo "The rootfs area has been generated."

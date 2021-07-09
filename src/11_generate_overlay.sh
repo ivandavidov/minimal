@@ -21,6 +21,8 @@ OVERLAY_TYPE=`read_property OVERLAY_TYPE`
 # Read the 'OVERLAY_LOCATION' property from '.config'
 OVERLAY_LOCATION=`read_property OVERLAY_LOCATION`
 
+BUILD_KERNEL_MODULES=`read_property BUILD_KERNEL_MODULES`
+
 if [ "$OVERLAY_LOCATION" = "iso" ] && \
    [ "$OVERLAY_TYPE" = "sparse" ] && \
    [ -d $OVERLAY_ROOTFS ] && \
@@ -64,6 +66,12 @@ if [ "$OVERLAY_LOCATION" = "iso" ] && \
   cp -r $SRC_DIR/minimal_overlay/rootfs/* \
     $ISOIMAGE_OVERLAY/sparse/rootfs
 
+  # Copy all modules to the sysroot folder.
+  if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
+    echo "Copying modules. This may take a while."
+    cp -r $KERNEL_INSTALLED/lib $ISOIMAGE_OVERLAY/sparse/rootfs
+  fi
+
   # Unmount the sparse file and delete the temporary folder.
   sync
   $BUSYBOX umount $ISOIMAGE_OVERLAY/sparse
@@ -92,6 +100,12 @@ elif [ "$OVERLAY_LOCATION" = "iso" ] && \
     $ISOIMAGE_OVERLAY/minimal/rootfs
   cp -r $SRC_DIR/minimal_overlay/rootfs/* \
     $ISOIMAGE_OVERLAY/minimal/rootfs
+
+  # Copy all modules to the sysroot folder.
+  if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
+    echo "Copying modules. This may take a while."
+    cp -r $KERNEL_INSTALLED/lib $ISOIMAGE_OVERLAY/minimal/rootfs
+  fi
 else
   echo "The ISO image will have no overlay structure."
 fi

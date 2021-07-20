@@ -15,12 +15,16 @@ jobs:
     - uses: actions/checkout@v2
     - name: install prerequsites
       run: |
-        apt install automake libtool pkg-config # lldpd
-        apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev xz-utils cpio file build-essential g++ # minimal linux
-        apt install pkg-config upx upx-ucl # lshw
-    - name: make all
+        sudo apt install automake libtool pkg-config # lldpd
+        sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev xz-utils cpio file build-essential g++ # minimal linux
+        sudo apt install pkg-config upx upx-ucl # lshw
+    - name: build iso
       run: |
         cd src
-        yes "" | ./build_minimal_linux_live.sh
-
+        yes "" | sudo ./build_minimal_linux_live.sh
+    - name: upload iso as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: bare-minimal-linux.iso
+        path: src/minimal_linux_live.iso
 

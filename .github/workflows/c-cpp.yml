@@ -1,0 +1,26 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ bare-minimal-linux ]
+  pull_request:
+    branches: [ bare-minimal-linux ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install prerequsites
+      run: |
+        apt install automake libtool pkg-config # lldpd
+        apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev xz-utils cpio file build-essential g++ # minimal linux
+        apt install pkg-config upx upx-ucl # lshw
+    - name: make all
+      run: |
+        cd src
+        yes "" | ./build_minimal_linux_live.sh
+
+

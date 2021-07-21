@@ -1,0 +1,13 @@
+name: 'Manual workflow'
+on: 'workflow_dispatch'
+jobs:
+  mll:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: 'Install Prerequisites'
+      run: |
+        sudo apt install wget make gawk gcc bc bison flex xorriso libelf-dev libssl-dev
+    - name: 'Build MLL'
+      run: |
+        cd src
+        ./build_minimal_linux_live.sh

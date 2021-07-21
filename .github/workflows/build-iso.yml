@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Build ISO
 
 on:
   push:
@@ -13,6 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        # how man commits do we fetch? we need enough so that we have a tagged commit as well else the build will fail
+        fetch-depth: '20'
+    # workaround for fetching tags from https://github.com/actions/checkout/issues/290 as the action does not fetch tags, even when all commits are fetched
+    - name: get git tags
+      run: |
+        git fetch --tags --force
+    - name:
+      run: |
+        git describe --tags --abbrev=0
+        git rev-parse --short HEAD
     - name: install prerequsites
       run: |
         sudo apt install automake libtool pkg-config # lldpd

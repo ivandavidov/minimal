@@ -17,7 +17,7 @@ fi
 cd `ls -d $WORK_DIR/kernel/linux-*`
 
 # set version
-version="$(git describe --tags --abbrev=0 bare-minimal-linux)-$(git rev-parse --short bare-minimal-linux)"
+version="$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)"
 sed -i -e "s/^CONFIG_LOCALVERSION=.*/CONFIG_LOCALVERSION=\"-$version\"/" .config
 
 make bzImage -j 4

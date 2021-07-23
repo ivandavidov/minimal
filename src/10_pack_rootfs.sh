@@ -15,7 +15,7 @@ rm -f $WORK_DIR/rootfs.cpio.xz
 cd $ROOTFS
 
 # Packs the current 'initramfs' folder structure in 'cpio.xz' archive.
-find . | cpio -R root:root -H newc -o | xz -9 --check=crc32 --x86 > $WORK_DIR/rootfs.cpio.xz
+find . | cpio -R root:root -H newc -o | xz -9 --check=crc32 > $WORK_DIR/rootfs.cpio.xz
 
 echo "Packing of initramfs has finished."
 

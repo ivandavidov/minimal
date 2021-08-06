@@ -1,22 +1,14 @@
 name: 'MLL With Integration Tests'
 on: 'workflow_dispatch'
 jobs:
-  checkout:
+  mll-with-tests:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v2    
-  setup:
-    needs: checkout
-    runs-on: 'ubuntu-latest'
-    steps:
     - name: 'Apply Workflow Patches'
       run: |
         cd .github
         bash ./github-ci.sh  
-  build:
-    needs: setup
-    runs-on: 'ubuntu-latest'
-    steps:
     - name: 'Step 00 - Clean'
       run: |
         cd ./src
@@ -89,10 +81,6 @@ jobs:
       run: |
         cd ./src
         bash ./16_cleanup.sh
-  test:
-    needs: build
-    runs-on: 'ubuntu-latest'
-    steps:
     - name: 'Test Docker'
       run: |
         cd .github

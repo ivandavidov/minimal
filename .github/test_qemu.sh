@@ -6,8 +6,6 @@ set -e
 
 cd ../src
 
-sudo apt-get -qq -y install qemu-system-x86-64
-
 echo "`date` | *** MLL QEMU test - BEGIN ***"
 
 qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -nographic &

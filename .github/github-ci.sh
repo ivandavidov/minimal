@@ -13,5 +13,6 @@ sed -i "s|OVERLAY_LOCATION.*|OVERLAY_LOCATION=rootfs|" ../src/.config
 
 sudo apt-get -qq -y update
 sudo apt-get -qq -y upgrade
+sudo apt-get -qq -y install wget make gawk gcc bc xz-utils bison flex xorriso libelf-dev libssl-dev qemu-system-x86-64
 
 set +e

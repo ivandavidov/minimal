@@ -121,8 +121,13 @@ mkdir $KERNEL_INSTALLED
 
 echo "Installing the kernel."
 # Install the kernel file.
+if [ $(uname -m) == 'x86_64' ] ; then
 cp arch/x86/boot/bzImage \
   $KERNEL_INSTALLED/kernel
+elif [ $(uname -m) == 'aarch64' ] ; then
+cp arch/arm64/boot/Image \
+  $KERNEL_INSTALLED/kernel
+fi
 
 if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
   make INSTALL_MOD_PATH=$KERNEL_INSTALLED \

@@ -19,8 +19,15 @@ fi
 rm -rf $DEST_DIR
 
 echo "Configuring '$BUNDLE_NAME'."
-CFLAGS="$CFLAGS" ./configure \
-  --prefix=/usr
+CFLAGS="$CFLAGS -I${OVERLAY_ROOTFS}/include" \
+LDFLAGS="$LDFLAGS -L${OVERLAY_ROOTFS}/lib -L${OVERLAY_ROOTFS}/usr/lib" \
+  ./configure --prefix=/usr
+
+# Remove the dependency to libutempter as it is
+# not available on the target system.
+echo "Patching configuration of '$BUNDLE_NAME'."
+sed -i 's|-lutempter||g' Makefile
+sed -i 's|#define HAVE_UTEMPTER 1||g' config.h
 
 echo "Building '$BUNDLE_NAME'."
 make -j $NUM_JOBS

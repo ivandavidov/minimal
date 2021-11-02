@@ -1,24 +1,20 @@
 name: publish bml
 
-# Controls when the workflow will run
 on:
-  # might need to be adjusted to somehow use tags instead of releases
-  release:
-    types: [published, created, edited]
+  push:
+    #branches:
+    #  - bare-minimal-linux
+   tags:
+     - 'bml-*'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  publish:
-    # The type of runner that the job will run on
+  publish-bml:
     runs-on: self-hosted
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.10
         with:
@@ -26,11 +22,20 @@ jobs:
           name: bare-minimal-linux.iso
           # Destination path
           path: bare-minimal-linux.iso
-          
-      # use rsync and ssh to put the iso to the right folder
-      - name: push iso via rsync over ssh
-        run: |
-          echo "add SSH-key to agent from secret"
-          echo something
-          # copy iso to jumphost and use the git tag as filename
-          echo rsync bare-minimal-linux.iso bml@jump01.cc.eu-de-1.cloud.sap/repo/iso/$(git tag ...).iso
+
+      # thanks to https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
+      - name: Setup SSH Keys and known_hosts
+          env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          run: |
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.BML_USER_PRIVATE_KEY }}"    
+
+      # use rsync over ssh to put the iso in the right folder on the jumphost
+      - name: push iso via rsync
+          env:
+             SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          run: |
+            echo "${GITHUB_REF}"
+            # copy iso to jumphost and use the git tag as filename
+            echo rsync bare-minimal-linux.iso bml@jump01.cc.eu-de-1.cloud.sap/repo/iso/${GITHUB_REF}.iso

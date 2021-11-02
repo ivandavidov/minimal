@@ -25,17 +25,17 @@ jobs:
 
       # thanks to https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
       - name: Setup SSH Keys and known_hosts
-          env:
-            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          run: |
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.BML_USER_PRIVATE_KEY }}"    
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add - <<< "${{ secrets.BML_USER_PRIVATE_KEY }}"
 
       # use rsync over ssh to put the iso in the right folder on the jumphost
       - name: push iso via rsync
-          env:
-             SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          run: |
-            echo "${GITHUB_REF}"
-            # copy iso to jumphost and use the git tag as filename
-            echo rsync bare-minimal-linux.iso bml@jump01.cc.eu-de-1.cloud.sap/repo/iso/${GITHUB_REF}.iso
+        env:
+           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          echo "${GITHUB_REF}"
+          # copy iso to jumphost and use the git tag as filename
+          echo rsync bare-minimal-linux.iso bml@jump01.cc.eu-de-1.cloud.sap/repo/iso/${GITHUB_REF}.iso

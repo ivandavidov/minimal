@@ -15,13 +15,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.0.10
-        with:
-          # Artifact name
-          name: bare-minimal-linux.iso
-          # Destination path
-          path: bare-minimal-linux.iso
+      #     - name: Download a Build Artifact
+      #       uses: actions/download-artifact@v2.0.10
+      #       with:
+      #         # Artifact name
+      #         name: bare-minimal-linux.iso
+      #         # Destination path
+      #         path: bare-minimal-linux.iso
 
       # thanks to https://www.webfactory.de/blog/use-ssh-key-for-private-repositories-in-github-actions
       - name: Setup SSH Keys and known_hosts
@@ -31,6 +31,10 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.BML_USER_PRIVATE_KEY }}"
 
+      - name: get version/pr-nr
+        run: |
+          echo "GITHUB_HEAD_REF: $GITHUB_HEAD_REF"
+          echo "GITHUB_BASE_REF: $GITHUB_BASE_REF"
       # use rsync over ssh to put the iso in the right folder on the jumphost
       - name: push iso via rsync
         env:

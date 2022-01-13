@@ -33,7 +33,7 @@ if [ "\$PRINT_HELP" = "true" ] ; then
 
   Usage: mll-install DEVICE
 
-  DEVICE    The device where Minmal Linux Live will be installed. Specify only
+  DEVICE    The device where Minimal Linux Live will be installed. Specify only
             the name, e.g. 'sda'. The installer will automatically convert this
             to '/dev/sda' and will exit with warning message if the device does
             not exist.

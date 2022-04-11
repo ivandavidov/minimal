@@ -1,4 +1,4 @@
-# Minimal Linux Live [<img align="right" src="https://img.shields.io/badge/Donate-PayPal-green.svg">](https://www.paypal.me/MinimalLinuxLive)
+# Minimal Linux Live
 
 * [Overview](#overview)
 * [Current development state](#current-development-state)
@@ -11,7 +11,6 @@
 * [Installation](#installation)
 * [Publications](#publications)
 * [Related projects](#related-projects)
-* [Donations](#donations)
 * [Thank you!](#thank-you)
 
 ### Stargazers over time
@@ -280,12 +279,6 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 * [Runlinux](https://github.com/cirosantilli/runlinux) - environment to build and test Linux kernels.
 
 * [Ersoy Kardesler ISO](https://github.com/Ersoy-Kardesler/ersoy-kardesler-iso) - A minimal Linux script fork, adds custom Linux and BusyBox configs, NCURSES and GNU nano.
-
-### Donations
-
-If you find MLL or its related projects useful, you can express your positive attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food.
-
-If you don't like MLL (or me in particular), you can express your _not-so-positive_ attitude via [PayPal donation](https://www.paypal.me/MinimalLinuxLive). All donations will be spent on food for thought.
 
 ### Thank you!
 

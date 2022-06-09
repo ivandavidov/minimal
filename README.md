@@ -54,13 +54,13 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **27-Mar-2021**:
+As of **09-Jul-2022**:
 
-* Linux kernel 5.11.10
-* GNU C Library 2.33
-* Busybox 1.32.1
+* Linux kernel 5.18.3
+* GNU C Library 2.35
+* Busybox 1.34.1
 
-Stable build on default Ubuntu 20.04 installation with applied system updates.
+Stable build on default Ubuntu 22.04 installation with applied system updates.
 
 Here are some screenshots of the latest published version of Minimal Linux Live:
 

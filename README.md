@@ -54,7 +54,7 @@ Did I mention the [YouTube channel](https://youtu.be/u5KYDaCLChc?list=PLe3TW5jDb
 
 ### Current development state
 
-As of **09-Jul-2022**:
+As of **09-Jun-2022**:
 
 * Linux kernel 5.18.3
 * GNU C Library 2.35

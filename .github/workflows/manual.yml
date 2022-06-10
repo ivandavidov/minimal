@@ -2,7 +2,7 @@ name: 'MLL With Integration Tests'
 on: 'workflow_dispatch'
 jobs:
   mll-with-tests:
-    runs-on: 'ubuntu-latest'
+    runs-on: 'ubuntu-22.04'    # revert back to 'ubuntu-latest' when 22.04 is no longer in public beta
     steps:
     - uses: actions/checkout@v2    
     - name: 'Apply Workflow Patches'

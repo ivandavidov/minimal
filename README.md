@@ -2,6 +2,7 @@
 
 * [Overview](#overview)
 * [Current development state](#current-development-state)
+* [MLL on ARM (AArch64)](#mll-on-arm64-aarch64)
 * [Future improvements](#future-improvements)
 * [How to build](#how-to-build)
 * [Overlay bundles](#overlay-bundles)
@@ -71,6 +72,15 @@ Here are some screenshots of the latest published version of Minimal Linux Live:
 You can experiment with Minimal Linux Live directly in your browser by using [JavaScript PC Emulator](http://minimal.idzona.com/emulator "Minimal Linux Live in JavaScript PC emulator"). Here is a screenshot:
 
 ![Minimal Linux Live JavaScript Emulator](docs/assets/img/emulator_01.jpg)
+
+### MLL on ARM (AArch64)
+
+A preview of MLL on ARM (AArch64) can be found in the branch [aarch64](https://github.com/ivandavidov/minimal/tree/aarch64/src).
+
+* Install Ubuntu Server 22.04 for ARM 64 (AArch64).
+* Resolve some additional dependencies on top of the MLL required dependencies, e.g. qemu-system-aarch64, rsync, bzip2, etc.
+* Execute scripts 00 to 10.
+* Execute [qemu-aarch64.sh](https://github.com/ivandavidov/minimal/blob/aarch64/src/qemu-aarch64.sh) and then switch to the QEMU serial console.
 
 ### Future improvements
 

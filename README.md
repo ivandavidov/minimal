@@ -2,7 +2,7 @@
 
 * [Overview](#overview)
 * [Current development state](#current-development-state)
-* [MLL on ARM (AArch64)](#mll-on-arm64-aarch64)
+* [MLL on ARM (AArch64)](#mll-on-arm-aarch64)
 * [Future improvements](#future-improvements)
 * [How to build](#how-to-build)
 * [Overlay bundles](#overlay-bundles)

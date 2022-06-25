@@ -61,10 +61,10 @@ else
   # OVERLAYFS - END
 
   # Step 1 - disable all active kernel compression options (should be only one).
-  sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config
+  #sed -i "s/.*\\(CONFIG_KERNEL_.*\\)=y/\\#\\ \\1 is not set/" .config
 
   # Step 2 - enable the 'xz' compression option.
-  sed -i "s/.*CONFIG_KERNEL_XZ.*/CONFIG_KERNEL_XZ=y/" .config
+  #sed -i "s/.*CONFIG_KERNEL_XZ.*/CONFIG_KERNEL_XZ=y/" .config
 
   # Enable the VESA framebuffer for graphics support.
   sed -i "s/.*CONFIG_FB_VESA.*/CONFIG_FB_VESA=y/" .config
@@ -105,7 +105,7 @@ fi
 echo "Building kernel."
 make \
   CFLAGS="$CFLAGS" \
-  bzImage -j $NUM_JOBS
+  Image -j $NUM_JOBS
 
 if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then
   echo "Building kernel modules."
@@ -121,7 +121,7 @@ mkdir $KERNEL_INSTALLED
 
 echo "Installing the kernel."
 # Install the kernel file.
-cp arch/x86/boot/bzImage \
+cp arch/arm64/boot/Image \
   $KERNEL_INSTALLED/kernel
 
 if [ "$BUILD_KERNEL_MODULES" = "true" ] ; then

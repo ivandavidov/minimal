@@ -34,14 +34,12 @@ The [guidebook](https://ivandavidov.github.io/minimal/book) explains in details 
 
 You are encouraged to read the [tutorial](src/the_dao_of_minimal_linux_live.txt) which explains the minimalistic MLL build process. The same tutorial, along with all MLL source code, can be found in the ISO image structure in the ``/minimal/rootfs/usr/src directory``.
 
-The hosting space for [Minimal Linux Live](http://minimal.idzona.com "Minimal Linux Live") is provided by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
+The project has been supported by the cool guys at [Microweber](http://microweber.com "Microweber - Website Builder and Laravel CMS") - check them out. :)
 
-Website mirrors are available here:
+Website and mirrors are available here:
 
-* [ivandavidov.github.io/minimal](http://ivandavidov.github.io/minimal "Minimal Linux Live")
-* [skamilinux.hu/minimal](http://skamilinux.hu/minimal "Minimal Linux Live")
-* [linux.idzona.com](http://linux.idzona.com "Minimal Linux Live")
-* [minimal.linux-bg.org](http://minimal.linux-bg.org "Minimal Linux Live")
+* [ivandavidov.github.io/minimal](https://ivandavidov.github.io/minimal "Minimal Linux Live")
+* [skamilinux.hu/minimal](https://skamilinux.hu/minimal "Minimal Linux Live")
 
 List of [related projects](#related-projects) is available in the end of this document. If you don't find what you're looking for in MLL, perhaps you'll find it in the related projects, e.g. minimal Linux system with graphical user interface (GUI), or perhaps minimal Linux system with option to run Docker containers.
 

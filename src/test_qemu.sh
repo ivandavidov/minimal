@@ -25,7 +25,7 @@ LABEL operatingsystem
 CEOF
 
 ./repackage.sh
-qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
+qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -nographic &
 
 sleep 5
 if [ "`ps -ef | grep -i [q]emu-system`" = "" ] ; then

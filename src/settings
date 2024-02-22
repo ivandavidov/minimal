@@ -1,0 +1,4 @@
+KERNEL_VERSION=6.6.17
+GLIBC_VERSION=2.38
+BUSYBOX_VERSION=1.36.1
+ADD_BUNDLES=dhcp,mll_hello,mll_logo,mll_source,glibc_full

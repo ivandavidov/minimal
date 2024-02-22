@@ -3,7 +3,7 @@
 set -e
 
 . ../../common.sh
-. ../../settings
+. ../../../settings
 
 # Uncomment this to regenerate the MLL logo. The file MLL_LOGO
 # has to be existing in advance and it is your responsibility

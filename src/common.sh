@@ -34,7 +34,8 @@ read_property() (
 
   if [ ! "$prop_name" = "" ] ; then
     # Search in the main '.config' file.
-    prop_value=`grep -i ^${prop_name}= $CONFIG | cut -f2- -d'=' | xargs`
+    value_def=`grep -i ^${prop_name}= $CONFIG | cut -f2- -d'=' | xargs`
+    prop_value=`eval echo $value_def`
   fi
 
   echo $prop_value

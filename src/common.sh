@@ -2,6 +2,8 @@
 
 set -e
 
+. settings
+
 SRC_DIR=$PWD
 CONFIG=$SRC_DIR/.config
 SOURCE_DIR=$SRC_DIR/source

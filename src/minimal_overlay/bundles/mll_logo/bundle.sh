@@ -3,6 +3,7 @@
 set -e
 
 . ../../common.sh
+. ../../settings
 
 # Uncomment this to regenerate the MLL logo. The file MLL_LOGO
 # has to be existing in advance and it is your responsibility
@@ -28,7 +29,7 @@ if [ ! "$USE_BOOT_LOGO" = "true" ] ; then
   exit 0
 fi
 
-if [ ! -f $WORK_DIR/kernel/linux-*/.config ] ; then
+if [ ! -f $WORK_DIR/kernel/linux-$KERNEL_VERSION/.config ] ; then
   echo "Kernel configuration does not exist. Cannot continue."
   exit 1
 fi

@@ -2,7 +2,7 @@
 
 set -e
 
-. settings
+. ./settings
 
 SRC_DIR=$PWD
 CONFIG=$SRC_DIR/.config

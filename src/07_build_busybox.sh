@@ -4,6 +4,7 @@ set -e
 
 # Load common properties and functions in the current script.
 . ./common.sh
+. ./settings
 
 echo "*** BUILD BUSYBOX BEGIN ***"
 
@@ -12,7 +13,7 @@ echo "Removing old Busybox artifacts. This may take a while."
 rm -rf $BUSYBOX_INSTALLED
 
 # Change to the source directory ls finds, e.g. 'busybox-1.24.2'.
-cd `ls -d $WORK_DIR/busybox/busybox-*`
+cd `ls -d $WORK_DIR/busybox/busybox-$BUSYBOX_VERSION`
 
 # Remove previously generated artifacts.
 echo "Preparing Busybox work area. This may take a while."

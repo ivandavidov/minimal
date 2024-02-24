@@ -25,7 +25,8 @@ if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/ke
 fi
 
 # Create default configuration file for the kernel.
-make defconfig -j $NUM_JOBS
+yes | make defconfig -j $NUM_JOBS
+
 echo "Generated default kernel configuration."
 
 # Changes the name of the system to 'minimal'.
@@ -104,7 +105,8 @@ fi
 # Good explanation of the different kernels:
 # http://unix.stackexchange.com/questions/5518/what-is-the-difference-between-the-following-kernel-makefile-terms-vmlinux-vmlinux
 echo "Building kernel."
-make \
+
+yes | make \
   CFLAGS="$CFLAGS" \
   bzImage -j $NUM_JOBS
 

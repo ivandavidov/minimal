@@ -29,7 +29,7 @@ fi
 
 # Create default configuration file.
 echo "Generating default Busybox configuration."
-make defconfig -j $NUM_JOBS
+yes | make defconfig -j $NUM_JOBS
 
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
@@ -45,7 +45,7 @@ sed -i "s|.*CONFIG_EXTRA_CFLAGS.*|CONFIG_EXTRA_CFLAGS=\"$CFLAGS -L$SYSROOT/lib\"
 
 # Compile busybox with optimization for "parallel jobs" = "number of processors".
 echo "Building Busybox."
-make \
+yes | make \
   busybox -j $NUM_JOBS
 
 # Create the symlinks for busybox. The file 'busybox.links' is used for this.

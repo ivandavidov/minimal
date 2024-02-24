@@ -14,6 +14,8 @@ echo "  Minimal Linux Live will shut down in 10 seconds."
 CEOF
 chmod +x minimal_overlay/rootfs/etc/autorun/99_autoshutdown.sh
 
+cp -f minimal_boot/bios/boot/syslinux/syslinux.cfg original_syslinux.cfg
+
 cat <<CEOF > minimal_boot/bios/boot/syslinux/syslinux.cfg
 SERIAL 0
 DEFAULT operatingsystem
@@ -58,11 +60,15 @@ cat << CEOF
 
   ##################################################################
   #                                                                #
-  #  QEMU test passed. Clean manually the affected MLL artifacts.  #
+  #  QEMU test passed. Cleaning up                              .  #
   #                                                                #
   ##################################################################
 
 CEOF
+
+rm -rf minimal_overlay/rootfs/etc/autorun/99_autoshutdown.sh
+
+cp -f original_syslinux.cfg minimal_boot/bios/boot/syslinux/syslinux.cfg
 
 echo "`date` | *** MLL QEMU test - END ***"
 

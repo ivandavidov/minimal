@@ -27,14 +27,14 @@ if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/b
   USE_PREDEFINED_BUSYBOX_CONFIG="false"
 fi
 
+# Create default configuration file.
+echo "Generating default Busybox configuration."
+make defconfig -j $NUM_JOBS
+
 if [ "$USE_PREDEFINED_BUSYBOX_CONFIG" = "true" ] ; then
   # Use predefined configuration file for Busybox.
-  echo "Using config file $SRC_DIR/minimal_config/busybox.config"
-  cp -f $SRC_DIR/minimal_config/busybox.config .config
-else
-  # Create default configuration file.
-  echo "Generating default Busybox configuration."
-  make defconfig -j $NUM_JOBS
+  echo "Using config file $SRC_DIR/minimal_config/busybox.config to update defaults."
+  $SRC_DIR/./update_config.sh .config $SRC_DIR/minimal_config/busybox.config
 fi
 
 # Now we tell Busybox to use the sysroot area.

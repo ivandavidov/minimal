@@ -33,7 +33,7 @@ else
   ARCH="i386"
 fi
 
-cmd="qemu-system-$ARCH -m 128M -cdrom minimal_linux_live.iso -boot d -nographic"
+cmd="qemu-system-$ARCH -m 128M -cdrom minimal_linux_live.iso -boot d -nodefaults -display none -serial $(tty)"
 
 if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
   echo "Starting QEMU with attached ISO image and hard disk."

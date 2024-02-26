@@ -29,22 +29,6 @@ echo -e "Welcome to \\e[1mMinimal \\e[32mLinux \\e[31mLive\\e[0m (/init)"
 # Let's mount all core file systems.
 /etc/01_prepare.sh
 
-# Print first message on screen.
-cat /etc/msg/init_01.txt
-
-# Wait 5 second or until any ~keyboard key is pressed.
-read -t 5 -n1 -s key
-
-if [ ! "$key" = "" ] ; then
-  # Print second message on screen.
-  cat /etc/msg/init_02.txt
-
-  # Set flag which indicates that we have obtained controlling terminal.
-  export PID1_SHELL=true
-
-  # Interactive shell with controlling tty as PID 1.
-  exec setsid cttyhack sh
-fi
 
 # Create new mountpoint in RAM, make it our new root location and overlay it
 # with our storage area (if overlay area exists at all). This operation invokes

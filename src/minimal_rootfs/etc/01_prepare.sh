@@ -36,5 +36,5 @@ mkdir -p /dev/pts
 
 mount -t devpts none /dev/pts
 
-echo "Mounted all core filesystems. Ready to continue."
+echo "Mounted all core filesystems."
 

@@ -3,6 +3,7 @@
 set -e
 
 . ../../common.sh
+. ../../../settings
 
 # Read the common configuration properties.
 DOWNLOAD_URL=`read_property NCURSES_SOURCE_URL`

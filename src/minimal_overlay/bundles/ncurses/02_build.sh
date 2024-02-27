@@ -3,11 +3,12 @@
 set -e
 
 . ../../common.sh
+. ../../../settings
 
 cd $WORK_DIR/overlay/$BUNDLE_NAME
 
 # Change to the ncurses source directory which ls finds, e.g. 'ncurses-6.0'.
-cd $(ls -d ncurses-*)
+cd $(ls -d ncurses-$NCURSES_VERSION)
 
 if [ -f Makefile ] ; then
   echo "Preparing '$BUNDLE_NAME' work area. This may take a while."

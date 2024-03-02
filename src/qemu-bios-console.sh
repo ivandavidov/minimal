@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+. ./argparse.sh
 
 # Use this script without arguments to run the generated ISO image with QEMU.
 # If you pass '-hdd' or '-h' the virtual hard disk 'hdd.img' will be attached.
@@ -33,12 +35,33 @@ else
   ARCH="i386"
 fi
 
-cmd="qemu-system-$ARCH -m 128M -cdrom minimal_linux_live.iso -boot d -nographic"
+cmd="qemu-system-$ARCH -m 128M -cdrom minimal_linux_live.iso -boot d -nodefaults -display none -serial $(tty)"
 
-if [ "$1" = "-hdd" -o "$1" = "-h" ] ; then
-  echo "Starting QEMU with attached ISO image and hard disk."
-  echo 'console' | $cmd -hda hdd.img
-else
-  echo "Starting QEMU with attached ISO image."
-  echo 'console' | $cmd
+define_arg "hdd" "false" "Add hdd" "store_true" "false"
+define_arg "hdd_img" "" "hdd image specified" "string" "false"
+define_arg "virtfs" "false" "Add virtfs" "store_true" "false"
+define_arg "virt_img" "" "virtfs image specified" "string" "false"
+
+parse_args "$@"
+
+if [[ $hdd == "true"  ]]; then
+  if [[ $hdd_img == ""  ]]; then
+    rm hdd-empty.qcow2
+    qemu-img create -f qcow2 hdd-empty.qcow2 100M
+    cmd="${cmd} -hda hdd-empty.qcow2"
+  else
+    cmd="${cmd} -hda $hdd_img"
+  fi
 fi
+
+if [[ $virtfs == "true" ]]; then
+  if [[ $virt_img == ""  ]]; then
+    rm virtfs-empty.qcow2
+    qemu-img create -f qcow2 virtfs-empty.qcow2 100M
+    cmd="${cmd} -device virtio-blk-pci,drive=drive0,id=virtblk0,num-queues=4 -drive file=virtfs-empty.qcow2,if=none,id=drive0"
+  else
+    cmd="${cmd} -device virtio-blk-pci,drive=drive0,id=virtblk0,num-queues=4 -drive file=${virt_img},if=none,id=drive0"
+  fi
+fi
+
+`$cmd`

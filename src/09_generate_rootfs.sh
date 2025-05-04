@@ -31,7 +31,10 @@ rm -f $ROOTFS/linuxrc
 BUSYBOX_ARCH=$(file $ROOTFS/bin/busybox | cut -d' ' -f3)
 if [ "$BUSYBOX_ARCH" = "64-bit" ] ; then
   mkdir -p $ROOTFS/lib64
+  # Remove/optimize for Aarch64 - the next line is invalid
   cp $SYSROOT/lib/ld-linux* $ROOTFS/lib64
+  # This one is correct fro Aarch64
+  cp $SYSROOT/lib/ld-linux* $ROOTFS/lib
   echo "Dynamic loader is accessed via '/lib64'."
 else
   cp $SYSROOT/lib/ld-linux* $ROOTFS/lib

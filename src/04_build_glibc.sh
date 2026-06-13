@@ -4,6 +4,7 @@ set -e
 
 # Load common properties and functions in the current script.
 . ./common.sh
+. ./settings
 
 echo "*** BUILD GLIBC BEGIN ***"
 
@@ -18,7 +19,7 @@ rm -rf $GLIBC_INSTALLED
 mkdir $GLIBC_INSTALLED
 
 # Find the glibc source directory, e.g. 'glibc-2.23' and remember it.
-GLIBC_SRC=`ls -d $WORK_DIR/glibc/glibc-*`
+GLIBC_SRC=`ls -d $WORK_DIR/glibc/glibc-$GLIBC_VERSION`
 
 # All glibc work is done from the working area.
 cd $GLIBC_OBJECTS

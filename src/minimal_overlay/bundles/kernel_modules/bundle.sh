@@ -3,9 +3,10 @@
 set -e
 
 . ../../common.sh
+. ../../settings
 
 
-if [ ! -d $WORK_DIR/kernel/linux-* ] ; then
+if [ ! -d $WORK_DIR/kernel/linux-$KERNEL_VERSION ] ; then
   echo "Kernel source directory is missing. Cannot continue."
   exit 1
 else
@@ -21,7 +22,7 @@ fi
 
 rm -rf $DEST_DIR
 
-cd $WORK_DIR/kernel/linux-*
+cd $WORK_DIR/kernel/linux-$KERNEL_VERSION
 
 echo "Building kernel modules."
 make_target modules

@@ -4,6 +4,7 @@ set -e
 
 # Load common properties and functions in the current script.
 . ./common.sh
+. ./settings
 
 echo "*** PREPARE OVERLAY BEGIN ***"
 

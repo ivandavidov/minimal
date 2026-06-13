@@ -14,6 +14,8 @@ echo "  Minimal Linux Live will shut down in 10 seconds."
 CEOF
 chmod +x minimal_overlay/rootfs/etc/autorun/99_autoshutdown.sh
 
+cp -f minimal_boot/bios/boot/syslinux/syslinux.cfg original_syslinux.cfg
+
 cat <<CEOF > minimal_boot/bios/boot/syslinux/syslinux.cfg
 SERIAL 0
 DEFAULT operatingsystem
@@ -25,10 +27,11 @@ LABEL operatingsystem
 CEOF
 
 ./repackage.sh
-qemu-system-x86_64 -m 256M -cdrom minimal_linux_live.iso -boot d -localtime -nographic &
+qemu-system-x86_64 -m 128M -cdrom minimal_linux_live.iso -boot d -nographic &
+QEMU_PID=$!
 
 sleep 5
-if [ "`ps -ef | grep -i [q]emu-system`" = "" ] ; then
+if [ "`ps -ef | grep $QEMU_PID | grep -v grep | wc -l`" -eq 0 ] ; then
   echo "`date` | !!! FAILURE !!! Minimal Linux Live is not running in QEMU."
   exit 1
 else
@@ -38,17 +41,18 @@ fi
 RETRY=10
 while [ ! "$RETRY" = "0" ] ; do
   echo "`date` | Countdown: $RETRY"
-  if [ "`ps -ef | grep -i [q]emu-system`" = "" ] ; then
+  if [ "`ps -ef | grep $QEMU_PID | grep -v grep | wc -l`" -eq 0 ] ; then
     break
   fi
   sleep 30
   RETRY=$(($RETRY - 1))
 done
 
-if [ "`ps -ef | grep -i [q]emu-system`" = "" ] ; then
+if [ "`ps -ef | grep $QEMU_PID | grep -v grep | wc -l`" -eq 0 ] ; then
   echo "`date` | Minimal Linux Live is not running in QEMU."
 else
   echo "`date` | !!! FAILURE !!! Minimal Linux Live is still running in QEMU."
+  kill $QEMU_PID
   exit 1
 fi
 
@@ -56,11 +60,15 @@ cat << CEOF
 
   ##################################################################
   #                                                                #
-  #  QEMU test passed. Clean manually the affected MLL artifacts.  #
+  #  QEMU test passed. Cleaning up                              .  #
   #                                                                #
   ##################################################################
 
 CEOF
+
+rm -rf minimal_overlay/rootfs/etc/autorun/99_autoshutdown.sh
+
+cp -f original_syslinux.cfg minimal_boot/bios/boot/syslinux/syslinux.cfg
 
 echo "`date` | *** MLL QEMU test - END ***"
 

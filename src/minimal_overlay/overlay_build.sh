@@ -2,6 +2,8 @@
 
 set -e
 
+. ../settings
+
 SRC_DIR=$(pwd)
 
 # Find the main source directory
@@ -16,7 +18,8 @@ fi
 
 if [ "$1" = "" ] ; then
   # Read the 'OVERLAY_BUNDLES' property from '.config'
-  OVERLAY_BUNDLES="$(grep -i ^OVERLAY_BUNDLES $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+  OVERLAY_BUNDLES_VALUE_DEF="$(grep -i ^OVERLAY_BUNDLES $MAIN_SRC_DIR/.config | cut -f2 -d'=')"
+  OVERLAY_BUNDLES=`eval echo $OVERLAY_BUNDLES_VALUE_DEF`
 else
   OVERLAY_BUNDLES=$1
 fi

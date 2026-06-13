@@ -36,11 +36,13 @@ read_property() (
 
   if [ ! "$prop_name" = "" ] ; then
     # Search in the main '.config' file.
-    prop_value="`grep -i ^${prop_name}= $CONFIG | cut -f2- -d'=' | xargs`"
+    value_def=`grep -i ^${prop_name}= $CONFIG | cut -f2- -d'=' | xargs`
+    prop_value=`eval echo $value_def`
 
     if [ -f $SRC_DIR/.config ] ; then
       # Search in the local '.config' file.
-      prop_value_local="`grep -i ^${prop_name}= $SRC_DIR/.config | cut -f2- -d'=' | xargs`"
+      value_def_local=`grep -i ^${prop_name}= $SRC_DIR/.config | cut -f2- -d'=' | xargs`
+      prop_value_local=`eval echo $value_def_local`
 
       if [ ! "$prop_value_local" = "" ] ; then
         # Override the original value with the local value.
@@ -49,7 +51,7 @@ read_property() (
     fi
   fi
 
-  echo "$prop_value"
+  echo $prop_value
 )
 
 # Read commonly used configuration properties.

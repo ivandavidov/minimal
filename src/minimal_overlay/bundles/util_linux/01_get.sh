@@ -3,6 +3,7 @@
 set -e
 
 . ../../common.sh
+. ../../../settings
 
 # Read the common configuration properties.
 DOWNLOAD_URL=`read_property UTIL_LINUX_SOURCE_URL`

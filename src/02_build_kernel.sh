@@ -18,6 +18,9 @@ make mrproper -j $NUM_JOBS
 USE_PREDEFINED_KERNEL_CONFIG=`read_property USE_PREDEFINED_KERNEL_CONFIG`
 BUILD_KERNEL_MODULES=`read_property BUILD_KERNEL_MODULES`
 
+# Read the 'FIRMWARE_TYPE' property from '.config'
+FIRMWARE_TYPE=`read_property FIRMWARE_TYPE`
+
 if [ "$USE_PREDEFINED_KERNEL_CONFIG" = "true" -a ! -f $SRC_DIR/minimal_config/kernel.config ] ; then
   echo "Config file '$SRC_DIR/minimal_config/kernel.config' does not exist."
   USE_PREDEFINED_KERNEL_CONFIG=false
@@ -85,7 +88,64 @@ else
 
   # Enable the EFI stub
   sed -i "s/.*CONFIG_EFI_STUB.*/CONFIG_EFI_STUB=y/" .config
-
+  # Enable the EFI framebuffer for graphics support with EFI boot (requires FB).
+  sed -i "s/.*CONFIG_FB.*/CONFIG_FB=y/" .config
+  echo "CONFIG_FB_EFI=y" >> .config
+  echo "CONFIG_FB_VESA=y" >> .config
+  # Required settings when using FB
+  echo "CONFIG_FRAMEBUFFER_CONSOLE=y" >> .config
+  echo "CONFIG_FRAMEBUFFER_CONSOLE_LEGACY_ACCELERATION=y" >> .config
+  echo "CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y" >> .config
+  echo "CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=n" >> .config
+  echo "CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=n" >> .config
+  echo "CONFIG_LOGO=n" >> .config
+  echo "CONFIG_FONTS=n" >> .config  
+  echo "CONFIG_DRM_FBDEV_EMULATION=n" >> .config
+  echo "CONFIG_FIRMWARE_EDID=n" >> .config
+  echo "CONFIG_FB_FOREIGN_ENDIAN=n" >> .config
+  echo "CONFIG_FB_MODE_HELPERS=n" >> .config
+  echo "CONFIG_FB_TILEBLITTING=n" >> .config
+  echo "CONFIG_FB_CIRRUS=n" >> .config
+  echo "CONFIG_FB_PM2=n" >> .config
+  echo "CONFIG_FB_CYBER2000=n" >> .config
+  echo "CONFIG_FB_ARC=n" >> .config
+  echo "CONFIG_FB_ASILIANT=n" >> .config
+  echo "CONFIG_FB_IMSTT=n" >> .config
+  echo "CONFIG_FB_VGA16=n" >> .config
+  echo "CONFIG_FB_UVESA=n" >> .config
+  echo "CONFIG_FB_N411=n" >> .config
+  echo "CONFIG_FB_HGA=n" >> .config
+  echo "CONFIG_FB_OPENCORES=n" >> .config
+  echo "CONFIG_FB_S1D13XXX=n" >> .config
+  echo "CONFIG_FB_NVIDIA=n" >> .config
+  echo "CONFIG_FB_RIVA=n" >> .config
+  echo "CONFIG_FB_I740=n" >> .config
+  echo "CONFIG_FB_LE80578=n" >> .config
+  echo "CONFIG_FB_MATROX=n" >> .config
+  echo "CONFIG_FB_RADEON=n" >> .config
+  echo "CONFIG_FB_ATY128=n" >> .config
+  echo "CONFIG_FB_ATY=n" >> .config
+  echo "CONFIG_FB_S3=n" >> .config
+  echo "CONFIG_FB_SAVAGE=n" >> .config
+  echo "CONFIG_FB_SIS=n" >> .config
+  echo "CONFIG_FB_NEOMAGIC=n" >> .config
+  echo "CONFIG_FB_KYRO=n" >> .config
+  echo "CONFIG_FB_3DFX=n" >> .config
+  echo "CONFIG_FB_VOODOO1=n" >> .config
+  echo "CONFIG_FB_VT8623=n" >> .config
+  echo "CONFIG_FB_TRIDENT=n" >> .config
+  echo "CONFIG_FB_ARK=n" >> .config
+  echo "CONFIG_FB_PM3=n" >> .config
+  echo "CONFIG_FB_CARMINE=n" >> .config
+  echo "CONFIG_FB_SMSCUFX=n" >> .config
+  echo "CONFIG_FB_UDL=n" >> .config
+  echo "CONFIG_FB_IBM_GXT4500=n" >> .config
+  echo "CONFIG_FB_VIRTUAL=n" >> .config
+  echo "CONFIG_FB_METRONOME=n" >> .config
+  echo "CONFIG_FB_MB862XX=n" >> .config
+  echo "CONFIG_FB_SIMPLE=n" >> .config
+  echo "CONFIG_FB_SM712=n" >> .config
+ 
   # Request that the firmware clear the contents of RAM after reboot (4.14+).
   echo "CONFIG_RESET_ATTACK_MITIGATION=y" >> .config
 

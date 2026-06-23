@@ -288,7 +288,7 @@ List of cool forks, spin-offs and other related projects inspired by Minimal Lin
 
 * [Runlinux](https://github.com/cirosantilli/runlinux) - environment to build and test Linux kernels.
 
-* [Ersoy Kardesler Minimal Linux System](https://notabug.org/ersoy-kardesler/minimal-linux-system) - A minimal Linux script fork, adds custom Linux and BusyBox configs, NCURSES and GNU nano.
+* [Ersoy Kardeşler Minimal Linux System](https://github.com/ersoy-kardesler/minimal-linux-system) - A minimal Linux script fork, adds custom Linux and BusyBox configs and some features.
 
 ### Thank you!
 
